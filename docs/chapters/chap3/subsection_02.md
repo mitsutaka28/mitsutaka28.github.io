@@ -153,7 +153,9 @@ ReLU関数はすべての正の入力に対して線形（というより同じ�
 
 $$ \operatorname{ReLU}(z)=\max \{0,  z\}\nonumber $$
 
- 
+
+$$ \max\\{0, z\\} $$ 
+
 
 <figure>
 
@@ -175,7 +177,12 @@ LeakyReLU関数 (Maas et al., 2013)は, 負の入力を0にする代わりに,
 
  
 
-$$ \operatorname{LeakyReLU}(z)=\left\\{\begin{array}{cc}0.01 z & z<0 \\ z & z \geq 0\end{array}\right\.\nonumber $$
+$$ \operatorname{LeakyReLU}(z)=
+\begin{cases}
+0.01 z  & z<0 \\ 
+z  & z \geq 0
+\end{cases}
+\nonumber $$
 
  
 
