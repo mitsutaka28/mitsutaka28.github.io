@@ -74,7 +74,7 @@
 
 1つのノードにおける演算は, 次の2つの部分から構成される:
 
-1.  入力を重み（ $\mathbf{w}\_i$ ）で線形に組み合わせる
+1.  入力を重み（ $\mathbf{w}_i$ ）で線形に組み合わせる
 
 2.  前のステップで得られた値を, 活性化関数に通す
 
@@ -82,7 +82,7 @@
 
  
 
-$$ h=\alpha(b+\sum_{i=1}^{4} \mathbf{w}\_i \cdot \mathbf{x}\_i)\nonumber $$
+$$ h=\alpha(b+\sum_{i=1}^{4} \mathbf{w}_i \cdot \mathbf{x}_i)\nonumber $$
 
  
 
