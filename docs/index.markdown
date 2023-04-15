@@ -15,7 +15,7 @@ layout: default
 ### 手法
 - [第4章 グラフ埋め込み](./chapters/chap4/chap4.md)
 - [第5章 グラフニューラルネットワーク](./chapters/chap5/chap5.md)
-- 第6章 Robust Graph Neural Networks
+- 第6章 Robust Graph Neural Networks(近日公開予定)
 - 第7章 Scalable Graph Neural Networks
 - 第8章 Graph Neural Networks on Complex Graphs
 - 第9章 Beyond GNNs: More Deep Models on Graphs
