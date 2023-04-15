@@ -19,7 +19,7 @@
 通常いくつかの関数の組み合わせとして表現される. 例えば,
 図3.1の順伝播型ネットワークは,
 4つの関数 $f^{(1)}, f^{(2)}, f^{(3)}, f^{(4)}$ が鎖状に接続されており,
-これらの関数を用いて $f(\mathbf{x})$ は $f(\mathbf{x})=f^{(4)}\left\(f^{(3)}\left\(f^{(2)}\left\(f^{(1)}(\mathbf{x})\right\)\right\)\right\)$ と表される.
+これらの関数を用いて $f(\mathbf{x})$ は $f(\mathbf{x})=f^{(4)}\left(f^{(3)}\left(f^{(2)}\left(f^{(1)}(\mathbf{x})\right)\right)\right)$ と表される.
 図3.1の順伝播型ネットワークでは,  $f^{(1)}$ が第1層,  $f^{(2)}$ が第2層,
  $f^{(3)}$ が第3層, そして最後の層 $f^{(4)}$ が出力層となっている.
 ネットワークの計算層の数でネットワークの深さが決まる.
@@ -90,24 +90,24 @@ $$ h=\alpha\left(b+\sum_{i=1}^{4} \mathbf{w}_i \cdot \mathbf{x}_i\right)\nonumbe
 次にこの演算を任意の隠れ層に一般化する.
 ニューラルネットワークのk番目の層には $N^{(k)}$ ノードあり,
 その出力は $\mathbf{h}^{(k)}$ と表すことができるとする（ここで,
- $\mathbf{h}^{(k)}\_i$ はi番目の要素を表す）.
+ $\mathbf{h}^{(k)}_i$ はi番目の要素を表す）.
 ニューラルネットワークのk+1番目の層で $\mathbf{h}^{(k+1)}$ を計算するために次の演算を行う：
 
  
 
-$$ \mathbf{h}\_j^{(k+1)}=\alpha\left\(b\_j^{(k)}+\sum_{i=1}^{N^{(k)}} \mathbf{W}_{j i}^{(k)} \mathbf{h}\_i^{(k)}\right\)
+$$ \mathbf{h}_j^{(k+1)}=\alpha\left(b_j^{(k)}+\sum_{i=1}^{N^{(k)}} \mathbf{W}_{j i}^{(k)} \mathbf{h}_i^{(k)}\right)
 \tag{3.1} $$
 
  
 
 ここで,
- $\mathbf{W}_{j i}^{(k)}$ は $\mathbf{h}\_i^{(k)}$ と $\mathbf{h}\_i^{(k+1)}$ をつなげる重みに対応し,
- $b\_j^{(k)}$ はバイアス項を表す.
+ $\mathbf{W}_{j i}^{(k)}$ は $\mathbf{h}_i^{(k)}$ と $\mathbf{h}_i^{(k+1)}$ をつなげる重みに対応し,
+ $b_j^{(k)}$ はバイアス項を表す.
 k+1層の全要素を計算する演算を行列形式で書くと次のようになる：
 
  
 
-$$ \mathbf{h}^{(k+1)}=\boldsymbol{\alpha}\left\(\mathbf{b}^{(k)}+\mathbf{W}^{(k)} \mathbf{h}^{(k)}\right\)\nonumber $$
+$$ \mathbf{h}^{(k+1)}=\boldsymbol{\alpha}\left(\mathbf{b}^{(k)}+\mathbf{W}^{(k)} \mathbf{h}^{(k)}\right)\nonumber $$
 
  
 
@@ -120,7 +120,7 @@ $$ \mathbf{h}^{(k+1)}=\boldsymbol{\alpha}\left\(\mathbf{b}^{(k)}+\mathbf{W}^{(k)
 
  
 
-$$ \mathbf{h}^{(k+1)}=f^{(k+1)}\left\(\mathbf{h}^{(k)}\right\)=\alpha\left\(\mathbf{b}^{(k)}+\mathbf{W}^{(k)} \mathbf{h}^{(k)}\right\)\nonumber $$
+$$ \mathbf{h}^{(k+1)}=f^{(k+1)}\left(\mathbf{h}^{(k)}\right)=\alpha\left(\mathbf{b}^{(k)}+\mathbf{W}^{(k)} \mathbf{h}^{(k)}\right)\nonumber $$
 
  
 
@@ -320,7 +320,7 @@ $$ \ell(y,  \hat{y})=-y \cdot \log (\hat{y})-(1-y) \cdot \log (1-\hat{y})\nonumb
 多クラス(nクラス）の分類課題では,
 正解はは0からn-1までの整数で表されると仮定する. そこで,
 分類ラベルを表現するためにOne-hotベクトル $\mathbf{y} \in\{0, 1\}^{n}$ を用いる.
-ここで $\mathbf{y}\_i=1$ はサンプルが $i-1$ とラベル付けされていることを表す.
+ここで $\mathbf{y}_i=1$ はサンプルが $i-1$ とラベル付けされていることを表す.
 予測を行うために,
 まず入力 $\mathbf{h}$ をn次元ベクトル $\mathbf{Z} \in \mathbb{R}^{n}$ に変換する線形層が必要である：
 
@@ -337,11 +337,11 @@ $$ \mathbf{z}=\mathbf{W}\mathbf{h}+\mathbf{b}\nonumber $$
 
  
 
-$$ \hat{\mathbf{y}}\_i=\operatorname{softmax}(z)\_i=\frac{\exp \left\(\mathbf{z}\_i\right\)}{\sum\_j \exp \left\(\mathbf{z}\_j\right\)},  i=1,  \ldots,  n\nonumber $$
+$$ \hat{\mathbf{y}}_i=\operatorname{softmax}(z)_i=\frac{\exp \left(\mathbf{z}_i\right)}{\sum_j \exp \left(\mathbf{z}_j\right)},  i=1,  \ldots,  n\nonumber $$
 
  
 
-ここで,  $\mathbf{z}\_i$ はベクトル $z$ のi番目の要素を表し,
+ここで,  $\mathbf{z}_i$ はベクトル $z$ のi番目の要素を表し,
  $\hat{\mathbf{y}}_i$ はソフトマックス関数のi番目の出力を表す. 特に,
  $\hat{\mathbf{y}}_i$ は入力サンプルがラベル $i-1$ で予測される確率を表す.
 予測値
@@ -350,7 +350,7 @@ $$ \hat{\mathbf{y}}\_i=\operatorname{softmax}(z)\_i=\frac{\exp \left\(\mathbf{z}
 
  
 
-$$ \ell(\mathbf{y},  \hat{\mathbf{y}})=-\sum_{i=0}^{n-1} \mathbf{y}\_i \log \left\(\hat{\mathbf{y}}\_i\right\)\nonumber $$
+$$ \ell(\mathbf{y},  \hat{\mathbf{y}})=-\sum_{i=0}^{n-1} \mathbf{y}_i \log \left(\hat{\mathbf{y}}_i\right)\nonumber $$
 
  
 

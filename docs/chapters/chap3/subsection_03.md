@@ -228,7 +228,7 @@ He et al.2016)．
  $L$ 個のチャンネルを持つ入力画像 $I$ を考えてみよう.
  $P$ 個のカーネルを用いた畳み込み演算は次のように定式化することができる：
 
- $$ S(i, j, p)=\left\(I * K\_p\right\)(i, j)=\sum_{l=1}^{L} \sum_{\tau=i-n}^{i+n} \sum_{j=\symbfscr{G}amma-n}^{\symbfscr{G}amma+n} I(\tau, \symbfscr{G}amma, l) K\_p(i-\tau, j-\symbfscr{G}amma, l), p=1, \ldots P
+ $$ S(i, j, p)=\left(I * K_p\right)(i, j)=\sum_{l=1}^{L} \sum_{\tau=i-n}^{i+n} \sum_{j=\symbfscr{G}amma-n}^{\symbfscr{G}amma+n} I(\tau, \symbfscr{G}amma, l) K_p(i-\tau, j-\symbfscr{G}amma, l), p=1, \ldots P
     
 \tag{3.2} $$ 
 
@@ -248,7 +248,7 @@ He et al.2016)．
 
  
 
-$$ \begin{array}{l}S(i, j, p)= \\ \sum_{l=1}^{L} \sum_{\tau=i-n}^{i+n} \sum_{j=\symbfscr{G}amma-n}^{\symbfscr{G}amma+n} I(\tau, \symbfscr{G}amma, l) K\_p((i-1) \cdot s+1-\tau,(j-1) \cdot s+1-\symbfscr{G}amma, l)\end{array}\nonumber $$
+$$ \begin{array}{l}S(i, j, p)= \\ \sum_{l=1}^{L} \sum_{\tau=i-n}^{i+n} \sum_{j=\symbfscr{G}amma-n}^{\symbfscr{G}amma+n} I(\tau, \symbfscr{G}amma, l) K_p((i-1) \cdot s+1-\tau,(j-1) \cdot s+1-\symbfscr{G}amma, l)\end{array}\nonumber $$
 
  
 

@@ -83,7 +83,7 @@
 (Olshausen and Field, 1997)の研究では,
 符号化表現 $\mathbf{h}$ の $L_1$ ノルムが正則化項として次のように導入されていた：
 
- $$ \Omega(\mathbf{h})=\\|\mathbf{h}\\|\_1
+ $$ \Omega(\mathbf{h})=\\|\mathbf{h}\\|_1
     
 \tag{3.10} $$ 
 
@@ -99,7 +99,7 @@
 オートエンコーダーで学習したその符号化表現を $\mathbf{h}(x)$ とする.
 サンプル集合 $\left\\{\mathbf{X}_{(i)}\right\\}_{i=1}^{m}$ の符号化表現の平均は次のように書くことができる：
 
- $$ \overline{\mathbf{h}}=\frac{1}{m} \sum_{i=1}^{m} \mathbf{h}\left\(\mathbf{x}_{(i)}\right\)
+ $$ \overline{\mathbf{h}}=\frac{1}{m} \sum_{i=1}^{m} \mathbf{h}\left(\mathbf{x}_{(i)}\right)
     
 \tag{3.11} $$ 
 
@@ -109,7 +109,7 @@
 KLダイバージェンスを用いることで,
 この確率変数が $\rho$ を平均とするベルヌーイ確率変数と近づくように制約することができる：
 
- $$ \Omega(\mathbf{h})=\sum\_j\left\(\rho \log \frac{\rho}{\overline{\mathbf{h}}[j]}+(1-\rho) \log \frac{1-\rho}{1-\overline{\mathbf{h}}[j]}\right\)
+ $$ \Omega(\mathbf{h})=\sum_j\left(\rho \log \frac{\rho}{\overline{\mathbf{h}}[j]}+(1-\rho) \log \frac{1-\rho}{1-\overline{\mathbf{h}}[j]}\right)
     
 \tag{3.12} $$ 
 

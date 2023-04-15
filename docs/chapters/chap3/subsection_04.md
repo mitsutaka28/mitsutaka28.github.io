@@ -53,13 +53,13 @@ Network）である. RNNは, 系列の各要素に同じ関数を再帰的に適
 
  
 
-$$ \begin{array}{l}\mathbf{h}^{(i)}=\alpha\_h\left\(\mathbf{W}_{hh} \cdot \mathbf{h}^{(i-1)}+\mathbf{W}_{hx} \mathbf{x}^{(i-1)}+\mathbf{b}\_h\right\) \nonumber \\ \mathbf{y}^{(i)}=\alpha\_y\left\(\mathbf{W}_{yh} \mathbf{h}^{(i)}+\mathbf{b}\_y\right\)\end{array}\nonumber $$
+$$ \begin{array}{l}\mathbf{h}^{(i)}=\alpha_h\left(\mathbf{W}_{hh} \cdot \mathbf{h}^{(i-1)}+\mathbf{W}_{hx} \mathbf{x}^{(i-1)}+\mathbf{b}_h\right) \nonumber \\ \mathbf{y}^{(i)}=\alpha_y\left(\mathbf{W}_{yh} \mathbf{h}^{(i)}+\mathbf{b}_y\right)\end{array}\nonumber $$
 
  
 
 ここで、 $\mathbf{W}_{hh},\mathbf{W}_{hx}, \mathbf{W}_{yh}$ は線形変換をする行列で,
- $\mathbf{b}\_h, \mathbf{b}\_y$ はバイアス項,
- $\alpha\_h, \alpha\_y$ は活性化関数を表す.
+ $\mathbf{b}_h, \mathbf{b}_y$ はバイアス項,
+ $\alpha_h, \alpha_y$ は活性化関数を表す.
 
 系列データを扱う場合,
 系列の長期的な依存関係を捉えることが非常に重要となる. 例えば,
@@ -115,7 +115,7 @@ LSTMではまず最初のステップで,
 
  
 
-$$ \mathbf{f}\_t=\sigma\left\(\mathbf{W}\_f \cdot \mathbf{x}^{(t)}+\mathbf{U}\_f \cdot \mathbf{h}^{(t-1)}+\mathbf{b}\_f\right\)\nonumber $$
+$$ \mathbf{f}_t=\sigma\left(\mathbf{W}_f \cdot \mathbf{x}^{(t)}+\mathbf{U}_f \cdot \mathbf{h}^{(t-1)}+\mathbf{b}_f\right)\nonumber $$
 
  
 
@@ -129,7 +129,7 @@ $$ \mathbf{f}\_t=\sigma\left\(\mathbf{W}\_f \cdot \mathbf{x}^{(t)}+\mathbf{U}\_f
 入力ゲートは以下のように定式化される：
  
 
-$$ \mathbf{i}\_t=\sigma\left\(\mathbf{W}\_i \cdot \mathbf{x}^{(t)}+\mathbf{U}\_i \cdot \mathbf{h}^{(t-1)}+\mathbf{b}\_i\right\)\nonumber $$
+$$ \mathbf{i}_t=\sigma\left(\mathbf{W}_i \cdot \mathbf{x}^{(t)}+\mathbf{U}_i \cdot \mathbf{h}^{(t-1)}+\mathbf{b}_i\right)\nonumber $$
 
  
 入力 $\mathbf{x}^{(t)}$ を数層のニューラルネットワークで処理することで候補セル $\tilde{\mathbf{C}}^{(t)}$ を生成し,
@@ -137,7 +137,7 @@ $$ \mathbf{i}\_t=\sigma\left\(\mathbf{W}\_i \cdot \mathbf{x}^{(t)}+\mathbf{U}\_i
 
  
 
-$$ \tilde{\mathbf{C}}^{(t)}=\tanh \left\(\mathbf{W}\_c \cdot \mathbf{x}^{(t)}+\mathbf{U}\_c \cdot \mathbf{h}^{(t-1)}+\mathbf{b}\_c\right\)\nonumber $$
+$$ \tilde{\mathbf{C}}^{(t)}=\tanh \left(\mathbf{W}_c \cdot \mathbf{x}^{(t)}+\mathbf{U}_c \cdot \mathbf{h}^{(t-1)}+\mathbf{b}_c\right)\nonumber $$
 
  
 
@@ -147,7 +147,7 @@ $$ \tilde{\mathbf{C}}^{(t)}=\tanh \left\(\mathbf{W}\_c \cdot \mathbf{x}^{(t)}+\m
 
  
 
-$$ \mathbf{C}^{(t)}=\mathbf{f}\_t \odot \mathbf{C}^{(t-1)}+\mathbf{i}\_t \odot \tilde{\mathbf{C}}^{(t)}\nonumber $$
+$$ \mathbf{C}^{(t)}=\mathbf{f}_t \odot \mathbf{C}^{(t-1)}+\mathbf{i}_t \odot \tilde{\mathbf{C}}^{(t)}\nonumber $$
 
  
 
@@ -162,7 +162,7 @@ $$ \mathbf{C}^{(t)}=\mathbf{f}\_t \odot \mathbf{C}^{(t-1)}+\mathbf{i}\_t \odot \
 
  
 
-$$ \mathbf{o}\_t=\sigma\left\(\mathbf{W}\_o \cdot \mathbf{x}^{(t)}+\mathbf{U}\_o \cdot \mathbf{h}^{(t-1)}+\mathbf{b}\_o\right\)\nonumber $$
+$$ \mathbf{o}_t=\sigma\left(\mathbf{W}_o \cdot \mathbf{x}^{(t)}+\mathbf{U}_o \cdot \mathbf{h}^{(t-1)}+\mathbf{b}_o\right)\nonumber $$
 
  
 
@@ -170,14 +170,14 @@ $$ \mathbf{o}\_t=\sigma\left\(\mathbf{W}\_o \cdot \mathbf{x}^{(t)}+\mathbf{U}\_o
 
  
 
-$$ \mathbf{h}^{(t)}=\mathbf{o}\_t \odot \tanh \left\(\mathbf{C}^{(t)}\right\)\nonumber $$
+$$ \mathbf{h}^{(t)}=\mathbf{o}_t \odot \tanh \left(\mathbf{C}^{(t)}\right)\nonumber $$
 
  
 
 LSTMの全体のプロセスは次のようにまとめることができる：
 
  $$ \begin{array}
-    {l}\mathbf{f}\_t=\sigma\left\(\mathbf{W}\_f \cdot \mathbf{x}^{(t)}+\mathbf{U}\_f \cdot \mathbf{h}^{(t-1)}+\mathbf{b}\_f\right\) \\ \mathbf{i}\_t=\sigma\left\(\mathbf{W}\_i \cdot \mathbf{x}^{(t)}+\mathbf{U}\_i \cdot \mathbf{h}^{(t-1)}+\mathbf{b}\_i\right\) \\ \mathbf{o}\_t=\sigma\left\(\mathbf{W}\_o \cdot \mathbf{x}^{(t)}+\mathbf{U}\_o \cdot \mathbf{h}^{(t-1)}+\mathbf{b}\_o\right\) \\ \tilde{\mathbf{C}}^{(t)}=\tanh \left\(\mathbf{W}\_c \cdot \mathbf{x}^{(t)}+\mathbf{U}\_c \cdot \mathbf{h}^{(t-1)}+\mathbf{b}\_c\right\) \\ \mathbf{C}^{(t)}=\mathbf{f}\_t \odot \mathbf{C}^{(t-1)}+\mathbf{i}\_t \odot \tilde{\mathbf{C}}^{(t)} \\ \mathbf{h}^{(t)}=\mathbf{o}\_t \odot \tanh \left\(\mathbf{C}^{(t)}\right\)
+    {l}\mathbf{f}_t=\sigma\left(\mathbf{W}_f \cdot \mathbf{x}^{(t)}+\mathbf{U}_f \cdot \mathbf{h}^{(t-1)}+\mathbf{b}_f\right) \\ \mathbf{i}_t=\sigma\left(\mathbf{W}_i \cdot \mathbf{x}^{(t)}+\mathbf{U}_i \cdot \mathbf{h}^{(t-1)}+\mathbf{b}_i\right) \\ \mathbf{o}_t=\sigma\left(\mathbf{W}_o \cdot \mathbf{x}^{(t)}+\mathbf{U}_o \cdot \mathbf{h}^{(t-1)}+\mathbf{b}_o\right) \\ \tilde{\mathbf{C}}^{(t)}=\tanh \left(\mathbf{W}_c \cdot \mathbf{x}^{(t)}+\mathbf{U}_c \cdot \mathbf{h}^{(t-1)}+\mathbf{b}_c\right) \\ \mathbf{C}^{(t)}=\mathbf{f}_t \odot \mathbf{C}^{(t-1)}+\mathbf{i}_t \odot \tilde{\mathbf{C}}^{(t)} \\ \mathbf{h}^{(t)}=\mathbf{o}_t \odot \tanh \left(\mathbf{C}^{(t)}\right)
     \end{array}
     
 \tag{3.4} $$ 
@@ -185,7 +185,7 @@ LSTMの全体のプロセスは次のようにまとめることができる：
 便宜上, 式(3.4)で表される,
 i番目の位置のLSTMのニューラルネットワークを次のように書く：
 
- $$ \mathbf{C}^{(t)}, \mathbf{h}^{(t)}=\operatorname{LSTM}\left\(\mathbf{x}^{(t)}, \mathbf{C}^{(t-1)}, \mathbf{h}^{(t-1)}\right\)
+ $$ \mathbf{C}^{(t)}, \mathbf{h}^{(t)}=\operatorname{LSTM}\left(\mathbf{x}^{(t)}, \mathbf{C}^{(t-1)}, \mathbf{h}^{(t-1)}\right)
     
 \tag{3.5} $$ 
 
@@ -198,7 +198,7 @@ LSTMの忘却ゲートと入力ゲートを「更新ゲート」として統合�
 よりシンプルなゲート付きRNNモデルを構成することができる.
 GRUは以下のように定式化される：
 
- $$ \begin{array}{l}\mathbf{z}\_t=\sigma\left\(\mathbf{W}\_z \cdot \mathbf{x}^{(t)}+\mathbf{U}\_z \cdot \mathbf{h}^{(t-1)}+\mathbf{b}\_z\right\) \\ \mathbf{r}\_t=\sigma\left\(\mathbf{W}\_r \cdot \mathbf{x}^{(t)}+\mathbf{U}\_r \cdot \mathbf{h}^{(t-1)}+\mathbf{b}\_r\right\) \\ \tilde{\mathbf{h}}^{(t)}=\tanh \left\(\mathbf{W} \cdot \mathbf{x}^{(t)}+\mathbf{U} \cdot\left\(\mathbf{r}\_t \odot \mathbf{h}^{(t-1)}\right\)+\mathbf{b}\right\) \\ \mathbf{h}^{(t)}=\left\(\mathbf{1}-\mathbf{z}\_t\right\) \odot \tilde{\mathbf{h}}^{(t)}+\mathbf{z}\_t \odot \mathbf{h}^{(t-1)}\end{array}
+ $$ \begin{array}{l}\mathbf{z}_t=\sigma\left(\mathbf{W}_z \cdot \mathbf{x}^{(t)}+\mathbf{U}_z \cdot \mathbf{h}^{(t-1)}+\mathbf{b}_z\right) \\ \mathbf{r}_t=\sigma\left(\mathbf{W}_r \cdot \mathbf{x}^{(t)}+\mathbf{U}_r \cdot \mathbf{h}^{(t-1)}+\mathbf{b}_r\right) \\ \tilde{\mathbf{h}}^{(t)}=\tanh \left(\mathbf{W} \cdot \mathbf{x}^{(t)}+\mathbf{U} \cdot\left(\mathbf{r}_t \odot \mathbf{h}^{(t-1)}\right)+\mathbf{b}\right) \\ \mathbf{h}^{(t)}=\left(\mathbf{1}-\mathbf{z}_t\right) \odot \tilde{\mathbf{h}}^{(t)}+\mathbf{z}_t \odot \mathbf{h}^{(t-1)}\end{array}
         
 \tag{3.6} $$ 
 
@@ -206,7 +206,7 @@ GRUは以下のように定式化される：
  $\mathbf{r}_t$ はリセットゲートである. 便宜上,
 この式(3.6)のプロセスを次のようにまとめる：
 
- $$ \mathbf{h}^{(t)}=\operatorname{GRU}\left\(\mathbf{x}^{(t)}, \mathbf{h}^{(t-1)}\right\)
+ $$ \mathbf{h}^{(t)}=\operatorname{GRU}\left(\mathbf{x}^{(t)}, \mathbf{h}^{(t-1)}\right)
     
 \tag{3.7} $$ 
 
