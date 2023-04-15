@@ -82,7 +82,7 @@
 
  
 
-$$ h=\alpha(b+\sum_{i=1}^{4} \mathbf{w}_i \cdot \mathbf{x}_i)\nonumber $$
+$$ h=\alpha\left(b+\sum_{i=1}^{4} \mathbf{w}_i \cdot \mathbf{x}_i\right)\nonumber $$
 
  
 
