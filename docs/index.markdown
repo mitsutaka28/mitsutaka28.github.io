@@ -11,8 +11,8 @@ layout: default
 - [第1章 イントロダクション](./chapters/chap1/chap1.md)
 ### 基礎
 - [第2章 グラフ理論の基礎](./chapters/chap2/chap2.md)
-- 第3章 深層学習の基礎（近日公開予定）
-- 第4章 グラフ埋め込み（近日公開予定）
+- [第3章 深層学習の基礎](./chapters/chap3/chap3.md)
+- [第4章 グラフ埋め込み](./chapters/chap4/chap4.md)
 - 第5章 グラフニューラルネットワーク（近日公開予定）
 ### 手法
 - 第6章 Robust Graph Neural Networks
