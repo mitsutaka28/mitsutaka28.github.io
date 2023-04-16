@@ -1,11 +1,10 @@
 [メインページ](../../index.markdown)
 
-## 3. 深層学習の基礎
-- [3.1 はじめに](./subsection_01.md)
-- [3.2 深層順伝搬型ネットワーク](./subsection_02.md)
-- [3.3 畳み込みニューラルネットワーク](./subsection_03.md)
-- [3.4 リカレントニューラルネットワーク](./subsection_04.md)
-- [3.5 オートエンコーダー](./subsection_05.md)
-- [3.6 深層ニューラルネットワークの学習](./subsection_06.md)
-- [3.7 本章のまとめ](./subsection_07.md)
-- [3.8 参考文献](./subsection_08.md)
+## 9. GNNのその先へ：グラフ上の深層学習モデル
+- [9.1 はじめに](./subsection_01.md)
+- [9.2 グラフ上でのオートエンコーダー](./subsection_02.md)
+- [9.3 グラフ上でのRNN](./subsection_03.md)
+- [9.4 グラフ上でのVAE](./subsection_04.md)
+- [9.5 グラフ上でのGAN](./subsection_05.md)
+- [9.6 本章のまとめ](./subsection_06.md)
+- [9.7 参考文献](./subsection_07.md)
