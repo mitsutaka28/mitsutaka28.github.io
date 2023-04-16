@@ -153,9 +153,7 @@ ReLU関数はすべての正の入力に対して線形（というより同じ�
 
 $$ \operatorname{ReLU}(z)=\max \{0,  z\}\nonumber $$
 
-
-$$ \max\\{0, z\\} $$ 
-
+ 
 
 <figure>
 
@@ -175,16 +173,12 @@ LeakyReLU関数 (Maas et al., 2013)は, 負の入力を0にする代わりに,
 図3.4(a)に 示すように, 負の値に対して小さな傾きを持つ線形変換を行う.
 より具体的には, LeakyReLU関数は数学的に次のように表すことができる：
 
- 
-
-$$ \operatorname{LeakyReLU}(z)=
-\begin{cases}
-0.01 z  & z<0 \\ 
-z  & z \geq 0
-\end{cases}
-\nonumber $$
-
- 
+ $$ \operatorname{LeakyReLU}(z)=
+    \begin{cases}
+    0.01 z & z<0 \\ 
+    z & z \geq 0
+    \end{cases}
+    \nonumber $$ 
 
 <figure>
 
@@ -200,11 +194,12 @@ Unit)である. ELU関数は図3.4(b)に示すように,
 負の値に対しては指数関数的な変換を行う. 数学的には,
 ELUの活性化関数は次のように表される：
 
- 
-
-$$ \operatorname{ELU}(z)=\left\\{\begin{array}{cc}c \cdot \exp (z-1) & z<0 \\ z & z \geq 0\end{array}\right\.\nonumber $$
-
- 
+ $$ \operatorname{ELU}(z)=
+    \begin{cases}
+    c \cdot \exp (z-1) & z<0 \\ 
+    z & z \geq 0
+    \end{cases}
+    \nonumber $$ 
 
 ここで,  $c$ は負の入力に対して指数関数の傾きを決める正の定数である.
 
