@@ -1,10 +1,9 @@
 [メインページ](../../index.markdown)
 
-## 9. GNNのその先へ：グラフ上の深層学習モデル
-- [9.1 はじめに](./subsection_01.md)
-- [9.2 グラフ上でのオートエンコーダー](./subsection_02.md)
-- [9.3 グラフ上でのRNN](./subsection_03.md)
-- [9.4 グラフ上でのVAE](./subsection_04.md)
-- [9.5 グラフ上でのGAN](./subsection_05.md)
-- [9.6 本章のまとめ](./subsection_06.md)
-- [9.7 参考文献](./subsection_07.md)
+## 15. グラフニューラルネットワークの発展的な応用
+- [11.1 はじめに](./subsection_01.md)
+- [11.2 グラフ上の組み合わせ最適化](./subsection_02.md)
+- [11.3 ソースコード表現の学習](./subsection_03.md)
+- [11.4 物理学における相互作用する力学系の推論](./subsection_04.md)
+- [11.5 本章のまとめ](./subsection_05.md)
+- [11.6 参考文献](./subsection_06.md)
