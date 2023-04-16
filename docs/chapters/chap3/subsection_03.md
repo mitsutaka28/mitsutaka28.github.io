@@ -117,7 +117,7 @@ $$ (f * w)(t)=\sum_{\tau=t-n}^{t+n} f(\tau) w(t-\tau)\nonumber $$
 
  
 
-$$ S(i,  j)=(I * K)(i,  j)=\sum_{\tau=i-n}^{i+n} \sum_{j=\gamma-n}^{\symbfscr{G}amma+n} I(\tau,  \symbfscr{G}amma) K(i-\tau,  j-\symbfscr{G}amma)\nonumber $$
+$$ S(i,  j)=(I * K)(i,  j)=\sum_{\tau=i-n}^{i+n} \sum_{j=\gamma-n}^{\gamma+n} I(\tau,  \gamma) K(i-\tau,  j-\gamma)\nonumber $$
 
  
 
@@ -228,7 +228,7 @@ He et al.2016)．
  $L$ 個のチャンネルを持つ入力画像 $I$ を考えてみよう.
  $P$ 個のカーネルを用いた畳み込み演算は次のように定式化することができる：
 
- $$ S(i, j, p)=\left(I * K_p\right)(i, j)=\sum_{l=1}^{L} \sum_{\tau=i-n}^{i+n} \sum_{j=\symbfscr{G}amma-n}^{\symbfscr{G}amma+n} I(\tau, \symbfscr{G}amma, l) K_p(i-\tau, j-\symbfscr{G}amma, l), p=1, \ldots P
+ $$ S(i, j, p)=\left(I * K_p\right)(i, j)=\sum_{l=1}^{L} \sum_{\tau=i-n}^{i+n} \sum_{j=\gamma-n}^{\gamma+n} I(\tau, \gamma, l) K_p(i-\tau, j-\gamma, l), p=1, \ldots P
     
 \tag{3.2} $$ 
 
@@ -248,7 +248,7 @@ He et al.2016)．
 
  
 
-$$ \begin{array}{l}S(i, j, p)= \\ \sum_{l=1}^{L} \sum_{\tau=i-n}^{i+n} \sum_{j=\symbfscr{G}amma-n}^{\symbfscr{G}amma+n} I(\tau, \symbfscr{G}amma, l) K_p((i-1) \cdot s+1-\tau,(j-1) \cdot s+1-\symbfscr{G}amma, l)\end{array}\nonumber $$
+$$ \begin{array}{l}S(i, j, p)= \\ \sum_{l=1}^{L} \sum_{\tau=i-n}^{i+n} \sum_{j=\gamma-n}^{\gamma+n} I(\tau, \gamma, l) K_p((i-1) \cdot s+1-\tau,(j-1) \cdot s+1-\gamma, l)\end{array}\nonumber $$
 
  
 
