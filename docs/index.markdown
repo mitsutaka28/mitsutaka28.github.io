@@ -21,12 +21,12 @@ layout: default
 - [第9章 GNNのその先へ：グラフ上の深層学習モデル](./chapters/chap9/chap9.md)
 ### 応用
 - 第10章 Graph Neural Networks in Natural Language Processing
-- 第11章 Graph Neural Networks in Computer Vision
+- [第11章 Graph Neural Networks in Computer Vision](./chapters/chap11/chap11.md)
 - 第12章 Graph Neural Networks in Data Mining
-- 第13章 Graph Neural Networks in Biochemistry and Healthcare
+- [第13章 Graph Neural Networks in Biochemistry and Healthcare](./chapters/chap13/chap13.md)
 ### 発展
 - 第14章 Advanced Topics in Graph Neural Networks
-- 第15章 Advanced Applications in Graph Neural Networks
+- [第15章 Advanced Applications in Graph Neural Networks](./chapters/chap15/chap15.md)
 
 ## 公開レビューに関して
 方法・形式については，後日お知らせします．
