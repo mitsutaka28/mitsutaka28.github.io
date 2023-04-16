@@ -117,7 +117,7 @@ $$ (f * w)(t)=\sum_{\tau=t-n}^{t+n} f(\tau) w(t-\tau)\nonumber $$
 
  
 
-$$ S(i,  j)=(I * K)(i,  j)=\sum_{\tau=i-n}^{i+n} \sum_{j=\symbfscr{G}amma-n}^{\symbfscr{G}amma+n} I(\tau,  \symbfscr{G}amma) K(i-\tau,  j-\symbfscr{G}amma)\nonumber $$
+$$ S(i,  j)=(I * K)(i,  j)=\sum_{\tau=i-n}^{i+n} \sum_{j=\gamma-n}^{\symbfscr{G}amma+n} I(\tau,  \symbfscr{G}amma) K(i-\tau,  j-\symbfscr{G}amma)\nonumber $$
 
  
 
