@@ -19,18 +19,18 @@ Network Embedding (HNE)が提唱されている．
 一方，HNEにおける再構成器は，ノードの埋め込みから隣接行列 $\symbf{A}$ を復元することを目的とする．具体的には，ノード組 $v_i,v_j$ と，マッピング関数で学習したそれらの埋め込み $\symbf{u}_i,\symbf{u}_j$ が与えられた場合，再構成された隣接行列の要素 $\tilde{\symbf{A}}_{i,j}=1$ の確率は次のように計算される．
 
  $$ \nonumber
-    p(\tilde{\symbf{A}}_{i,j} =1) = \sigma(\symbf{u}\_i^{\top}\symbf{u}_j). $$ 
+    p(\tilde{\symbf{A}}_{i,j} =1) = \sigma(\symbf{u}_i^{\top}\symbf{u}_j). $$ 
 
 ここで， $\sigma$ はシグモイド関数である．この式に対応する形で以下も計算できる．
 
  $$ \nonumber
-    p(\tilde{\symbf{A}}_{i,j} =0) = 1-\sigma(\symbf{u}\_i^{\top}\symbf{u}_j). $$ 
+    p(\tilde{\symbf{A}}_{i,j} =0) = 1-\sigma(\symbf{u}_i^{\top}\symbf{u}_j). $$ 
 
 再構成された隣接行列 $\tilde{\symbf{A}}$ が元の隣接行列 $\symbf{A}$ に近くなるように，確率を最大化することが目標であることから，目的関数は交差エントロピーによって以下のようにモデル化される．
 
  $$ 
 \tag{4.10}
-    -\sum^{N}_{i,j=1}\left\(\symbf{A}_{i,j}\log p(\tilde{\symbf{A}}_{i,j}=1) + (1-\symbf{A}_{i,j})\log p(\tilde{\symbf{A}}_{i,j} = 0)\right\). $$ 
+    -\sum^{N}_{i,j=1}\left(\symbf{A}_{i,j}\log p(\tilde{\symbf{A}}_{i,j}=1) + (1-\symbf{A}_{i,j})\log p(\tilde{\symbf{A}}_{i,j} = 0)\right). $$ 
 
 この式(4.10)の目的関数を最小化することでマッピング関数を学習することができ，その結果としてノードの埋め込みが得られる．
 
@@ -93,7 +93,7 @@ Dong et al.(2017)では二種類の再構成器が提案されている．
 もう一方の再構成器は，式(4.2)のような全ノードに対する単項分布(single
 distribution)ではなく，ノードの各種類ごとに多項分布(multinomial
 distribution)を定義する方法である．
-この場合，種類が $nt$ となるノード $v\_j$ について， $v_i$ が与えられたときに $v_j$ を観測する確率は次のように計算できる．
+この場合，種類が $nt$ となるノード $v_j$ について， $v_i$ が与えられたときに $v_j$ を観測する確率は次のように計算できる．
 
  $$ \nonumber
 p(v_j\|v_i) = \dfrac{\displaystyle\exp (f_{\text{con}}(v_j)^{\top}f_{\text{cen}}(v_i))}{\displaystyle\sum_{v\in \symbfscr{V}_{nt}}\exp(f_{\text{con}}(v)^{\top}f_{\text{cen}}(v_i))} $$ 
@@ -128,7 +128,7 @@ Network Embedding）が提案されている．
 具体的には， $u_i\in\symscr{U}$ や $v_j\in\symscr{V}$ としたノード組 $(u_i,v_j)$ が与えられたとき，元の二部グラフにおいて二つのノード間にエッジが存在する確率を
 
  $$ \nonumber
-    p(u_i, u_j) = \sigma(\symbf{u}\_i^{\top}\symbf{v}_j), $$ 
+    p(u_i, u_j) = \sigma(\symbf{u}_i^{\top}\symbf{v}_j), $$ 
 
 と定義する（ $\sigma$ はシグモイド関数）．
 このとき， $\symbfscr{E}$ におけるエッジのノード組に対する確率が最大となるような埋め込みを学習することが目標である．
@@ -161,9 +161,9 @@ et al., 2018d)．
 
  $$ 
 \tag{4.11}
-    \symbf{u}_{d,i} = \symbf{u}\_i + \symbf{r}_{d,i}\;, $$ 
+    \symbf{u}_{d,i} = \symbf{u}_i + \symbf{r}_{d,i}\;, $$ 
 
-としてモデル化する． $\symbf{u}\_i$ は全体的な表現で， $\symbf{r}_{d,i}$ は依存性を考えない次元 $d$ の情報のみを取り込んだ次元別の表現である．
+としてモデル化する． $\symbf{u}_i$ は全体的な表現で， $\symbf{r}_{d,i}$ は依存性を考えない次元 $d$ の情報のみを取り込んだ次元別の表現である．
 これらの表現を学習するために，異なる次元における共起関係の再構成を目指す．
 具体的には，異なる次元から抽出された共起関係を再構成することで， $\symbf{u}_i$ と $\symbf{r}_{d,i}$ のマッピング関数を最適化する．
 
@@ -176,8 +176,8 @@ et al., 2018d)．
 
 $$
 \begin{aligned}
-    \symbf{u}_i &= f(v_i) = e^{\top}\_i\symbf{W},\nonumber\\
-    \symbf{r}_{d,i} &=f_d(v_i) = e^{\top}\_i\symbf{W}_d,\;\; (d=1,\dots,D).\nonumber
+    \symbf{u}_i &= f(v_i) = e^{\top}_i\symbf{W},\nonumber\\
+    \symbf{r}_{d,i} &=f_d(v_i) = e^{\top}_i\symbf{W}_d,\;\; (d=1,\dots,D).\nonumber
 \end{aligned}
 $$
  
@@ -234,7 +234,7 @@ SiNEにおけるマッピング関数は，DeepWalkと同じものを用いる�
 この三つ組を符号付きグラフの集合として $\symscr{I}_1$ と表すと，以下のように形式的に定義できる．
 
  $$ \nonumber
-    \symscr{I}_1 = \left\\{\left\(v_i,v_j,v_k\right\) \| \symbf{A}_{i,j}=1,\;\;\symbf{A}_{i,k}=-1,\;\;v_i,v_j,v_k\in \symbfscr{V}\right\\}. $$ 
+    \symscr{I}_1 = \left\\{\left(v_i,v_j,v_k\right) \| \symbf{A}_{i,j}=1,\;\;\symbf{A}_{i,k}=-1,\;\;v_i,v_j,v_k\in \symbfscr{V}\right\\}. $$ 
 
 ここで， $\symbf{A}$ は定義2.38で導入した符号付きグラフの隣接行列である．
 バランス理論によれば，三つ組 $(v_i,v_j,v_k)$ において，ノード $v_j$ はノード $v_k$ よりも $v_i$ に類似していると想定される．
@@ -305,7 +305,7 @@ Hyper Network Embedding (DHNE)が提案されている．
 任意のノード組に対するハイパーエッジでの共起は，以下のように接続行列 $\symbf{H}$ から抽出することができる．
 
  $$ \nonumber
-    \symbf{A} = \symbf{H}\symbf{H}^{\top} - \symbf{D}\_v. $$ 
+    \symbf{A} = \symbf{H}\symbf{H}^{\top} - \symbf{D}_v. $$ 
 
 ここで， $\symbf{H}$ は接続行列で， $\symbf{D}_v$ は定義2.39で導入した対角ノード次数行列である． $i,\,j$ 要素 $\symbf{A}_{i,j}$ は，ノード $v_i$ と $v_j$ がハイパーエッジで共起する回数を示す．するとノード $v_i$ について， $\symbf{A}$ の $i$ 行目にはグラフ内の全ノードとの共起情報（またはノード $v_i$ の大域的な情報）が記述されていることになる．
 以上をまとめると，抽出情報はハイパーエッジの集合 $\symbfscr{E}$ と大域的な共起情報 $\symbf{A}$ である．
@@ -331,7 +331,7 @@ al.(2018)では，全てのハイパーエッジは $k$ 個のノード集合を
 （この仮定の下で）与えられたノード集合 $\symscr{V}^{i} = \left\\{v^{i}_{(1)},\dots,v^{i}_{(k)}\right\\}$ 内にハイパーエッジが存在する確率は，次のように定義される．
 
  $$ \nonumber
-    p(1\|\symscr{V}^i) = \sigma\left\(g([\symbf{u}^{i}_{(1)},\dots,\symbf{u}^{i}_{(k)}])\right\). $$ 
+    p(1\|\symscr{V}^i) = \sigma\left(g([\symbf{u}^{i}_{(1)},\dots,\symbf{u}^{i}_{(k)}])\right). $$ 
 
  $g(\cdot)$ は，ノード埋め込みの連結(concatenation)を一つスカラーに写像する順伝播型ネットワークで， $\sigma(\cdot)$ はそのスカラーを確率に変換するシグモイド関数である．
 ハイパーグラフ上の $\symscr{V}^i$ のノード間にハイパーエッジがあるかどうかを示す変数を $R^{i}$ とすると， $R^{i}=1$ はハイパーエッジがあることを示し， $R^{i}=0$ はハイパーエッジがないことを意味する．以上より，目的関数は交差エントロピーに基づいて以下のようにモデル化される．
@@ -341,15 +341,15 @@ al.(2018)では，全てのハイパーエッジは $k$ 個のノード集合を
 
 ここで， $\symbfscr{E}^{\prime}$ はネガティブなサンプルとしてランダムに生成される"ネガティブハイパーエッジ"集合である．ネガティブなハイパーエッジ $\symscr{V}$ の各々は，ランダムにサンプリングされた $k$ 個のノードの集合から構成される．
 
-一方，ノード $v_i$ に対する大域的な共起情報 $\symbf{A}\_i$ を復元するためには，埋め込み $\symbf{u}_i$ を入力とする以下の順伝播型ネットワークが採用される．
+一方，ノード $v_i$ に対する大域的な共起情報 $\symbf{A}_i$ を復元するためには，埋め込み $\symbf{u}_i$ を入力とする以下の順伝播型ネットワークが採用される．
 
  $$ \nonumber
-    \tilde{\symbf{A}}\_i = f_{\text{re}}(\symbf{u}_i;\,\symbf{\Theta}_{\text{re}}). $$ 
+    \tilde{\symbf{A}}_i = f_{\text{re}}(\symbf{u}_i;\,\symbf{\Theta}_{\text{re}}). $$ 
 
  $f_{\text{re}}(\cdot)$ は共起情報を再構成する順伝播型ネットワークで， $\symbf{\Theta}_{\text{re}}$ をそのネットワークが持つパラメータとする．そして，目的関数は最小二乗法で
 
  $$ \nonumber
-\symscr{L}\_2 = \sum_{v_i\in\;\symscr{V}}\\|\symbf{A}_i - \tilde{\symbf{A}}_i\\|^2_2 $$ 
+\symscr{L}_2 = \sum_{v_i\in\;\symscr{V}}\\|\symbf{A}_i - \tilde{\symbf{A}}_i\\|^2_2 $$ 
 
 と定義される．
 
