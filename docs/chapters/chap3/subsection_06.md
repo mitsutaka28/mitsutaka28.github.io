@@ -69,7 +69,6 @@ al.，2011)，Adadelta (Zeiler，2012)，および Adam (Kingma and Ba，2014)
 
 
  $$ \frac{\partial \mathcal{L}}{\partial w_{\left(h^{r-1}，h^{r}\right)}}=\frac{\partial \mathcal{L}}{\partial o} \cdot\left\[\frac{\partial o}{\partial h^{k}} \prod_{i=r}^{k-1} \frac{\partial h^{i+1}}{\partial h^{i}}\right\] \cdot \frac{\partial h^{r}}{\partial w_{\left(h^{r-1}，h_r\right)}} \forall r \in 1 \ldots k
-    
 \tag{3.15} $$ 
 
 ここで, $w_{\left(h^{r-1}，h^{r}\right)}$ はユニット $h^{r-1}$ と $h^r$ の間のパラメータを表す.
@@ -78,7 +77,6 @@ al.，2011)，Adadelta (Zeiler，2012)，および Adam (Kingma and Ba，2014)
 したがって，上の計算で得られた勾配を合計する必要がある：
 
  $$ \frac{\partial \mathcal{L}}{\partial w\left(h^{r-1}，h^{r}\right)}=\underbrace{\frac{\partial \mathcal{L}}{\partial o} \cdot\left\[\sum_{\left\[h^{r}，h^{r+1}，\ldots，h^{k}，o\right\] \in \mathcal{P}} \frac{\partial o}{\partial h^{k}} \prod_{i=r}^{k-1} \frac{\partial h^{i+1}}{\partial h^{i}}\right\]}_{\text {逆伝搬の前のプロセスで} \Delta\left(h^{r}，o\right)=\frac{\partial \mathcal{L}}{\partial h^{r}}\text {が計算される}} \frac{\partial h^{r}}{\partial w_{\left(h^{r-1}，h^{r}\right)}}
-    
 \tag{3.16} $$ 
 
 ここで， $\mathcal{P}$ は $h^r$ から $o$ に至るパスの集合を表し，これは $\left(h^{r-1}，h^{r}\right)$ まで拡張することができる.
@@ -92,7 +90,6 @@ $$
 \begin{aligned} 
     \Delta\left(h^{r}，o\right) &=\frac{\partial \mathcal{L}}{\partial o} \cdot\left\[\sum_{\left\[h^{r}，h^{r+1}，\ldots，h^{k}，o\right\] \in \mathcal{P}} \frac{\partial o}{\partial h^{k}} \prod_{i=r}^{k-1} \frac{\partial h^{i+1}}{\partial h^{i}}\right\] \\ &=\frac{\partial \mathcal{L}}{\partial o} \cdot\left\[\sum_{\left\[h^{r}，h^{r+1}，\ldots，h^{k}，o\right\] \in \mathcal{P}} \frac{\partial o}{\partial h^{k}} \prod_{i=r+1}^{k-1} \frac{\partial h^{i+1}}{\partial h^{i}} \cdot \frac{\partial h^{r+1}}{\partial h^{r}}\right\] 
     \end{aligned}
-    
 \tag{3.17} $$ 
 
 <figure>
