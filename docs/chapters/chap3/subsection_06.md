@@ -63,10 +63,8 @@ al.，2011)，Adadelta (Zeiler，2012)，および Adam (Kingma and Ba，2014)
 
 図3.17はそれぞれ異なる層のつながっているニューラルネットワークのユニット $h^{0}，h^{1}，\ldots，h^{k}，o$ を表す.
 ここで， $h^i$ は $i$ 番目の層のユニットを表し， $h^0$ は入力層のユニット， $o$ は出力層のユニットを表す.
- $\left(h^{r-1}，h^{r}\right)$ の間に1本しかエッジがないとすると，損失関数の微分はチェーン・ルール[^2]
+ $\left(h^{r-1}，h^{r}\right)$ の間に1本しかエッジがないとすると，損失関数の微分はチェーン・ルール[^3]
 を使って次のように書くことができる： 
-
-
 
  $$ \frac{\partial \mathcal{L}}{\partial w_{\left(h^{r-1}，h^{r}\right)}}=\frac{\partial \mathcal{L}}{\partial o} \cdot\left[\frac{\partial o}{\partial h^{k}} \prod_{i=r}^{k-1} \frac{\partial h^{i+1}}{\partial h^{i}}\right] \cdot \frac{\partial h^{r}}{\partial w_{\left(h^{r-1}，h_r\right)}} \forall r \in 1 \ldots k
     
@@ -185,4 +183,4 @@ Szegedy，2015）は当初，内部共変量が変化する問題を解決する
 
 [前の節へ](./subsection_05.md) [次の節へ](./subsection_07.md)
 
-[^2]: 訳注：合成関数の導関数は，構成している関数の導関数の積によって表される
+[^3]: 訳注：合成関数の導関数は，構成している関数の導関数の積によって表される
