@@ -68,8 +68,9 @@ al.，2011)，Adadelta (Zeiler，2012)，および Adam (Kingma and Ba，2014)
 
 
 
- $$ \frac{\partial \mathcal{L}}{\partial w_{\left(h^{r-1}，h^{r}\right)}}=\frac{\partial \mathcal{L}}{\partial o} \cdot\left\[\frac{\partial o}{\partial h^{k}} \prod_{i=r}^{k-1} \frac{\partial h^{i+1}}{\partial h^{i}}\right\] \cdot \frac{\partial h^{r}}{\partial w_{\left(h^{r-1}，h_r\right)}} \forall r \in 1 \ldots k
-\tag{3.15} $$ 
+ $$ \tag{3.15}
+ \frac{\partial \mathcal{L}}{\partial w_{\left(h^{r-1}，h^{r}\right)}}=\frac{\partial \mathcal{L}}{\partial o} \cdot\left\[\frac{\partial o}{\partial h^{k}} \prod_{i=r}^{k-1} \frac{\partial h^{i+1}}{\partial h^{i}}\right\] \cdot \frac{\partial h^{r}}{\partial w_{\left(h^{r-1}，h_r\right)}} \forall r \in 1 \ldots k
+ $$ 
 
 ここで, $w_{\left(h^{r-1}，h^{r}\right)}$ はユニット $h^{r-1}$ と $h^r$ の間のパラメータを表す.
 
