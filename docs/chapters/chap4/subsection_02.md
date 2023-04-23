@@ -80,13 +80,7 @@ et al.,
 Cao et al.(2015)
 では，中心ノードまでの距離に応じて文脈ノードは異なる扱いを受ける．
 
-::: algorithm
- $\textbf{Input:}\;\symscr{R}, w$ 
-
- $\textbf{Output:}\;\mathscr{I}$ 
-
- $\textbf{Initialization:}\;\mathscr{I}\left\arrow [\;]$ 
-:::
+![image](./fig/algo2.png)
 
 #### 共起性の再構成および目的関数
 
