@@ -124,7 +124,7 @@ et al.,
 
  $$ 
 \tag{4.4}
-    \prod_{(v_{\text{con}}, v_{\text{cen}})\;\in \;\textrm{set}(\symscr{I})}p(v_{\text{con}}\|v_{\text{cen}})^{\\# (v_{\text{con}}, v_{\text{cen}})}. $$ 
+    \prod_{(v_{\text{con}}, v_{\text{cen}})\;\in \;\textrm{set}(\symscr{I})}p(v_{\text{con}}\|v_{\text{cen}})^{\# (v_{\text{con}}, v_{\text{cen}})}. $$ 
 
 ここで， $\text{set}(\symscr{I})$ は $\symscr{I}$ に含まれる重複のない一意なノード組の集合を表しており， $\\# (v_{\text{con}}, v_{\text{cen}})$ は $\symscr{I}$ 内でのノード組 $(v_{\text{con}}, v_{\text{cen}})$ の出現頻度である．
 それゆえ， $\symscr{I}$ 内で頻繁に出現するノード組は，式(4.4)における全体の確率に大きく寄与することになる．
