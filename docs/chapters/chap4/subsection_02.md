@@ -126,7 +126,7 @@ et al.,
 \tag{4.4}
     \prod_{(v_{\text{con}}, v_{\text{cen}})\;\in \;\textrm{set}(\symscr{I})}p(v_{\text{con}}\|v_{\text{cen}})^{\# (v_{\text{con}}, v_{\text{cen}})}. $$ 
 
-ここで， $\text{set}(\symscr{I})$ は $\symscr{I}$ に含まれる重複のない一意なノード組の集合を表しており， $\# (v_{\text{con}}, v_{\text{cen}})$ は $\symscr{I}$ 内でのノード組 $(v_{\text{con}}, v_{\text{cen}})$ の出現頻度である．
+ここで， $\text{set}(\symscr{I})$ は $\symscr{I}$ に含まれる重複のない一意なノード組の集合を表しており， $(v_{\text{con}}, v_{\text{cen}})$ は $\symscr{I}$ 内でのノード組 $(v_{\text{con}}, v_{\text{cen}})$ の出現頻度である．
 それゆえ， $\symscr{I}$ 内で頻繁に出現するノード組は，式(4.4)における全体の確率に大きく寄与することになる．
 より良い再構成を行うためには，マッピング関数のパラメータを学習する際，式(4.4)の最大化を目指す必要がある．したがって，（2つのマッピング関数のパラメータである）ノード埋め込み $\symbf{W}_{\text{con}}$ と $\symbf{W}_{\text{cen}}$ は，以下の目的関数を最小化することで学習できる．
 
