@@ -412,10 +412,10 @@ $$
  $$ \nonumber
     \symbf{P} = \symbf{A} + \eta\cdot\symbf{S}. $$ 
 
- $\eta>0$ は近傍類似性の重要度を制御している．その後，行列 $\symbf{P}$ を，埋め込みドメインから $\symbf{W}\_{\text{con}}\symbf{W}_{\text{cen}}^{\top}$ として再構成する（ $\symbf{W}\_{\text{con}}$ と $\symbf{W}\_{\text{cen}}$ は $2$ つのマッピング関数 $f_{\text{con}}$ と $f_{\text{cen}}$ のパラメータである）．これらはDeepWalkと同じ設計である．このことから，目的関数は以下のように定式化される．
+ $\eta>0$ は近傍類似性の重要度を制御している．その後，行列 $\symbf{P}$ を，埋め込みドメインから $\symbf{W}\_{\text{con}}\symbf{W}\_{\text{cen}}^{\top}$ として再構成する（ $\symbf{W}\_{\text{con}}$ と $\symbf{W}\_{\text{cen}}$ は $2$ つのマッピング関数 $f_{\text{con}}$ と $f_{\text{cen}}$ のパラメータである）．これらはDeepWalkと同じ設計である．このことから，目的関数は以下のように定式化される．
 
  $$ \nonumber
-    \symscr{L}\left(\symbf{W}_{\text{con}}, \symbf{W}_{\text{cen}}\right) = \\|\symbf{P} - \symbf{W}_{\text{con}}\symbf{W}_{\text{cen}}^{\top}\\|^2_{\text{F}}. $$ 
+    \symscr{L}\left(\symbf{W}_{\text{con}}, \symbf{W}_{\text{cen}}\right) = \|\symbf{P} - \symbf{W}_{\text{con}}\symbf{W}_{\text{cen}}^{\top}\|^2_{\text{F}}. $$ 
 
 ここで， $\\|\cdot\\|_{\text{F}}$ は行列のフロベニウスノルムを表している．
 
