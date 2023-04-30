@@ -263,7 +263,7 @@ Qiu *et al*.(2018b)によれば，前述したネットワークの埋め込み�
 一方でマッピング関数(Mapping)は，DeepWalkで導入したものと同じ $f_{\text{cen}}(\cdot)$ と $f_{\text{con}}(\cdot)$ のを用いている． これら2つのマッピング関数のパラメータは， $\symbf{W}\_{\text{cen}}$ と $\symbf{W}\_{\text{con}}$ であり，それらはグラフ $\symbfscr{G}$ の2組のノード表現でもある．そしてこの場合の再構成(Reconstractor)は，" $\symbf{W}\_{\text{con}}\symbf{W}_{\text{cen}}^{\top}$ "という形で表現でき，これにより目的関数は以下のように表すことができる．
 
  $$ \nonumber
-    \symscr{L}(\symbf{W}_{\text{con}}, \symbf{W}_{\text{cen}}) = \left\\\|\,\log\left(\dfrac{\text{vol}(\symbfscr{G})}{T}\left(\sum^{T}_{r=1}\symbf{P}^r\right)\symbf{D}^{-1}\right) - \log(k) - \symbf{W}_{\text{con}}\symbf{W}_{\text{cen}}^{\top}\, \right\\\|^2_F. $$ 
+    \symscr{L}(\symbf{W}_{\text{con}}, \symbf{W}_{\text{cen}}) = \left\\|\,\log\left(\dfrac{\text{vol}(\symbfscr{G})}{T}\left(\sum^{T}_{r=1}\symbf{P}^r\right)\symbf{D}^{-1}\right) - \log(k) - \symbf{W}_{\text{con}}\symbf{W}_{\text{cen}}^{\top}\, \right\\|^2_F. $$ 
 
 したがって，埋め込み $\symbf{W}\_{\text{con}}$ と $\symbf{W}\_{\text{cen}}$ は，この目的関数を最小化することで学習できる．同様に，LINEやnode2vecも行列形式で表現することが可能である(Qiu *et al*., 2018b)．
 
