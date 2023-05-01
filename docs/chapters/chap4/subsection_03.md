@@ -214,7 +214,7 @@ $$
 \min_{\symbf{W},\symbf{\Theta}}\dfrac{1}{\|\symscr{I}_0\| + \|\symscr{I}_1\|}[&
 \sum_{(v_i,v_j,v_k)\in\;\symscr{I}_1}\max\Big(0, s(f(v_i), f(v_k)) + \delta - s(f(v_i), f(v_j))\Big)\nonumber\\
     +&\sum_{(v_i,v_j,v_0)\in\;\symscr{I}_0}\max\Big(0, s(f(v_i), f(v_0)) + \delta_0 - s(f(v_i), f(v_j))\Big)\nonumber\\
-    +&\;\alpha(R(\symbf{\Theta}) + \\|\symbf{W}\\|^2_F)].\nonumber
+    +&\;\alpha(R(\symbf{\Theta}) + \|\symbf{W}\|^2_F)].\nonumber
 \end{aligned}
 $$
  
@@ -269,7 +269,7 @@ $$
  $f_{\text{re}}(\cdot)$ は共起情報を再構成する順伝播型ネットワークで， $\symbf{\Theta}_{\text{re}}$ をそのネットワークが持つパラメータとする．そして，目的関数は最小二乗法で
 
  $$ \nonumber
-\symscr{L}_2 = \sum_{v_i\in\;\symscr{V}}\\|\symbf{A}_i - \tilde{\symbf{A}}_i\\|^2_2 $$ 
+\symscr{L}_2 = \sum_{v_i\in\;\symscr{V}}\|\symbf{A}_i - \tilde{\symbf{A}}_i\|^2_2 $$ 
 
 と定義される．
 

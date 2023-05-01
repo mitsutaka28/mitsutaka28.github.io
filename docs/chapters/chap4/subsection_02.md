@@ -260,7 +260,7 @@ Qiu *et al*.(2018b)によれば，前述したネットワークの埋め込み�
  $$ \nonumber
     \log\left(\dfrac{\mathrm{vol}(\symbfscr{G})}{T}\left(\sum^{T}_{r=1}\symbf{P}^r\right)\symbf{D}^{-1}\right). $$ 
 
-一方でマッピング関数(Mapping)は，DeepWalkで導入したものと同じ $f_{\text{cen}}(\cdot)$ と $f_{\text{con}}(\cdot)$ のを用いている． これら2つのマッピング関数のパラメータは， $\symbf{W}\_{\text{cen}}$ と $\symbf{W}\_{\text{con}}$ であり，それらはグラフ $\symbfscr{G}$ の2組のノード表現でもある．そしてこの場合の再構成(Reconstractor)は，" $\symbf{W}\_{\text{con}}\symbf{W}_{\text{cen}}^{\top}$ "という形で表現でき，これにより目的関数は以下のように表すことができる．
+一方でマッピング関数(Mapping)は，DeepWalkで導入したものと同じ $f_{\text{cen}}(\cdot)$ と $f_{\text{con}}(\cdot)$ のを用いている． これら2つのマッピング関数のパラメータは， $\symbf{W}\_{\text{cen}}$ と $\symbf{W}\_{\text{con}}$ であり，それらはグラフ $\symbfscr{G}$ の2組のノード表現でもある．そしてこの場合の再構成(Reconstractor)は，" $\symbf{W}\_{\text{con}}\symbf{W}\_{\text{cen}}^{\top}$ "という形で表現でき，これにより目的関数は以下のように表すことができる．
 
  $$ \nonumber
     \symscr{L}(\symbf{W}_{\text{con}}, \symbf{W}_{\text{cen}}) = \left\|\,\log\left(\dfrac{\text{vol}(\symbfscr{G})}{T}\left(\sum^{T}_{r=1}\symbf{P}^r\right)\symbf{D}^{-1}\right) - \log(k) - \symbf{W}_{\text{con}}\symbf{W}_{\text{cen}}^{\top}\, \right\|^2_F. $$ 
@@ -401,7 +401,7 @@ $$
 まずノード組の接続情報はグラフから抽出することができ，隣接行列 $\symbf{A}$ として表現できる． この場合における再構成における目標は，グラフ中のノード組の接続情報（または隣接行列）を再現することにある．一方で近傍類似度は， $2$ つのノードの近傍がどれだけ似ているかを測定するものである．ノード $v_i$ と $v_j$ について，それらの組の近傍類似度は以下で計算される．
 
  $$ \nonumber
-    s_{i,j} = \dfrac{\symbf{A}_i\symbf{A}_j^{\top}}{\\|\symbf{A}_i\\|\,\\|\symbf{A}_j\\|}. $$ 
+    s_{i,j} = \dfrac{\symbf{A}_i\symbf{A}_j^{\top}}{\|\symbf{A}_i\|\,\|\symbf{A}_j\|}. $$ 
 
 ここで， $\symbf{A}\_i$ は隣接行列の $i$ 行目であり，ノード $v_i$ の近傍情報を表している． $s_{i,j}$ は，ノード $v_i$ と $v_j$ がより多くの共通の近傍を持つほど大きくなり， $v_i$ と $v_j$ が共通近傍をまったく持たない場合は $0$ となる． 直感的には， $v_i$ と $v_j$ が多くの共通近傍を共有している場合，つまり $s_{i,j}$ が大きい場合，DeepWalkで述べたランダムウォークで共起する可能性が高くなる．それゆえ，この情報は共起性と暗黙的に関連しているといえる．これらのノード組に関する近傍類似関係は， $i,j$ 番目の要素を $s_{i,j}$ とした行列 $\symbf{S}$ にまとめることができる． したがって，抽出された情報は $2$ つの行列 $\symbf{A}$ と $\symbf{S}$ で表すことができる．
 
@@ -417,7 +417,7 @@ $$
  $$ \nonumber
     \symscr{L}\left(\symbf{W}_{\text{con}}, \symbf{W}_{\text{cen}}\right) = \|\symbf{P} - \symbf{W}_{\text{con}}\symbf{W}_{\text{cen}}^{\top}\|^2_{\text{F}}. $$ 
 
-ここで， $\\|\cdot\\|_{\text{F}}$ は行列のフロベニウスノルムを表している．
+ここで， $\|\cdot\|_{\text{F}}$ は行列のフロベニウスノルムを表している．
 
 #### コミュニティ構造の保存
 
@@ -451,13 +451,13 @@ $$
 
 $$
 \begin{aligned}
-    \min_{\symbf{W}_{\text{con}}, \symbf{W}_{\text{cen}},\symbf{H},\symbf{C}} &\\|\symbf{P} - \symbf{W}_{\text{con}}\symbf{W}_{\text{cen}}^{\top}\\|^{2}_{\text{F}} + \alpha\\|\symbf{H} - \symbf{W}_{\text{cen}}\symbf{C}^{\top}\\|^{2}_{\text{F}} - \beta\cdot\mathrm{tr} (\symbf{H}^{\top}\symbf{B}\symbf{H}),\nonumber\\
+    \min_{\symbf{W}_{\text{con}}, \symbf{W}_{\text{cen}},\symbf{H},\symbf{C}} &\|\symbf{P} - \symbf{W}_{\text{con}}\symbf{W}_{\text{cen}}^{\top}\|^{2}_{\text{F}} + \alpha\|\symbf{H} - \symbf{W}_{\text{cen}}\symbf{C}^{\top}\|^{2}_{\text{F}} - \beta\cdot\mathrm{tr} (\symbf{H}^{\top}\symbf{B}\symbf{H}),\nonumber\\
     &\textit{s.t.}\quad\symbf{W}_{\text{con}}\geq 0,\quad\symbf{W}_{\text{cen}}\geq 0,\quad\symbf{C}\geq0,\quad\mathrm{tr} (\symbf{H}^{\top}\symbf{H}) = N.\nonumber
 \end{aligned}
 $$
  
 
-この式において， $\\|\symbf{H} - \symbf{W}_{\text{cen}}\symbf{C}^{\top}\\|^{2}_{\text{F}}$ の項はコミュニティ構造情報とノード表現を結びつけるものであり，また，Wang *et al*.(2017c)で採用されている非負行列分解を行うために非負制約が加えられている．さらにハイパーパラメータ $\alpha,\,\beta$ は式中の3項間のバランスを制御するものである．
+この式において， $\|\symbf{H} - \symbf{W}_{\text{cen}}\symbf{C}^{\top}\|^{2}_{\text{F}}$ の項はコミュニティ構造情報とノード表現を結びつけるものであり，また，Wang *et al*.(2017c)で採用されている非負行列分解を行うために非負制約が加えられている．さらにハイパーパラメータ $\alpha,\,\beta$ は式中の3項間のバランスを制御するものである．
 
 
 [メインページ](../../index.markdown)
