@@ -155,9 +155,9 @@ $$
 
  $$ 
 \tag{4.12}
-    \min_{\symbf{W},\symbf{W}_1,\dots,\symbf{W}_D} - \sum^{D}_{d=1}\sum_{(v_{\text{con}}, v_{\text{cen}})\in\;\symscr{I}_d}\;\#(v_{\text{con}}, v_{\text{cen}})\cdot\log p(v_{\text{con}}\|v_{\text{cen}}). $$ 
+    \min_{\symbf{W},\symbf{W}\_1,\dots,\symbf{W}\_D} - \sum^{D}_{d=1}\sum_{(v_{\text{con}}, v_{\text{cen}})\in\;\symscr{I}_d}\;\#(v_{\text{con}}, v_{\text{cen}})\cdot\log p(v_{\text{con}}\|v_{\text{cen}}). $$ 
 
-ここで， $\symbf{W},\symbf{W}_1,\dots,\symbf{W}_D$ は学習すべきマッピング関数のパラメータである．なお，Ma *et al*.(2018d)では，あるノードに対して，中心表現と文脈表現の両方に同じ表現が使用される．
+ここで， $\symbf{W},\symbf{W}\_1,\dots,\symbf{W}\_D$ は学習すべきマッピング関数のパラメータである．なお，Ma *et al*.(2018d)では，あるノードに対して，中心表現と文脈表現の両方に同じ表現が使用される．
 
 ### 符号付きグラフの埋め込み
 
