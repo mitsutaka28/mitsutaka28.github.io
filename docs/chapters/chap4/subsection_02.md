@@ -18,7 +18,7 @@
 \tag{4.1}
     f(v_i) = \symbf{u}_i = \symbf{e}^{T}_i\symbf{W}. $$ 
 
-ここで， $\symbf{e}_i\in \left\{0,1\right\}^N\,(N=\|\symbfscr{V}\|)$ は，ノード $v_i$ のワンホットエンコーディングを表している（つまり $\symbf{e}_i$ は，1つの要素だけ $\symbf{e}_i[i]=1$ であり，他の要素は全て $0$ となる）．また $\symbf{W}\in \mathbb{R}^{N\times d}$ は， $d$ を埋め込み次元とした，学習対象である埋め込みパラメータで，行列 $\symbf{W}$ の $i$ 番目の行はノード $v_i$ の表現（または埋め込み）を表す．ゆえに，マッピング関数のパラメータ数は $N\times d$ 個となる．
+ここで， $\symbf{e}_i\in \left\\{0,1\right\\}^N\,(N=\|\symbfscr{V}\|)$ は，ノード $v_i$ のワンホットエンコーディングを表している（つまり $\symbf{e}_i$ は，1つの要素だけ $\symbf{e}_i[i]=1$ であり，他の要素は全て $0$ となる）．また $\symbf{W}\in \mathbb{R}^{N\times d}$ は， $d$ を埋め込み次元とした，学習対象である埋め込みパラメータで，行列 $\symbf{W}$ の $i$ 番目の行はノード $v_i$ の表現（または埋め込み）を表す．ゆえに，マッピング関数のパラメータ数は $N\times d$ 個となる．
 
 #### ランダムウォークに基づく共起性の抽出
 
@@ -435,14 +435,14 @@ $$
  $$ \nonumber
     Q = \dfrac{1}{2\cdot\text{vol}(\symbfscr{G})}\symbf{h}^{\top}\symbf{B}\symbf{h}. $$ 
 
-ここで， $\symbf{h}\in \left\{-1,1\right\}^N$ は $i$ 番目の要素を $\symbf{h}[i]=h_i$ としたコミュニティ割り当てベクトルであり， $\symbf{B}\in\mathbb{R}^{N\times N}$ は
+ここで， $\symbf{h}\in \left\\{-1,1\right\\}^N$ は $i$ 番目の要素を $\symbf{h}[i]=h_i$ としたコミュニティ割り当てベクトルであり， $\symbf{B}\in\mathbb{R}^{N\times N}$ は
 
  $$ \nonumber
     \symbf{B}_{i,j} = \symbf{A}_{i,j} - \dfrac{d(v_i)d(v_j)}{\text{vol}(\symbfscr{G})}. $$ 
 
 と定義される．
 
-モジュラリティの定義は，コミュニティの個数が $m>2$ 個ある場合に拡張できる． 具体的には，コミュニティ割り当てベクトル $\symbf{h}$ は，行列 $\symbf{H}\in\left\{0,1\right\}^{N\times m}$ として， $\symbf{H}$ の各列が1つのコミュニティを表すような行列として一般化できる．また，行列 $\symbf{H}$ の $i$ 行目はノード $v_i$ の属するコミュニティを示すワンホットベクトルであり，この行の要素は一つだけ $1$ で，他は $0$ の値をとる．したがって， $\mathrm{tr}(\symbf{H}^{\top}\symbf{H})=N$ を得る（ $\mathrm{tr}(\symbf{X})$ は行列 $\symbf{X}$ のトレースを表す）．いくつかの定数を無視すれば， $m$ 個のコミュニティを持つグラフのモジュラリティは $Q=\mathrm{tr}(\symbf{H}^{\top}\symbf{B}\symbf{H})$ と定義できる． ゆえに，割り当て行列 $\symbf{H}$ はモジュラリティ $Q$ を
+モジュラリティの定義は，コミュニティの個数が $m>2$ 個ある場合に拡張できる． 具体的には，コミュニティ割り当てベクトル $\symbf{h}$ は，行列 $\symbf{H}\in\left\\{0,1\right\\}^{N\times m}$ として， $\symbf{H}$ の各列が1つのコミュニティを表すような行列として一般化できる．また，行列 $\symbf{H}$ の $i$ 行目はノード $v_i$ の属するコミュニティを示すワンホットベクトルであり，この行の要素は一つだけ $1$ で，他は $0$ の値をとる．したがって， $\mathrm{tr}(\symbf{H}^{\top}\symbf{H})=N$ を得る（ $\mathrm{tr}(\symbf{X})$ は行列 $\symbf{X}$ のトレースを表す）．いくつかの定数を無視すれば， $m$ 個のコミュニティを持つグラフのモジュラリティは $Q=\mathrm{tr}(\symbf{H}^{\top}\symbf{B}\symbf{H})$ と定義できる． ゆえに，割り当て行列 $\symbf{H}$ はモジュラリティ $Q$ を
 
  $$ \nonumber
     \max_{\symbf{H}}Q = \mathrm{tr} (\symbf{H}^{\top}\symbf{B}\symbf{H}),\qquad\textit{s.t.}\,\mathrm{tr} (\symbf{H}^{\top}\symbf{H}) = N. $$ 
