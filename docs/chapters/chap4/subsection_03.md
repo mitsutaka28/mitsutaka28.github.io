@@ -174,7 +174,7 @@ SiNEにおけるマッピング関数は，DeepWalkと同じものを用いる�
 
 <figure>
 
-<img src="./fig/fig4_4.png" width="100%"/>
+<img src="./fig/fig4_4.png" width="80%"/>
 
 <figcaption>図4.4 1つの正エッジと1つの負エッジから成る三つ組(triplet)</figcaption>
 
