@@ -16,7 +16,7 @@
 
  $$ 
 \tag{4.1}
-    f(v_i) = \symbf{u}\_i = \symbf{e}^{T}_i\symbf{W}. $$ 
+    f(v_i) = \symbf{u}_i = \symbf{e}^{T}_i\symbf{W}. $$ 
 
 ここで， $\symbf{e}_i\in \left\\{0,1\right\\}^N\,(N=\|\symbfscr{V}\|)$ は，ノード $v_i$ のワンホットエンコーディングを表している（つまり $\symbf{e}_i$ は，1つの要素だけ $\symbf{e}_i[i]=1$ であり，他の要素は全て $0$ となる）．また $\symbf{W}\in \mathbb{R}^{N\times d}$ は， $d$ を埋め込み次元とした，学習対象である埋め込みパラメータで，行列 $\symbf{W}$ の $i$ 番目の行はノード $v_i$ の表現（または埋め込み）を表す．ゆえに，マッピング関数のパラメータ数は $N\times d$ 個となる．
 
@@ -98,7 +98,7 @@ $$
 
  $$ 
 \tag{4.5}
-    \symscr{L}(\symbf{W}\_{\text{con}}, \symbf{W}\_{\text{cen}}) = - \sum_{(v_{\text{con}}, v_{\text{cen}})\;\in\;\text{set}(\symscr{I})} \#(v_{\text{con}}, v_{\text{cen}})\cdot\log p(v_{\text{con}}\|v_{\text{cen}}). $$ 
+    \symscr{L}(\symbf{W}_{\text{con}}, \symbf{W}_{\text{cen}}) = - \sum_{(v_{\text{con}}, v_{\text{cen}})\;\in\;\text{set}(\symscr{I})} \#(v_{\text{con}}, v_{\text{cen}})\cdot\log p(v_{\text{con}}\|v_{\text{cen}}). $$ 
 
 この目的関数は式(4.4)の負の対数である．
 
@@ -263,7 +263,7 @@ Qiu *et al*.(2018b)によれば，前述したネットワークの埋め込み�
 一方でマッピング関数(Mapping)は，DeepWalkで導入したものと同じ $f_{\text{cen}}(\cdot)$ と $f_{\text{con}}(\cdot)$ のを用いている． これら2つのマッピング関数のパラメータは， $\symbf{W}\_{\text{cen}}$ と $\symbf{W}\_{\text{con}}$ であり，それらはグラフ $\symbfscr{G}$ の2組のノード表現でもある．そしてこの場合の再構成(Reconstractor)は，" $\symbf{W}\_{\text{con}}\symbf{W}\_{\text{cen}}^{\top}$ "という形で表現でき，これにより目的関数は以下のように表すことができる．
 
  $$ \nonumber
-    \symscr{L}(\symbf{W}\_{\text{con}}, \symbf{W}\_{\text{cen}}) = \left\|\,\log\left(\dfrac{\text{vol}(\symbfscr{G})}{T}\left(\sum^{T}_{r=1}\symbf{P}^r\right)\symbf{D}^{-1}\right) - \log(k) - \symbf{W}\_{\text{con}}\symbf{W}\_{\text{cen}}^{\top}\, \right\|^2_F. $$ 
+    \symscr{L}(\symbf{W}_{\text{con}}, \symbf{W}_{\text{cen}}) = \left\|\,\log\left(\dfrac{\text{vol}(\symbfscr{G})}{T}\left(\sum^{T}_{r=1}\symbf{P}^r\right)\symbf{D}^{-1}\right) - \log(k) - \symbf{W}_{\text{con}}\symbf{W}_{\text{cen}}^{\top}\, \right\|^2_F. $$ 
 
 したがって，埋め込み $\symbf{W}\_{\text{con}}$ と $\symbf{W}\_{\text{cen}}$ は，この目的関数を最小化することで学習できる．同様に，LINEやnode2vecも行列形式で表現することが可能である(Qiu *et al*., 2018b)．
 
@@ -379,7 +379,7 @@ $$
 
 
  $$ \nonumber
-    p\left(v_{(i)}, v_{(j)}\right) = \sigma\left(\symbf{w}^{\top}(\symbf{u}\_{(i)} - \symbf{u}\_{(j)})\right) $$  ここで， $\symbf{u}\_{(i)}$ および $\symbf{u}\_{(j)}$ は，それぞれノード $v_{(i)}$ および $v_{(j)}$ のノード埋め込みであり（あるいは， $v_{(i)}$ および $v_{(j)}$ についてのマッピング関数の出力）， $\symbf{w}$ は学習対象のパラメータベクトルである． 順序情報を保存するためには，（情報抽出器で得た）順序付けられた任意のノード組 $(v_{(i)}, v_{(j)})$ が，埋め込みから高い確率で構成されることが期待される．これは，以下の目的関数を最小化することで実現できる．
+    p\left(v_{(i)}, v_{(j)}\right) = \sigma\left(\symbf{w}^{\top}(\symbf{u}_{(i)} - \symbf{u}_{(j)})\right) $$  ここで， $\symbf{u}\_{(i)}$ および $\symbf{u}\_{(j)}$ は，それぞれノード $v_{(i)}$ および $v_{(j)}$ のノード埋め込みであり（あるいは， $v_{(i)}$ および $v_{(j)}$ についてのマッピング関数の出力）， $\symbf{w}$ は学習対象のパラメータベクトルである． 順序情報を保存するためには，（情報抽出器で得た）順序付けられた任意のノード組 $(v_{(i)}, v_{(j)})$ が，埋め込みから高い確率で構成されることが期待される．これは，以下の目的関数を最小化することで実現できる．
 
  $$ \nonumber
     \symscr{L}_{\text{global}} = -\log p_{\text{global}}. $$ 
@@ -415,7 +415,7 @@ $$
  $\eta>0$ は近傍類似性の重要度を制御している．その後，行列 $\symbf{P}$ を，埋め込みドメインから $\symbf{W}\_{\text{con}}\symbf{W}\_{\text{cen}}^{\top}$ として再構成する（ $\symbf{W}\_{\text{con}}$ と $\symbf{W}\_{\text{cen}}$ は $2$ つのマッピング関数 $f_{\text{con}}$ と $f_{\text{cen}}$ のパラメータである）．これらはDeepWalkと同じ設計である．このことから，目的関数は以下のように定式化される．
 
  $$ \nonumber
-    \symscr{L}\left(\symbf{W}\_{\text{con}}, \symbf{W}\_{\text{cen}}\right) = \|\symbf{P} - \symbf{W}\_{\text{con}}\symbf{W}\_{\text{cen}}^{\top}\|^2_{\text{F}}. $$ 
+    \symscr{L}\left(\symbf{W}_{\text{con}}, \symbf{W}_{\text{cen}}\right) = \|\symbf{P} - \symbf{W}_{\text{con}}\symbf{W}_{\text{cen}}^{\top}\|^2_{\text{F}}. $$ 
 
 ここで， $\|\cdot\|_{\text{F}}$ は行列のフロベニウスノルムを表している．
 

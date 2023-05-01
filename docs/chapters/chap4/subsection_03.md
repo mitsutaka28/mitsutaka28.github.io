@@ -12,12 +12,12 @@
 このことからHNEにおける情報抽出器は，再構成する情報としてエッジを持つノード組を抽出し，隣接行列 $\symbf{A}$ によって自然に表すことができる． 一方，HNEにおける再構成器は，ノードの埋め込みから隣接行列 $\symbf{A}$ を復元することを目的とする．具体的には，ノード組 $v_i,v_j$ と，マッピング関数で学習したそれらの埋め込み $\symbf{u}\_i,\symbf{u}\_j$ が与えられた場合，再構成された隣接行列の要素 $\tilde{\symbf{A}}_{i,j}=1$ の確率は次のように計算される．
 
  $$ \nonumber
-    p(\tilde{\symbf{A}}_{i,j} =1) = \sigma(\symbf{u}\_i^{\top}\symbf{u}\_j). $$ 
+    p(\tilde{\symbf{A}}_{i,j} =1) = \sigma(\symbf{u}_i^{\top}\symbf{u}_j). $$ 
 
 ここで， $\sigma$ はシグモイド関数である．この式に対応する形で以下も計算できる．
 
  $$ \nonumber
-    p(\tilde{\symbf{A}}_{i,j} =0) = 1-\sigma(\symbf{u}\_i^{\top}\symbf{u}\_j). $$ 
+    p(\tilde{\symbf{A}}_{i,j} =0) = 1-\sigma(\symbf{u}_i^{\top}\symbf{u}_j). $$ 
 
 再構成された隣接行列 $\tilde{\symbf{A}}$ が元の隣接行列 $\symbf{A}$ に近くなるように，確率を最大化することが目標であることから，目的関数は交差エントロピーによって以下のようにモデル化される．
 
@@ -92,7 +92,7 @@ p(v_j\|v_i) = \dfrac{\displaystyle\exp (f_{\text{con}}(v_j)^{\top}f_{\text{cen}}
 （上記(2)の情報である） $\symscr{U}$ と $\symscr{V}$ の共起情報を埋め込みから復元する再構成器は，DeepWalkのものと同じである． $\symscr{U}$ と $\symscr{V}$ を再構成する二つの目的関数をそれぞれ $\symscr{L}_{\symscr{U}}$ と $\symscr{L}_{\symscr{V}}$ と表記する．一方で，（上記(1)の情報である）エッジ集合 $\symbfscr{E}$ を復元するためには，埋め込み情報に基づいてエッジを観測する確率をモデル化する． 具体的には， $u_i\in\symscr{U}$ や $v_j\in\symscr{V}$ としたノード組 $(u_i,v_j)$ が与えられたとき，元の二部グラフにおいて二つのノード間にエッジが存在する確率を
 
  $$ \nonumber
-    p(u_i, u_j) = \sigma(\symbf{u}\_i^{\top}\symbf{v}_j), $$ 
+    p(u_i, u_j) = \sigma(\symbf{u}_i^{\top}\symbf{v}_j), $$ 
 
 と定義する（ $\sigma$ はシグモイド関数）． このとき， $\symbfscr{E}$ におけるエッジのノード組に対する確率が最大となるような埋め込みを学習することが目標である． したがって，目的関数は
 
@@ -120,7 +120,7 @@ p(v_j\|v_i) = \dfrac{\displaystyle\exp (f_{\text{con}}(v_j)^{\top}f_{\text{cen}}
 
  $$ 
 \tag{4.11}
-    \symbf{u}\_{d,i} = \symbf{u}\_i + \symbf{r}_{d,i}\;, $$ 
+    \symbf{u}_{d,i} = \symbf{u}_i + \symbf{r}_{d,i}\;, $$ 
 
 としてモデル化する． $\symbf{u}\_i$ は全体的な表現で， $\symbf{r}_{d,i}$ は依存性を考えない次元 $d$ の情報のみを取り込んだ次元別の表現である． これらの表現を学習するために，異なる次元における共起関係の再構成を目指す． 具体的には，異なる次元から抽出された共起関係を再構成することで， $\symbf{u}\_i$ と $\symbf{r}_{d,i}$ のマッピング関数を最適化する．
 
@@ -155,7 +155,7 @@ $$
 
  $$ 
 \tag{4.12}
-    \min_{\symbf{W},\symbf{W}\_1,\dots,\symbf{W}\_D} - \sum^{D}_{d=1}\sum_{(v_{\text{con}}, v_{\text{cen}})\in\;\symscr{I}_d}\;\#(v_{\text{con}}, v_{\text{cen}})\cdot\log p(v_{\text{con}}\|v_{\text{cen}}). $$ 
+    \min_{\symbf{W},\symbf{W}_1,\dots,\symbf{W}_D} - \sum^{D}_{d=1}\sum_{(v_{\text{con}}, v_{\text{cen}})\in\;\symscr{I}_d}\;\#(v_{\text{con}}, v_{\text{cen}})\cdot\log p(v_{\text{con}}\|v_{\text{cen}}). $$ 
 
 ここで， $\symbf{W},\symbf{W}\_1,\dots,\symbf{W}\_D$ は学習すべきマッピング関数のパラメータである．なお，Ma *et al*.(2018d)では，あるノードに対して，中心表現と文脈表現の両方に同じ表現が使用される．
 
@@ -241,7 +241,7 @@ $$
 マッピング関数は，大域的な共起情報を入力とするような多層順伝播型ネットワークでモデル化される． 具体的には，ノード $v_i$ に対して，以下のように処理を記述することができる．
 
  $$ \nonumber
-\symbf{u}\_i = f(\symbf{A}_i;\,\symbf{\Theta}) $$ 
+\symbf{u}_i = f(\symbf{A}_i;\,\symbf{\Theta}) $$ 
 
 ここで $f$ は， $\symbf{\Theta}$ をパラメータとして持った順伝播型ネットワークを表している．
 
@@ -264,7 +264,7 @@ $$
 一方，ノード $v_i$ に対する大域的な共起情報 $\symbf{A}\_i$ を復元するためには，埋め込み $\symbf{u}\_i$ を入力とする以下の順伝播型ネットワークが採用される．
 
  $$ \nonumber
-    \tilde{\symbf{A}}_i = f_{\text{re}}(\symbf{u}\_i;\,\symbf{\Theta}_{\text{re}}). $$ 
+    \tilde{\symbf{A}}_i = f_{\text{re}}(\symbf{u}_i;\,\symbf{\Theta}_{\text{re}}). $$ 
 
  $f_{\text{re}}(\cdot)$ は共起情報を再構成する順伝播型ネットワークで， $\symbf{\Theta}_{\text{re}}$ をそのネットワークが持つパラメータとする．そして，目的関数は最小二乗法で
 
