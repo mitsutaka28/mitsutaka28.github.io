@@ -89,7 +89,7 @@ p(v_j\|v_i) = \dfrac{\displaystyle\exp (f_{\text{con}}(v_j)^{\top}f_{\text{cen}}
 
 #### 再構成および目的関数
 
-（上記(2)の情報である） $\symscr{U}$ と $\symscr{V}$ の共起情報を埋め込みから復元する再構成器は，DeepWalkのものと同じである． $\symscr{U}$ と $\symscr{V}$ を再構成する二つの目的関数をそれぞれ $\symscr{L}_{\symscr{U}}$ と $\symscr{L}_{\symscr{V}}$ と表記する．一方で，（上記(1)の情報である）エッジ集合 $\symbfscr{E}$ を復元するためには，埋め込み情報に基づいてエッジを観測する確率をモデル化する． 具体的には， $u_i\in\symscr{U}$ や $v_j\in\symscr{V}$ としたノード組 $(u_i,v_j)$ が与えられたとき，元の二部グラフにおいて二つのノード間にエッジが存在する確率を
+（上記(2)の情報である） $\symscr{U}$ と $\symscr{V}$ の共起情報を埋め込みから復元する再構成器は，DeepWalkのものと同じである． $\symscr{U}$ と $\symscr{V}$ を再構成する二つの目的関数をそれぞれ $\symscr{L}\_{\symscr{U}}$ と $\symscr{L}\_{\symscr{V}}$ と表記する．一方で，（上記(1)の情報である）エッジ集合 $\symbfscr{E}$ を復元するためには，埋め込み情報に基づいてエッジを観測する確率をモデル化する． 具体的には， $u_i\in\symscr{U}$ や $v_j\in\symscr{V}$ としたノード組 $(u_i,v_j)$ が与えられたとき，元の二部グラフにおいて二つのノード間にエッジが存在する確率を
 
  $$ \nonumber
     p(u_i, u_j) = \sigma(\symbf{u}_i^{\top}\symbf{v}_j), $$ 
