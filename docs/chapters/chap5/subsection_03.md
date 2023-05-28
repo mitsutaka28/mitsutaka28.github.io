@@ -544,7 +544,7 @@ $$
 ここで， $\boldsymbol{\Theta} \in \mathbb{R}^{d_{\text{in}} \times d_{\text{out}}}$ である． また， $\boldsymbol{\Theta}\_{d, j}=\theta\_{j, d}$ は $j$ 番目の出力チャンネル， $d$ 番目の入力チャンネルに対応するパラメータである． 特に，1つのノード $v_i$ に対して，式(5.21)のフィルタ操作は次のように書くこともできる：
 
  $$
- \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup \left\{v_i\right\}}\left(\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}\right)_{i, j} \symbf{F}_j \boldsymbol{\Theta}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\}} \frac{1}{\sqrt{\tilde{d}_i \tilde{d}_j}} \symbf{F}_j \boldsymbol{\Theta}
+ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup \left\\{v_i\right\\}}\left(\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}\right)_{i, j} \symbf{F}_j \boldsymbol{\Theta}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}} \frac{1}{\sqrt{\tilde{d}_i \tilde{d}_j}} \symbf{F}_j \boldsymbol{\Theta}
     
 \tag{5.22} $$
  
@@ -610,9 +610,12 @@ Hamilton *et al*. (2017a)では，以下のように，様々な $\operatorname{
      
 
 $$
- \symbf{f}_{N_S\left(v_i\right)}^{\prime}=\max \left(\left\{\alpha\left(\symbf{F}_j \boldsymbol{\Theta}_{\mathrm{pool}}\right), \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\}\right) \nonumber $$
+ \symbf{f}_{N_S\left(v_i\right)}^{\prime}=\max \left(\left{\alpha\left(\symbf{F}_j \boldsymbol{\Theta}_{\mathrm{pool}}\right), \forall v_j \in \mathcal{N}_S\left(v_i\right)\right}\right) \nonumber $$
 
-ここで， $\mathrm{max}(\cdot)$ は要素ごとに適用され， $\boldsymbol{\Theta}\_{\mathrm{pool}}$ は変換行列， $\alpha(\cdot)$ は非線形活性化関数である．
+
+ 
+
+    ここで， $\mathrm{max}(\cdot)$ は要素ごとに適用され， $\boldsymbol{\Theta}\_{\mathrm{pool}}$ は変換行列， $\alpha(\cdot)$ は非線形活性化関数である．
 
 GraphSAGEフィルタは，どの集約関数を用いても1ホップ近傍のみが計算に関わってくるので，空間的に局在している． また，集約関数は全ノードで共通である．
 
@@ -643,7 +646,7 @@ $$
  
 
 $$
- \alpha_{i j}=\frac{\exp \left(e_{i j}\right)}{\sum_{v_k \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\}} \exp \left(e_{i k}\right)} \nonumber $$
+ \alpha_{i j}=\frac{\exp \left(e_{i j}\right)}{\sum_{v_k \in \mathcal{N}\left(v_i\right) \cup\left{v_i\right}} \exp \left(e_{i k}\right)} \nonumber $$
 
 
  
