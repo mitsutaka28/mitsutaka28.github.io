@@ -131,7 +131,7 @@ $$
 
  
 
-ここで， $\theta_l$ はデータから学習されるパラメータである． 行列形式で書くと次のようになる：
+ここで， $\theta\_l$ はデータから学習されるパラメータである． 行列形式で書くと次のようになる：
 
  
 
@@ -272,7 +272,7 @@ $$
 \tag{5.13} $$
  
 
-これは全ノードの元の信号の，重み $\sum_{k=0}^{K} \theta_k \symbf{L}\_{i, j}^{k}$ での線形結合とみなすことができる． 系5.2より， $\operatorname{dis}\left(v_i, v_j\right)>k$ ならば $\symbf{L}\_{i, j}^{k}=0$ である． したがって，この計算にはすべてのノードが関与するのではなく， ノード $v_i$ から $K$ 次近傍以内のノードのみが関与することになる． ノード $v_i$ から $K$ 次近傍以内のノードのみを使って式(5.13)を書き換えると，
+これは全ノードの元の信号の，重み $\sum_{k=0}^{K} \theta\_k \symbf{L}\_{i, j}^{k}$ での線形結合とみなすことができる． 系5.2より， $\operatorname{dis}\left(v_i, v_j\right)>k$ ならば $\symbf{L}\_{i, j}^{k}=0$ である． したがって，この計算にはすべてのノードが関与するのではなく， ノード $v_i$ から $K$ 次近傍以内のノードのみが関与することになる． ノード $v_i$ から $K$ 次近傍以内のノードのみを使って式(5.13)を書き換えると，
 
  $$
  \symbf{f}^{\prime}[i]=b_{i, i} \symbf{f}[i]+\sum_{v_j \in \mathcal{N}^{K}\left(v_i\right)} b_{i, j} \symbf{f}[j]
@@ -475,7 +475,7 @@ $$
 \tag{5.18}
 $$
 
-  なお，式(5.18)は，定義2.29の正規化ラプラシアン行列( $\symbf{L}=\symbf{I}-\symbf{D}^{-\frac{1}{2}} \symbf{A} \symbf{D}^{-\frac{1}{2}}$ )を用いることで成り立つ． さらに， $\theta=\theta_0=-\theta_1$ とすることで式(5.18)は次のように簡略化することができる：  
+  なお，式(5.18)は，定義2.29の正規化ラプラシアン行列( $\symbf{L}=\symbf{I}-\symbf{D}^{-\frac{1}{2}} \symbf{A} \symbf{D}^{-\frac{1}{2}}$ )を用いることで成り立つ． さらに， $\theta=\theta\_0=-\theta\_1$ とすることで式(5.18)は次のように簡略化することができる：  
 
 $$
 
@@ -541,7 +541,7 @@ $$
 \tag{5.21} $$
  
 
-ここで， $\boldsymbol{\Theta} \in \mathbb{R}^{d_{\text{in}} \times d_{\text{out}}}$ である． また， $\boldsymbol{\Theta}_{d, j}=\theta_{j, d}$ は $j$ 番目の出力チャンネル， $d$ 番目の入力チャンネルに対応するパラメータである． 特に，1つのノード $v_i$ に対して，式(5.21)のフィルタ操作は次のように書くこともできる：
+ここで， $\boldsymbol{\Theta} \in \mathbb{R}^{d_{\text{in}} \times d_{\text{out}}}$ である． また， $\boldsymbol{\Theta}\_{d, j}=\theta\_{j, d}$ は $j$ 番目の出力チャンネル， $d$ 番目の入力チャンネルに対応するパラメータである． 特に，1つのノード $v_i$ に対して，式(5.21)のフィルタ操作は次のように書くこともできる：
 
  $$
  \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup \left\\{v_i\right\\}}\left(\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}\right)_{i, j} \symbf{F}_j \boldsymbol{\Theta}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}} \frac{1}{\sqrt{\tilde{d}_i \tilde{d}_j}} \symbf{F}_j \boldsymbol{\Theta}
@@ -549,7 +549,7 @@ $$
 \tag{5.22} $$
  
 
-ここで， $\tilde{d}_i=\tilde{\symbf{D}}\_{i, i}$ であり， $\symbf{F}\_i \in \mathbb{R}^{1 \times d_{\text{out}}}$ は $\symbf{F}$ の $i$ 行目（すなわちノード $v_i$ の特徴量）を表す． 式(5.22)の操作はノード $v_i$ の1次近傍の情報を集約しているとみなすことができる．
+ここで， $\tilde{d}\_i=\tilde{\symbf{D}}\_{i, i}$ であり， $\symbf{F}\_i \in \mathbb{R}^{1 \times d_{\text{out}}}$ は $\symbf{F}$ の $i$ 行目（すなわちノード $v_i$ の特徴量）を表す． 式(5.22)の操作はノード $v_i$ の1次近傍の情報を集約しているとみなすことができる．
 
 ### 空間型グラフフィルタ
 
@@ -615,7 +615,7 @@ $$
 
  
 
-    ここで， $\mathrm{max}(\cdot)$ は要素ごとに適用され， $\boldsymbol{\Theta}_{\mathrm{pool}}$ は変換行列， $\alpha(\cdot)$ は非線形活性化関数である．
+    ここで， $\mathrm{max}(\cdot)$ は要素ごとに適用され， $\boldsymbol{\Theta}\_{\mathrm{pool}}$ は変換行列， $\alpha(\cdot)$ は非線形活性化関数である．
 
 GraphSAGEフィルタは，どの集約関数を用いても1ホップ近傍のみが計算に関わってくるので，空間的に局在している． また，集約関数は全ノードで共通である．
 
@@ -681,7 +681,7 @@ $$
 
  
 
-ここで， $\boldsymbol{\Theta}_{t p\left(v_i, v_j\right)}$ は種類が $t p\left(v_i, v_j\right)$ となるエッジに共通のパラメータ行列である．
+ここで， $\boldsymbol{\Theta}\_{t p\left(v_i, v_j\right)}$ は種類が $t p\left(v_i, v_j\right)$ となるエッジに共通のパラメータ行列である．
 
 #### GGNNフィルタ
 
@@ -701,9 +701,9 @@ $$
 \tag{5.33}
 $$
 
-  ここで， $\boldsymbol{\Theta}_{t p\left(v_j, v_i\right)}^{e}, \boldsymbol{\Theta}^{z}, \boldsymbol{\Theta}^{r}, \boldsymbol{\Theta}$ は学習対象のパラメータである．
+  ここで， $\boldsymbol{\Theta}\_{t p\left(v_j, v_i\right)}^{e}, \boldsymbol{\Theta}^{z}, \boldsymbol{\Theta}^{r}, \boldsymbol{\Theta}$ は学習対象のパラメータである．
 
-最初のステップである式(5.29)では，ノート $v_i$ の近傍ノード（ノード $v_i$ に向かうエッジを持つノード，ノード $v_i$ から出るエッジを持つノード両方）の情報を集約する． この集約の際，変換行列 $\boldsymbol{\Theta}_{t p\left(v_j, v_i\right)}^{e}$ は， $v_i$ にエッジの種類 $t p\left(v_i,\, v_j\right)$ でつながるすべてのノードで共通である．
+最初のステップである式(5.29)では，ノート $v_i$ の近傍ノード（ノード $v_i$ に向かうエッジを持つノード，ノード $v_i$ から出るエッジを持つノード両方）の情報を集約する． この集約の際，変換行列 $\boldsymbol{\Theta}\_{t p\left(v_j, v_i\right)}^{e}$ は， $v_i$ にエッジの種類 $t p\left(v_i,\, v_j\right)$ でつながるすべてのノードで共通である．
 
 残りのステップ（式(5.30)から式(5.33)）はGRUに対応しており，前で得た集約情報 $\symbf{m}_i$ を用いて隠れ表現を更新する．  $\symbf{z}_i,\, \symbf{r}\_i$ は更新ゲートとリセットゲートで，  $\sigma(\cdot)$ はシグモイド関数， $\odot$ はアダマール操作を表す． したがって，GNNフィルタは次のように書くこともできる：  
 

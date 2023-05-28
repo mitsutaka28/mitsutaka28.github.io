@@ -15,7 +15,7 @@
 \tag{5.46} $$
  
 
-ここで， $\boldsymbol{\Theta}_1$ はモデルパラメータで，  $\symbf{A} \in \mathbb{R}^{N \times N}$ は隣接行列，  $\symbf{F} \in \mathbb{R}^{N \times d_{\text{in}}}$ は元のグラフの入力特徴量，  $\symbf{F}^{\text{(out)}} \in \mathbb{R}^{N \times d_{\mathrm{out}}}$ は生成された出力特徴量である． そして，ノードの出力特徴量を用いて次のようにノード分類を行う：
+ここで， $\boldsymbol{\Theta}\_1$ はモデルパラメータで，  $\symbf{A} \in \mathbb{R}^{N \times N}$ は隣接行列，  $\symbf{F} \in \mathbb{R}^{N \times d_{\text{in}}}$ は元のグラフの入力特徴量，  $\symbf{F}^{\text{(out)}} \in \mathbb{R}^{N \times d_{\mathrm{out}}}$ は生成された出力特徴量である． そして，ノードの出力特徴量を用いて次のようにノード分類を行う：
 
  $$
  \symbf{Z}=\operatorname{softmax}\left(\symbf{F}^{(\text{out})} \boldsymbol{\Theta}_2\right)
@@ -23,7 +23,7 @@
 \tag{5.47} $$
  
 
-ここで， $\symbf{Z} \in \mathbb{R}^{N \times C}$ は各ノード(行)の各クラス(列)への所属確率であり， $\boldsymbol{\Theta}_2 \in \mathbb{R}^{d_{\mathrm{out}} \times C}$ は特徴量 $\symbf{F}^{(\text{out})}$ をクラス $C$ の次元に変換するパラメータ行列である．  $\symbf{Z}$ の $i$ 番目の行はノード $v_i$ についての予測ラベルを表す． 予測ラベルは通常，最も大きな確率を持つラベルである． ノード分類の全プロセスは，以下のようにまとめることができます：
+ここで， $\symbf{Z} \in \mathbb{R}^{N \times C}$ は各ノード(行)の各クラス(列)への所属確率であり， $\boldsymbol{\Theta}\_2 \in \mathbb{R}^{d_{\mathrm{out}} \times C}$ は特徴量 $\symbf{F}^{(\text{out})}$ をクラス $C$ の次元に変換するパラメータ行列である．  $\symbf{Z}$ の $i$ 番目の行はノード $v_i$ についての予測ラベルを表す． 予測ラベルは通常，最も大きな確率を持つラベルである． ノード分類の全プロセスは，以下のようにまとめることができます：
 
  $$
  \symbf{Z}=f_{\mathrm{GNN}}(\symbf{A},\, \symbf{F} ;\, \boldsymbol{\Theta})
@@ -31,7 +31,7 @@
 \tag{5.48} $$
  
 
-ここで， $f_{\text{GNN}}$ は式(5.46)と式(5.47)から成り，  $\boldsymbol{\Theta}$ は $\boldsymbol{\Theta}_1$ と $\boldsymbol{\Theta}_2$ を含む． 式(5.48)の $\boldsymbol{\Theta}$ は次の量を最小化することで学習することができる．
+ここで， $f_{\text{GNN}}$ は式(5.46)と式(5.47)から成り，  $\boldsymbol{\Theta}$ は $\boldsymbol{\Theta}\_1$ と $\boldsymbol{\Theta}\_2$ を含む． 式(5.48)の $\boldsymbol{\Theta}$ は次の量を最小化することで学習することができる．
 
  $$
  \mathcal{L}_{\text {train }}=\sum_{v_i \in \mathcal{V}_l} \ell\left(f_{G N N}(\symbf{A}, \symbf{F};\, \boldsymbol{\Theta})_i,\, y_i\right)
@@ -59,7 +59,7 @@
 \tag{5.51} $$
  
 
-ここで， $\boldsymbol{\Theta}_2 \in \mathbb{R}^{d_{\mathrm{out}} \times C}$ はグラフ表現を分類クラス $C$ の次元に変換するパラメータ行列である． また， $\symbf{Z}_{\mathcal{G}} \in \mathbb{R}^{1 \times C}$ は入力グラフ $\mathcal{G}$ の各クラスへの所属確率を表す． グラフ分類の全プロセスは，以下のようにまとめることができる：
+ここで， $\boldsymbol{\Theta}\_2 \in \mathbb{R}^{d_{\mathrm{out}} \times C}$ はグラフ表現を分類クラス $C$ の次元に変換するパラメータ行列である． また， $\symbf{Z}_{\mathcal{G}} \in \mathbb{R}^{1 \times C}$ は入力グラフ $\mathcal{G}$ の各クラスへの所属確率を表す． グラフ分類の全プロセスは，以下のようにまとめることができる：
 
  $$
  \symbf{z}_{\mathcal{G}}=f_{\mathrm{GNN}}(\mathcal{G} ; \boldsymbol{\Theta})
@@ -67,7 +67,7 @@
 \tag{5.52} $$
  
 
-ここで， $f_{\mathrm{GNN}}$ は式(5.50)と式(5.51)からなり，  $\boldsymbol{\Theta}$ は $\boldsymbol{\Theta}_1$ と $\boldsymbol{\Theta}_2$ を含む． パラメータ $\boldsymbol{\Theta}$ は次の量を最小化することで学習することができる．
+ここで， $f_{\mathrm{GNN}}$ は式(5.50)と式(5.51)からなり，  $\boldsymbol{\Theta}$ は $\boldsymbol{\Theta}\_1$ と $\boldsymbol{\Theta}\_2$ を含む． パラメータ $\boldsymbol{\Theta}$ は次の量を最小化することで学習することができる．
 
  
 
