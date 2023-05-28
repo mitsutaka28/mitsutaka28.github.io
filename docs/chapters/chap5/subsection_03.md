@@ -489,7 +489,7 @@ $$
 
   ここで，行列 $\symbf{I}+\symbf{D}^{-\frac{1}{2}} \symbf{A} \symbf{D}^{-\frac{1}{2}}$ の固有値の範囲は $[0,2]$ である[^1]．
 
-そのため， 信号 $\symbf{f}$ に対してこの操作を繰り返し行った場合，数値的に不安定になったり勾配の爆発/消失が発生する可能性がある． この問題に対処するために，"renormalization trick"による変換が提案されている．これは， $\tilde{\symbf{A}}=\symbf{A}+\symbf{I}$ と $\tilde{\symbf{D}}_{i i}=\sum_j \tilde{\symbf{A}}_{i, j}$ を導入することで，式(5.19)の $\symbf{I}+\symbf{D}^{-\frac{1}{2}} \symbf{A} \symbf{D}^{-\frac{1}{2}}$ を $\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}$ に置き換える変換である．最終的に，GCNフィルタは次のように定義される：
+そのため， 信号 $\symbf{f}$ に対してこの操作を繰り返し行った場合，数値的に不安定になったり勾配の爆発/消失が発生する可能性がある． この問題に対処するために，"renormalization trick"による変換が提案されている．これは， $\tilde{\symbf{A}}=\symbf{A}+\symbf{I}$ と $\tilde{\symbf{D}}\_{i i}=\sum_j \tilde{\symbf{A}}\_{i, j}$ を導入することで，式(5.19)の $\symbf{I}+\symbf{D}^{-\frac{1}{2}} \symbf{A} \symbf{D}^{-\frac{1}{2}}$ を $\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}$ に置き換える変換である．最終的に，GCNフィルタは次のように定義される：
 
  $$
  \symbf{f}^{\prime}=\theta \tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}} \symbf{f}
@@ -549,7 +549,7 @@ $$
 \tag{5.22} $$
  
 
-ここで， $\tilde{d}_i=\tilde{\symbf{D}}_{i, i}$ であり， $\symbf{F}_i \in \mathbb{R}^{1 \times d_{\text{out}}}$ は $\symbf{F}$ の $i$ 行目（すなわちノード $v_i$ の特徴量）を表す． 式(5.22)の操作はノード $v_i$ の1次近傍の情報を集約しているとみなすことができる．
+ここで， $\tilde{d}_i=\tilde{\symbf{D}}\_{i, i}$ であり， $\symbf{F}_i \in \mathbb{R}^{1 \times d_{\text{out}}}$ は $\symbf{F}$ の $i$ 行目（すなわちノード $v_i$ の特徴量）を表す． 式(5.22)の操作はノード $v_i$ の1次近傍の情報を集約しているとみなすことができる．
 
 ### 空間型グラフフィルタ
 
