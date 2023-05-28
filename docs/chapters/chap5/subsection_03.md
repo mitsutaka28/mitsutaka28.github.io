@@ -5,13 +5,11 @@
 
 グラフフィルタの設計には様々な視点があり，大まかには以下の2つに分類される：
 
-[1.]{.nodecor}
+::: description
+空間型グラフフィルタ
 
-:   空間型グラフフィルタ
-
-[2.]{.nodecor}
-
-:   スペクトラル型グラフフィルタ
+スペクトラル型グラフフィルタ
+:::
 
 空間グラフフィルタは，グラフ構造（ノード同士のつながり）を積極的に利用し，空間(グラフ)領域における特徴量の洗練を実行する． これに対して，スペクトラル型グラフフィルタは，スペクトル領域におけるフィルタリング演算を設計するために．スペクトルグラフ理論を利用する [^2] ．
 
@@ -166,13 +164,11 @@ $$
 
 これは以下の2つの意味を持つ：
 
-[1.]{.nodecor}
+::: description
+計算量の大きいラプラシアン行列 $\symbf{L}$ の固有値分解の計算をしなくて済む．
 
-:   計算量の大きいラプラシアン行列 $\symbf{L}$ の固有値分解の計算をしなくて済む．
-
-[2.]{.nodecor}
-
-:   多項式でパラメータ化されたフィルタリング演算子 $\gamma(\cdot)$ は空間的に局在している．すなわち，出力 $\symbf{f}^{\prime}$ の各要素の計算にはグラフ全体の少数のノードしか関与しない．
+多項式でパラメータ化されたフィルタリング演算子 $\gamma(\cdot)$ は空間的に局在している．すなわち，出力 $\symbf{f}^{\prime}$ の各要素の計算にはグラフ全体の少数のノードしか関与しない．
+:::
 
 多項式フィルタ演算子がラプラシアン行列の多項式として定式化できることを示してから，それを空間的な観点から理解していくことにしよう．
 
@@ -223,7 +219,7 @@ $$
 <div class="lem">
  
 <strong>補題 5.2</strong>
-  $\mathcal{G}$ をグラフとし， $\symbf{L}$ をラプラシアン行列とする． 最短パスの長さが $\operatorname{dis}\left(v_i, v_j\right)>k$ ならば， ラプラシアン行列の $k$ 乗の $(i,\,j)$ 要素である $\symbf{L}_{i, j}^{k}$ について，  $\symbf{L}_{i, j}^{k}=0$ が成り立つ．
+  $\mathcal{G}$ をグラフとし， $\symbf{L}$ をラプラシアン行列とする． 最短パスの長さが $\operatorname{dis}\left(v_i, v_j\right)>k$ ならば， ラプラシアン行列の $k$ 乗の $(i,\,j)$ 要素である $\symbf{L}\_{i, j}^{k}$ について，  $\symbf{L}\_{i, j}^{k}=0$ が成り立つ．
 
 
 <div class="prf">
@@ -232,15 +228,15 @@ $$
 
  $\symbf{k=1}$ 
 
-:   ラプラシアン行列 $\symbf{L}$ の定義より，  $\operatorname{dis}\left(v_i, v_j\right)>1$ ならば $\symbf{L}_{i, j}=0$ となるのは明らか．
+:   ラプラシアン行列 $\symbf{L}$ の定義より，  $\operatorname{dis}\left(v_i, v_j\right)>1$ ならば $\symbf{L}\_{i, j}=0$ となるのは明らか．
 
  $\symbf{k=n}$ 
 
-:    $k=n$ のとき， $\operatorname{dis}\left(v_i, v_j\right)>n$ ならば $\symbf{L}_{i, j}^{n}=0$ が成り立つと仮定する．
+:    $k=n$ のとき， $\operatorname{dis}\left(v_i, v_j\right)>n$ ならば $\symbf{L}\_{i, j}^{n}=0$ が成り立つと仮定する．
 
  $\symbf{k=n+1}$ 
 
-:    $k=n+1$ のとき， $\operatorname{dis}\left(v_i, v_j\right)>n+1$ ならば $\symbf{L}_{i, j}^{n+1}=0$ が成り立つことを示す．  $\symbf{L}_{i, j}^{n+1}$ は $\symbf{L}^{n}$ と $\symbf{L}$ を用いて次のように書くことができる：
+:    $k=n+1$ のとき， $\operatorname{dis}\left(v_i, v_j\right)>n+1$ ならば $\symbf{L}\_{i, j}^{n+1}=0$ が成り立つことを示す．  $\symbf{L}\_{i, j}^{n+1}$ は $\symbf{L}^{n}$ と $\symbf{L}$ を用いて次のように書くことができる：
 
      
 
@@ -250,17 +246,17 @@ $$
 
  
 
-    次に， $h=1, \ldots, N$ の全ての場合について $\symbf{L}_{i, h}^{n} \symbf{L}_{h, j}=0$ となることを示す． これは， $\symbf{L}_{i, j}^{n+1}=0$ であることを意味する．
+    次に， $h=1, \ldots, N$ の全ての場合について $\symbf{L}\_{i, h}^{n} \symbf{L}\_{h, j}=0$ となることを示す． これは， $\symbf{L}\_{i, j}^{n+1}=0$ であることを意味する．
 
-    ・ $\symbf{L}_{h, j}\neq0$ のとき
+    ・ $\symbf{L}\_{h, j}\neq0$ のとき
 
-    :    $k=1$ の結果から $\operatorname{dis}\left(v_h, v_j\right) \leq 1$ が成り立つ． これは $h=j$ であるか，またはノード $v_h$ とノード $v_j$ の間にエッジがあるということを意味する． 次に $\operatorname{dis}\left(v_i, v_h\right) \leq n$ とおくと， $\operatorname{dis}\left(v_h, v_j\right) \leq 1$ より， $\operatorname{dis}\left(v_i, v_j\right) \leq n+1$ となるが，これは仮定に反する． したがって， $\operatorname{dis}\left(v_i, v_h\right)>n$ を得る． すると $k=n$ での仮定から $\symbf{L}_{i, h}^{n}=0$ となるが，これは $\symbf{L}_{i, h}^{n} \symbf{L}_{h, j}=0$ が成り立つということである．
+    :    $k=1$ の結果から $\operatorname{dis}\left(v_h, v_j\right) \leq 1$ が成り立つ． これは $h=j$ であるか，またはノード $v_h$ とノード $v_j$ の間にエッジがあるということを意味する． 次に $\operatorname{dis}\left(v_i, v_h\right) \leq n$ とおくと， $\operatorname{dis}\left(v_h, v_j\right) \leq 1$ より， $\operatorname{dis}\left(v_i, v_j\right) \leq n+1$ となるが，これは仮定に反する． したがって， $\operatorname{dis}\left(v_i, v_h\right)>n$ を得る． すると $k=n$ での仮定から $\symbf{L}\_{i, h}^{n}=0$ となるが，これは $\symbf{L}\_{i, h}^{n} \symbf{L}\_{h, j}=0$ が成り立つということである．
 
-    ・ $\symbf{L}_{h, j}=0$ のとき
+    ・ $\symbf{L}\_{h, j}=0$ のとき
 
-    :   このときも， $\symbf{L}_{i, h}^{n} \symbf{L}_{h, j}=0$ が成り立つことは明らか．
+    :   このときも， $\symbf{L}\_{i, h}^{n} \symbf{L}\_{h, j}=0$ が成り立つことは明らか．
 
-    したがって， $\operatorname{dis}\left(v_i, v_j\right)>n+1$ ならば $\symbf{L}_{i, j}^{n+1}=0$ が成り立つ．
+    したがって， $\operatorname{dis}\left(v_i, v_j\right)>n+1$ ならば $\symbf{L}\_{i, j}^{n+1}=0$ が成り立つ．
 
 以上で補題が示された．Q.E.D. 
 </div>
@@ -276,7 +272,7 @@ $$
 \tag{5.13} $$
  
 
-これは全ノードの元の信号の，重み $\sum_{k=0}^{K} \theta_k \symbf{L}_{i, j}^{k}$ での線形結合とみなすことができる． 系5.2より， $\operatorname{dis}\left(v_i, v_j\right)>k$ ならば $\symbf{L}_{i, j}^{k}=0$ である． したがって，この計算にはすべてのノードが関与するのではなく， ノード $v_i$ から $K$ 次近傍以内のノードのみが関与することになる． ノード $v_i$ から $K$ 次近傍以内のノードのみを使って式(5.13)を書き換えると，
+これは全ノードの元の信号の，重み $\sum_{k=0}^{K} \theta_k \symbf{L}\_{i, j}^{k}$ での線形結合とみなすことができる． 系5.2より， $\operatorname{dis}\left(v_i, v_j\right)>k$ ならば $\symbf{L}\_{i, j}^{k}=0$ である． したがって，この計算にはすべてのノードが関与するのではなく， ノード $v_i$ から $K$ 次近傍以内のノードのみが関与することになる． ノード $v_i$ から $K$ 次近傍以内のノードのみを使って式(5.13)を書き換えると，
 
  $$
  \symbf{f}^{\prime}[i]=b_{i, i} \symbf{f}[i]+\sum_{v_j \in \mathcal{N}^{K}\left(v_i\right)} b_{i, j} \symbf{f}[j]
@@ -329,9 +325,7 @@ $$
 ここで， $l=m$ のときのみ $\delta_{l, m}=1$ が成り立ち，それ以外の場合には $\delta_{l, m}=0$ となる． 式(5.16)はチェビシェフ多項式が互いに直交していることを意味する [^4] ．
 
 
-したがって，チェビシェフ多項式は， $d y / \sqrt{1-y^{2}}$ を計量としたときの，自乗可積分関数のヒルベルト空間 $L^{2}\left([-1,1],\, dy/\sqrt{1-y^{2}}\right)$ における直交基底を構成する
-
-[^5] ．
+したがって，チェビシェフ多項式は， $d y / \sqrt{1-y^{2}}$ を計量としたときの，自乗可積分関数のヒルベルト空間 $L^{2}\left([-1,1],\, dy/\sqrt{1-y^{2}}\right)$ における直交基底を構成する [^5] ．
 
 
 チェビシェフ多項式の定義域が $[-1,1]$ であるため， チェビシェフ多項式でフィルタを近似するには， 次のようにラプラシアン行列の固有値をスケール変換し，シフトさせる：
