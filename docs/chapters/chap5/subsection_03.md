@@ -544,7 +544,7 @@ $$
 ここで， $\boldsymbol{\Theta} \in \mathbb{R}^{d_{\text{in}} \times d_{\text{out}}}$ である． また， $\boldsymbol{\Theta}\_{d, j}=\theta\_{j, d}$ は $j$ 番目の出力チャンネル， $d$ 番目の入力チャンネルに対応するパラメータである． 特に，1つのノード $v_i$ に対して，式(5.21)のフィルタ操作は次のように書くこともできる：
 
  $$
- \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup \left\\{v_i\right\\}}\left(\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}\right)_{i, j} \symbf{F}_j \boldsymbol{\Theta}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}} \frac{1}{\sqrt{\tilde{d}_i \tilde{d}_j}} \symbf{F}_j \boldsymbol{\Theta}
+ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup \left\{v_i\right\}}\left(\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}\right)_{i, j} \symbf{F}_j \boldsymbol{\Theta}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\}} \frac{1}{\sqrt{\tilde{d}_i \tilde{d}_j}} \symbf{F}_j \boldsymbol{\Theta}
     
 \tag{5.22} $$
  
