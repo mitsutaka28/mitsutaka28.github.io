@@ -51,7 +51,7 @@
 \tag{5.50} $$
  
 
-ここで， $\mathrm{GNN}_{\mathrm{graph}}$ はグラフ全体の表現を学習するグラフニューラルネットワークのモデルであり，グラフフィルタ層とグラフプーリング層で構成することが多い． また， $\symbf{f}_G \in\mathbb{R}^{1 \times d_{\text{out}}}$ は生成されたグラフ全体の表現であり，これを用いてグラフ分類は次のように行われる．
+ここで， $\mathrm{GNN}_{\mathrm{graph}}$ はグラフ全体の表現を学習するグラフニューラルネットワークのモデルであり，グラフフィルタ層とグラフプーリング層で構成することが多い． また， $\symbf{f}\_G \in\mathbb{R}^{1 \times d_{\text{out}}}$ は生成されたグラフ全体の表現であり，これを用いてグラフ分類は次のように行われる．
 
  $$
  \symbf{z}_{\mathcal{G}}=\operatorname{softmax}\left(\symbf{f}_{\mathcal{G}}\, \boldsymbol{\Theta}_2\right)
