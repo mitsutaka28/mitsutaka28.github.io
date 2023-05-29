@@ -162,7 +162,7 @@ $$
 
  
 
-ここで， $\sigma(\cdot)$ はシグモイド関数であり，重要度スコアを(0, 1)に変換する．  $\symbf{1}_{d_{\mathrm{ip}}} \in \mathbb{R}^{d_{\mathrm{ip}}}$ はすべての要素が1のベクトルである．  $\symbf{y}(\mathrm{idx})$ は $\symbf{y}$ からidxに対応する要素を抜き出し， $\symbf{F}^{(\mathrm{ip})}(\mathrm{idx})$ はidxに対応する行を取得する．
+ここで， $\sigma(\cdot)$ はシグモイド関数であり，重要度スコアを(0, 1)に変換する．  $\symbf{1}\_{d_{\mathrm{ip}}} \in \mathbb{R}^{d_{\mathrm{ip}}}$ はすべての要素が1のベクトルである．  $\symbf{y}(\mathrm{idx})$ は $\symbf{y}$ からidxに対応する要素を抜き出し， $\symbf{F}^{(\mathrm{ip})}(\mathrm{idx})$ はidxに対応する行を取得する．
 
 ここまで見てきたように，gPoolでは，式(5.42)のように，入力の特徴量のみに基づいて重要度スコアが学習されている． 一方，Lee *et al*. (2019)では，この段階でグラフ構造を組み込むため，GCNフィルタが用いられた． 具体的には，重要度スコアは次のように計算される．
 

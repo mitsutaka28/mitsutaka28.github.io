@@ -587,21 +587,17 @@ $$
 
   ここで， $\operatorname{SAMPLE}(\cdot)$ は集合を入力とし，その入力からS個の要素をランダムにサンプリングして出力する関数である． また， $\operatorname{AGGREGATE}(\cdot)$ は隣接ノードの情報を集約する関数であり，  $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ は $\operatorname{AGGREGATE}(\cdot)$ 関数の出力を表す． そして， $[\cdot,\, \cdot]$ は連結操作(concatenation operation)を表す． したがって，ある一つのノード $v_i$ に対して，GraphSAGEモデルのフィルタの処理の流れは次のようになる．
 
-[1.]{.nodecor}
+::: description
+近傍ノード $\mathcal{N}\left(v_i\right)$ から $S$ 個のノードをランダムに抽出する(式(5.23))．
 
-:   近傍ノード $\mathcal{N}\left(v_i\right)$ から $S$ 個のノードをランダムに抽出する(式(5.23))．
+ $\operatorname{AGGREGATE}(\cdot)$ 関数で抽出されたノードの情報を集約し，特徴量 $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ を生成する（式(5.24)）．
 
-[2.]{.nodecor}
-
-:    $\operatorname{AGGREGATE}(\cdot)$ 関数で抽出されたノードの情報を集約し，特徴量 $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ を生成する（式(5.24)）．
-
-[3.]{.nodecor}
-
-:   生成した近傍ノードの情報とノード $v_i$ の元の特徴量を組み合わせて，ノード $v_i$ の新しい特徴量を生成する（式(5.25)）．
+生成した近傍ノードの情報とノード $v_i$ の元の特徴量を組み合わせて，ノード $v_i$ の新しい特徴量を生成する（式(5.25)）．
+:::
 
 Hamilton *et al*. (2017a)では，以下のように，様々な $\operatorname{AGGREGATE}(\cdot)$ 関数が紹介されている．
 
--   **平均関数.** 単純に集合 $\left\\{\symbf{F}\_j,\, \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\\}$ 内のベクトルの要素ごとの平均をとる方法である． ここでの平均関数はGCNにおけるフィルタとよく似ている． ノード $v_i$ に対しては，両者とも隣接ノードの（加重）平均を新しいノード表現とする． 違いは，ノード $v_i$ の入力表現 $\symbf{F}\_i$ がどのように計算に関わってくるかである． GraphSAGEでは， $\symbf{F}\_i$ は近傍ノードの集約情報 $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ と連結する． 一方，GCNフィルタでは，ノード $v_i$ はその近傍ノードと等価に扱われ， $\symbf{F}\_i$ は加重平均の一部にすぎない．
+-   **平均関数.** 単純に集合 $\left\{\symbf{F}\_j,\, \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\}$ 内のベクトルの要素ごとの平均をとる方法である． ここでの平均関数はGCNにおけるフィルタとよく似ている． ノード $v_i$ に対しては，両者とも隣接ノードの（加重）平均を新しいノード表現とする． 違いは，ノード $v_i$ の入力表現 $\symbf{F}\_i$ がどのように計算に関わってくるかである． GraphSAGEでは， $\symbf{F}\_i$ は近傍ノードの集約情報 $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ と連結する． 一方，GCNフィルタでは，ノード $v_i$ はその近傍ノードと等価に扱われ， $\symbf{F}\_i$ は加重平均の一部にすぎない．
 
 -   **LSTM関数.** ノード $v_i$ から抽出した近傍ノード集合 $\mathcal{N}_S\left(v_i\right)$ を系列データとして扱い，そこにLSTM構造を適用する方法である． LSTMの最後のユニットからの出力が $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ となる． しかし，近傍ノードの自然な順番は存在しないため, Hamilton *et al*. (2017a)ではランダムな順番が採用されている．
 
@@ -610,7 +606,7 @@ Hamilton *et al*. (2017a)では，以下のように，様々な $\operatorname{
      
 
 $$
- \symbf{f}_{N_S\left(v_i\right)}^{\prime}=\max \left(\left{\alpha\left(\symbf{F}_j \boldsymbol{\Theta}_{\mathrm{pool}}\right), \forall v_j \in \mathcal{N}_S\left(v_i\right)\right}\right) \nonumber $$
+ \symbf{f}_{N_S\left(v_i\right)}^{\prime}=\max \left(\left\{\alpha\left(\symbf{F}_j \boldsymbol{\Theta}_{\mathrm{pool}}\right), \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\}\right) \nonumber $$
 
 
  
@@ -621,9 +617,9 @@ GraphSAGEフィルタは，どの集約関数を用いても1ホップ近傍の�
 
 #### GATフィルタ
 
-グラフアテンションネットワーク(GAT) (Veličković *et al*., 2017)は，セルフアテンション機構(Vaswani *et al*., 2017)を空間型グラフフィルタに適用するために導入された手法である． 便宜上，GATにおけるグラフフィルタを"GATフィルタ"と呼ぶことにする． GATフィルタはGCNフィルタと似ている． というのも，各ノードの新しい特徴を生成する際に,　近傍ノードからの情報の集約を行うからである． GCNフィルタではグラフ構造のみに基づいて集約を行うが， GATフィルタでは近傍ノードの重要度を区別して集約する． 具体的には，あるノード $v_i$ の新しい特徴を生成する際，すべての近傍ノードに注目し，各近傍ノードに対して重要度スコアを計算する． そしてこの重要度スコアはその後，集約段階で線形結合の係数として使われることになる．
+グラフアテンションネットワーク(GAT) (Veličković *et al*., 2017)は，セルフアテンション機構(Vaswani *et al*., 2017)を空間型グラフフィルタに適用するために導入された手法である． 便宜上，GATにおけるグラフフィルタを"GATフィルタ"と呼ぶことにする． GATフィルタはGCNフィルタと似ている． というのも，各ノードの新しい特徴を生成する際に,近傍ノードからの情報の集約を行うからである． GCNフィルタではグラフ構造のみに基づいて集約を行うが， GATフィルタでは近傍ノードの重要度を区別して集約する． 具体的には，あるノード $v_i$ の新しい特徴を生成する際，すべての近傍ノードに注目し，各近傍ノードに対して重要度スコアを計算する． そしてこの重要度スコアはその後，集約段階で線形結合の係数として使われることになる．
 
-GATフィルタの詳細を説明する． ノード $v_i$ に対して，ノード $v_j \in \mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}$ の重要度スコアは次のように計算される:
+GATフィルタの詳細を説明する． ノード $v_i$ に対して，ノード $v_j \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\}$ の重要度スコアは次のように計算される:
 
  $$
  e_{i j}=a\left(\symbf{F}_i \boldsymbol{\Theta},\, \symbf{F}_j \boldsymbol{\Theta}\right)
@@ -646,7 +642,7 @@ $$
  
 
 $$
- \alpha_{i j}=\frac{\exp \left(e_{i j}\right)}{\sum_{v_k \in \mathcal{N}\left(v_i\right) \cup\left{v_i\right}} \exp \left(e_{i k}\right)} \nonumber $$
+ \alpha_{i j}=\frac{\exp \left(e_{i j}\right)}{\sum_{v_k \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\}} \exp \left(e_{i k}\right)} \nonumber $$
 
 
  
