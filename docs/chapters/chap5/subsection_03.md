@@ -138,11 +138,9 @@ $$ \gamma(\Lambda)=\left(\begin{array}{lll}\theta_1 & & 0 \\ & \ddots & \\ 0 & &
 
 これは以下の2つの意味を持つ：
 
-::: description
-計算量の大きいラプラシアン行列 $\symbf{L}$ の固有値分解の計算をしなくて済む．
+1.  計算量の大きいラプラシアン行列 $\symbf{L}$ の固有値分解の計算をしなくて済む．
 
-多項式でパラメータ化されたフィルタリング演算子 $\gamma(\cdot)$ は空間的に局在している．すなわち，出力 $\symbf{f}^{\prime}$ の各要素の計算にはグラフ全体の少数のノードしか関与しない．
-:::
+2.  多項式でパラメータ化されたフィルタリング演算子 $\gamma(\cdot)$ は空間的に局在している．すなわち，出力 $\symbf{f}^{\prime}$ の各要素の計算にはグラフ全体の少数のノードしか関与しない．
 
 多項式フィルタ演算子がラプラシアン行列の多項式として定式化できることを示してから，それを空間的な観点から理解していくことにしよう．
 
@@ -194,17 +192,11 @@ $$
 <strong>証明: </strong>
  帰納法で示す．
 
- $\symbf{k=1}$ 
+1.  ラプラシアン行列 $\symbf{L}$ の定義より，  $\operatorname{dis}\left(v_i, v_j\right)>1$ ならば $\symbf{L}\_{i, j}=0$ となるのは明らか．
 
-:   ラプラシアン行列 $\symbf{L}$ の定義より，  $\operatorname{dis}\left(v_i, v_j\right)>1$ ならば $\symbf{L}\_{i, j}=0$ となるのは明らか．
+2.   $k=n$ のとき， $\operatorname{dis}\left(v_i, v_j\right)>n$ ならば $\symbf{L}\_{i, j}^{n}=0$ が成り立つと仮定する．
 
- $\symbf{k=n}$ 
-
-:    $k=n$ のとき， $\operatorname{dis}\left(v_i, v_j\right)>n$ ならば $\symbf{L}\_{i, j}^{n}=0$ が成り立つと仮定する．
-
- $\symbf{k=n+1}$ 
-
-:    $k=n+1$ のとき， $\operatorname{dis}\left(v_i, v_j\right)>n+1$ ならば $\symbf{L}\_{i, j}^{n+1}=0$ が成り立つことを示す．  $\symbf{L}\_{i, j}^{n+1}$ は $\symbf{L}^{n}$ と $\symbf{L}$ を用いて次のように書くことができる：
+3.   $k=n+1$ のとき， $\operatorname{dis}\left(v_i, v_j\right)>n+1$ ならば $\symbf{L}\_{i, j}^{n+1}=0$ が成り立つことを示す．  $\symbf{L}\_{i, j}^{n+1}$ は $\symbf{L}^{n}$ と $\symbf{L}$ を用いて次のように書くことができる：
 
      
 
@@ -214,13 +206,9 @@ $$ \symbf{L}_{i, j}^{n+1}=\sum_{h=1}^{N} \symbf{L}_{i, h}^{n} \symbf{L}_{h, j} \
 
     次に， $h=1, \ldots, N$ の全ての場合について $\symbf{L}\_{i, h}^{n} \symbf{L}\_{h, j}=0$ となることを示す． これは， $\symbf{L}\_{i, j}^{n+1}=0$ であることを意味する．
 
-    ・ $\symbf{L}\_{h, j}\neq0$ のとき
+    1.   $k=1$ の結果から $\operatorname{dis}\left(v_h, v_j\right) \leq 1$ が成り立つ． これは $h=j$ であるか，またはノード $v_h$ とノード $v_j$ の間にエッジがあるということを意味する． 次に $\operatorname{dis}\left(v_i, v_h\right) \leq n$ とおくと， $\operatorname{dis}\left(v_h, v_j\right) \leq 1$ より， $\operatorname{dis}\left(v_i, v_j\right) \leq n+1$ となるが，これは仮定に反する． したがって， $\operatorname{dis}\left(v_i, v_h\right)>n$ を得る． すると $k=n$ での仮定から $\symbf{L}\_{i, h}^{n}=0$ となるが，これは $\symbf{L}\_{i, h}^{n} \symbf{L}\_{h, j}=0$ が成り立つということである．
 
-    :    $k=1$ の結果から $\operatorname{dis}\left(v_h, v_j\right) \leq 1$ が成り立つ． これは $h=j$ であるか，またはノード $v_h$ とノード $v_j$ の間にエッジがあるということを意味する． 次に $\operatorname{dis}\left(v_i, v_h\right) \leq n$ とおくと， $\operatorname{dis}\left(v_h, v_j\right) \leq 1$ より， $\operatorname{dis}\left(v_i, v_j\right) \leq n+1$ となるが，これは仮定に反する． したがって， $\operatorname{dis}\left(v_i, v_h\right)>n$ を得る． すると $k=n$ での仮定から $\symbf{L}\_{i, h}^{n}=0$ となるが，これは $\symbf{L}\_{i, h}^{n} \symbf{L}\_{h, j}=0$ が成り立つということである．
-
-    ・ $\symbf{L}\_{h, j}=0$ のとき
-
-    :   このときも， $\symbf{L}\_{i, h}^{n} \symbf{L}\_{h, j}=0$ が成り立つことは明らか．
+    2.  このときも， $\symbf{L}\_{i, h}^{n} \symbf{L}\_{h, j}=0$ が成り立つことは明らか．
 
     したがって， $\operatorname{dis}\left(v_i, v_j\right)>n+1$ ならば $\symbf{L}\_{i, j}^{n+1}=0$ が成り立つ．
 
@@ -500,13 +488,11 @@ GraphSAGEモデルはHamilton *et al*. (2017a)で提案された空間型フィ�
 
 ここで， $\operatorname{SAMPLE}(\cdot)$ は集合を入力とし，その入力からS個の要素をランダムにサンプリングして出力する関数である． また， $\operatorname{AGGREGATE}(\cdot)$ は隣接ノードの情報を集約する関数であり，  $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ は $\operatorname{AGGREGATE}(\cdot)$ 関数の出力を表す． そして， $[\cdot,\, \cdot]$ は連結操作(concatenation operation)を表す． したがって，ある一つのノード $v_i$ に対して，GraphSAGEモデルのフィルタの処理の流れは次のようになる．
 
-::: description
-近傍ノード $\mathcal{N}\left(v_i\right)$ から $S$ 個のノードをランダムに抽出する(式(5.23))．
+1.  近傍ノード $\mathcal{N}\left(v_i\right)$ から $S$ 個のノードをランダムに抽出する(式(5.23))．
 
- $\operatorname{AGGREGATE}(\cdot)$ 関数で抽出されたノードの情報を集約し，特徴量 $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ を生成する（式(5.24)）．
+2.   $\operatorname{AGGREGATE}(\cdot)$ 関数で抽出されたノードの情報を集約し，特徴量 $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ を生成する（式(5.24)）．
 
-生成した近傍ノードの情報とノード $v_i$ の元の特徴量を組み合わせて，ノード $v_i$ の新しい特徴量を生成する（式(5.25)）．
-:::
+3.  生成した近傍ノードの情報とノード $v_i$ の元の特徴量を組み合わせて，ノード $v_i$ の新しい特徴量を生成する（式(5.25)）．
 
 Hamilton *et al*. (2017a)では，以下のように，様々な $\operatorname{AGGREGATE}(\cdot)$ 関数が紹介されている．
 
