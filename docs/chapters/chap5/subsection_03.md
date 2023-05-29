@@ -5,11 +5,9 @@
 
 グラフフィルタの設計には様々な視点があり，大まかには以下の2つに分類される：
 
-::: description
-空間型グラフフィルタ
+1.  空間型グラフフィルタ
 
-スペクトラル型グラフフィルタ
-:::
+2.  スペクトラル型グラフフィルタ
 
 空間グラフフィルタは，グラフ構造（ノード同士のつながり）を積極的に利用し，空間(グラフ)領域における特徴量の洗練を実行する． これに対して，スペクトラル型グラフフィルタは，スペクトル領域におけるフィルタリング演算を設計するために．スペクトルグラフ理論を利用する [^2] ．
 
@@ -489,19 +487,18 @@ $$ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right)} g\left(l_i, \
 
 #### GraphSAGEフィルタ
 
-GraphSAGEモデルはHamilton *et al*. (2017a)で提案された空間型フィルタで， このフィルタも近傍情報の集約に基づいている． ある一つのノード $v_i$ について，新しい特徴を生成する操作は次のように定式化することができる：  
+GraphSAGEモデルはHamilton *et al*. (2017a)で提案された空間型フィルタで， このフィルタも近傍情報の集約に基づいている． ある一つのノード $v_i$ について，新しい特徴を生成する操作は次のように定式化することができる：
 
-$$
-\begin{aligned}
-    \mathcal{N}_S\left(v_i\right) &=&\operatorname{SAMPLE}\left(\mathcal{N}\left(v_i\right), S\right) \\ 
-\tag{5.23}
-    \symbf{f}_{\mathcal{N}_S\left(v_i\right)}^{\prime} &=&\operatorname{AGGREGATE}\left(\left\\{\symbf{F}_j, \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\\}\right) \\ 
-\tag{5.24}
-    \symbf{F}_i^{\prime} &=&\sigma\left(\left[\symbf{F}_i, \symbf{f}_{N_S\left(v_i\right)}^{\prime}\right] \Theta\right) 
-\end{aligned}
-\tag{5.25}
-$$
-  ここで， $\operatorname{SAMPLE}(\cdot)$ は集合を入力とし，その入力からS個の要素をランダムにサンプリングして出力する関数である． また， $\operatorname{AGGREGATE}(\cdot)$ は隣接ノードの情報を集約する関数であり，  $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ は $\operatorname{AGGREGATE}(\cdot)$ 関数の出力を表す． そして， $[\cdot,\, \cdot]$ は連結操作(concatenation operation)を表す． したがって，ある一つのノード $v_i$ に対して，GraphSAGEモデルのフィルタの処理の流れは次のようになる．
+ $$ \mathcal{N}_S\left(v_i\right) =\operatorname{SAMPLE}\left(\mathcal{N}\left(v_i\right), S\right) \\ 
+\tag{5.23} $$ 
+
+ $$ \symbf{f}_{\mathcal{N}_S\left(v_i\right)}^{\prime} =\operatorname{AGGREGATE}\left(\left\{\symbf{F}_j, \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\}\right) \\ 
+\tag{5.24} $$ 
+
+ $$ \symbf{F}_i^{\prime} =\sigma\left(\left[\symbf{F}_i, \symbf{f}_{N_S\left(v_i\right)}^{\prime}\right] \Theta\right) 
+\tag{5.25} $$ 
+
+ここで， $\operatorname{SAMPLE}(\cdot)$ は集合を入力とし，その入力からS個の要素をランダムにサンプリングして出力する関数である． また， $\operatorname{AGGREGATE}(\cdot)$ は隣接ノードの情報を集約する関数であり，  $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ は $\operatorname{AGGREGATE}(\cdot)$ 関数の出力を表す． そして， $[\cdot,\, \cdot]$ は連結操作(concatenation operation)を表す． したがって，ある一つのノード $v_i$ に対して，GraphSAGEモデルのフィルタの処理の流れは次のようになる．
 
 ::: description
 近傍ノード $\mathcal{N}\left(v_i\right)$ から $S$ 個のノードをランダムに抽出する(式(5.23))．
@@ -583,21 +580,24 @@ $$ \symbf{F}_i^{\prime}=\frac{1}{\left\|\mathcal{N}\left(v_i\right)\right\|} \su
 
 #### GGNNフィルタ
 
-Li *et al*. (2015) で提案されたGGNNフィルタは, Scarselli *et al*. (2008)で提案された元々のGNNフィルタにGRU（Gated recurrent unit, GRUの詳細は3.4節参照）を適用したものである． GGNNフィルタは，有向エッジを持ち，かつ異なる種類のエッジを持つグラフに対して考案されたフィルタである． 具体的には，エッジ $\left(v_i, v_j\right) \in \mathcal{E}$ について，エッジの種類を $t p\left(v_i, v_j\right)$ と表す． エッジには向きがあるので，エッジ $\left(v_i,\, v_j\right)$ と $\left(v_j,\, v_i\right)$ は異なる種類のエッジになりうる（ $t p\left(v_i,\, v_j\right) \neq t p\left(v_j,\, v_i\right)$ ）． ノード $v_i$ に対するGGNNフィルタのフィルタ操作は次のように定式化することができる．  
+Li *et al*. (2015) で提案されたGGNNフィルタは, Scarselli *et al*. (2008)で提案された元々のGNNフィルタにGRU（Gated recurrent unit, GRUの詳細は3.4節参照）を適用したものである． GGNNフィルタは，有向エッジを持ち，かつ異なる種類のエッジを持つグラフに対して考案されたフィルタである． 具体的には，エッジ $\left(v_i, v_j\right) \in \mathcal{E}$ について，エッジの種類を $t p\left(v_i, v_j\right)$ と表す． エッジには向きがあるので，エッジ $\left(v_i,\, v_j\right)$ と $\left(v_j,\, v_i\right)$ は異なる種類のエッジになりうる（ $t p\left(v_i,\, v_j\right) \neq t p\left(v_j,\, v_i\right)$ ）． ノード $v_i$ に対するGGNNフィルタのフィルタ操作は次のように定式化することができる．
 
-$$
-\begin{aligned}
-    \symbf{m}_i &=&\sum_{\left(v_j, v_i\right) \in \mathcal{E}} \symbf{F}_j \boldsymbol{\Theta}_{t p\left(v_j, v_i\right)}^{e} \\ 
-\tag{5.29}
-    \symbf{z}_i &=&\sigma\left(\symbf{m}_i \boldsymbol{\Theta}^{z}+\symbf{F}_i \symbf{U}^{z}\right) \\ 
-\tag{5.30}
-    \symbf{r}_i &=&\sigma\left(\symbf{m}_i \boldsymbol{\Theta}^{r}+\symbf{F}_i \symbf{U}^{r}\right) \\
-    \widetilde{\symbf{F}}_i &=&\tanh \left(\symbf{m}_i \boldsymbol{\Theta}+\left(\symbf{r}_i \odot \symbf{F}_i\right) \symbf{U}\right) \\ 
-    \symbf{F}_i^{\prime} &=&\left(1-\symbf{z}_i\right) \odot \symbf{F}_i+\symbf{z}_i \odot \widetilde{\symbf{F}}_i 
-\end{aligned}
-\tag{5.33}
-$$
-  ここで， $\boldsymbol{\Theta}\_{t p\left(v_j, v_i\right)}^{e}, \boldsymbol{\Theta}^{z}, \boldsymbol{\Theta}^{r}, \boldsymbol{\Theta}$ は学習対象のパラメータである．
+ $$ \symbf{m}_i =\sum_{\left(v_j, v_i\right) \in \mathcal{E}} \symbf{F}_j \boldsymbol{\Theta}_{t p\left(v_j, v_i\right)}^{e} \\ 
+\tag{5.29} $$ 
+
+ $$ \symbf{z}_i =\sigma\left(\symbf{m}_i \boldsymbol{\Theta}^{z}+\symbf{F}_i \symbf{U}^{z}\right) \\ 
+\tag{5.30} $$ 
+
+ $$ \symbf{r}_i =\sigma\left(\symbf{m}_i \boldsymbol{\Theta}^{r}+\symbf{F}_i \symbf{U}^{r}\right) \\ 
+\tag{5.31} $$ 
+
+ $$ \widetilde{\symbf{F}}_i =\tanh \left(\symbf{m}_i \boldsymbol{\Theta}+\left(\symbf{r}_i \odot \symbf{F}_i\right) \symbf{U}\right) \\ 
+\tag{5.32} $$ 
+
+ $$ \symbf{F}_i^{\prime} =\left(1-\symbf{z}_i\right) \odot \symbf{F}_i+\symbf{z}_i \odot \widetilde{\symbf{F}}_i 
+\tag{5.33} $$ 
+
+ここで， $\boldsymbol{\Theta}\_{t p\left(v_j, v_i\right)}^{e}, \boldsymbol{\Theta}^{z}, \boldsymbol{\Theta}^{r}, \boldsymbol{\Theta}$ は学習対象のパラメータである．
 
 最初のステップである式(5.29)では，ノート $v_i$ の近傍ノード（ノード $v_i$ に向かうエッジを持つノード，ノード $v_i$ から出るエッジを持つノード両方）の情報を集約する． この集約の際，変換行列 $\boldsymbol{\Theta}\_{t p\left(v_j, v_i\right)}^{e}$ は， $v_i$ にエッジの種類 $t p\left(v_i,\, v_j\right)$ でつながるすべてのノードで共通である．
 
@@ -650,17 +650,11 @@ $$ \symbf{F}_i^{\prime}=\sum_{k=1}^{K} \sum_{v_j \in \mathcal{N}\left(v_i\right)
 
 Message Passing Neural Networks (MPNN)は一般的なGNNのフレームワークである． GCNフィルタ, GraphSAGEフィルタ, GATフィルタを含む多くの空間型グラフフィルタは，MPNNの特殊なケースに他ならない(Gilmer *et al*., 2017)． ノード $v_i$ に対してMPNNフィルタはノードの特徴を次のように更新する：
 
- 
+ $$ \symbf{m}_i=\sum_{v_j \in \mathcal{N}\left(v_i\right)} M\left(\symbf{F}_i, \symbf{F}_j, \symbf{e}_{\left(v_i, v_j\right)}\right)
+\tag{5.39} $$ 
 
-$$
-\begin{aligned}
-    \symbf{m}_i&=\sum_{v_j \in \mathcal{N}\left(v_i\right)} M\left(\symbf{F}_i, \symbf{F}_j, \symbf{e}_{\left(v_i, v_j\right)}\right)
-\tag{5.39} \\
-    \symbf{F}_i^{\prime}&=U\left(\symbf{F}_i, \symbf{m}_i\right)
-\end{aligned}
-\tag{5.40}
-$$
- 
+ $$ \symbf{F}_i^{\prime}=U\left(\symbf{F}_i, \symbf{m}_i\right)
+\tag{5.40} $$ 
 
 ここで， $M(\cdot)$ はメッセージ関数， $U(\cdot)$ は更新関数，そして，もしエッジの特徴量が利用可能なら，それは $\symbf{e}_{\left(v_i, v_j\right)}$ と表現される． メッセージ関数 $M(\cdot)$ は，近傍ノードからノード $v_i$ に伝搬させるメッセージを生成する． 更新関数 $U(\cdot)$ は，ノード $v_i$ が持つ特徴量と近傍ノードの特徴量の集約情報を組み合わせて，ノードの特徴量を更新する． 式(5.39)の集約操作を別の操作に置き換えることでフレームワークのさらなる一般化が可能となる．
 
