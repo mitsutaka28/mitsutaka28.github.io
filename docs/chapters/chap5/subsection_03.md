@@ -432,7 +432,9 @@ $$
 \end{aligned}
 $$
 
-  したがって，チェビシェフフィルタは多項式フィルタの長所を活かしつつ，学習過程でのパラメータの微小変化に対してより安定になる．
+ 
+
+したがって，チェビシェフフィルタは多項式フィルタの長所を活かしつつ，学習過程でのパラメータの微小変化に対してより安定になる．
 
 #### GCNフィルタ：単純化された1次のチェビシェフフィルタ
 
@@ -596,9 +598,7 @@ $$
  \symbf{f}_{N_S\left(v_i\right)}^{\prime}=\max \left(\left\{\alpha\left(\symbf{F}_j \boldsymbol{\Theta}_{\mathrm{pool}}\right), \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\}\right) \nonumber $$
 
 
- 
-
-    ここで， $\mathrm{max}(\cdot)$ は要素ごとに適用され， $\boldsymbol{\Theta}\_{\mathrm{pool}}$ は変換行列， $\alpha(\cdot)$ は非線形活性化関数である．
+  ここで， $\mathrm{max}(\cdot)$ は要素ごとに適用され， $\boldsymbol{\Theta}\_{\mathrm{pool}}$ は変換行列， $\alpha(\cdot)$ は非線形活性化関数である．
 
 GraphSAGEフィルタは，どの集約関数を用いても1ホップ近傍のみが計算に関わってくるので，空間的に局在している． また，集約関数は全ノードで共通である．
 
