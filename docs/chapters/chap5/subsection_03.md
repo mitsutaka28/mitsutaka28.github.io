@@ -530,7 +530,7 @@ $$
 ここで， $\boldsymbol{\Theta} \in \mathbb{R}^{d_{\text{in}} \times d_{\text{out}}}$ である． また， $\boldsymbol{\Theta}\_{d, j}=\theta\_{j, d}$ は $j$ 番目の出力チャンネル， $d$ 番目の入力チャンネルに対応するパラメータである． 特に，1つのノード $v_i$ に対して，式(5.21)のフィルタ操作は次のように書くこともできる：
 
  $$
- \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup \left\\{v_i\right\\}}\left(\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}\right)_{i, j} \symbf{F}_j \boldsymbol{\Theta}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}} \frac{1}{\sqrt{\tilde{d}_i \tilde{d}_j}} \symbf{F}_j \boldsymbol{\Theta}
+ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup \left\{v_i\right\}}\left(\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}\right)_{i, j} \symbf{F}_j \boldsymbol{\Theta}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\}} \frac{1}{\sqrt{\tilde{d}_i \tilde{d}_j}} \symbf{F}_j \boldsymbol{\Theta}
     
 \tag{5.22} $$
  
@@ -565,7 +565,7 @@ GraphSAGEモデルはHamilton *et al*. (2017a)で提案された空間型フィ�
  
 
  $$
- \symbf{f}_{\mathcal{N}_S\left(v_i\right)}^{\prime} =\operatorname{AGGREGATE}\left(\left\\{\symbf{F}_j, \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\\}\right) \\ 
+ \symbf{f}_{\mathcal{N}_S\left(v_i\right)}^{\prime} =\operatorname{AGGREGATE}\left(\left\{\symbf{F}_j, \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\}\right) \\ 
 \tag{5.24} $$
  
 
@@ -637,7 +637,7 @@ $$
 ここで， $\alpha_{i j}$ は規格化された重要度スコアであり，ノード $v_i$ に対するノード $v_j$ の重要性を表す． この規格化された重要度スコアにより，ノード $v_i$ の新しい表現 $\symbf{F}\_i^{\prime}$ は次のように計算される：
 
  $$
- \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}} \alpha_{i j} \symbf{F}_j \boldsymbol{\Theta}
+ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\}} \alpha_{i j} \symbf{F}_j \boldsymbol{\Theta}
     
 \tag{5.27} $$
  
@@ -645,7 +645,7 @@ $$
 ここで， $\boldsymbol{\Theta}$ は式(5.26)と同じ変換行列である． セルフアテンション機構の学習過程を安定させるため，マルチヘッドアテンション機構(Vaswani *et al*., 2017)が採用されている． これは，式(5.27)の形の $M$ 個の独立なセルフアテンション機構（異なる $\boldsymbol{\Theta}^m$ と $\alpha_{i j}^m$ をもつ）が並列に実行される． そしてそれらの出力を連結することで，ノード $v_i$ の最終的な表現が生成される：
 
  $$
- \symbf{F}_i^{\prime}=\|_{m=1}^{M} \sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}} \alpha_{i j}^{m} \symbf{F}_j \Theta^{m}
+ \symbf{F}_i^{\prime}=\|_{m=1}^{M} \sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\}} \alpha_{i j}^{m} \symbf{F}_j \Theta^{m}
     
 \tag{5.28} $$
  
