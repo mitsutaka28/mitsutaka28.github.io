@@ -7,11 +7,9 @@
 
 そこで，従来の畳込みニューラルネットワークと同様に，"グラフプーリング層"が提案されており，これを用いてグラフ全体の表現を生成する． 初期に考案されたグラフプーリング層は平坦グラフプーリング(Flat Graph pooling)である．これは，1つのステップで全てのノード表現からグラフ全体の表現を生成するという意味で，平坦(flat)なプーリングである． 例えば，平均プーリング層や最大プーリング層は，各特徴チャンネルごとに導入することで，グラフニューラルネットワークでも応用できる． その後，元のグラフを段階的に粗く(縮小)することでグラフ情報を集約する，階層的グラフプーリング(Hierarchical Graph Pooling)が考案された． 階層的グラフプーリングの設計では，通常，複数のグラフプーリング層を考え，それぞれがいくつかに積み重なったグラフフィルタ層の後に続くように設計される（図5.5）． 通常，1つの（平坦・階層的）グラフプーリング層は，グラフを入力とし，「粗化されたグラフ(coarsened graph)」を出力する． このプロセスは，式(5.2)でまとめていたことを思い出そう．以下に再掲する：
 
- $$
- \symbf{A}^{(\mathrm{op})}, \symbf{F}^{(\mathrm{op})}=\operatorname{pool}\left(\symbf{A}^{(\mathrm{ip})},\, \symbf{F}^{(\mathrm{ip})}\right)
+ $$ \symbf{A}^{(\mathrm{op})}, \symbf{F}^{(\mathrm{op})}=\operatorname{pool}\left(\symbf{A}^{(\mathrm{ip})},\, \symbf{F}^{(\mathrm{ip})}\right)
     
-\tag{5.41} $$
- 
+\tag{5.41} $$ 
 
 まずは平坦グラフプーリングから紹介し，その次に階層的グラフプーリングを解説していくことにする．
 
@@ -21,8 +19,10 @@
 
  
 
-$$
- \symbf{f}_G=\operatorname{pool}\left(\symbf{A}^{(\mathrm{ip})}, \symbf{F}^{(\mathrm{ip})}\right) \nonumber $$
+
+
+$$ \symbf{f}_G=\operatorname{pool}\left(\symbf{A}^{(\mathrm{ip})}, \symbf{F}^{(\mathrm{ip})}\right) \nonumber $$
+
 
 
  
@@ -33,8 +33,10 @@ $$
 
  
 
-$$
- \symbf{f}_G=\max \left(\symbf{F}^{(\mathrm{ip})}\right) \nonumber $$
+
+
+$$ \symbf{f}_G=\max \left(\symbf{F}^{(\mathrm{ip})}\right) \nonumber $$
+
 
 
  
@@ -43,8 +45,10 @@ $$
 
  
 
-$$
- \symbf{f}_G[i]=\max \left(\symbf{F}_{:, i}^{(\mathrm{ip})}\right) \nonumber $$
+
+
+$$ \symbf{f}_G[i]=\max \left(\symbf{F}_{:, i}^{(\mathrm{ip})}\right) \nonumber $$
+
 
 
  
@@ -53,8 +57,10 @@ $$
 
  
 
-$$
- \symbf{f}_G=\mathrm{ave}\left(\symbf{F}^{(\mathrm{ip})}\right) \nonumber $$
+
+
+$$ \symbf{f}_G=\mathrm{ave}\left(\symbf{F}^{(\mathrm{ip})}\right) \nonumber $$
+
 
 
  
@@ -63,8 +69,10 @@ Li *et al*. (2015)では，"ゲート付きグローバルプーリング"と呼
 
  
 
-$$
- s_i=\frac{\exp \left(h\left(\symbf{F}_i^{(\mathrm{ip})}\right)\right)}{\sum_{v_j \in \mathcal{V}} \exp \left(h\left(\symbf{F}_j^{(\mathrm{ip})}\right)\right)} \nonumber $$
+
+
+$$ s_i=\frac{\exp \left(h\left(\symbf{F}_i^{(\mathrm{ip})}\right)\right)}{\sum_{v_j \in \mathcal{V}} \exp \left(h\left(\symbf{F}_j^{(\mathrm{ip})}\right)\right)} \nonumber $$
+
 
 
  
@@ -73,8 +81,10 @@ $$
 
  
 
-$$
- \symbf{f}_G=\sum_{v_i \in \mathcal{V}} s_i \cdot \tanh \left(\symbf{F}_i^{(\mathrm{ip})} \boldsymbol{\Theta}_{i p}\right) \nonumber $$
+
+
+$$ \symbf{f}_G=\sum_{v_i \in \mathcal{V}} s_i \cdot \tanh \left(\symbf{F}_i^{(\mathrm{ip})} \boldsymbol{\Theta}_{i p}\right) \nonumber $$
+
 
 
  
@@ -117,18 +127,18 @@ $$
 
 代表的なダウンサンプリング型グラフプーリングについて説明する． Gao and Ji (2019)で提案された"gPool"という方法は，グラフの粗化のために初めて導入されたダウンサンプリング手法である． まずgPoolにおけるノードの重要度は，入力ノードの特徴 $\symbf{F}^{(\mathrm{ip})}$ から次のように学習される．
 
- $$
- \symbf{y}=\frac{\symbf{F}^{(\mathrm{ip})} \symbf{p}}{\|\symbf{p}\|}
+ $$ \symbf{y}=\frac{\symbf{F}^{(\mathrm{ip})} \symbf{p}}{\|\symbf{p}\|}
     
-\tag{5.42} $$
- 
+\tag{5.42} $$ 
 
 ここで， $\symbf{F}^{(\mathrm{ip})} \in \mathbb{R}^{N_{\mathrm{ip}} \times d_{\mathrm{ip}}}$ は入力ノードの特徴を表す行列であり， $\symbf{p} \in \mathbb{R}^{d_{\mathrm{ip}}}$ は学習対象のベクトルである． このべクトルは入力の特徴を重要度スコアに射影する． 重要度スコア $\symbf{y}$ を計算した後は，ノードをスコアに基づいてランク付けし，重要度の高い $N_{\mathrm{op}}$ 個のノードを選び出す：
 
  
 
-$$
- \mathrm{idx}=\operatorname{rank}\left(\symbf{y},\, N_{\mathrm{op}}\right) \nonumber $$
+
+
+$$ \mathrm{idx}=\operatorname{rank}\left(\symbf{y},\, N_{\mathrm{op}}\right) \nonumber $$
+
 
 
  
@@ -139,8 +149,10 @@ $$
 
  
 
-$$
- \symbf{A}^{(\mathrm{op})}=\symbf{A}^{(\mathrm{ip})}(\mathrm{idx},\, \mathrm{idx}) \nonumber $$
+
+
+$$ \symbf{A}^{(\mathrm{op})}=\symbf{A}^{(\mathrm{ip})}(\mathrm{idx},\, \mathrm{idx}) \nonumber $$
+
 
 
  
@@ -152,14 +164,12 @@ Gao and Ji (2019)では，入力の特徴から新しい特徴への情報の流
  
 
 $$
-
 \begin{aligned}
     \tilde{\symbf{y}} &=\sigma(\symbf{y}(\mathrm{idx})) \nonumber \\ 
     \tilde{\symbf{F}} &=\symbf{F}^{(\mathrm{ip})}(\mathrm{idx},:) \nonumber \\ 
     \symbf{F}_p &=\tilde{\symbf{F}} \odot\left(\tilde{\symbf{y}}\,\symbf{1}_{d_{\mathrm{ip}}}^{\top}\right) \nonumber
 \end{aligned}
 $$
-
  
 
 ここで， $\sigma(\cdot)$ はシグモイド関数であり，重要度スコアを(0, 1)に変換する．  $\symbf{1}\_{d_{\mathrm{ip}}} \in \mathbb{R}^{d_{\mathrm{ip}}}$ はすべての要素が1のベクトルである．  $\symbf{y}(\mathrm{idx})$ は $\symbf{y}$ からidxに対応する要素を抜き出し， $\symbf{F}^{(\mathrm{ip})}(\mathrm{idx})$ はidxに対応する行を取得する．
@@ -168,8 +178,10 @@ $$
 
  
 
-$$
- \symbf{y}=\alpha\left(\mathrm{GCN}\text{-}\mathrm{Filter}\left(\symbf{A}^{(\mathrm{ip})}, \symbf{F}^{(\mathrm{ip})}\right)\right) $$
+
+
+$$ \symbf{y}=\alpha\left(\mathrm{GCN}\text{-}\mathrm{Filter}\left(\symbf{A}^{(\mathrm{ip})}, \symbf{F}^{(\mathrm{ip})}\right)\right) $$
+
 
 
  
@@ -192,11 +204,9 @@ $$
 
 diffpoolのアルゴリズムは，微分可能な方法で(ひいては学習可能となる方法で)スーパーノードを生成する． 具体的には，GCNフィルタを用いて入力グラフのノードから，特定のスーパーノードに割り当てられる確率的な行列を学習する．
 
- $$
- \symbf{S}=\operatorname{softmax}\left(\mathrm{GCN}\text{-}\mathrm{Filter}\left(\symbf{A}^{(\mathrm{ip})}, \symbf{F}^{(\mathrm{ip})}\right)\right)
+ $$ \symbf{S}=\operatorname{softmax}\left(\mathrm{GCN}\text{-}\mathrm{Filter}\left(\symbf{A}^{(\mathrm{ip})}, \symbf{F}^{(\mathrm{ip})}\right)\right)
     
-\tag{5.44} $$
- 
+\tag{5.44} $$ 
 
 ここで， $\symbf{S} \in \mathbb{R}^{N_{\mathrm{ip}} \times N_{\mathrm{op}}}$ は学習される行列である． 式(5.3)で示したように， $\symbf{F}^{(\mathrm{ip})}$ は直近のグラフフィルタ層の出力である． しかし，Ying *et al*.(2018c)では，プーリング層の入力はその前のプーリング層の出力（つまり，学習ブロック $\symbf{F}^{(\mathrm{ib})}$ の入力; 5.2.2節のブロック構造参照)としている．
 
@@ -206,8 +216,10 @@ diffpoolのアルゴリズムは，微分可能な方法で(ひいては学習�
 
  
 
-$$
- \symbf{A}^{(\mathrm{op})}=\symbf{S}^{\top} \symbf{A}^{(\mathrm{ip})} \symbf{S} \in \mathbb{R}^{N_{\mathrm{op}} \times N_{\mathrm{op}}}\nonumber $$
+
+
+$$ \symbf{A}^{(\mathrm{op})}=\symbf{S}^{\top} \symbf{A}^{(\mathrm{ip})} \symbf{S} \in \mathbb{R}^{N_{\mathrm{op}} \times N_{\mathrm{op}}}\nonumber $$
+
 
 
  
@@ -216,26 +228,28 @@ $$
 
  
 
-$$
- \symbf{F}^{(\mathrm{op})}=\symbf{S}^{\top} \symbf{F}^{(\text{inter})} \in \mathbb{R}^{N_{\mathrm{op}} \times d_{\mathrm{op}}} \nonumber $$
+
+
+$$ \symbf{F}^{(\mathrm{op})}=\symbf{S}^{\top} \symbf{F}^{(\text{inter})} \in \mathbb{R}^{N_{\mathrm{op}} \times d_{\mathrm{op}}} \nonumber $$
+
 
 
  
 
 ここで， $\symbf{F}^{(\text{inter})} \in \mathbb{R}^{N_{\mathrm{ip}} \times d_{\mathrm{op}}}$ は，以下のようにGCNフィルタを通じて学習された中間的な特徴量である：
 
- $$
- \symbf{F}^{(\text{inter})}=\mathrm{GCN}\text{-}\mathrm{Filter}\left(\symbf{A}^{(\mathrm{ip})},\, \symbf{F}^{(\mathrm{ip})}\right)
+ $$ \symbf{F}^{(\text{inter})}=\mathrm{GCN}\text{-}\mathrm{Filter}\left(\symbf{A}^{(\mathrm{ip})},\, \symbf{F}^{(\mathrm{ip})}\right)
     
-\tag{5.45} $$
- 
+\tag{5.45} $$ 
 
 式(5.45)では1つのフィルタのみだが，複数のGCNフィルタを積み重ねることもできる． diffpoolのプロセスは以下のようにまとめることができる：
 
  
 
-$$
- \symbf{A}^{(\mathrm{op})},\, \symbf{F}^{(\mathrm{op})}=\operatorname{diffpool}\left(\symbf{A}^{(\mathrm{ip})}, \symbf{F}^{(\mathrm{ip})}\right) \nonumber $$
+
+
+$$ \symbf{A}^{(\mathrm{op})},\, \symbf{F}^{(\mathrm{op})}=\operatorname{diffpool}\left(\symbf{A}^{(\mathrm{ip})}, \symbf{F}^{(\mathrm{ip})}\right) \nonumber $$
+
 
 
  
@@ -248,8 +262,10 @@ EigenPooling (Ma *et al*., 2019b)はスペクトラルクラスタリングを�
 
  
 
-$$
- \symbf{C}_{i,\, j}^{(k)}=1 \quad \text { if and only if } \quad \Gamma^{(k)}(j)=v_i \nonumber $$
+
+
+$$ \symbf{C}_{i,\, j}^{(k)}=1 \quad \text { if and only if } \quad \Gamma^{(k)}(j)=v_i \nonumber $$
+
 
 
  
@@ -258,8 +274,10 @@ $$
 
  
 
-$$
- \symbf{A}^{(k)}=\left(\symbf{C}^{(k)}\right)^{\top} \symbf{A}^{(\mathrm{ip})} \symbf{C}^{(k)} \nonumber $$
+
+
+$$ \symbf{A}^{(k)}=\left(\symbf{C}^{(k)}\right)^{\top} \symbf{A}^{(\mathrm{ip})} \symbf{C}^{(k)} \nonumber $$
+
 
 
  
@@ -268,8 +286,10 @@ $$
 
  
 
-$$
- \symbf{A}_{\text{int}}=\sum_{k=1}^{N_{\mathrm{op}}} \symbf{C}^{(k)} \symbf{A}^{(k)}\left(\symbf{C}^{(k)}\right)^{\top}\nonumber $$
+
+
+$$ \symbf{A}_{\text{int}}=\sum_{k=1}^{N_{\mathrm{op}}} \symbf{C}^{(k)} \symbf{A}^{(k)}\left(\symbf{C}^{(k)}\right)^{\top}\nonumber $$
+
 
 
  
@@ -278,8 +298,10 @@ $$
 
  
 
-$$
- \symbf{A}^{\mathrm{op}}=\symbf{S}^{\top} \symbf{A}_{\text{ext}} \symbf{S}\nonumber $$
+
+
+$$ \symbf{A}^{\mathrm{op}}=\symbf{S}^{\top} \symbf{A}_{\text{ext}} \symbf{S}\nonumber $$
+
 
 
  
@@ -288,8 +310,10 @@ $$
 
  
 
-$$
- \symbf{F}_{\mathrm{ip}}^{(k)}=\left(\symbf{C}^{(k)}\right)^{\top} \symbf{F}^{(\mathrm{ip})} \nonumber $$
+
+
+$$ \symbf{F}_{\mathrm{ip}}^{(k)}=\left(\symbf{C}^{(k)}\right)^{\top} \symbf{F}^{(\mathrm{ip})} \nonumber $$
+
 
 
  
@@ -298,8 +322,10 @@ $$
 
  
 
-$$
- \symbf{f}_i^{(k)}=\left(\symbf{u}_i^{(k)}\right)^{\top} \symbf{F}_{\mathrm{ip}}^{(k)} \quad \text { for } \quad i=1, \ldots,\, N^{(k)} \nonumber $$
+
+
+$$ \symbf{f}_i^{(k)}=\left(\symbf{u}_i^{(k)}\right)^{\top} \symbf{F}_{\mathrm{ip}}^{(k)} \quad \text { for } \quad i=1, \ldots,\, N^{(k)} \nonumber $$
+
 
 
  
@@ -308,8 +334,10 @@ $$
 
  
 
-$$
- \symbf{f}^{(k)}=\left[\symbf{f}_1^{(k)}, \ldots, \symbf{f}_{N^{(k)}}^{(k)}\right] \nonumber $$
+
+
+$$ \symbf{f}^{(k)}=\left[\symbf{f}_1^{(k)}, \ldots, \symbf{f}_{N^{(k)}}^{(k)}\right] \nonumber $$
+
 
 
  
