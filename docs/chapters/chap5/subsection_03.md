@@ -544,7 +544,7 @@ $$
 ここで， $\boldsymbol{\Theta} \in \mathbb{R}^{d_{\text{in}} \times d_{\text{out}}}$ である． また， $\boldsymbol{\Theta}\_{d, j}=\theta\_{j, d}$ は $j$ 番目の出力チャンネル， $d$ 番目の入力チャンネルに対応するパラメータである． 特に，1つのノード $v_i$ に対して，式(5.21)のフィルタ操作は次のように書くこともできる：
 
  $$
- \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup \left\\{v_i\right\\}}\left(\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}\right)_{i, j} \symbf{F}_j \boldsymbol{\Theta}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}} \frac{1}{\sqrt{\tilde{d}_i \tilde{d}_j}} \symbf{F}_j \boldsymbol{\Theta}
+ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup \left\{v_i\right\\}}\left(\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}\right)_{i, j} \symbf{F}_j \boldsymbol{\Theta}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\\}} \frac{1}{\sqrt{\tilde{d}_i \tilde{d}_j}} \symbf{F}_j \boldsymbol{\Theta}
     
 \tag{5.22} $$
  
@@ -578,7 +578,7 @@ $$
 \begin{aligned}
     \mathcal{N}_S\left(v_i\right) &=&\operatorname{SAMPLE}\left(\mathcal{N}\left(v_i\right), S\right) \\ 
 \tag{5.23}
-    \symbf{f}_{\mathcal{N}_S\left(v_i\right)}^{\prime} &=&\operatorname{AGGREGATE}\left(\left\\{\symbf{F}_j, \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\\}\right) \\ 
+    \symbf{f}_{\mathcal{N}_S\left(v_i\right)}^{\prime} &=&\operatorname{AGGREGATE}\left(\left\{\symbf{F}_j, \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\\}\right) \\ 
 \tag{5.24}
     \symbf{F}_i^{\prime} &=&\sigma\left(\left[\symbf{F}_i, \symbf{f}_{N_S\left(v_i\right)}^{\prime}\right] \Theta\right) 
 \end{aligned}
@@ -597,7 +597,7 @@ $$
 
 Hamilton *et al*. (2017a)では，以下のように，様々な $\operatorname{AGGREGATE}(\cdot)$ 関数が紹介されている．
 
--   **平均関数.** 単純に集合 $\left\{\symbf{F}\_j,\, \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\}$ 内のベクトルの要素ごとの平均をとる方法である． ここでの平均関数はGCNにおけるフィルタとよく似ている． ノード $v_i$ に対しては，両者とも隣接ノードの（加重）平均を新しいノード表現とする． 違いは，ノード $v_i$ の入力表現 $\symbf{F}\_i$ がどのように計算に関わってくるかである． GraphSAGEでは， $\symbf{F}\_i$ は近傍ノードの集約情報 $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ と連結する． 一方，GCNフィルタでは，ノード $v_i$ はその近傍ノードと等価に扱われ， $\symbf{F}\_i$ は加重平均の一部にすぎない．
+-   **平均関数.** 単純に集合 $\left\{\symbf{F}\_j,\, \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\\}$ 内のベクトルの要素ごとの平均をとる方法である． ここでの平均関数はGCNにおけるフィルタとよく似ている． ノード $v_i$ に対しては，両者とも隣接ノードの（加重）平均を新しいノード表現とする． 違いは，ノード $v_i$ の入力表現 $\symbf{F}\_i$ がどのように計算に関わってくるかである． GraphSAGEでは， $\symbf{F}\_i$ は近傍ノードの集約情報 $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ と連結する． 一方，GCNフィルタでは，ノード $v_i$ はその近傍ノードと等価に扱われ， $\symbf{F}\_i$ は加重平均の一部にすぎない．
 
 -   **LSTM関数.** ノード $v_i$ から抽出した近傍ノード集合 $\mathcal{N}_S\left(v_i\right)$ を系列データとして扱い，そこにLSTM構造を適用する方法である． LSTMの最後のユニットからの出力が $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ となる． しかし，近傍ノードの自然な順番は存在しないため, Hamilton *et al*. (2017a)ではランダムな順番が採用されている．
 
@@ -619,7 +619,7 @@ GraphSAGEフィルタは，どの集約関数を用いても1ホップ近傍の�
 
 グラフアテンションネットワーク(GAT) (Veličković *et al*., 2017)は，セルフアテンション機構(Vaswani *et al*., 2017)を空間型グラフフィルタに適用するために導入された手法である． 便宜上，GATにおけるグラフフィルタを"GATフィルタ"と呼ぶことにする． GATフィルタはGCNフィルタと似ている． というのも，各ノードの新しい特徴を生成する際に,近傍ノードからの情報の集約を行うからである． GCNフィルタではグラフ構造のみに基づいて集約を行うが， GATフィルタでは近傍ノードの重要度を区別して集約する． 具体的には，あるノード $v_i$ の新しい特徴を生成する際，すべての近傍ノードに注目し，各近傍ノードに対して重要度スコアを計算する． そしてこの重要度スコアはその後，集約段階で線形結合の係数として使われることになる．
 
-GATフィルタの詳細を説明する． ノード $v_i$ に対して，ノード $v_j \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\}$ の重要度スコアは次のように計算される:
+GATフィルタの詳細を説明する． ノード $v_i$ に対して，ノード $v_j \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\\}$ の重要度スコアは次のように計算される:
 
  $$
  e_{i j}=a\left(\symbf{F}_i \boldsymbol{\Theta},\, \symbf{F}_j \boldsymbol{\Theta}\right)
@@ -650,7 +650,7 @@ $$
 ここで， $\alpha_{i j}$ は規格化された重要度スコアであり，ノード $v_i$ に対するノード $v_j$ の重要性を表す． この規格化された重要度スコアにより，ノード $v_i$ の新しい表現 $\symbf{F}\_i^{\prime}$ は次のように計算される：
 
  $$
- \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}} \alpha_{i j} \symbf{F}_j \boldsymbol{\Theta}
+ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\\}} \alpha_{i j} \symbf{F}_j \boldsymbol{\Theta}
     
 \tag{5.27} $$
  
@@ -658,7 +658,7 @@ $$
 ここで， $\boldsymbol{\Theta}$ は式(5.26)と同じ変換行列である． セルフアテンション機構の学習過程を安定させるため，マルチヘッドアテンション機構(Vaswani *et al*., 2017)が採用されている． これは，式(5.27)の形の $M$ 個の独立なセルフアテンション機構（異なる $\boldsymbol{\Theta}^m$ と $\alpha_{i j}^m$ をもつ）が並列に実行される． そしてそれらの出力を連結することで，ノード $v_i$ の最終的な表現が生成される：
 
  $$
- \symbf{F}_i^{\prime}=\|_{m=1}^{M} \sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}} \alpha_{i j}^{m} \symbf{F}_j \Theta^{m}
+ \symbf{F}_i^{\prime}=\|_{m=1}^{M} \sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\\}} \alpha_{i j}^{m} \symbf{F}_j \Theta^{m}
     
 \tag{5.28} $$
  
