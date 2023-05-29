@@ -9,10 +9,8 @@
 
  
 
-
-
-$$ \symbf{F}^{(\mathrm{of})}=h\left(\symbf{A}, \symbf{F}^{(\mathrm{if})}\right) $$
-
+$$
+ \symbf{F}^{(\mathrm{of})}=h\left(\symbf{A}, \symbf{F}^{(\mathrm{if})}\right) $$
 
 
  
@@ -32,9 +30,11 @@ $$ \symbf{F}^{(\mathrm{of})}=h\left(\symbf{A}, \symbf{F}^{(\mathrm{if})}\right) 
 
 従って，プーリング操作の要点は，粗化されたグラフの構造（隣接行列）とそのグラフ内のノードの特徴量を生成することである． 一般に，図5.2に示すように，グラフプーリング操作は以下のように記述することができる．
 
- $$ \symbf{A}^{(\mathrm{op})}, \symbf{F}^{(\mathrm{op})}=\operatorname{pool}\left(\symbf{A}^{(\mathrm{ip})}, \symbf{F}^{(\mathrm{ip})}\right)
+ $$
+ \symbf{A}^{(\mathrm{op})}, \symbf{F}^{(\mathrm{op})}=\operatorname{pool}\left(\symbf{A}^{(\mathrm{ip})}, \symbf{F}^{(\mathrm{ip})}\right)
     
-\tag{5.2} $$ 
+\tag{5.2} $$
+ 
 
 ここで， $\symbf{A}^{(\mathrm{ip})} \in \mathbb{R}^{N_{\mathrm{ip}} \times N_{\mathrm{ip}}}$ と $\symbf{F}^{(\mathrm{ip})} \in \mathbb{R}^{N_{\mathrm{ip}} \times d_{\mathrm{ip}}}$ ，そして  $\symbf{A}^{(\mathrm{op})} \in \mathbb{R}^{N_{\mathrm{op}} \times N_{\mathrm{op}}}$ と  $\symbf{F}^{(\mathrm{op})} \in \mathbb{R}^{N_{\mathrm{op}} \times d_{\mathrm{op}}}$  はそれぞれ，プーリング前後の隣接行列と特徴量行列を表す． また，上付き文字（または下付き文字）"ip" と "op"はそれぞれ，プーリングの入力(input of pooling)と出力(output of pooling)を表す． なお，粗化されたグラフのノード数 $N_{\mathrm{op}}$ に対しては， $N_{\mathrm{op}}<N_{\mathrm{ip}}$ を満たすことになる．
 

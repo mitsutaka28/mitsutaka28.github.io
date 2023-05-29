@@ -28,36 +28,28 @@
 
 2章で導入したように，グラフ $\mathcal{G}$ 上の信号 $\symbf{f} \in \mathbb{R}^{N}$ のGFTは次のように定義される：  
 
-
-
-$$ \hat{\symbf{f}}=\symbf{U}^{\top} \symbf{f} $$
-
+$$
+ \hat{\symbf{f}}=\symbf{U}^{\top} \symbf{f} $$
 
 
   ここで， $\symbf{U}$ は $\mathcal{G}$ のラプラシアン行列の固有ベクトルで構成され， $\hat{\symbf{f}}$ は信号 $\symbf{f}$ のグラフフーリエ係数を表す． これらのグラフフーリエ係数は，各グラフフーリエ成分（グラフの各固有ベクトル）がグラフ信号 $\symbf{f}$ にどのように寄与しているかを表している． 具体的には， $\hat{\symbf{f}}$ の $i$ 番目の要素は，周波数 $\lambda_i$ を持つ $i$ 番目のグラフフーリエ成分（固有ベクトル） $\symbf{u}\_i$ に対応する． ここで， $\lambda_i$ は $\symbf{u}\_i$ に対応する固有値である．
 
 信号 $\symbf{f}$ の周波数を変調するために，グラフフーリエ係数を以下のようにフィルタリングする：  
 
-
-
-$$ \hat{\symbf{f}}^{\prime}[i]=\hat{\symbf{f}}[i] \cdot \gamma\left(\lambda_i\right) \quad (i=1, \ldots, N)%TODO: forをなくしているがこれでいいか確認する． $$
-
+$$
+ \hat{\symbf{f}}^{\prime}[i]=\hat{\symbf{f}}[i] \cdot \gamma\left(\lambda_i\right) \quad (i=1, \ldots, N)%TODO: forをなくしているがこれでいいか確認する． $$
 
 
   ここで， $\gamma\left(\lambda_i\right)$ は周波数 $\lambda_i$ を入力として，対応する周波数成分をどの程度変調させるかを決める関数である． これを行列形式で書くと次のようになる：  
 
-
-
-$$ \hat{\symbf{f}}^{\prime}=\gamma(\boldsymbol{\Lambda}) \cdot \hat{\symbf{f}}=\gamma(\boldsymbol{\Lambda}) \cdot \symbf{U}^{\top} \symbf{f} $$
-
+$$
+ \hat{\symbf{f}}^{\prime}=\gamma(\boldsymbol{\Lambda}) \cdot \hat{\symbf{f}}=\gamma(\boldsymbol{\Lambda}) \cdot \symbf{U}^{\top} \symbf{f} $$
 
 
   ここで， $\boldsymbol{\Lambda}$ は周波数（ラプラシアン行列の固有値）を対角上においた対角行列で，  $\gamma(\boldsymbol{\Lambda})$ は $\boldsymbol{\Lambda}$ の対角成分の各要素に $\gamma(\cdot)$ が適用されていることを表す． つまり $\boldsymbol{\Lambda}$ と $\gamma(\boldsymbol{\Lambda})$ は次のように書くことができる：  
 
-
-
-$$ \boldsymbol{\Lambda}=\left(\begin{array}{ccc}\lambda_1 & & 0 \\ & \ddots & \\ 0 & & \lambda_N\end{array}\right);\quad \gamma(\boldsymbol{\Lambda})=\left(\begin{array}{ccc}\gamma\left(\lambda_1\right) & & 0 \\ & \ddots & \\ 0 & & \gamma\left(\lambda_N\right)\end{array}\right) $$
-
+$$
+ \boldsymbol{\Lambda}=\left(\begin{array}{ccc}\lambda_1 & & 0 \\ & \ddots & \\ 0 & & \lambda_N\end{array}\right);\quad \gamma(\boldsymbol{\Lambda})=\left(\begin{array}{ccc}\gamma\left(\lambda_1\right) & & 0 \\ & \ddots & \\ 0 & & \gamma\left(\lambda_N\right)\end{array}\right) $$
 
 
  
@@ -72,9 +64,11 @@ $$ \boldsymbol{\Lambda}=\left(\begin{array}{ccc}\lambda_1 & & 0 \\ & \ddots & \\
 
 フィルタリングされたフーリエ係数を用いて， 次のように逆グラフフーリエ変換（IGFT）を適用することで，信号を空間(グラフ)領域に再構成することができる：
 
- $$ \symbf{f}^{\prime}=\symbf{U} \hat{\symbf{f}}^{\prime}=\symbf{U} \cdot \gamma(\boldsymbol{\Lambda}) \cdot \symbf{U}^{\top} \symbf{f}
+ $$
+ \symbf{f}^{\prime}=\symbf{U} \hat{\symbf{f}}^{\prime}=\symbf{U} \cdot \gamma(\boldsymbol{\Lambda}) \cdot \symbf{U}^{\top} \symbf{f}
     
-\tag{5.5} $$ 
+\tag{5.5} $$
+ 
 
 ここで， $\symbf{f}^{\prime}$ はフィルタリング施した後のグラフ信号である． フィルタリング処理は，入力されたグラフ信号に，演算子 $\symbf{U} \cdot \gamma(\boldsymbol{\Lambda}) \cdot \symbf{U}^{\top}$ を適用することと見なすことができる． 便宜上，関数 $\gamma(\boldsymbol{\Lambda})$ をフィルタと呼ぶこともある． というのは， $\gamma(\boldsymbol{\Lambda})$ がグラフ信号 $\symbf{f}$ の各周波数成分をどのようにフィルタリングするかを制御するからである． 例えば，極端な例では， $\gamma\left(\lambda_i\right)$ が0に等しい場合， $\hat{\symbf{f}}^{\prime}[i]=0$ となり，グラフ信号 $\symbf{f}$ から周波数成分 $\symbf{u}\_i$ が取り除かれることになる．
 
@@ -86,13 +80,16 @@ $$ \boldsymbol{\Lambda}=\left(\begin{array}{ccc}\lambda_1 & & 0 \\ & \ddots & \\
 
 「雑音を持たない信号 $\symbf{f}\_0$ の滑らかさ」という事前情報を取り入れるため，以下のように $\symbf{f}^{\top} \symbf{L f}$ の形の正則化項を最適化問題に組み込む：
 
- $$ \arg \min _{\symbf{f}}\|\symbf{f}-\symbf{y}\|^{2}+c \symbf{f}^{\top} \symbf{L} \symbf{f}
+ $$
+ \arg \min _{\symbf{f}}\|\symbf{f}-\symbf{y}\|^{2}+c \symbf{f}^{\top} \symbf{L} \symbf{f}
     
-\tag{5.6} $$ 
+\tag{5.6} $$
+ 
 
 ここで， $c>0$  は滑らかさを制御するための定数である． 今考えている最適化問題（目的関数）は凸関数であるので，その微分を0にすることで最適解 $\symbf{f}^{\prime}$ を得ることができる：  
 
 $$
+
 \begin{aligned}
     && 2(\symbf{f}-\symbf{y})+2 c \symbf{L} \symbf{f}=0 \nonumber\\ 
     &\Rightarrow &(I+c \symbf{L}) \symbf{f}=\symbf{y} \nonumber\\ 
@@ -103,13 +100,16 @@ $$
 \end{aligned}
 \tag{5.7}
 $$
+
  
 
 式(5.5)と式(5.7)を比較すると，ノイズを含む信号 $\symbf{y}$ をフィルタ $\gamma(\boldsymbol{\Lambda})=(\symbf{I}+c \boldsymbol{\Lambda})^{-1}$ を用いてフィルタリングすることで, きれいな信号が得られることがわかる． 特定の周波数 $\lambda_l$ に対して，このフィルタは次のように表すことができる．
 
- $$ \gamma\left(\lambda_l\right)=\frac{1}{1+c \lambda_l}
+ $$
+ \gamma\left(\lambda_l\right)=\frac{1}{1+c \lambda_l}
     
-\tag{5.8} $$ 
+\tag{5.8} $$
+ 
 
 ここで，明らかに $\gamma\left(\lambda_l\right)$ は"ローパスフィルタ"の役割を果たしている． 実際に， $\lambda_l$ が小さいときに $\gamma\left(\lambda_l\right)$ の値は大きくなり，  $\lambda_l$ が大きいときに $\gamma\left(\lambda_l\right)$ の値は小さくなる． したがって，式(5.6)の最適化問題を解くことは，ノイズを含む信号 $\symbf{y}$ に対して式(5.8)のローパスフィルタを適用することと同じになる． 
 </div>
@@ -125,10 +125,8 @@ $$
 
  
 
-
-
-$$ \gamma\left(\lambda_l\right)=\theta_l \nonumber $$
-
+$$
+ \gamma\left(\lambda_l\right)=\theta_l \nonumber $$
 
 
  
@@ -137,10 +135,8 @@ $$ \gamma\left(\lambda_l\right)=\theta_l \nonumber $$
 
  
 
-
-
-$$ \gamma(\Lambda)=\left(\begin{array}{lll}\theta_1 & & 0 \\ & \ddots & \\ 0 & & \theta_N\end{array}\right) \nonumber $$
-
+$$
+ \gamma(\Lambda)=\left(\begin{array}{lll}\theta_1 & & 0 \\ & \ddots & \\ 0 & & \theta_N\end{array}\right) \nonumber $$
 
 
  
@@ -149,15 +145,19 @@ $$ \gamma(\Lambda)=\left(\begin{array}{lll}\theta_1 & & 0 \\ & \ddots & \\ 0 & &
 
 以上の問題に対応するために，"多項式フィルタ"が提案された(Defferrard *et al*., 2016)． 関数 $\gamma(\cdot)$ は $K$ 次までの多項式で次のようにモデル化される：
 
- $$ \gamma\left(\lambda_l\right)=\sum_{k=0}^{K} \theta_k \lambda_l^{k}
+ $$
+ \gamma\left(\lambda_l\right)=\sum_{k=0}^{K} \theta_k \lambda_l^{k}
     
-\tag{5.9} $$ 
+\tag{5.9} $$
+ 
 
 行列形式では，式(5.9)は次のように書き換えることができる：
 
- $$ \gamma(\Lambda)=\sum_{k=0}^{K} \theta_k \Lambda^{k}
+ $$
+ \gamma(\Lambda)=\sum_{k=0}^{K} \theta_k \Lambda^{k}
     
-\tag{5.10} $$ 
+\tag{5.10} $$
+ 
 
 式(5.9)および式(5.10)のパラメータの数は $K + 1$ であることは明白であるから，多項式フィルタはグラフのノード数に依存しないことがわかる． さらに，（このあと確認するが） $\symbf{U} \cdot \gamma(\boldsymbol{\Lambda}) \cdot \symbf{U}^{\top}$ は"ラプラシアン行列の多項式"に簡略化できることを示せる [^3] ．
 
@@ -175,6 +175,7 @@ $$ \gamma(\Lambda)=\left(\begin{array}{lll}\theta_1 & & 0 \\ & \ddots & \\ 0 & &
 まず， $\symbf{f}$ に多項式フィルタを作用させることで， 式(5.5)より，次のように出力 $\symbf{f}^{\prime}$ を得ることができる：  
 
 $$
+
 \begin{aligned}
     \symbf{f}^{\prime} &=&\symbf{U} \cdot \gamma(\boldsymbol{\Lambda}) \cdot \symbf{U}^{\top} \symbf{f} \nonumber\\ 
     &=&\symbf{U} \cdot \sum_{k=0}^{K} \theta_k \boldsymbol{\Lambda}^{k} \cdot \symbf{U}^{\top} \symbf{f} \nonumber\\ 
@@ -183,11 +184,13 @@ $$
 \end{aligned}
 \tag{5.11}
 $$
+
  
 
 次に，式(5.11)を簡略化するため， $\symbf{U} \cdot \boldsymbol{\Lambda}^{k} \cdot \symbf{U}^{\top}=\symbf{L}^{k}$ が成り立つことを以下に示す：  
 
 $$
+
 \begin{aligned}
     \symbf{U} \cdot \boldsymbol{\Lambda}^{k} \cdot \symbf{U}^{\top} &=&\symbf{U} \cdot\left(\boldsymbol{\Lambda} \symbf{U}^{\top} \symbf{U}\right)^{k} \symbf{U}^{\top} \nonumber\\ 
     &=&\underbrace{\left(\symbf{U} \cdot \boldsymbol{\Lambda} \cdot \symbf{U}^{\top}\right) \cdots\left(\symbf{U} \cdot \boldsymbol{\Lambda} \cdot \symbf{U}^{\top}\right)}_k \nonumber\\ &=&\symbf{L}^{k}
@@ -195,16 +198,19 @@ $$
 \end{aligned}
 \tag{5.12}
 $$
+
  
 
 ここで得た式(5.12)を用いると，式(5.11)は次のように書くことができる：  
 
 $$
+
 \begin{aligned}
     \symbf{f}^{\prime} &=&\sum_{k=0}^{K} \theta_k \symbf{U} \cdot \boldsymbol{\Lambda}^{k} \cdot \symbf{U}^{\top} \symbf{f} \nonumber\\ 
     &=&\sum_{k=0}^{K} \theta_k \symbf{L}^{k} \symbf{f} \nonumber
 \end{aligned}
 $$
+
  
 
 グラフの接続関係は多くの場合局所的であるから，ラプラシアン行列の多項式は疎となることが多い．  $\symbf{L}^k$ の $(i,\,j)$ 要素は( $i \neq j$ )，次の補題で説明するように，ノード $v_i$ とノード $v_j$ の間の最短パスの長さが $k$ 以下の場合のみ非ゼロとなる．
@@ -234,10 +240,8 @@ $$
 
      
 
-
-
-$$ \symbf{L}_{i, j}^{n+1}=\sum_{h=1}^{N} \symbf{L}_{i, h}^{n} \symbf{L}_{h, j} \nonumber $$
-
+$$
+ \symbf{L}_{i, j}^{n+1}=\sum_{h=1}^{N} \symbf{L}_{i, h}^{n} \symbf{L}_{h, j} \nonumber $$
 
 
  
@@ -262,24 +266,26 @@ $$ \symbf{L}_{i, j}^{n+1}=\sum_{h=1}^{N} \symbf{L}_{i, h}^{n} \symbf{L}_{h, j} \
 
 ここで，出力信号 $\symbf{f}^{\prime}$ の1つの要素に着目し， その計算がグラフ内の他のノードとどのように関連しているかをみてみよう． 具体的には，ノード $v_i$ が持つ出力信号の値は，以下のように計算することができる:
 
- $$ \symbf{f}^{\prime}[i]=\sum_{v_j \in \mathcal{V}}\left(\sum_{k=0}^{K} \theta_k \symbf{L}_{i, j}^{k}\right) \symbf{f}[j]
+ $$
+ \symbf{f}^{\prime}[i]=\sum_{v_j \in \mathcal{V}}\left(\sum_{k=0}^{K} \theta_k \symbf{L}_{i, j}^{k}\right) \symbf{f}[j]
     
-\tag{5.13} $$ 
+\tag{5.13} $$
+ 
 
 これは全ノードの元の信号の，重み $\sum_{k=0}^{K} \theta\_k \symbf{L}\_{i, j}^{k}$ での線形結合とみなすことができる． 系5.2より， $\operatorname{dis}\left(v_i, v_j\right)>k$ ならば $\symbf{L}\_{i, j}^{k}=0$ である． したがって，この計算にはすべてのノードが関与するのではなく， ノード $v_i$ から $K$ 次近傍以内のノードのみが関与することになる． ノード $v_i$ から $K$ 次近傍以内のノードのみを使って式(5.13)を書き換えると，
 
- $$ \symbf{f}^{\prime}[i]=b_{i, i} \symbf{f}[i]+\sum_{v_j \in \mathcal{N}^{K}\left(v_i\right)} b_{i, j} \symbf{f}[j]
+ $$
+ \symbf{f}^{\prime}[i]=b_{i, i} \symbf{f}[i]+\sum_{v_j \in \mathcal{N}^{K}\left(v_i\right)} b_{i, j} \symbf{f}[j]
     
-\tag{5.14} $$ 
+\tag{5.14} $$
+ 
 
 となる． ここで， $\mathcal{N}^{K}\left(v_i\right)$ はノード $v_i$ の $K$ 次近傍以内のすべてのノードを表す．  $b_{i, j}$ は次のように定義される：
 
  
 
-
-
-$$ b_{i, j}=\sum_{k=\operatorname{dis}\left(v_i, v_j\right)}^{K} \theta_k \symbf{L}_{i, j}^{k} \nonumber $$
-
+$$
+ b_{i, j}=\sum_{k=\operatorname{dis}\left(v_i, v_j\right)}^{K} \theta_k \symbf{L}_{i, j}^{k} \nonumber $$
 
 
  
@@ -292,27 +298,29 @@ $$ b_{i, j}=\sum_{k=\operatorname{dis}\left(v_i, v_j\right)}^{K} \theta_k \symbf
 
 チェビシェフ多項式 $T_k(y)$ は以下の漸化式に従う：
 
- $$ T_k(y)=2 y T_{k-1}(y)-T_{k-2}(y)
+ $$
+ T_k(y)=2 y T_{k-1}(y)-T_{k-2}(y)
     
-\tag{5.15} $$ 
+\tag{5.15} $$
+ 
 
 なお， $T_0(y)=1,\, T_1(y)=y$ である． またこれらのチェビシェフ多項式は， $y \in[-1,\, 1]$ に対して，次のような三角関数を使って表すことができる：
 
  
 
-
-
-$$ T_k(y)=\cos (k \arccos (y))\nonumber $$
-
+$$
+ T_k(y)=\cos (k \arccos (y))\nonumber $$
 
 
  
 
 これは，各 $T_k(y)$ が $[-1,1]$ の範囲内に収まることを意味する． さらに，チェビシェフ多項式は次の関係式を満たす：
 
- $$ \int_{-1}^{1} \frac{T_l(y) T_m(y)}{\sqrt{1-y^{2}}} d y=\begin{cases}\delta_{l,m} \pi/2 & (m,\,l>0)\\\pi & (m=l=0)\end{cases}
+ $$
+ \int_{-1}^{1} \frac{T_l(y) T_m(y)}{\sqrt{1-y^{2}}} d y=\begin{cases}\delta_{l,m} \pi/2 & (m,\,l>0)\\\pi & (m=l=0)\end{cases}
     
-\tag{5.16} $$ 
+\tag{5.16} $$
+ 
 
 ここで， $l=m$ のときのみ $\delta_{l, m}=1$ が成り立ち，それ以外の場合には $\delta_{l, m}=0$ となる． 式(5.16)はチェビシェフ多項式が互いに直交していることを意味する [^4] ．
 
@@ -324,10 +332,8 @@ $$ T_k(y)=\cos (k \arccos (y))\nonumber $$
 
  
 
-
-
-$$ \tilde{\lambda}_l=\frac{2 \cdot \lambda_l}{\lambda_{\max }}-1 \nonumber $$
-
+$$
+ \tilde{\lambda}_l=\frac{2 \cdot \lambda_l}{\lambda_{\max }}-1 \nonumber $$
 
 
  
@@ -336,10 +342,8 @@ $$ \tilde{\lambda}_l=\frac{2 \cdot \lambda_l}{\lambda_{\max }}-1 \nonumber $$
 
  
 
-
-
-$$ \tilde{\boldsymbol{\Lambda}}=\frac{2 \boldsymbol{\Lambda}}{\lambda_{\max }}-\symbf{I} \nonumber $$
-
+$$
+ \tilde{\boldsymbol{\Lambda}}=\frac{2 \boldsymbol{\Lambda}}{\lambda_{\max }}-\symbf{I} \nonumber $$
 
 
  
@@ -348,10 +352,8 @@ $$ \tilde{\boldsymbol{\Lambda}}=\frac{2 \boldsymbol{\Lambda}}{\lambda_{\max }}-\
 
  
 
-
-
-$$ \gamma(\boldsymbol{\Lambda})=\sum_{k=0}^{K} \theta_k T_k(\tilde{\boldsymbol{\Lambda}}) \nonumber $$
-
+$$
+ \gamma(\boldsymbol{\Lambda})=\sum_{k=0}^{K} \theta_k T_k(\tilde{\boldsymbol{\Lambda}}) \nonumber $$
 
 
  
@@ -361,6 +363,7 @@ $$ \gamma(\boldsymbol{\Lambda})=\sum_{k=0}^{K} \theta_k T_k(\tilde{\boldsymbol{\
  
 
 $$
+
 \begin{aligned}
     \symbf{f}^{\prime} &=\symbf{U} \cdot \sum_{k=0}^{K} \theta_k T_k(\tilde{\boldsymbol{\Lambda}}) \symbf{U}^{\top} \symbf{f} \nonumber\\ 
     &=\sum_{k=0}^{K} \theta_k \symbf{U} T_k(\tilde{\boldsymbol{\Lambda}}) \symbf{U}^{\top} \symbf{f}
@@ -368,6 +371,7 @@ $$
 \end{aligned}
 \tag{5.17}
 $$
+
  
 
 次に， $\tilde{\symbf{L}}=\frac{2 \symbf{L}}{\lambda_{\max }}-\symbf{I}$ について， $\symbf{U} T_k(\tilde{\boldsymbol{\Lambda}}) \symbf{U}^{\top}=T_k(\tilde{\symbf{L}})$ であることを次の定理より示す．
@@ -380,10 +384,8 @@ $$
 
  
 
-
-
-$$ \symbf{U} T_k(\tilde{\boldsymbol{\Lambda}}) \symbf{U}^{\top}=T_k(\tilde{\symbf{L}}) \nonumber $$
-
+$$
+ \symbf{U} T_k(\tilde{\boldsymbol{\Lambda}}) \symbf{U}^{\top}=T_k(\tilde{\symbf{L}}) \nonumber $$
 
 
  
@@ -392,10 +394,8 @@ $$ \symbf{U} T_k(\tilde{\boldsymbol{\Lambda}}) \symbf{U}^{\top}=T_k(\tilde{\symb
 
  
 
-
-
-$$ \tilde{\symbf{L}}=\frac{2 \symbf{L}}{\lambda_{\max }}-\symbf{I}. \nonumber $$
-
+$$
+ \tilde{\symbf{L}}=\frac{2 \symbf{L}}{\lambda_{\max }}-\symbf{I}. \nonumber $$
 
 
  
@@ -408,6 +408,7 @@ $$ \tilde{\symbf{L}}=\frac{2 \symbf{L}}{\lambda_{\max }}-\symbf{I}. \nonumber $$
  $k=1$ については，  
 
 $$
+
 \begin{aligned}
     \symbf{U} T_1(\tilde{\boldsymbol{\Lambda}}) \symbf{U}^{\top} &=&\symbf{U} \tilde{\boldsymbol{\Lambda}} \symbf{U}^{\top} \nonumber \\ 
     &=&\symbf{U}\left(\frac{2 \boldsymbol{\Lambda}}{\boldsymbol{\Lambda}_{\max }}-\symbf{I}\right) \symbf{U}^{\top} \nonumber \\ 
@@ -415,11 +416,13 @@ $$
     &=&T_1(\tilde{\symbf{L}}) \nonumber
 \end{aligned}
 $$
+
   したがって， $k=1$ についても成り立つ．
 
 この式が $k=n-2$ と $k=n-1$ で成り立つとする（ただし $n\geq2$ ）．  $k=n$ でも成り立つことが式(5.15)より帰納的に示すことができる:  
 
 $$
+
 \begin{aligned}
     \symbf{U} T_n(\tilde{\boldsymbol{\Lambda}}) \symbf{U}^{\top} &=&\symbf{U}\left[2 \tilde{\boldsymbol{\Lambda}} T_{n-1}(\tilde{\boldsymbol{\Lambda}})-T_{n-2}(\tilde{\boldsymbol{\Lambda}})\right] \symbf{U}^{\top} \nonumber\\ 
     &=&2 \symbf{U} \tilde{\boldsymbol{\Lambda}} T_{n-1}(\tilde{\boldsymbol{\Lambda}}) \symbf{U}^{\top}-\symbf{U} T_{n-2}(\tilde{\boldsymbol{\Lambda}}) \symbf{U}^{\top} \nonumber\\ 
@@ -428,6 +431,7 @@ $$
     &=&T_n(\tilde{\symbf{L}}) \nonumber
 \end{aligned}
 $$
+
   Q.E.D. 
 </div>
  
@@ -435,11 +439,13 @@ $$
  定理5.3より，式(5.17)はさらに以下のように簡単にかける：  
 
 $$
+
 \begin{aligned}
     \symbf{f}^{\prime} &=&\sum_{k=0}^{K} \theta_k \symbf{U} T_k(\tilde{\boldsymbol{\Lambda}}) \symbf{U}^{\top} \symbf{f} \nonumber\\ 
     &=&\sum_{k=0}^{K} \theta_k T_k(\tilde{\symbf{L}}) \symbf{f} \nonumber
 \end{aligned}
 $$
+
   したがって，チェビシェフフィルタは多項式フィルタの長所を活かしつつ，学習過程でのパラメータの微小変化に対してより安定になる．
 
 #### GCNフィルタ：単純化された1次のチェビシェフフィルタ
@@ -447,15 +453,18 @@ $$
 チェビシェフフィルタは，ノードの特徴量を計算する際に，ノードのK次近傍の情報を使う． Kipf and Welling (2016a)では，GCNフィルタと名付けられた，チェビシェフフィルタの簡易版が提案されている． チェビシェフ多項式の次数を $K=1$ とし， $\lambda_{\max } \approx 2$ と近似することでチェビシェフフィルタを以下のように簡略化する：  
 
 $$
+
 \begin{aligned}
     \gamma(\boldsymbol{\Lambda}) &=&\theta_0 T_0(\tilde{\boldsymbol{\Lambda}})+\theta_1 T_1(\tilde{\boldsymbol{\Lambda}}) \nonumber\\ 
     &=&\theta_0 \symbf{I}+\theta_1 \tilde{\boldsymbol{\Lambda}} \nonumber\\ 
     &=&\theta_0 \symbf{I}+\theta_1(\boldsymbol{\Lambda}-\symbf{I}) \nonumber
 \end{aligned}
 $$
+
   これに対応して，グラフ信号 $\symbf{f}$ にGCNフィルタを適用することで，出力信号 $\symbf{f}^{\prime}$ を次のように得ることができる：  
 
 $$
+
 \begin{aligned}
     \symbf{f}^{\prime} &=&\symbf{U} \gamma(\boldsymbol{\Lambda}) \symbf{U}^{\top} \symbf{f} \nonumber\\ 
     &=&\theta_0 \symbf{U I} \symbf{U}^{\top} \symbf{f}+\theta_1 \symbf{U}(\boldsymbol{\Lambda}-\symbf{I}) \symbf{U}^{\top} \symbf{f} \nonumber\\ 
@@ -465,9 +474,11 @@ $$
 \end{aligned}
 \tag{5.18}
 $$
+
   なお，式(5.18)は，定義2.29の正規化ラプラシアン行列( $\symbf{L}=\symbf{I}-\symbf{D}^{-\frac{1}{2}} \symbf{A} \symbf{D}^{-\frac{1}{2}}$ )を用いることで成り立つ． さらに， $\theta=\theta\_0=-\theta\_1$ とすることで式(5.18)は次のように簡略化することができる：  
 
 $$
+
 \begin{aligned}
     \symbf{f}^{\prime} &=&\theta_0 \symbf{f}-\theta_1\left(\symbf{D}^{-\frac{1}{2}} \symbf{A} \symbf{D}^{\frac{1}{2}}\right) \symbf{f} \nonumber\\ 
     &=&\theta\left(\symbf{I}+\symbf{D}^{-\frac{1}{2}} \symbf{A} \symbf{D}^{-\frac{1}{2}}\right) \symbf{f}
@@ -475,13 +486,16 @@ $$
 \end{aligned}
 \tag{5.19}
 $$
+
   ここで，行列 $\symbf{I}+\symbf{D}^{-\frac{1}{2}} \symbf{A} \symbf{D}^{-\frac{1}{2}}$ の固有値の範囲は $[0,2]$ である[^1]．
 
 そのため， 信号 $\symbf{f}$ に対してこの操作を繰り返し行った場合，数値的に不安定になったり勾配の爆発/消失が発生する可能性がある． この問題に対処するために，"renormalization trick"による変換が提案されている．これは， $\tilde{\symbf{A}}=\symbf{A}+\symbf{I}$ と $\tilde{\symbf{D}}\_{i i}=\sum_j \tilde{\symbf{A}}\_{i, j}$ を導入することで，式(5.19)の $\symbf{I}+\symbf{D}^{-\frac{1}{2}} \symbf{A} \symbf{D}^{-\frac{1}{2}}$ を $\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}$ に置き換える変換である．最終的に，GCNフィルタは次のように定義される：
 
- $$ \symbf{f}^{\prime}=\theta \tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}} \symbf{f}
+ $$
+ \symbf{f}^{\prime}=\theta \tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}} \symbf{f}
     
-\tag{5.20} $$ 
+\tag{5.20} $$
+ 
 
  $\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}$ の $(i,j)$ 要素は，ノード $v_i,\, v_j$ が隣接している場合にのみ非ゼロとなる． このプロセスは，1つのノードに注目すると，「そのノード自身を1次近傍（自己ループ）である」とみなしたうえで，そのノードの1次近傍の情報を集約していると解釈できる． したがって，GCNフィルタは，ノードの特徴を更新する際に，直接つながった近傍ノードのみを含む，空間型グラフフィルタと見なすことができる．
 
@@ -491,10 +505,8 @@ $$
 
  
 
-
-
-$$ \symbf{f}_{o u t}=\sum_{d=1}^{d_{i n}} \symbf{U} \cdot \gamma_d(\boldsymbol{\Lambda}) \cdot \symbf{U}^{\top} \symbf{F}_{:, d}\nonumber $$
-
+$$
+ \symbf{f}_{o u t}=\sum_{d=1}^{d_{i n}} \symbf{U} \cdot \gamma_d(\boldsymbol{\Lambda}) \cdot \symbf{U}^{\top} \symbf{F}_{:, d}\nonumber $$
 
 
  
@@ -505,10 +517,8 @@ $$ \symbf{f}_{o u t}=\sum_{d=1}^{d_{i n}} \symbf{U} \cdot \gamma_d(\boldsymbol{\
 
  
 
-
-
-$$ \symbf{F}_{:, j}^{\prime}=\sum_{d=1}^{d_{i n}} \symbf{U} \cdot \gamma_{j, d}(\boldsymbol{\Lambda}) \cdot \symbf{U}^{\top} \symbf{F}_{:, d} \quad \text { for } j=1, \ldots, d_{\text{out}} \nonumber $$
-
+$$
+ \symbf{F}_{:, j}^{\prime}=\sum_{d=1}^{d_{i n}} \symbf{U} \cdot \gamma_{j, d}(\boldsymbol{\Lambda}) \cdot \symbf{U}^{\top} \symbf{F}_{:, d} \quad \text { for } j=1, \ldots, d_{\text{out}} \nonumber $$
 
 
  
@@ -517,25 +527,27 @@ $$ \symbf{F}_{:, j}^{\prime}=\sum_{d=1}^{d_{i n}} \symbf{U} \cdot \gamma_{j, d}(
 
  
 
-
-
-$$ \symbf{F}_{:, j}^{\prime}=\sum_{d=1}^{d_{i n}} \theta_{j, d} \tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}} \symbf{F}_{:, d} \quad \text { for } j=1, \ldots, d_{\text{out}} \nonumber $$
-
+$$
+ \symbf{F}_{:, j}^{\prime}=\sum_{d=1}^{d_{i n}} \theta_{j, d} \tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}} \symbf{F}_{:, d} \quad \text { for } j=1, \ldots, d_{\text{out}} \nonumber $$
 
 
  
 
 さらに行列形式で書くと，
 
- $$ \symbf{F}^{\prime}=\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}} \symbf{F} \Theta
+ $$
+ \symbf{F}^{\prime}=\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}} \symbf{F} \Theta
     
-\tag{5.21} $$ 
+\tag{5.21} $$
+ 
 
 ここで， $\boldsymbol{\Theta} \in \mathbb{R}^{d_{\text{in}} \times d_{\text{out}}}$ である． また， $\boldsymbol{\Theta}\_{d, j}=\theta\_{j, d}$ は $j$ 番目の出力チャンネル， $d$ 番目の入力チャンネルに対応するパラメータである． 特に，1つのノード $v_i$ に対して，式(5.21)のフィルタ操作は次のように書くこともできる：
 
- $$ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup \left\{v_i\right\}}\left(\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}\right)_{i, j} \symbf{F}_j \boldsymbol{\Theta}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\}} \frac{1}{\sqrt{\tilde{d}_i \tilde{d}_j}} \symbf{F}_j \boldsymbol{\Theta}
+ $$
+ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup \left\\{v_i\right\\}}\left(\tilde{\symbf{D}}^{-\frac{1}{2}} \tilde{\symbf{A}} \tilde{\symbf{D}}^{-\frac{1}{2}}\right)_{i, j} \symbf{F}_j \boldsymbol{\Theta}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}} \frac{1}{\sqrt{\tilde{d}_i \tilde{d}_j}} \symbf{F}_j \boldsymbol{\Theta}
     
-\tag{5.22} $$ 
+\tag{5.22} $$
+ 
 
 ここで， $\tilde{d}\_i=\tilde{\symbf{D}}\_{i, i}$ であり， $\symbf{F}\_i \in \mathbb{R}^{1 \times d_{\text{out}}}$ は $\symbf{F}$ の $i$ 行目（すなわちノード $v_i$ の特徴量）を表す． 式(5.22)の操作はノード $v_i$ の1次近傍の情報を集約しているとみなすことができる．
 
@@ -549,10 +561,8 @@ GNNの概念はScarselli *et al*. (2008)で初めて提案された． 本GNNモ
 
  
 
-
-
-$$ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right)} g\left(l_i, \,\symbf{F}_j,\, l_j\right)\nonumber $$
-
+$$
+ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right)} g\left(l_i, \,\symbf{F}_j,\, l_j\right)\nonumber $$
 
 
  
@@ -564,6 +574,7 @@ $$ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right)} g\left(l_i, \
 GraphSAGEモデルはHamilton *et al*. (2017a)で提案された空間型フィルタで， このフィルタも近傍情報の集約に基づいている． ある一つのノード $v_i$ について，新しい特徴を生成する操作は次のように定式化することができる：  
 
 $$
+
 \begin{aligned}
     \mathcal{N}_S\left(v_i\right) &=&\operatorname{SAMPLE}\left(\mathcal{N}\left(v_i\right), S\right) \\ 
 \tag{5.23}
@@ -573,6 +584,7 @@ $$
 \end{aligned}
 \tag{5.25}
 $$
+
   ここで， $\operatorname{SAMPLE}(\cdot)$ は集合を入力とし，その入力からS個の要素をランダムにサンプリングして出力する関数である． また， $\operatorname{AGGREGATE}(\cdot)$ は隣接ノードの情報を集約する関数であり，  $\symbf{f}\_{\mathcal{N}_S\left(v_i\right)}^{\prime}$ は $\operatorname{AGGREGATE}(\cdot)$ 関数の出力を表す． そして， $[\cdot,\, \cdot]$ は連結操作(concatenation operation)を表す． したがって，ある一つのノード $v_i$ に対して，GraphSAGEモデルのフィルタの処理の流れは次のようになる．
 
 ::: description
@@ -593,10 +605,8 @@ Hamilton *et al*. (2017a)では，以下のように，様々な $\operatorname{
 
      
 
-
-
-$$ \symbf{f}_{N_S\left(v_i\right)}^{\prime}=\max \left(\left\{\alpha\left(\symbf{F}_j \boldsymbol{\Theta}_{\mathrm{pool}}\right), \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\}\right) \nonumber $$
-
+$$
+ \symbf{f}_{N_S\left(v_i\right)}^{\prime}=\max \left(\left\{\alpha\left(\symbf{F}_j \boldsymbol{\Theta}_{\mathrm{pool}}\right), \forall v_j \in \mathcal{N}_S\left(v_i\right)\right\}\right) \nonumber $$
 
 
  
@@ -611,18 +621,18 @@ GraphSAGEフィルタは，どの集約関数を用いても1ホップ近傍の�
 
 GATフィルタの詳細を説明する． ノード $v_i$ に対して，ノード $v_j \in \mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}$ の重要度スコアは次のように計算される:
 
- $$ e_{i j}=a\left(\symbf{F}_i \boldsymbol{\Theta},\, \symbf{F}_j \boldsymbol{\Theta}\right)
+ $$
+ e_{i j}=a\left(\symbf{F}_i \boldsymbol{\Theta},\, \symbf{F}_j \boldsymbol{\Theta}\right)
     
-\tag{5.26} $$ 
+\tag{5.26} $$
+ 
 
 ここで， $\boldsymbol{\Theta}$ は共通のパラメータ行列である．  $a(\cdot)$ は共通の"アテンション関数"であり，Veličković *et al*. (2017)では1層の順伝搬型ネットワークとしている：
 
  
 
-
-
-$$ a\left(\symbf{F}_i \boldsymbol{\Theta},\, \symbf{F}_j \boldsymbol{\Theta}\right)=\operatorname{LeakyReLU}\left(\symbf{a}^{\top}\left[\symbf{F}_i \boldsymbol{\Theta},\, \symbf{F}_j \boldsymbol{\Theta}\right]\right) \nonumber $$
-
+$$
+ a\left(\symbf{F}_i \boldsymbol{\Theta},\, \symbf{F}_j \boldsymbol{\Theta}\right)=\operatorname{LeakyReLU}\left(\symbf{a}^{\top}\left[\symbf{F}_i \boldsymbol{\Theta},\, \symbf{F}_j \boldsymbol{\Theta}\right]\right) \nonumber $$
 
 
  
@@ -631,25 +641,27 @@ $$ a\left(\symbf{F}_i \boldsymbol{\Theta},\, \symbf{F}_j \boldsymbol{\Theta}\rig
 
  
 
-
-
-$$ \alpha_{i j}=\frac{\exp \left(e_{i j}\right)}{\sum_{v_k \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\}} \exp \left(e_{i k}\right)} \nonumber $$
-
+$$
+ \alpha_{i j}=\frac{\exp \left(e_{i j}\right)}{\sum_{v_k \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\}} \exp \left(e_{i k}\right)} \nonumber $$
 
 
  
 
 ここで， $\alpha_{i j}$ は規格化された重要度スコアであり，ノード $v_i$ に対するノード $v_j$ の重要性を表す． この規格化された重要度スコアにより，ノード $v_i$ の新しい表現 $\symbf{F}\_i^{\prime}$ は次のように計算される：
 
- $$ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\}} \alpha_{i j} \symbf{F}_j \boldsymbol{\Theta}
+ $$
+ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}} \alpha_{i j} \symbf{F}_j \boldsymbol{\Theta}
     
-\tag{5.27} $$ 
+\tag{5.27} $$
+ 
 
 ここで， $\boldsymbol{\Theta}$ は式(5.26)と同じ変換行列である． セルフアテンション機構の学習過程を安定させるため，マルチヘッドアテンション機構(Vaswani *et al*., 2017)が採用されている． これは，式(5.27)の形の $M$ 個の独立なセルフアテンション機構（異なる $\boldsymbol{\Theta}^m$ と $\alpha_{i j}^m$ をもつ）が並列に実行される． そしてそれらの出力を連結することで，ノード $v_i$ の最終的な表現が生成される：
 
- $$ \symbf{F}_i^{\prime}=\|_{m=1}^{M} \sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\{v_i\right\}} \alpha_{i j}^{m} \symbf{F}_j \Theta^{m}
+ $$
+ \symbf{F}_i^{\prime}=\|_{m=1}^{M} \sum_{v_j \in \mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}} \alpha_{i j}^{m} \symbf{F}_j \Theta^{m}
     
-\tag{5.28} $$ 
+\tag{5.28} $$
+ 
 
 ここで，連結操作に対して $\|$ という表記を使っている． GATフィルタは空間的に局在化しており，各ノードの新しい特徴を生成するフィルタ操作において， 1次近傍のみが利用される． 本来のVeličković *et al*. (2017)のモデルでは，各セルフアテンション機構の出力に対して連結前に活性化関数が適用されていたが，便宜上の理由から，式(5.28)の定式化では活性化関数を含めなかった点に注意せよ．
 
@@ -659,10 +671,8 @@ $$ \alpha_{i j}=\frac{\exp \left(e_{i j}\right)}{\sum_{v_k \in \mathcal{N}\left(
 
  
 
-
-
-$$ \symbf{F}_i^{\prime}=\frac{1}{\left\|\mathcal{N}\left(v_i\right)\right\|} \sum_{v_j \in \mathcal{N}\left(v_i\right)} \symbf{F}_j \boldsymbol{\Theta}_{t p\left(v_i, v_j\right)} \nonumber $$
-
+$$
+ \symbf{F}_i^{\prime}=\frac{1}{\left\|\mathcal{N}\left(v_i\right)\right\|} \sum_{v_j \in \mathcal{N}\left(v_i\right)} \symbf{F}_j \boldsymbol{\Theta}_{t p\left(v_i, v_j\right)} \nonumber $$
 
 
  
@@ -674,6 +684,7 @@ $$ \symbf{F}_i^{\prime}=\frac{1}{\left\|\mathcal{N}\left(v_i\right)\right\|} \su
 Li *et al*. (2015) で提案されたGGNNフィルタは, Scarselli *et al*. (2008)で提案された元々のGNNフィルタにGRU（Gated recurrent unit, GRUの詳細は3.4節参照）を適用したものである． GGNNフィルタは，有向エッジを持ち，かつ異なる種類のエッジを持つグラフに対して考案されたフィルタである． 具体的には，エッジ $\left(v_i, v_j\right) \in \mathcal{E}$ について，エッジの種類を $t p\left(v_i, v_j\right)$ と表す． エッジには向きがあるので，エッジ $\left(v_i,\, v_j\right)$ と $\left(v_j,\, v_i\right)$ は異なる種類のエッジになりうる（ $t p\left(v_i,\, v_j\right) \neq t p\left(v_j,\, v_i\right)$ ）． ノード $v_i$ に対するGGNNフィルタのフィルタ操作は次のように定式化することができる．  
 
 $$
+
 \begin{aligned}
     \symbf{m}_i &=&\sum_{\left(v_j, v_i\right) \in \mathcal{E}} \symbf{F}_j \boldsymbol{\Theta}_{t p\left(v_j, v_i\right)}^{e} \\ 
 \tag{5.29}
@@ -685,6 +696,7 @@ $$
 \end{aligned}
 \tag{5.33}
 $$
+
   ここで， $\boldsymbol{\Theta}\_{t p\left(v_j, v_i\right)}^{e}, \boldsymbol{\Theta}^{z}, \boldsymbol{\Theta}^{r}, \boldsymbol{\Theta}$ は学習対象のパラメータである．
 
 最初のステップである式(5.29)では，ノート $v_i$ の近傍ノード（ノード $v_i$ に向かうエッジを持つノード，ノード $v_i$ から出るエッジを持つノード両方）の情報を集約する． この集約の際，変換行列 $\boldsymbol{\Theta}\_{t p\left(v_j, v_i\right)}^{e}$ は， $v_i$ にエッジの種類 $t p\left(v_i,\, v_j\right)$ でつながるすべてのノードで共通である．
@@ -692,12 +704,14 @@ $$
 残りのステップ（式(5.30)から式(5.33)）はGRUに対応しており，前で得た集約情報 $\symbf{m}_i$ を用いて隠れ表現を更新する．  $\symbf{z}_i,\, \symbf{r}\_i$ は更新ゲートとリセットゲートで，  $\sigma(\cdot)$ はシグモイド関数， $\odot$ はアダマール操作を表す． したがって，GNNフィルタは次のように書くこともできる：  
 
 $$
+
 \begin{aligned}
     \symbf{m}_i &=&\sum_{\left(v_j, v_i\right) \in \mathcal{E}} \symbf{F}_j \Theta_{t p\left(v_j, v_i\right)}^{e} \\ 
     \symbf{F}_i^{\prime} &=&\operatorname{GRU}\left(\symbf{m}_i, \symbf{F}_i\right)
 \end{aligned}
 \tag{5.35}
 $$
+
   ここで，式(5.35)は式(5.30)から式(5.33)までをまとめた形になっている．
 
 #### Moフィルタ
@@ -706,10 +720,8 @@ Monti *et al*. (2017)では，グラフや多様体といった非ユークリ�
 
  
 
-
-
-$$ c\left(v_i,\, v_j\right)=\left(\frac{1}{\sqrt{d_i}}, \frac{1}{\sqrt{d_j}}\right)^{\top} $$
-
+$$
+ c\left(v_i,\, v_j\right)=\left(\frac{1}{\sqrt{d_i}}, \frac{1}{\sqrt{d_j}}\right)^{\top} $$
 
 
  
@@ -718,28 +730,26 @@ $$ c\left(v_i,\, v_j\right)=\left(\frac{1}{\sqrt{d_i}}, \frac{1}{\sqrt{d_j}}\rig
 
  
 
-
-
-$$ \alpha_{i, j}=\exp \left(-\frac{1}{2}\left(c\left(v_i, v_j\right)-\mu\right)^{\top} \boldsymbol{\Sigma}^{-1}\left(c\left(v_i, v_j\right)-\mu\right)\right) $$
-
+$$
+ \alpha_{i, j}=\exp \left(-\frac{1}{2}\left(c\left(v_i, v_j\right)-\mu\right)^{\top} \boldsymbol{\Sigma}^{-1}\left(c\left(v_i, v_j\right)-\mu\right)\right) $$
 
 
  
 
 ここで， $\mu$ と $\Sigma$ は学習対象のガウスカーネルの平均ベクトルと共分散行列である （なお，元の疑似座標をそのまま用いる代わりに，まず順伝搬型ネットワークを使って $c\left(v_i, v_j\right)$ を変換しても良い）． 集約プロセスは次のようになる：
 
- $$ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right)} \alpha_{i, j} \symbf{F}_j
+ $$
+ \symbf{F}_i^{\prime}=\sum_{v_j \in \mathcal{N}\left(v_i\right)} \alpha_{i, j} \symbf{F}_j
     
-\tag{5.38} $$ 
+\tag{5.38} $$
+ 
 
 式(5.38)においては，1つのガウスカーネルが使われているが，一般的には $K$ 個の異なるカーネルが使われる：
 
  
 
-
-
-$$ \symbf{F}_i^{\prime}=\sum_{k=1}^{K} \sum_{v_j \in \mathcal{N}\left(v_i\right)} \alpha_{i, j}^{(k)} \symbf{F}_j\nonumber $$
-
+$$
+ \symbf{F}_i^{\prime}=\sum_{k=1}^{K} \sum_{v_j \in \mathcal{N}\left(v_i\right)} \alpha_{i, j}^{(k)} \symbf{F}_j\nonumber $$
 
 
  
@@ -753,6 +763,7 @@ Message Passing Neural Networks (MPNN)は一般的なGNNのフレームワーク
  
 
 $$
+
 \begin{aligned}
     \symbf{m}_i&=\sum_{v_j \in \mathcal{N}\left(v_i\right)} M\left(\symbf{F}_i, \symbf{F}_j, \symbf{e}_{\left(v_i, v_j\right)}\right)
 \tag{5.39} \\
@@ -760,6 +771,7 @@ $$
 \end{aligned}
 \tag{5.40}
 $$
+
  
 
 ここで， $M(\cdot)$ はメッセージ関数， $U(\cdot)$ は更新関数，そして，もしエッジの特徴量が利用可能なら，それは $\symbf{e}_{\left(v_i, v_j\right)}$ と表現される． メッセージ関数 $M(\cdot)$ は，近傍ノードからノード $v_i$ に伝搬させるメッセージを生成する． 更新関数 $U(\cdot)$ は，ノード $v_i$ が持つ特徴量と近傍ノードの特徴量の集約情報を組み合わせて，ノードの特徴量を更新する． 式(5.39)の集約操作を別の操作に置き換えることでフレームワークのさらなる一般化が可能となる．

@@ -11,10 +11,8 @@
 
  
 
-
-
-$$ \symbf{F}^{(i)}=h_i\left(\symbf{A}, \alpha_{i-1}\left(\symbf{F}^{(i-1)}\right)\right) \nonumber $$
-
+$$
+ \symbf{F}^{(i)}=h_i\left(\symbf{A}, \alpha_{i-1}\left(\symbf{F}^{(i-1)}\right)\right) \nonumber $$
 
 
  
@@ -34,6 +32,7 @@ $$ \symbf{F}^{(i)}=h_i\left(\symbf{A}, \alpha_{i-1}\left(\symbf{F}^{(i-1)}\right
 グラフに焦点を当てたタスクのためのGNNのフレームワークは， グラフフィルタリング層，活性化層，グラフプーリング層の3種類の層から構成されている． グラフフィルタリング層と活性化層は，ノードに焦点を当てたタスクの場合のフレームワークと同様の機能を持つ． これらの層はより良いノードの特徴量を生成するために使用される． 他方でグラフプーリング層は，ノードの特徴量を集約し，グラフ全体の情報を捉えることができるより高次の特徴量を生成するために利用される． 一般に，グラフプーリング層は，一連のグラフフィルタリング層と活性化層の後に続く． グラフプーリング層の後に，より抽象的で高次のノードの特徴量を持つ，粗化されたグラフが生成される． これらの層は図5.4に示すようなブロックとしてまとめることができる． ここで， $h_i,\, \alpha_i,\, p$ はそれぞれ，このブロック内の $i$ 番目のフィルタリング層， $i$ 番目の活性化層，およびプーリング層を表す． ブロックの入力はグラフ $\mathcal{G}\_{\text{ib}}=\left\\{\mathcal{V}\_{\text{ib}},\, \mathcal{E}\_{\text{ib}}\right\\}$ の隣接行列 $\symbf{A}^{(\text{ib})}$ と特徴量 $\symbf{F}^{(\text{ib})}$ であり， ブロックの出力は新たに生成された，粗化されたグラフ $\mathcal{G}\_{\text{ob}}=\left\\{V_{\text{ob}},\, \mathcal{E}\_{\text{ob}}\right\\}$ の隣接行列 $\symbf{A}^{(\text{ob})}$ と特徴量 $\symbf{F}^{(\text{ob})}$ である． ブロックにおける計算手順は次のように定式化することができる．  
 
 $$
+
 \begin{aligned}
     &&\symbf{F}^{(i)}=h_i\left(\symbf{A}^{(\text{ib})},\, \alpha_{i-1}\left(\symbf{F}^{(i-1)}\right)\right) \quad \text { for } \quad i=1, \ldots, k \nonumber \\
     &&\symbf{A}^{(\text{ob})},\, \symbf{F}^{(\text{ob})}=p\left(\symbf{A}^{(\text{ib})},\, \symbf{F}^{(k)}\right)
@@ -41,12 +40,11 @@ $$
 \end{aligned}
 \tag{5.3}
 $$
+
   ここで， $\alpha_i\;(i\neq 0)$ は活性化関数， $\alpha_0$ は恒等変換である．よって $\symbf{F}^{(0)}=\symbf{F}^{(\text{ib})}$ が成り立つ． 以上の計算は次のようにまとめることができる：  
 
-
-
-$$ \symbf{A}^{(o b)},\, \symbf{F}^{(\text{ob})}=B\left(\symbf{A}^{(\text{ib})},\, \symbf{F}^{(\text{ib})}\right) $$
-
+$$
+ \symbf{A}^{(o b)},\, \symbf{F}^{(\text{ob})}=B\left(\symbf{A}^{(\text{ib})},\, \symbf{F}^{(\text{ib})}\right) $$
 
 
  
@@ -61,9 +59,11 @@ $$ \symbf{A}^{(o b)},\, \symbf{F}^{(\text{ob})}=B\left(\symbf{A}^{(\text{ib})},\
 
 図5.5に示すように，GNN全体はさらに一つ以上のブロックから構成される．  $L$ 個のブロックからなるGNNの計算過程は次のように定式化することができる：
 
- $$ \symbf{A}^{(j)},\, \symbf{F}^{(j)}=B^{(j)}\left(\symbf{A}^{(j-1)}, \symbf{F}^{(j-1)}\right) \quad \text { for } \quad j=1, \ldots, L
+ $$
+ \symbf{A}^{(j)},\, \symbf{F}^{(j)}=B^{(j)}\left(\symbf{A}^{(j-1)}, \symbf{F}^{(j-1)}\right) \quad \text { for } \quad j=1, \ldots, L
     
-\tag{5.4} $$ 
+\tag{5.4} $$
+ 
 
 ここで， $\symbf{F}^{(0)}=\symbf{F}$ と $\symbf{A}^{(0)}=\symbf{A}$ はそれぞれ，元のグラフの初めの特徴量と隣接行列を表す． 式(5.4)に示したように，ブロックの出力がその後に続くブロックの入力となっている． ブロックが一つだけの場合(つまり $L=1$ のとき)，GNNは元のグラフから直接グラフ全体の特徴量を生成することになるため，この場合GNNのフレームワークは「フラットである」とされる． このことからプーリング層付きのGNNのフレームワークは， $L>1$ のときに階層的であるとみなすことができる． これらのブロックを通過する間，ノードの特徴量は次々に集約されていき，より多くの粗化されたグラフが生成されていくことで，グラフ全体の特徴量が形成されていくことになる．
 
