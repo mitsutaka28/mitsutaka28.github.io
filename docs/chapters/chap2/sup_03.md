@@ -206,3 +206,129 @@ components = list(nx.connected_components(G))
 # 連結成分を出力
 print(""連結成分:"", components)
 ```
+## 最短パス
+最短パスとは、グラフ内の2つのノード間をつなぐパスのうち、エッジの数（または重みの合計）が最も少ないパスを指します。
+### numpy
+```python
+import numpy as np
+from scipy.sparse.csgraph import dijkstra
+
+# 隣接行列の定義
+A = np.array([
+    [0, 1, 1, 0, 0, 0],
+    [1, 0, 1, 0, 0, 0],
+    [1, 1, 0, 1, 0, 0],
+    [0, 0, 1, 0, 1, 1],
+    [0, 0, 0, 1, 0, 1],
+    [0, 0, 0, 1, 1, 0]
+])
+
+# ダイクストラのアルゴリズムを用いて最短距離と最短パスを求める
+dist_matrix, predecessors = dijkstra(csgraph=A, directed=False, return_predecessors=True)
+
+# 開始ノードと終了ノード
+start_node, end_node = 0, 5
+
+# 最短パスを逆順に格納するリスト
+path = []
+i = end_node
+while i != start_node:
+    path.append(i)
+    i = predecessors[start_node, i]
+path.append(start_node)
+
+# 最短パスを正しい順序にする
+path = path[::-1]
+
+print('最短パス: ', path)
+```
+### networkx
+```python
+import networkx as nx
+
+# 隣接行列からグラフを作成
+G = nx.from_numpy_matrix(A)
+
+# 開始ノードと終了ノード
+start_node, end_node = 0, 5
+
+# 最短パスを求める
+path = nx.shortest_path(G, start_node, end_node)
+
+print('最短パス: ', path)
+```
+## 直径
+直径とは、グラフ内の全てのノードペア間の最短パスの中で最も長いものを指します。
+### numpy
+```python
+import numpy as np
+from scipy.sparse.csgraph import dijkstra
+
+# 隣接行列の定義
+A = np.array([
+    [0, 1, 1, 0, 0, 0],
+    [1, 0, 1, 0, 0, 0],
+    [1, 1, 0, 1, 0, 0],
+    [0, 0, 1, 0, 1, 1],
+    [0, 0, 0, 1, 0, 1],
+    [0, 0, 0, 1, 1, 0]
+])
+
+# ダイクストラのアルゴリズムを用いて最短距離と最短パスを求める
+dist_matrix, _ = dijkstra(csgraph=A, directed=False, return_predecessors=True)
+
+# グラフの直径を求める（無限大の値は無視する）
+diameter = np.max(dist_matrix[~np.isinf(dist_matrix)])
+# ■無限大について：
+# 全てのノードが連結していない（すなわち、グラフが複数の分離した部分グラフからなる）場合、
+# あるノードから別のノードへのパスが存在しないため、その距離は無限大と見なされます。
+# このような場合，ダイクストラのアルゴリズムを適用すると、無限大の距離が結果に含まれます。
+# そのため、無限大の値を無視する処理が必要になります。
+
+print('グラフの直径: ', diameter)
+```
+### networkx
+```python
+import networkx as nx
+
+# 隣接行列からグラフを作成
+G = nx.from_numpy_matrix(A)
+
+# グラフの直径を求める
+diameter = nx.diameter(G)
+
+print('グラフの直径: ', diameter)
+```
+## 次数中心性
+次数中心性とは、各ノードがどれだけ多くの他のノードとつながっているかを表す指標です。具体的には、あるノードの次数（接続しているエッジの数）をそのノードの次数中心性とします。
+### numpy
+```python
+import numpy as np
+
+# 定数グラフの作成
+A = np.array([
+    [0, 1, 1, 0, 0, 0],
+    [1, 0, 1, 1, 0, 0],
+    [1, 1, 0, 1, 1, 0],
+    [0, 1, 1, 0, 1, 0],
+    [0, 0, 1, 1, 0, 1],
+    [0, 0, 0, 0, 1, 0]
+])
+
+# 次数中心性の計算
+degree_centrality = np.sum(A, axis=1)
+
+print(""次数中心性: "", degree_centrality)
+```
+### networkx
+```python
+import networkx as nx
+
+# 定数グラフの作成
+G = nx.from_numpy_array(A)
+
+# 次数中心性の計算
+degree_centrality = nx.degree_centrality(G)
+
+print(""次数中心性: "", degree_centrality)
+```
