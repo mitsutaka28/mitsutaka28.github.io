@@ -41,6 +41,8 @@ f_hat = eigvecs.T @ f
 print(f_hat)
 ```
 
+### networkx
+
 [メインページ](../../index.markdown)
 
 [章目次](./chap2.md)
