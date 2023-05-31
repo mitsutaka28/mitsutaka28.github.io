@@ -125,3 +125,7 @@ L = nx.normalized_laplacian_matrix(G).toarray()
 
 print(L)
 ```
+
+[メインページ](../../index.markdown)
+
+[章目次](./chap2.md)
