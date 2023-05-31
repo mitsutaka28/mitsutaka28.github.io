@@ -332,3 +332,88 @@ degree_centrality = nx.degree_centrality(G)
 
 print(""次数中心性: "", degree_centrality)
 ```
+## 固有ベクトル中心性
+固有ベクトル中心性とは、各ノードがどれだけ多くの他の重要なノードとつながっているかを表す指標です。具体的には、あるノードの固有ベクトル中心性は、そのノードに接続されている他のノードの中心性の和として定義されます。つまり、接続されているノードが重要であればあるほど、そのノード自体も重要とされます。
+### numpy
+```python
+import numpy as np
+
+# 定数グラフの作成
+A = np.array([
+    [0, 1, 1, 0, 0, 0],
+    [1, 0, 1, 1, 0, 0],
+    [1, 1, 0, 1, 1, 0],
+    [0, 1, 1, 0, 1, 0],
+    [0, 0, 1, 1, 0, 1],
+    [0, 0, 0, 0, 1, 0]
+])
+
+# 固有値と固有ベクトルの計算
+eigvals, eigvecs = np.linalg.eig(A)
+
+# 最大固有値のインデックスを取得
+max_eigval_index = np.argmax(eigvals)
+
+# 対応する固有ベクトルを取得し、正規化
+eigenvector_centrality = eigvecs[:, max_eigval_index]
+eigenvector_centrality = eigenvector_centrality / np.linalg.norm(eigenvector_centrality)
+
+print(""固有ベクトル中心性: "", eigenvector_centrality)
+```
+### networkx
+```python
+import networkx as nx
+
+# 定数グラフの作成
+G = nx.from_numpy_array(A)
+
+# 固有ベクトル中心性の計算
+eigenvector_centrality = nx.eigenvector_centrality(G)
+
+print(""固有ベクトル中心性: "", eigenvector_centrality)
+```
+## Katz中心性
+Katz中心性とは、各ノードがどれだけ多くの他のノードとつながっているかを表す指標で、そのノードに接続されている他のノードの中心性の和に加えて、ある定数を足すことで計算されます。この定数は、全てのノードに対して同一の値を与え、グラフ全体の中心性スコアを上げる役割を持ちます。
+### numpy
+```python
+import numpy as np
+
+# 定数グラフの作成
+A = np.array([
+    [0, 1, 1, 0, 0, 0],
+    [1, 0, 1, 1, 0, 0],
+    [1, 1, 0, 1, 1, 0],
+    [0, 1, 1, 0, 1, 0],
+    [0, 0, 1, 1, 0, 1],
+    [0, 0, 0, 0, 1, 0]
+])
+
+# 最大固有値を計算
+lambda_max = max(np.linalg.eigvals(A))
+
+# alphaとbetaの設定
+alpha = 1/lambda_max * 0.8  # lambda_maxより小さくする
+beta = 1
+
+# Katz中心性の計算
+I = np.identity(A.shape[0])
+katz_centrality = np.linalg.inv(I - alpha * A) @ (beta * np.ones(A.shape[0]))
+
+print(""Katz中心性: "", katz_centrality)
+```
+### networkx
+```python
+import networkx as nx
+
+# 定数グラフの作成
+G = nx.from_numpy_array(A)
+
+# Katz中心性の計算
+katz_centrality = nx.katz_centrality(G, alpha=alpha, beta=beta)
+
+print(""Katz中心性: "", katz_centrality)
+```
+### 備考
+- これらのコードは、各ノードのKatz中心性を計算しています。
+- 値alphaは最大固有値の逆数より小さい値を選び、betaは一般的に1を選択します。
+- alphaの選択は重要で、値が大きすぎると計算結果が不安定になり、小さすぎると全てのノードの中心性がほぼ同じになってしまいます。
