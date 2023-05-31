@@ -40,3 +40,7 @@ f_hat = eigvecs.T @ f
 
 print(f_hat)
 ```
+
+[メインページ](../../index.markdown)
+
+[章目次](./chap2.md)
