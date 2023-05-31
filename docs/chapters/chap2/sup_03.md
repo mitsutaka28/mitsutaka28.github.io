@@ -417,3 +417,64 @@ print(""Katz中心性: "", katz_centrality)
 - これらのコードは、各ノードのKatz中心性を計算しています。
 - 値alphaは最大固有値の逆数より小さい値を選び、betaは一般的に1を選択します。
 - alphaの選択は重要で、値が大きすぎると計算結果が不安定になり、小さすぎると全てのノードの中心性がほぼ同じになってしまいます。
+
+## 媒介中心性
+媒介中心性は、ネットワーク上の全ての最短経路のうち、あるノードを通る経路の割合に基づいてノードの重要度を計測する中心性指標です。すなわち、あるノードが他のノード間の通信にどれだけ介在するかを示します。式で表すと、ノード $v_i$ の媒介中心性 $c_b(v_i)$ は以下のように定義されます：
+
+$$
+c_b(v_i) = \sum_{v_s\neq v_i\neq v_t}\frac{\sigma_{st}(v_i)}{\sigma_{st}}
+$$
+
+ここで、 $\sigma_{st}$ はノード $v_s$ からノード $v_t$ までの全最短パスの数を、 $\sigma_{st}(v_i)$ は全最短パスのうち $v_i$ を通るパスの個数を表します。
+
+### numpy
+```python
+import numpy as np
+from scipy.sparse.csgraph import floyd_warshall
+
+# 隣接行列の定義
+A = np.array([
+    [0, 1, 1, 0, 0, 0],
+    [1, 0, 1, 0, 0, 0],
+    [1, 1, 0, 1, 0, 0],
+    [0, 0, 1, 0, 1, 1],
+    [0, 0, 0, 1, 0, 1],
+    [0, 0, 0, 1, 1, 0],
+])
+
+# 最短経路長の行列（Floyd-Warshall法を使用）
+dist_matrix = floyd_warshall(A)
+
+N = A.shape[0]  # ノード数
+betweenness_centrality = np.zeros(N)
+
+# 媒介中心性の計算
+for i in range(N):
+    for j in range(i+1, N):
+        if i != j:
+            shortest_paths = np.where(dist_matrix[i] + dist_matrix[:, j] == dist_matrix[i, j])[0]  # iからjへの最短経路上のノード
+            betweenness_centrality[shortest_paths] += 1
+
+# 正規化
+betweenness_centrality = 2.0 * betweenness_centrality / ((N - 1) * (N - 2))
+
+print(betweenness_centrality)
+```
+### networkx
+```python
+import networkx as nx
+
+# 無向グラフの作成
+G = nx.Graph()
+
+# エッジの追加
+edges = [(0, 1), (0, 2), (1, 2), (2, 3), (3, 4), (3, 5), (4, 5)]
+G.add_edges_from(edges)
+
+# 媒介中心性の計算
+betweenness_centrality = nx.betweenness_centrality(G, normalized=True)
+
+print(betweenness_centrality)
+```
+### 備考
+- これらのコードは、媒介中心性を計算する一例であり、実際の計算はグラフの構造や目的に応じて変更する必要があります。また、これらのコードは最短経路の数が1つだけである場合を前提としています。最短経路が複数存在する場合は、これらのコードを適切に修正する必要があります。
