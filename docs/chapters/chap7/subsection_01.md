@@ -24,7 +24,7 @@
  
 
 $$
- \boldsymbol{\Theta} \left\arrow \boldsymbol{\Theta}-\eta \cdot \nabla_{\boldsymbol{\Theta}} \mathcal{L}_{\text {train }}\nonumber $$
+ \boldsymbol{\Theta} \leftarrow \boldsymbol{\Theta}-\eta \cdot \nabla_{\boldsymbol{\Theta}} \mathcal{L}_{\text {train }}\nonumber $$
 
 
  
