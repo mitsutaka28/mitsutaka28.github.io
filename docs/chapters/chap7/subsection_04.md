@@ -29,9 +29,7 @@ $$
  p((u, v))=\frac{\left(\frac{1}{d(u)+d(v)}\right)}{\sum_{\left(u^{\prime}, v^{\prime}\right) \in \mathcal{E}}\left(\frac{1}{d\left(u^{\prime}\right)+d\left(v^{\prime}\right)}\right)} $$
 
 
- 
-
-    ここで,  $d(v)$ はノード $v$ の次元を表す. サンプル抽出されたノード集合 $\mathcal{V}\_s$ は $m$ 個のサンプル抽出されたエッジの端点のノードから構成され, サブグラフ $\mathcal{G}\_s$ を誘導する.
+  ここで,  $d(v)$ はノード $v$ の次元を表す. サンプル抽出されたノード集合 $\mathcal{V}\_s$ は $m$ 個のサンプル抽出されたエッジの端点のノードから構成され, サブグラフ $\mathcal{G}\_s$ を誘導する.
 
 -   **RWベース抽出**
 
