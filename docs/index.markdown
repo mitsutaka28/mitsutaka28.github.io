@@ -15,7 +15,7 @@ layout: default
 ### 手法
 - [第4章 グラフ埋め込み](./chapters/chap4/chap4.md)
 - [第5章 グラフニューラルネットワーク](./chapters/chap5/chap5.md)
-- [第6章 ロバストなグラフニューラルネットワーク](./chapters/chap6/chap6.md)
+- [第6章 グラフニューラルネットワークの敵対的ロバスト](./chapters/chap6/chap6.md)
 - [第7章 スケーラブルなグラフニューラルネットワーク](./chapters/chap7/chap7.md)
 - [第8章 複雑グラフ上のグラフニューラルネットワーク](./chapters/chap8/chap8.md)
 - [第9章 GNNのその先へ：グラフ上の深層学習モデル](./chapters/chap9/chap9.md)
