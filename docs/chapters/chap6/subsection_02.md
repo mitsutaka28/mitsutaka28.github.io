@@ -132,7 +132,7 @@ $$
 
  
 
-ここで， $\mathcal{G}'=\left\\{\symbf{A}',\,\symbf{F}\,\right\\}$ は攻撃されたグラフ， $f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})\_i$ は $f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})$ の $i$ 行目を示している．また，  $\symbf{Z}' = f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})$ は，攻撃されたグラフ $\mathcal{G}'$ に対して式(5.48)のモデルを適用し計算した，各クラスの予測確率を示す出力である． なおこの式において，クラスラベル $y_i$ と $c$ は，ともに予測確率を取得するためのクラスインデックスとして使用していることに注意しよう． 具体的にいえば， $\symbf{Z}'_{i,y_i}$ は $\symbf{Z}'$ の $(i,\,y_i)$ 要素で，これはノード $v_i$ がクラス $y_i$ として予測される確率を示している． 式(6.3)の $\displaystyle \symbf{Z}'_{i,\,y_i} - \max\_{c\neq y_i}\symbf{Z}'_{i,\,c}$ は，「真のクラス $y_i$ と他の全クラスの中で最大の確信度を持つクラスとの間の予測確率の差」を測定しているため，予測が間違っている場合，この値は0より小さくなる． したがって，攻撃者の目標に対して，その値が0より大きい場合にはペナルティを課すようにしている． さらに式(6.3)中の $\kappa(> 0)$ は，「間違った予測をする確信度」である． これは， $\displaystyle\left(\symbf{Z}'_{i,\,y_i} - \max\_{c\neq y_i}\symbf{Z}'_{i,\,c}\right) > -\kappa$ となる場合に（損失が0以上という）ペナルティが与えられることを意味する． よって $\kappa$ の値を大きく設定するほど，ペナルティを免れるには予測が大幅に誤っている必要がある．
+ここで， $\mathcal{G}'=\left\\{\symbf{A}',\,\symbf{F}\,\right\\}$ は攻撃されたグラフ， $f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})\_i$ は $f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})$ の $i$ 行目を示している．また，  $\symbf{Z}' = f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})$ は，攻撃されたグラフ $\mathcal{G}'$ に対して式(5.48)のモデルを適用し計算した，各クラスの予測確率を示す出力である． なおこの式において，クラスラベル $y_i$ と $c$ は，ともに予測確率を取得するためのクラスインデックスとして使用していることに注意しよう． 具体的にいえば， $\symbf{Z}'\_{i,y_i}$ は $\symbf{Z}'$ の $(i,\,y_i)$ 要素で，これはノード $v_i$ がクラス $y_i$ として予測される確率を示している． 式(6.3)の $\displaystyle \symbf{Z}'\_{i,\,y_i} - \max\_{c\neq y_i}\symbf{Z}'\_{i,\,c}$ は，「真のクラス $y_i$ と他の全クラスの中で最大の確信度を持つクラスとの間の予測確率の差」を測定しているため，予測が間違っている場合，この値は0より小さくなる． したがって，攻撃者の目標に対して，その値が0より大きい場合にはペナルティを課すようにしている． さらに式(6.3)中の $\kappa(> 0)$ は，「間違った予測をする確信度」である． これは， $\displaystyle\left(\symbf{Z}'\_{i,\,y_i} - \max\_{c\neq y_i}\symbf{Z}'\_{i,\,c}\right) > -\kappa$ となる場合に（損失が0以上という）ペナルティが与えられることを意味する． よって $\kappa$ の値を大きく設定するほど，ペナルティを免れるには予測が大幅に誤っている必要がある．
 
 攻撃 $\mathcal{T}$ を行う攻撃者は，制約された変動範囲 $\Delta$ の中で，標的ノード集合 $\mathcal{V}\_t$ の全ノードに対して式(6.3)のCW損失を最小化するような $\symbf{S}$ を式(6.2)から見つけ出すことを目指す． 具体的には，これは以下の最適化問題として表現することができる：
 
@@ -271,7 +271,7 @@ $$
 
 ここで， $f_{\text{GNN}}(\cdot)$ は標的モデルであり， $\mathcal{L}\_{\text{tr}}$ は式(5.49)で定義されたように，学習データ $\mathcal{V}\_l$ でモデルを訓練するために使用される損失関数を表す． 敵対的攻撃を生成するために最適化されるべき損失関数は $\mathcal{L}\_{\text{atk}}$ である． 具体的には， $\symbf{\Theta}$ に関する1段階目の最適化問題は，攻撃されたグラフ $\mathcal{G}'$ が与えられた場合に，最適なモデルパラメータ $\symbf{\Theta}^{\ast}$ を見つけることを目指している． 一方，（1段階目の最適化問題を制約条件に含む）2段階目の最適化問題は，攻撃されたグラフ $\mathcal{G}'$ を生成するために $\mathcal{L}\_{\text{atk}}$ を最小化することを目指している． 攻撃者の目標は，ラベルのないノードの性能を低下させることであるため，理想的には， $\mathcal{L}\_{\text{atk}}$ は $\mathcal{V}\_u$ に基づいて定義されるべきである． しかしながら，ラベルがないため， $\mathcal{V}\_u$ に基づいた損失を直接計算することはできない．
 
-そこで代わりに2通りのアプローチを考える． 1つ目のアプローチは，「訓練誤差が大きい場合，モデルはうまく一般化できない」という主張に基づく． このアプローチでは $\mathcal{L}\_{\text{atk}}$ を $\mathcal{L}\_{\text{tr}}$ の負の値，つまり， $\mathcal{L}\_{\text{atk}}=-\mathcal{L}\_{\text{tr}}$ として定義することになる． 他方，（ $\mathcal{L}\_{\text{atk}}$ を定式化する）2つ目のアプローチは，元のグラフ $\mathcal{G}$ 上でよく学習された代理モデルを使ってラベルを持たないノードのラベルを予測し，この予測を「ラベル」として使用する方法である．具体的には，代理モデルによって予測されたラベルを持たないノード $\mathcal{V}\_u$ のラベルを $C'_u$ とする． このラベルを使った損失関数 $\mathcal{L}\_{\text{self}} = \mathcal{L}(f_{\text{GNN}}(\mathcal{G}';\,\symbf{\Theta}^{\ast}),\,C'_u)$ は，集合 $\mathcal{V}\_u$ 上での式(5.49)と同様に，「ラベル」 $C'_u$ と $f_{\text{GNN}}(\mathcal{G}';\,\symbf{\Theta}^{\ast})$ からの予測の不一致度を測定する． このアプローチにおける $\mathcal{L}\_{\text{atk}}$ のもう一つの定式化は， $\mathcal{L}\_{\text{atk}} = -\mathcal{L}\_{\text{self}}$ として定義される．
+そこで代わりに2通りのアプローチを考える． 1つ目のアプローチは，「訓練誤差が大きい場合，モデルはうまく一般化できない」という主張に基づく． このアプローチでは $\mathcal{L}\_{\text{atk}}$ を $\mathcal{L}\_{\text{tr}}$ の負の値，つまり， $\mathcal{L}\_{\text{atk}}=-\mathcal{L}\_{\text{tr}}$ として定義することになる． 他方，（ $\mathcal{L}\_{\text{atk}}$ を定式化する）2つ目のアプローチは，元のグラフ $\mathcal{G}$ 上でよく学習された代理モデルを使ってラベルを持たないノードのラベルを予測し，この予測を「ラベル」として使用する方法である．具体的には，代理モデルによって予測されたラベルを持たないノード $\mathcal{V}\_u$ のラベルを $C'\_u$ とする． このラベルを使った損失関数 $\mathcal{L}\_{\text{self}} = \mathcal{L}(f_{\text{GNN}}(\mathcal{G}';\,\symbf{\Theta}^{\ast}),\,C'\_u)$ は，集合 $\mathcal{V}\_u$ 上での式(5.49)と同様に，「ラベル」 $C'\_u$ と $f_{\text{GNN}}(\mathcal{G}';\,\symbf{\Theta}^{\ast})$ からの予測の不一致度を測定する． このアプローチにおける $\mathcal{L}\_{\text{atk}}$ のもう一つの定式化は， $\mathcal{L}\_{\text{atk}} = -\mathcal{L}\_{\text{self}}$ として定義される．
 
 以上考えた2通りのアプローチを組み合わせると，最終的に $\mathcal{L}\_{\text{atk}}$ は以下の2つの損失関数の組み合わせとして定義されることになる：  
 
@@ -289,14 +289,14 @@ $$
 \symbf{\Theta}^{\ast} = \underset{\symbf{\Theta}}{\operatorname{argmin}}\;\mathcal{L}_{\text{tr}}(f_{\text{GNN}}(\mathcal{G}';\symbf{\Theta})) $$
  
 
-メタ勾配は，式(6.9)の制約条件に従って，グラフ $\mathcal{G}$ の関数としてのパラメータ $\symbf{\Theta}$ に関連していることに注意． メタ勾配は，グラフ $\mathcal{G}$ の小さな変化が攻撃者が最小化を目指す損失関数 $\mathcal{L}\_{\text{atk}}$ にどのように影響するかを示し，グラフをどのように修正すべきかの指針となる． 式(6.8)の1段階目の最適化問題（式(6.9)の制約条件）は通常，解析的な解を持たない． 代わりに，基本的な勾配降下法や確率的勾配降下法（SGD）などの微分可能な最適化手法が採用され， これにより $\symbf{\Theta}^{\ast}$ が求められる． この最適化の手続きは， $\symbf{\Theta}^{\ast} = \operatorname{opt}_{\symbf{\Theta}}\mathcal{L}\_{\text{tr}}(f_{\text{GNN}}(\mathcal{G};\,\symbf{\Theta}))$ と表現できる． したがって，メタ勾配は以下のように最定式化することができる：
+メタ勾配は，式(6.9)の制約条件に従って，グラフ $\mathcal{G}$ の関数としてのパラメータ $\symbf{\Theta}$ に関連していることに注意． メタ勾配は，グラフ $\mathcal{G}$ の小さな変化が攻撃者が最小化を目指す損失関数 $\mathcal{L}\_{\text{atk}}$ にどのように影響するかを示し，グラフをどのように修正すべきかの指針となる． 式(6.8)の1段階目の最適化問題（式(6.9)の制約条件）は通常，解析的な解を持たない． 代わりに，基本的な勾配降下法や確率的勾配降下法（SGD）などの微分可能な最適化手法が採用され， これにより $\symbf{\Theta}^{\ast}$ が求められる． この最適化の手続きは， $\symbf{\Theta}^{\ast} = \operatorname{opt}\_{\symbf{\Theta}}\mathcal{L}\_{\text{tr}}(f_{\text{GNN}}(\mathcal{G};\,\symbf{\Theta}))$ と表現できる． したがって，メタ勾配は以下のように最定式化することができる：
 
  $$
  \nabla^{\text{meta}}_{\mathcal{G}} :=\nabla_{\mathcal{G}}\mathcal{L}_{\text{atk}}(f_{\text{GNN}}(\mathcal{G};\symbf{\Theta}^{\ast}))\quad\textit{s.t.}\quad
 \symbf{\Theta}^{\ast} = \underset{\symbf{\Theta}}{\operatorname{opt}}\;\mathcal{L}_{\text{tr}}(f_{\text{GNN}}(\mathcal{G}';\symbf{\Theta})) $$
  
 
-一例として，通常の勾配降下法による $\operatorname{opt}_{\symbf{\Theta}}$ は，次のように公式化できる：  
+一例として，通常の勾配降下法による $\operatorname{opt}\_{\symbf{\Theta}}$ は，次のように公式化できる：  
 
 $$
  \symbf{\Theta}_{t+1} = \symbf{\Theta}_t - \eta\cdot\nabla_{\symbf{\Theta}_t}\mathcal{L}_{\text{tr}}(f_{\text{GNN}}(\mathcal{G};\,\symbf{\Theta}))\quad (t=0,\dots, T-1) $$
