@@ -132,7 +132,7 @@ $$
 
  
 
-ここで， $\mathcal{G}'=\left\\{\symbf{A}',\,\symbf{F}\,\right\\}$ は攻撃されたグラフ， $f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})\_i$ は $f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})$ の $i$ 行目を示している．また，  $\symbf{Z}' = f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})$ は，攻撃されたグラフ $\mathcal{G}'$ に対して式(5.48)のモデルを適用し計算した，各クラスの予測確率を示す出力である． なおこの式において，クラスラベル $y_i$ と $c$ は，ともに予測確率を取得するためのクラスインデックスとして使用していることに注意しよう． 具体的にいえば， $\symbf{Z}'_{i,y_i}$ は $\symbf{Z}'$ の $(i,\,y_i)$ 要素で，これはノード $v_i$ がクラス $y_i$ として予測される確率を示している． 式(6.3)の $\displaystyle \symbf{Z}'_{i,\,y_i} - \max_{c\neq y_i}\symbf{Z}'_{i,\,c}$ は，「真のクラス $y_i$ と他の全クラスの中で最大の確信度を持つクラスとの間の予測確率の差」を測定しているため，予測が間違っている場合，この値は0より小さくなる． したがって，攻撃者の目標に対して，その値が0より大きい場合にはペナルティを課すようにしている． さらに式(6.3)中の $\kappa(> 0)$ は，「間違った予測をする確信度」である． これは， $\displaystyle\left(\symbf{Z}'_{i,\,y_i} - \max_{c\neq y_i}\symbf{Z}'_{i,\,c}\right) > -\kappa$ となる場合に（損失が0以上という）ペナルティが与えられることを意味する． よって $\kappa$ の値を大きく設定するほど，ペナルティを免れるには予測が大幅に誤っている必要がある．
+ここで， $\mathcal{G}'=\left\\{\symbf{A}',\,\symbf{F}\,\right\\}$ は攻撃されたグラフ， $f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})\_i$ は $f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})$ の $i$ 行目を示している．また，  $\symbf{Z}' = f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})$ は，攻撃されたグラフ $\mathcal{G}'$ に対して式(5.48)のモデルを適用し計算した，各クラスの予測確率を示す出力である． なおこの式において，クラスラベル $y_i$ と $c$ は，ともに予測確率を取得するためのクラスインデックスとして使用していることに注意しよう． 具体的にいえば， $\symbf{Z}'_{i,y_i}$ は $\symbf{Z}'$ の $(i,\,y_i)$ 要素で，これはノード $v_i$ がクラス $y_i$ として予測される確率を示している． 式(6.3)の $\displaystyle \symbf{Z}'_{i,\,y_i} - \max\_{c\neq y_i}\symbf{Z}'_{i,\,c}$ は，「真のクラス $y_i$ と他の全クラスの中で最大の確信度を持つクラスとの間の予測確率の差」を測定しているため，予測が間違っている場合，この値は0より小さくなる． したがって，攻撃者の目標に対して，その値が0より大きい場合にはペナルティを課すようにしている． さらに式(6.3)中の $\kappa(> 0)$ は，「間違った予測をする確信度」である． これは， $\displaystyle\left(\symbf{Z}'_{i,\,y_i} - \max\_{c\neq y_i}\symbf{Z}'_{i,\,c}\right) > -\kappa$ となる場合に（損失が0以上という）ペナルティが与えられることを意味する． よって $\kappa$ の値を大きく設定するほど，ペナルティを免れるには予測が大幅に誤っている必要がある．
 
 攻撃 $\mathcal{T}$ を行う攻撃者は，制約された変動範囲 $\Delta$ の中で，標的ノード集合 $\mathcal{V}\_t$ の全ノードに対して式(6.3)のCW損失を最小化するような $\symbf{S}$ を式(6.2)から見つけ出すことを目指す． 具体的には，これは以下の最適化問題として表現することができる：
 
@@ -183,7 +183,7 @@ $$
 \end{aligned}
 $$
 
-  ここでの $\symbf{H}$ は， $\symbf{A}$ または $\symbf{F}$ のいずれかを示し， $m$ は離散的なステップ数を示すハイパーパラメータである． 候補となる $\symbf{A},\,\symbf{F}$ の変化に対するIGスコアをそれぞれ $\operatorname{IG}_{\symbf{A}},\,\operatorname{IG}_{\symbf{F}}$ と記述する． これらは $\symbf{A}$ と $\symbf{F}$ の各要素の対応する変化が損失関数 $\mathcal{L}\_i$ にどのように影響するかを測っている． 次に，攻撃 $\mathcal{T}$ は $\operatorname{IG}_{\symbf{A}},\,\operatorname{IG}_{\symbf{F}}$ の中から最大のIGスコアを持つ行動を選択し，グラフ情報の変更（改ざん）を行う． 攻撃者は，結果として得られるグラフ $\mathcal{G}'\in\Phi(\mathcal{G})$ の条件を満たす限り，このプロセスを繰り返す（ここで， $\Phi(\mathcal{G})$ は式(6.1)で定義されている）．
+  ここでの $\symbf{H}$ は， $\symbf{A}$ または $\symbf{F}$ のいずれかを示し， $m$ は離散的なステップ数を示すハイパーパラメータである． 候補となる $\symbf{A},\,\symbf{F}$ の変化に対するIGスコアをそれぞれ $\operatorname{IG}\_{\symbf{A}},\,\operatorname{IG}\_{\symbf{F}}$ と記述する． これらは $\symbf{A}$ と $\symbf{F}$ の各要素の対応する変化が損失関数 $\mathcal{L}\_i$ にどのように影響するかを測っている． 次に，攻撃 $\mathcal{T}$ は $\operatorname{IG}\_{\symbf{A}},\,\operatorname{IG}\_{\symbf{F}}$ の中から最大のIGスコアを持つ行動を選択し，グラフ情報の変更（改ざん）を行う． 攻撃者は，結果として得られるグラフ $\mathcal{G}'\in\Phi(\mathcal{G})$ の条件を満たす限り，このプロセスを繰り返す（ここで， $\Phi(\mathcal{G})$ は式(6.1)で定義されている）．
 
 ### グレーボックス攻撃
 
@@ -228,7 +228,7 @@ $$
 
  
 
-ここで， $\symbf{\Theta}$ は $\symbf{\Theta}\_1$ と $\symbf{\Theta}\_2$ を含んだパラメータである． パラメータ $\symbf{\Theta}$ は，提供された訓練データを用いて，攻撃前のグラフ $\mathcal{G}$ を使って学習される． 代理モデルに基づいて敵対的攻撃を実行するために，式(6.5)のように，差を最大化する攻撃を見つけることを目指す． つまり， $\max_{c\neq y_i}\ln\symbf{Z}^{\text{sur}}_{i,c} - \ln\symbf{Z}^{\text{sur}}_{i,y_i}$ を最大化することになる． 最適化問題をさらに簡素化するために，個別のサンプルデータに依存しないソフトマックス正規化を取り除き，代わりに次のような**代理損失関数**(surrogate loss)が得られる：  
+ここで， $\symbf{\Theta}$ は $\symbf{\Theta}\_1$ と $\symbf{\Theta}\_2$ を含んだパラメータである． パラメータ $\symbf{\Theta}$ は，提供された訓練データを用いて，攻撃前のグラフ $\mathcal{G}$ を使って学習される． 代理モデルに基づいて敵対的攻撃を実行するために，式(6.5)のように，差を最大化する攻撃を見つけることを目指す． つまり， $\max\_{c\neq y_i}\ln\symbf{Z}^{\text{sur}}_{i,c} - \ln\symbf{Z}^{\text{sur}}_{i,y_i}$ を最大化することになる． 最適化問題をさらに簡素化するために，個別のサンプルデータに依存しないソフトマックス正規化を取り除き，代わりに次のような**代理損失関数**(surrogate loss)が得られる：  
 
 $$
  \mathcal{L}_{\text{sur}}(\symbf{A},\,\symbf{F};\,\symbf{\Theta},\,v_i) = \max_{c\neq y_i}\left([\tilde{\symbf{A}}^2\symbf{F}\symbf{\Theta}]_{i,c} - [\tilde{\symbf{A}}^2\symbf{F}\symbf{\Theta}]_{i,y_i}\right) $$
