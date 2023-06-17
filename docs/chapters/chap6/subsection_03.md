@@ -72,8 +72,7 @@ GraphAT (Feng *et al*., 2019a)という手法では，ノード特徴量に基�
 $$
 
 \begin{aligned}
-        
-\tag{6.14}
+
         \min_{\symbf{\Theta}}\symscr{L}_{\text{train}} + \beta\sum_{v_i\in\symscr{V}}\sum_{v_j\in\symscr{N}(v_i)}
 \end{aligned}
 $$
