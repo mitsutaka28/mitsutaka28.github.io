@@ -225,7 +225,7 @@ $$
  \symbf{\Theta}^{\prime}_i = \symbf{\Theta} - \alpha\nabla_{\symbf{\Theta}}\symscr{L}^{\text{tr}}_i(\symbf{\Theta}) $$
 
 
-  ここで， $\symbf{\Theta}^{\prime}_i$ はグラフ $\symbf{G}_i$ の学習タスクに対する特定のパラメータであり，  $\symscr{L}^{\text{tr}}_i$ は対応する学習ノード集合 $\symscr{V}^{i}_l$ で評価される式(6.17)の損失関数を表している． その後，すべてのグラフのテストノード集合 $\left\{\symscr{V}^{1}_u,\dots,\symscr{V}^{K}_u\right\}$ を用いて共有パラメータ $\symbf{\Theta}$ を更新し，学習された各クラス分類器がそれらのグラフでうまく機能するようにする． 以上より，メタ最適化の目的関数は次のようにまとめることができる：  $$
+  ここで， $\symbf{\Theta}^{\prime}_i$ はグラフ $\symbf{G}_i$ の学習タスクに対する特定のパラメータであり，  $\symscr{L}^{\text{tr}}_i$ は対応する学習ノード集合 $\symscr{V}^{i}_l$ で評価される式(6.17)の損失関数を表している． その後，すべてのグラフのテストノード集合 $\left\{\symscr{V}_u^{1},\dots,\symscr{V}_u^{K}\right\}$ を用いて共有パラメータ $\symbf{\Theta}$ を更新し，学習された各クラス分類器がそれらのグラフでうまく機能するようにする． 以上より，メタ最適化の目的関数は次のようにまとめることができる：  $$
  \min_{\symbf{\Theta}}\sum^{K}_{i=1}\symscr{L}^{\text{te}}_i(\symbf{\Theta}^{\prime}_i)=
     \min_{\symbf{\Theta}}\sum^{K}_{i=1}\symscr{L}^{\text{te}}_i\left(\theta - \alpha\nabla_{\symbf{\Theta}}\symscr{L}^{\text{tr}}_i(\symbf{\Theta})\right) $$
   ここで， $\symscr{L}^{\text{te}}_i\left(\symbf{\Theta}^{\prime}_i\right)$ は対応するテストノード集合 $\symscr{V}^{i}_u$ で評価された式(6.17)の損失関数を表している． そして共有パラメータ $\symbf{\Theta}$ は，以下のSGD(確率的勾配降下法)を使用して更新することができる：  
