@@ -11,7 +11,7 @@
 \tag{7.1} $$
  
 
-ここで,  $l()$ は損失関数である. で述べたように,  $f_{G C N}(\mathbf{A}, \mathbf{F} ; \boldsymbol{\Theta})$ は $L$ 層のGCnフィルター層からなる:
+ここで,  $l()$ は損失関数である. で述べたように,  $f\_{G C N}(\mathbf{A}, \mathbf{F} ; \boldsymbol{\Theta})$ は $L$ 層のGCnフィルター層からなる:
 
  $$
  \mathbf{F}^{(l)}=\hat{\mathbf{A}} \mathbf{F}^{(l-1)} \boldsymbol{\Theta}^{(l-1)}, \quad l=1, \ldots, L
@@ -29,7 +29,7 @@ $$
 
  
 
-ここで,  $\eta$ は学習率, 勾配 $\nabla\_{\boldsymbol{\Theta}} \mathcal{L}\_{\text {train }}$ は学習データ $\mathcal{V}\_l$ 全体について評価する必要がある. さらに, のようにGCNフィルターを設計したため,  $\mathcal{L}\_{\text {train }}$ をネットワーク上で順方向に評価するとき,  $\mathcal{V}$ のすべてのノードが計算に含まれることになる. これは各層ですべてのノード表現が計算されることによる. したがって, 各学習エポックにおける順方向のパスにおいて, すべてのノード表現と各グラフフィルター層のパラメータをメモリーに保持しておく必要がある. グラフが大きくなると, 必要なメモリーは膨大になる. 具体的には, 必要なメモリーを次のように計算することができる. 順方向に評価しているとき, 規格化した隣接行列 $\hat{\mathbf{A}}$ , すべての層のノード表現 $\mathbf{F}^{(l)}$ , すべての層のパラメータ $\boldsymbol{\Theta}^{(l)}$ はメモリー上に保持する必要がある. それぞれ,  $O(\|\mathcal{E}\|), O(L \cdot\|\mathcal{V}\| \cdot d), O\left(L \cdot d^{2}\right)$ だけ必要となる. したがって, 必要なメモリーは合計 $O\left(\|\mathcal{E}\|+L \cdot\|\mathcal{V}\| \cdot d+L \cdot d^{2}\right)$ である. グラフが大きいとき, すなわち $\|\mathcal{V}\|$ や $\|\mathcal{E}\|$ が大きいときにはメモリーに収まらなくなってしまう. さらに, のような計算は効率的ではない. というのも, では必要ないにも関わらず,  $\mathcal{V}\_u$ のラベル付けされていないノードの最終的な表現（もしくは $L$ 層目以降の表現）も計算されているからである. つまり, 順方向のプロセスを全エポック行うのに $O\left(L \cdot\left(\|\mathcal{E}\| \cdot d+\|\mathcal{V}\| \cdot d^{2}\right)\right)=O\left(L \cdot\|\mathcal{V}\| \cdot d^{2}\right)$ だけの計算が必要になる. これまでの深層学習では, 学習時に必要なメモリーを減らす自然なアイディアに確率的勾配降下法（Stochastic Gradient Descent, SGD）があった. すべての学習データを使うのではなく, 一部の学習データを用いることで勾配を表丘する. しかし, グラフ構造のデータにSGDを用いるのは他の深層学習の場合ほど簡単ではない. の学習データはグラフ内の他のグラフデータとつながっているからである. ノード $v_i$ についての損失 $\ell\left(f_{G C N}(\mathbf{A}, \mathbf{F} ; \boldsymbol{\Theta})_i, y_i\right)$ を計算するためには, のようなグラフーフィルター操作によって, 他のたくさんのノードの表現（あるいは隣接行列が示すグラフ全体）が関係することになる. この計算をよりはっきりと理解するために, ノード $v_i$ に注目してをみてみよう:
+ここで,  $\eta$ は学習率, 勾配 $\nabla\_{\boldsymbol{\Theta}} \mathcal{L}\_{\text {train }}$ は学習データ $\mathcal{V}\_l$ 全体について評価する必要がある. さらに, のようにGCNフィルターを設計したため,  $\mathcal{L}\_{\text {train }}$ をネットワーク上で順方向に評価するとき,  $\mathcal{V}$ のすべてのノードが計算に含まれることになる. これは各層ですべてのノード表現が計算されることによる. したがって, 各学習エポックにおける順方向のパスにおいて, すべてのノード表現と各グラフフィルター層のパラメータをメモリーに保持しておく必要がある. グラフが大きくなると, 必要なメモリーは膨大になる. 具体的には, 必要なメモリーを次のように計算することができる. 順方向に評価しているとき, 規格化した隣接行列 $\hat{\mathbf{A}}$ , すべての層のノード表現 $\mathbf{F}^{(l)}$ , すべての層のパラメータ $\boldsymbol{\Theta}^{(l)}$ はメモリー上に保持する必要がある. それぞれ,  $O(\|\mathcal{E}\|), O(L \cdot\|\mathcal{V}\| \cdot d), O\left(L \cdot d^{2}\right)$ だけ必要となる. したがって, 必要なメモリーは合計 $O\left(\|\mathcal{E}\|+L \cdot\|\mathcal{V}\| \cdot d+L \cdot d^{2}\right)$ である. グラフが大きいとき, すなわち $\|\mathcal{V}\|$ や $\|\mathcal{E}\|$ が大きいときにはメモリーに収まらなくなってしまう. さらに, のような計算は効率的ではない. というのも, では必要ないにも関わらず,  $\mathcal{V}\_u$ のラベル付けされていないノードの最終的な表現（もしくは $L$ 層目以降の表現）も計算されているからである. つまり, 順方向のプロセスを全エポック行うのに $O\left(L \cdot\left(\|\mathcal{E}\| \cdot d+\|\mathcal{V}\| \cdot d^{2}\right)\right)=O\left(L \cdot\|\mathcal{V}\| \cdot d^{2}\right)$ だけの計算が必要になる. これまでの深層学習では, 学習時に必要なメモリーを減らす自然なアイディアに確率的勾配降下法（Stochastic Gradient Descent, SGD）があった. すべての学習データを使うのではなく, 一部の学習データを用いることで勾配を表丘する. しかし, グラフ構造のデータにSGDを用いるのは他の深層学習の場合ほど簡単ではない. の学習データはグラフ内の他のグラフデータとつながっているからである. ノード $v_i$ についての損失 $\ell\left(f\_{G C N}(\mathbf{A}, \mathbf{F} ; \boldsymbol{\Theta})\_i, y_i\right)$ を計算するためには, のようなグラフーフィルター操作によって, 他のたくさんのノードの表現（あるいは隣接行列が示すグラフ全体）が関係することになる. この計算をよりはっきりと理解するために, ノード $v_i$ に注目してをみてみよう:
 
  $$
  \mathbf{F}_i^{(l)}=\sum_{v_j \in \tilde{\mathcal{N}}\left(v_i\right)} \hat{\mathbf{A}}_{i, j} \mathbf{F}_j^{(l-1)} \Theta^{(l-1)}, \quad l=1, \ldots, L
@@ -37,7 +37,7 @@ $$
 \tag{7.3} $$
  
 
-これは周辺ノードの情報を集約している形になっている. なお,  $l$ 番目のグラフーフィルター層後のノード $v_i$ ノード表現を $\mathbf{F}\_i^{(l)}$ と書く.  $\hat{\mathbf{A}}_{i, j}$ は $\hat{\mathbf{A}}$ の $i,j$ 番目の要素である.  $\tilde{\mathcal{N}}\left(v_i\right)=\mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}$ はノード $v_i$ 自身を含んだ近傍ノードの集合を表す.
+これは周辺ノードの情報を集約している形になっている. なお,  $l$ 番目のグラフーフィルター層後のノード $v_i$ ノード表現を $\mathbf{F}\_i^{(l)}$ と書く.  $\hat{\mathbf{A}}\_{i, j}$ は $\hat{\mathbf{A}}$ の $i,j$ 番目の要素である.  $\tilde{\mathcal{N}}\left(v_i\right)=\mathcal{N}\left(v_i\right) \cup\left\\{v_i\right\\}$ はノード $v_i$ 自身を含んだ近傍ノードの集合を表す.
 
 <figure>
 

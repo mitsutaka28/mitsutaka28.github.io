@@ -23,7 +23,7 @@
 \tag{7.15} $$
  
 
-ここで,  $D\left(v_i\right)=\sum_{v_j \in \tilde{\mathcal{N}}\left(v_i\right)} \hat{\mathbf{A}}_{i, j}$ である. は次の期待値の形式とみなすことができる:
+ここで,  $D\left(v_i\right)=\sum_{v_j \in \tilde{\mathcal{N}}\left(v_i\right)} \hat{\mathbf{A}}\_{i, j}$ である. は次の期待値の形式とみなすことができる:
 
  $$
  \mathbf{F}_i^{(l)}=D\left(v_i\right) \cdot \mathbb{E}\left[\mathscr{F}_{v_i}\right]
@@ -31,14 +31,14 @@
 \tag{7.16} $$
  
 
-ここで,  $\mathscr{F}_{v_i}$ は以下で定義される離散確率変数である:
+ここで,  $\mathscr{F}\_{v_i}$ は以下で定義される離散確率変数である:
 
  $$
  p\left(\mathscr{F}_{v_i}=\mathbf{F}_j^{(l-1)} \mathbf{\Theta}^{(l-1)}\right)=\left\{\begin{array}{ll}\frac{\hat{\mathbf{A}}_{i, j}}{D\left(v_i)\right\.}, & \text { if } v_j \in \tilde{\mathcal{N}}\left(v_i\right) \\ 0, & \text { otherwise }\end{array}\right\.
     \nonumber $$
  
 
- $q^{l}\left(v_j\right)$ をノード集合 $\mathcal{V}$ 全体で定義された既知の分布で,  $q^{l}\left(v_j\right)>0, \forall v_j \in \mathcal{V}$ とする.  $\mathbb{E}\left[\mathscr{F}_{v_i}\right]$ を推定するのにモンテカルロ・サンプリングではなく,  $q^{l}\left(v_j\right)$ に基づく重要度サンプリングを行う:
+ $q^{l}\left(v_j\right)$ をノード集合 $\mathcal{V}$ 全体で定義された既知の分布で,  $q^{l}\left(v_j\right)>0, \forall v_j \in \mathcal{V}$ とする.  $\mathbb{E}\left[\mathscr{F}\_{v_i}\right]$ を推定するのにモンテカルロ・サンプリングではなく,  $q^{l}\left(v_j\right)$ に基づく重要度サンプリングを行う:
 
  $$
  \mathbb{E}\left[\mathscr{F}_{v_i}\right] \approx \hat{\mathscr{F}}_{v_i}=\frac{1}{\left\|N^{l}\right\|} \sum_{v_j \in N^{l}} \frac{p\left(v_j \mid v_i\right)}{q^{l}\left(v_j\right)} \mathbf{F}_j^{(l-1)} \mathbf{\Theta}^{(l-1)}, v_j \sim q^{l}\left(v_j\right) \forall v_j \in N^{l}
@@ -46,7 +46,7 @@
 \tag{7.17} $$
  
 
-ここで,  $N^l$ は分布 $q^{l}\left(v_j\right)$ に基づいてサンプル抽出されたノード集合を表し,  $v_j \in \tilde{\mathcal{N}}\left(v_i\right)$ のときは $p\left(v_j \mid v_i\right)=\frac{\hat{\mathbf{A}}_{i, j}}{D\left(v_i\right)}$ で, それ以外のときは $p\left(v_j \mid v_i\right)=0$ である.  $q^{l}\left(v_j\right)$ の上の添字は, この分布が $l$ 番目の層でノード集合 $N^l$ を抽出するために使われていることを表す. 層が異なれば, サンプリング分布も異なる場合がある. ノード集合 $N^l$ は $l$ 層目の表現（例えば $\mathbf{F}\_i^{(l)}$ ）を計算する必要があるすべてのノード（例えば $v_i$ ）で共有される. のように,  $\mathbb{E}\left[\mathscr{F}_{v_i}\right]$ についての重要度サンプリング推定により, 層ごとのサンプリング方法によるノードごとの集計処理（）は以下のように書くことができる:  
+ここで,  $N^l$ は分布 $q^{l}\left(v_j\right)$ に基づいてサンプル抽出されたノード集合を表し,  $v_j \in \tilde{\mathcal{N}}\left(v_i\right)$ のときは $p\left(v_j \mid v_i\right)=\frac{\hat{\mathbf{A}}\_{i, j}}{D\left(v_i\right)}$ で, それ以外のときは $p\left(v_j \mid v_i\right)=0$ である.  $q^{l}\left(v_j\right)$ の上の添字は, この分布が $l$ 番目の層でノード集合 $N^l$ を抽出するために使われていることを表す. 層が異なれば, サンプリング分布も異なる場合がある. ノード集合 $N^l$ は $l$ 層目の表現（例えば $\mathbf{F}\_i^{(l)}$ ）を計算する必要があるすべてのノード（例えば $v_i$ ）で共有される. のように,  $\mathbb{E}\left[\mathscr{F}\_{v_i}\right]$ についての重要度サンプリング推定により, 層ごとのサンプリング方法によるノードごとの集計処理（）は以下のように書くことができる:  
 
 $$
 
@@ -73,7 +73,7 @@ $$
 の重要度サンプリングに基づく推定量（IS-estimator）は不偏推定量である. また, の分散が最小化できるような分布 $q^{l}\left(v_j\right)$ を求めたい. (Owen, 2013）の重要度サンプリングの導出によれば, 以下のように結論づけることができる:
 
 ::: prop
-の推定量 $\hat{\mathscr{F}}_{v_i}$ の分散は次で与えられる:
+の推定量 $\hat{\mathscr{F}}\_{v_i}$ の分散は次で与えられる:
 
  
 
