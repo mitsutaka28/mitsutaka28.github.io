@@ -225,7 +225,7 @@ $$
 
  
 
-ここで， $\symbf{\Theta}$ は $\symbf{\Theta}\_1$ と $\symbf{\Theta}\_2$ を含んだパラメータである． パラメータ $\symbf{\Theta}$ は，提供された訓練データを用いて，攻撃前のグラフ $\mathcal{G}$ を使って学習される． 代理モデルに基づいて敵対的攻撃を実行するために，式(6.5)のように，差を最大化する攻撃を見つけることを目指す． つまり， $\max\_{c\neq y_i}\ln\symbf{Z}^{\text{sur}}_{i,c} - \ln\symbf{Z}^{\text{sur}}_{i,y_i}$ を最大化することになる． 最適化問題をさらに簡素化するために，個別のサンプルデータに依存しないソフトマックス正規化を取り除き，代わりに次のような**代理損失関数**(surrogate loss)が得られる：  
+ここで， $\symbf{\Theta}$ は $\symbf{\Theta}\_1$ と $\symbf{\Theta}\_2$ を含んだパラメータである． パラメータ $\symbf{\Theta}$ は，提供された訓練データを用いて，攻撃前のグラフ $\mathcal{G}$ を使って学習される． 代理モデルに基づいて敵対的攻撃を実行するために，式(6.5)のように，差を最大化する攻撃を見つけることを目指す． つまり， $\max\_{c\neq y_i}\ln\symbf{Z}^{\text{sur}}\_{i,c} - \ln\symbf{Z}^{\text{sur}}\_{i,y_i}$ を最大化することになる． 最適化問題をさらに簡素化するために，個別のサンプルデータに依存しないソフトマックス正規化を取り除き，代わりに次のような**代理損失関数**(surrogate loss)が得られる：  
 
 $$
  \mathcal{L}_{\text{sur}}(\symbf{A},\,\symbf{F};\,\symbf{\Theta},\,v_i) = \max_{c\neq y_i}\left([\tilde{\symbf{A}}^2\symbf{F}\symbf{\Theta}]_{i,c} - [\tilde{\symbf{A}}^2\symbf{F}\symbf{\Theta}]_{i,y_i}\right) $$
