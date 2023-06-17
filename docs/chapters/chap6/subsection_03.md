@@ -74,7 +74,7 @@ $$
 \begin{aligned}
         
 \tag{6.14}
-        \min_{\symbf{\Theta}}\symscr{L}_{\text{train}} + \beta\sum_{v_i\in\symscr{V}}\sum_{v_j\in\symscr{N}(v_i)}&d(f_{\text{GNN}}(\symbf{A},\symbf{F}\star\symbf{r}^{g}_i;\,\symbf{\Theta})_i,f_{\text{GNN}}(\symbf{A},\symbf{F};\,\symbf{\Theta})_j);\nonumber\\
+        \min_{\symbf{\Theta}}\symscr{L}_{\text{train}} + \beta\sum_{v_i\in\symscr{V}}\sum_{v_j\in\symscr{N}(v_i)}
 \end{aligned}
 $$
 
