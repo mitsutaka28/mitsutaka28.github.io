@@ -287,7 +287,7 @@ $$
 $$
  
 \tag{6.18}
-            \min_{\symbf{S}}\symscr{L}_{\text{train}}(\symbf{S},\,\symbf{F};\,\symbf{\Theta}) + \|\symbf{A} - \symbf{S}\|^2_F + \alpha\|\symbf{S}\|_1 + \beta\|\symbf{S}\|_{\ast} + \lambda\cdot\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F}) $$
+\min_{\symbf{S}}\symscr{L}_{\text{train}}(\symbf{S},\,\symbf{F};\,\symbf{\Theta}) + \|\symbf{A} - \symbf{S}\|^2_F + \alpha\|\symbf{S}\|_1 + \beta\|\symbf{S}\|_{\ast} + \lambda\cdot\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F}) $$
  
 
 
