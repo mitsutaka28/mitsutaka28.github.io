@@ -14,7 +14,7 @@
 -   Jiang *et al*.(2019)とMa *et al*.(2020b)では、ダイナミックグラフに対するグラフニューラルネットワークが設計されている．
 
 
-    Chanらはこの拡散過程を一般化し，ノードの情報量（ここでは $\symbf{h}=\symbf{D}^{-1}\symbf{\varphi}$ と表現される． $D$ は次数行列）とエッジの重みに依存する形に拡張している．具体的には，次数の逆数によってスケーリングした情報量 $\symbf{h}=\symbf{D}^{-1}\symbf{\varphi}$ を導入し，エッジの重み $w_{uv}$ に基づいて， $\symbf{h}$ が高いノードから低いノードへと情報が流れる様子を示す微分方程式を提案している．この微分方程式は次のようになる： 
+    Chanらはこの拡散過程を一般化し，ノードの情報量（ここでは $\symbf{h}=\symbf{D}^{-1}\symbf{\varphi}$ と表現される． $\symbf{D}$ は次数行列）とエッジの重みに依存する形に拡張している．具体的には，次数の逆数によってスケーリングした情報量 $\symbf{h}=\symbf{D}^{-1}\symbf{\varphi}$ を導入し，エッジの重み $w_{uv}$ に基づいて， $\symbf{h}$ が高いノードから低いノードへと情報が流れる様子を示す微分方程式を提案している．この微分方程式は次のようになる： 
 
 $$
  \dfrac{d\varphi_u}{dt} = \sum_{u,v\in \symscr{E}}w_{uv}(\symbf{h}_v-\symbf{h}_u) $$
@@ -31,7 +31,7 @@ $$
  \tilde{\symbf{A}}^{(l-1)} = \tilde{\symbf{\symbf{D}}}^{-\tfrac{1}{2}}(\symbf{A}^{(l-1)} + \symbf{I})\tilde{\symbf{\symbf{D}}}^{-\tfrac{1}{2}} $$
 
 
- ここで， $\tilde{\symbf{D}}\_{ii}=\sum_j(\symbf{A}^{(l-1)}+\symbf{I})_{i,j}$ である．
+ ここで， $\tilde{\symbf{D}}\_{ii}=\sum_j(\symbf{A}^{(l-1)}+\symbf{I})\_{i,j}$ である．
 
 [メインページ](../../index.markdown)
 

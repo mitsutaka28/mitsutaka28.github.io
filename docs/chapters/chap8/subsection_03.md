@@ -15,7 +15,7 @@ $$
 \end{aligned}
 $$
 
-  ここでは， $l$ 層目の $u_i$ のノード表現を表すために $\symbf{F}^{(l)}_{u_i}$ という表記を用いている． また， $\symbf{\Theta}^{(l-1)}_v$ および $\symbf{\Theta}^{(l-1)}_u$ は，それぞれノード空間の $\symscr{V}$ から $\symscr{U}$ へ， $\symscr{U}$ から $\symscr{V}$ へと埋め込みを変換するためのパラメータである．
+  ここでは， $l$ 層目の $u_i$ のノード表現を表すために $\symbf{F}^{(l)}\_{u_i}$ という表記を用いている． また， $\symbf{\Theta}^{(l-1)}\_v$ および $\symbf{\Theta}^{(l-1)}\_u$ は，それぞれノード空間の $\symscr{V}$ から $\symscr{U}$ へ， $\symscr{U}$ から $\symscr{V}$ へと埋め込みを変換するためのパラメータである．
 
 
 [メインページ](../../index.markdown)
