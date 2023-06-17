@@ -285,8 +285,6 @@ $$
 
 :   モデルパラメータ $\symbf{\Theta}$ を固定し，以下の最適化問題を解くことで行列 $\symbf{S}$ を最適化する：  
 $$
- 
-\tag{6.18}
 \min_{\symbf{S}}\symscr{L}_{\text{train}}(\symbf{S},\,\symbf{F};\,\symbf{\Theta}) + \|\symbf{A} - \symbf{S}\|^2_F + \alpha\|\symbf{S}\|_1 + \beta\|\symbf{S}\|_{\ast} + \lambda\cdot\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F}) $$
  
 
