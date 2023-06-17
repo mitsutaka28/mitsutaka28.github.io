@@ -240,7 +240,9 @@ $$
  $$
  \min_{\symbf{\Theta}}\sum^{K}_{i=1}\symscr{L}^{\text{te}}_i(\symbf{\Theta}^{\prime}_i)=
     \min_{\symbf{\Theta}}\sum^{K}_{i=1}\symscr{L}^{\text{te}}_i\left(\theta - \alpha\nabla_{\symbf{\Theta}}\symscr{L}^{\text{tr}}_i(\symbf{\Theta})\right) $$
-  ここで， $\symscr{L}^{\text{te}}_i\left(\symbf{\Theta}^{\prime}_i\right)$ は対応するテストノード集合 $\symscr{V}^{i}_u$ で評価された式(6.17)の損失関数を表している． そして共有パラメータ $\symbf{\Theta}$ は，以下のSGD(確率的勾配降下法)を使用して更新することができる：  
+ 
+
+ここで， $\symscr{L}^{\text{te}}\_i\left(\symbf{\Theta}^{\prime}\_i\right)$ は対応するテストノード集合 $\symscr{V}^{i}\_u$ で評価された式(6.17)の損失関数を表している． そして共有パラメータ $\symbf{\Theta}$ は，以下のSGD(確率的勾配降下法)を使用して更新することができる：  
 
 $$
  \symbf{\Theta} \leftarrow \symbf{\Theta} - \beta\nabla_{\symbf{\Theta}}\sum^{K}_{i=1}\symscr{L}^{\text{te}}_i\left(\theta - \alpha\nabla_{\symbf{\Theta}}\symscr{L}^{\text{tr}}_i(\symbf{\Theta})\right) $$
@@ -281,12 +283,10 @@ $$
 
 ・ $\symbf{S}$ の更新：
 
-:   モデルパラメータ $\symbf{\Theta}$ を固定し，以下の最適化問題を解くことで行列 $\symbf{S}$ を最適化する：
-
-     $$
+:   モデルパラメータ $\symbf{\Theta}$ を固定し，以下の最適化問題を解くことで行列 $\symbf{S}$ を最適化する：  $$
  
 \tag{6.18}
-        \min_{\symbf{S}}\symscr{L}_{\text{train}}(\symbf{S},\,\symbf{F};\,\symbf{\Theta}) + \|\symbf{A} - \symbf{S}\|^2_F + \alpha\|\symbf{S}\|_1 + \beta\|\symbf{S}\|_{\ast} + \lambda\cdot\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F}) $$
+            \min_{\symbf{S}}\symscr{L}_{\text{train}}(\symbf{S},\,\symbf{F};\,\symbf{\Theta}) + \|\symbf{A} - \symbf{S}\|^2_F + \alpha\|\symbf{S}\|_1 + \beta\|\symbf{S}\|_{\ast} + \lambda\cdot\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F}) $$
  
 
 
