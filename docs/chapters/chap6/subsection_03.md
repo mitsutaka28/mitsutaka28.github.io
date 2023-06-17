@@ -50,7 +50,7 @@ $$
 \begin{aligned}
 %TODO: 「\min_{\symbf{s}}」を除くか迷う．(6.4)と合わせるためには，\minをつけるか決める必要がある．
     &\mathcal{L}(\symbf{s}) = \sum_{v_i\in \mathcal{V}_l}\ell (f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})_i,\,y_i)\\
-    &\text{subject to } \quad \|\symbf{s}\|_0\leq \Delta,\quad\symbf{s}\in \left\\{0,\,1\right\\}^{N(N-1)/2}
+    &\text{subject to } \quad \|\symbf{s}\|_0\leq \Delta,\quad\symbf{s}\in \left\{0,\,1\right\}^{N(N-1)/2}
 \end{aligned}
 $$
 
@@ -65,14 +65,15 @@ GraphAT (Feng *et al*., 2019a)という手法では，ノード特徴量に基�
 グラフニューラルネットワークモデルにおける重要な仮定として，「隣接するノードは互いに似ている傾向がある」というものがある [^9] ．
 
 
- $$
  
-\tag{6.14}
-    
+
+$$
+
 \begin{aligned}
-        \min_{\symbf{\Theta}}\symscr{L}_{\text{train}} + \beta\sum_{v_i\in\symscr{V}}\sum_{v_j\in\symscr{N}(v_i)}&d(f_{\text{GNN}}(\symbf{A},\symbf{F}\star\symbf{r}^{g}_i;\,\symbf{\Theta})_i,f_{\text{GNN}}(\symbf{A},\symbf{F};\,\symbf{\Theta})_j);\\
+        
+\tag{6.14}
+        \min_{\symbf{\Theta}}\symscr{L}_{\text{train}} + \beta\sum_{v_i\in\symscr{V}}\sum_{v_j\in\symscr{N}(v_i)}&d(f_{\text{GNN}}(\symbf{A},\symbf{F}\star\symbf{r}^{g}_i;\,\symbf{\Theta})_i,f_{\text{GNN}}(\symbf{A},\symbf{F};\,\symbf{\Theta})_j);\nonumber\\
         \symbf{r}^{g}_i=\underset{\symbf{r}_i,\|\symbf{r}_i\|\leq \varepsilon}{\operatorname{argmax}} \sum_{v_j\in\symscr{N}(v_i)}&d(f_{\text{GNN}}(\symbf{A},\symbf{F}\star\symbf{r}_i;\,\symbf{\Theta})_i,f_{\text{GNN}}(\symbf{A},\symbf{F};\,\symbf{\Theta})_j);
-    
 \end{aligned}
 $$
 
@@ -159,8 +160,8 @@ $$
 $$
 
 \begin{aligned}
-    \symbf{\mu}^{\prime}_i &= \alpha\left\\{\sum_{v_j\in\symscr{N}(v_i)\cup\left\\{v_i\right\\}}\dfrac{1}{\sqrt{\tilde{\symbf{d}}_i\tilde{\symbf{d}}_j}}\left(\symbf{\mu}_j\odot\symbf{a}_j\right)\symbf{\Theta}_{\mu}\right\\}\\
-    \symbf{\sigma}^{\prime}_i &= \alpha \left\\{\sum_{v_j\in\symscr{N}(v_i)\cup\left\\{v_i\right\\}}\dfrac{1}{\tilde{\symbf{d}_i}\tilde{\symbf{d}}_j}\left(\symbf{\sigma}_j\odot\symbf{a}_j\odot\symbf{a}_j\right)\symbf{\Theta}_{\sigma}\right\\}
+    \symbf{\mu}^{\prime}_i &= \alpha\left\{\sum_{v_j\in\symscr{N}(v_i)\cup\left\{v_i\right\}}\dfrac{1}{\sqrt{\tilde{\symbf{d}}_i\tilde{\symbf{d}}_j}}\left(\symbf{\mu}_j\odot\symbf{a}_j\right)\symbf{\Theta}_{\mu}\right\}\\
+    \symbf{\sigma}^{\prime}_i &= \alpha \left\{\sum_{v_j\in\symscr{N}(v_i)\cup\left\{v_i\right\}}\dfrac{1}{\tilde{\symbf{d}_i}\tilde{\symbf{d}}_j}\left(\symbf{\sigma}_j\odot\symbf{a}_j\odot\symbf{a}_j\right)\symbf{\Theta}_{\sigma}\right\}
 \end{aligned}
 $$
 
