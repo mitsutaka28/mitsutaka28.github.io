@@ -140,7 +140,7 @@ $$
 
 \begin{aligned}
     &\min_{\symbf{s}}\mathcal{L}(\symbf{s}) = \sum_{v_i\in \mathcal{V}_t}\ell (f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})_i,\,y_i)\\
-    &\text{subject to } 
+    &\text{subject to } \quad \|\symbf{s}\|_0\leq \Delta
 \end{aligned}
 $$
 
