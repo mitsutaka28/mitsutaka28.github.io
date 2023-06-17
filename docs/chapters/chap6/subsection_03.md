@@ -72,9 +72,11 @@ GraphAT (Feng *et al*., 2019a)という手法では，ノード特徴量に基�
 $$
 
 \begin{aligned}
-
-        \min_{\symbf{\Theta}}\symscr{L}_{\text{train}} + \beta\sum_{v_i\in\symscr{V}}\sum_{v_j\in\symscr{N}(v_i)}
+        \min_{\symbf{\Theta}}\symscr{L}_{\text{train}} + \beta\sum_{v_i\in\symscr{V}}\sum_{v_j\in\symscr{N}(v_i)}&d(f_{\text{GNN}}(\symbf{A},\symbf{F}\star\symbf{r}^{g}_i;\,\symbf{\Theta})_i,f_{\text{GNN}}(\symbf{A},\symbf{F};\,\symbf{\Theta})_j);\nonumber\\
+        \symbf{r}^{g}_i=\underset{\symbf{r}_i,\|\symbf{r}_i\|\leq \varepsilon}{\operatorname{argmax}} \sum_{v_j\in\symscr{N}(v_i)}&d(f_{\text{GNN}}(\symbf{A},\symbf{F}\star\symbf{r}_i;\,\symbf{\Theta})_i,f_{\text{GNN}}(\symbf{A},\symbf{F};\,\symbf{\Theta})_j);
+        
 \end{aligned}
+\tag{6.14}
 $$
 
  
@@ -185,9 +187,11 @@ PA-GNNモデルは，式(5.27)で記述されているグラフアテンショ�
 
 ここで $a_{ij}$ は，ノード $v_j$ からノード $v_i$ へ情報を集約する際に使用されるエッジ $e_{ij}$ のアテンションスコアを示している． 直感的には，敵対的なエッジのアテンションスコアが小さければ，敵対的な影響が伝播するのを防げるはずである．
 
-仮に敵対的なエッジ集合がわかっているとしよう．それを $\symscr{E}_{ad}$ と表すことにする． すると，残りの「クリーン」なエッジ集合は $\symscr{E}/\symscr{E}_{ad}$ と表すことができる． 敵対的なエッジのアテンションスコアが小さくなるように保証するために，敵対的なエッジに罰則を科す次の損失関数を追加する：  $$
- %TODO: 集合の差集合を本書全体で統一させる必要あり．
-\symscr{L}_{\text{dist}} = -\min\left(\eta,\underset{\underset{1\leq l\leq L}{e_{ij}\in\symscr{E}/\symscr{E}_{ad}}}{\mathbb{E}} a^{(l)}_{ij} - \underset{\underset{1\leq l\leq L}{e_{ij}\in\symscr{E}_{ad}}}{\mathbb{E}} a^{(l)}_{ij}\right) $$
+仮に敵対的なエッジ集合がわかっているとしよう．それを $\symscr{E}\_{ad}$ と表すことにする． すると，残りの「クリーン」なエッジ集合は $\symscr{E}/\symscr{E}\_{ad}$ と表すことができる． 敵対的なエッジのアテンションスコアが小さくなるように保証するために，敵対的なエッジに罰則を科す次の損失関数を追加する：
+
+ $$
+ \symscr{L}_{\text{dist}} = -\min\left(\eta,\underset{\underset{1\leq l\leq L}{e_{ij}\in\symscr{E}/\symscr{E}_{ad}}}{\mathbb{E}} a^{(l)}_{ij} - \underset{\underset{1\leq l\leq L}{e_{ij}\in\symscr{E}_{ad}}}{\mathbb{E}} a^{(l)}_{ij}\right)
+%TODO: 集合の差集合を本書全体で統一させる必要あり． $$
   ここで， $a^{(l)}_{ij}$ は $l$ 番目のグラフフィルタリング層におけるエッジ $e_{ij}$ に割り当てられたアテンションスコアである． また， $L$ はモデル内のグラフフィルタリング層の総数， $\eta$ は「2つの期待値の間の差」を調整するハイパーパラメータである． アテンションスコアの期待値は，全フィルタリング層にわたる以下の平均値によって推定される：  
 
 $$
@@ -231,7 +235,9 @@ $$
  \symbf{\Theta}^{\prime}_i = \symbf{\Theta} - \alpha\nabla_{\symbf{\Theta}}\symscr{L}^{\text{tr}}_i(\symbf{\Theta}) $$
 
 
-  ここで， $\symbf{\Theta}^{\prime}_i$ はグラフ $\symbf{G}_i$ の学習タスクに対する特定のパラメータであり，  $\symscr{L}^{\text{tr}}_i$ は対応する学習ノード集合 $\symscr{V}^{i}_l$ で評価される式(6.17)の損失関数を表している． その後，すべてのグラフのテストノード集合 $\left\{\symscr{V}_u^{1},\dots,\symscr{V}_u^{K}\right\}$ を用いて共有パラメータ $\symbf{\Theta}$ を更新し，学習された各クラス分類器がそれらのグラフでうまく機能するようにする． 以上より，メタ最適化の目的関数は次のようにまとめることができる：  $$
+  ここで， $\symbf{\Theta}^{\prime}\_i$ はグラフ $\symbf{G}\_i$ の学習タスクに対する特定のパラメータであり，  $\symscr{L}^{\text{tr}}\_i$ は対応する学習ノード集合 $\symscr{V}^{i}\_l$ で評価される式(6.17)の損失関数を表している． その後，すべてのグラフのテストノード集合 $\left\\{\symscr{V}\_u^{1},\dots,\symscr{V}\_u^{K}\right\\}$ を用いて共有パラメータ $\symbf{\Theta}$ を更新し，学習された各クラス分類器がそれらのグラフでうまく機能するようにする． 以上より，メタ最適化の目的関数は次のようにまとめることができる：
+
+ $$
  \min_{\symbf{\Theta}}\sum^{K}_{i=1}\symscr{L}^{\text{te}}_i(\symbf{\Theta}^{\prime}_i)=
     \min_{\symbf{\Theta}}\sum^{K}_{i=1}\symscr{L}^{\text{te}}_i\left(\theta - \alpha\nabla_{\symbf{\Theta}}\symscr{L}^{\text{tr}}_i(\symbf{\Theta})\right) $$
   ここで， $\symscr{L}^{\text{te}}_i\left(\symbf{\Theta}^{\prime}_i\right)$ は対応するテストノード集合 $\symscr{V}^{i}_u$ で評価された式(6.17)の損失関数を表している． そして共有パラメータ $\symbf{\Theta}$ は，以下のSGD(確率的勾配降下法)を使用して更新することができる：  
@@ -256,7 +262,7 @@ $$
 \min_{\symbf{\Theta},\symbf{S}}\symscr{L}_{\text{train}}(\symbf{S},\,\symbf{F};\,\symbf{\Theta}) + \|\symbf{A} - \symbf{S}\|^2_F + \beta_1\|\symbf{S}\|_1 + \beta_2\|\symbf{S}\|_{\ast} + \beta_3\cdot\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F}) $$
  
 
-ここで， $\|\symbf{A}-\symbf{S}\|^{2}\_F$ は学習された行列 $\symbf{S}$ が元の隣接行列 $\symbf{A}$ に近づくことを保証するためのものである． また，学習された隣接行列の $L_1$ ノルムである $\|\symbf{S}\|_1$ の項により，学習された行列 $\symbf{S}$ が疎になることが可能となる．  $\|\symbf{S}\|_{\ast}$ は，学習された行列 $\symbf{S}$ が低ランクであることを保証するための核ノルム(nuclear norm)であり [^13] ， $\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F})$ は接続されたノード間の特徴量の滑らかさを保つためのものである．
+ここで， $\|\symbf{A}-\symbf{S}\|^{2}\_F$ は学習された行列 $\symbf{S}$ が元の隣接行列 $\symbf{A}$ に近づくことを保証するためのものである． また，学習された隣接行列の $L_1$ ノルムである $\|\symbf{S}\|\_1$ の項により，学習された行列 $\symbf{S}$ が疎になることが可能となる．  $\|\symbf{S}\|\_{\ast}$ は，学習された行列 $\symbf{S}$ が低ランクであることを保証するための核ノルム(nuclear norm)であり [^13] ， $\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F})$ は接続されたノード間の特徴量の滑らかさを保つためのものである．
 
 
 このとき特徴量行列 $\symbf{F}$ は変化しないものとして扱われているので， $\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F})$ の項は， $\symbf{S}$ を元にしたラプラシアン行列 $\symbf{L}$ が，接続されたノード間での特徴量が滑らかになるように調整される．  $\beta_1,\,\beta_2,\,\beta_3$ はこれらの項間のバランスを制御するハイパーパラメータである．
@@ -275,10 +281,12 @@ $$
 
 ・ $\symbf{S}$ の更新：
 
-:   モデルパラメータ $\symbf{\Theta}$ を固定し，以下の最適化問題を解くことで行列 $\symbf{S}$ を最適化する：  $$
+:   モデルパラメータ $\symbf{\Theta}$ を固定し，以下の最適化問題を解くことで行列 $\symbf{S}$ を最適化する：
+
+     $$
  
 \tag{6.18}
-    \min_{\symbf{S}}\symscr{L}_{\text{train}}(\symbf{S},\,\symbf{F};\,\symbf{\Theta}) + \|\symbf{A} - \symbf{S}\|^2_F + \alpha\|\symbf{S}\|_1 + \beta\|\symbf{S}\|_{\ast} + \lambda\cdot\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F}) $$
+        \min_{\symbf{S}}\symscr{L}_{\text{train}}(\symbf{S},\,\symbf{F};\,\symbf{\Theta}) + \|\symbf{A} - \symbf{S}\|^2_F + \alpha\|\symbf{S}\|_1 + \beta\|\symbf{S}\|_{\ast} + \lambda\cdot\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F}) $$
  
 
 
@@ -292,4 +300,4 @@ $$
 [^10]: 訳注：「特徴量が似ている」とは，そのノードが持つ生の特徴量だけでなく，「モデルのパラメータを用いて変換された特徴量（すなわち，モデルが学習プロセスで獲得する特徴量表現）が似ている」という意味も持つ．
 [^11]: 訳注：行列のランクとは，行列における線形独立な行または列の最大数のことを指す．言い換えると，ランクはその行列が表現できる次元数，すなわちその行列が表す空間の次元を示す．ランクが大きいほど，行列はより多くの次元の情報を含んでいると言える．
 [^12]: 訳注：例えば，対象グラフが「データマイニング分野の論文の引用ネットワーク」である場合，類似したグラフは「物理学分野の引用ネットワーク」といった具合である．
-[^13]: 訳注：ある行列 $\symbf{A}$ の核ノルムは，その行列の特異値（つまり，その行列を特異値分解したときに得られる値）の和として定義される： $\|\symbf{A}\|_{\ast} = \sum_{i=1}\sigma_i$ ここで， $\sigma_i$ は $\symbf{A}$ の第 $i$ 特異値を表す．つまり，特異値の個数が多く，それらの和が大きい行列は高ランク（つまり，情報が非常に複雑または雑多である）とみなされ，その核ノルムも大きくなる．逆に，特異値の個数が少なく，それらの和が小さい行列は低ランク（つまり，情報が簡素または一貫している）とみなされ，その核ノルムも小さくなる．
+[^13]: 訳注：ある行列 $\symbf{A}$ の核ノルムは，その行列の特異値（つまり，その行列を特異値分解したときに得られる値）の和として定義される： $\|\symbf{A}\|\_{\ast} = \sum_{i=1}\sigma_i$ ここで， $\sigma_i$ は $\symbf{A}$ の第 $i$ 特異値を表す．つまり，特異値の個数が多く，それらの和が大きい行列は高ランク（つまり，情報が非常に複雑または雑多である）とみなされ，その核ノルムも大きくなる．逆に，特異値の個数が少なく，それらの和が小さい行列は低ランク（つまり，情報が簡素または一貫している）とみなされ，その核ノルムも小さくなる．
