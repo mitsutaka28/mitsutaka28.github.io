@@ -76,7 +76,9 @@ $$
 
 の重要度サンプリングに基づく推定量（IS-estimator）は不偏推定量である. また, の分散が最小化できるような分布 $q^{l}\left(v_j\right)$ を求めたい. (Owen, 2013）の重要度サンプリングの導出によれば, 以下のように結論づけることができる:
 
-PROP_START 
+
+<div class="prop">
+ 
 <strong>命題 7.1 Huang et al., 2018</strong>
  の推定量 $\hat{\mathscr{F}}\_{v_i}$ の分散は次で与えられる:
 
