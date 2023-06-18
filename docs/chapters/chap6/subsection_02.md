@@ -19,12 +19,10 @@ $$
 
   ここで， $\Phi(\mathcal{G})$ はグラフ $\mathcal{G}$ と「近い」関係にあるグラフ群から成る制約空間を表している． 空間 $\Phi(\mathcal{G})$ をどのように定義するかは様々な方法がある． それらの具体的な攻撃手法については後ほど説明するが，一般的に広く用いられている制約空間は次のように定義される：
 
+ $$
+ \Phi(\mathcal{G}) = \left\{\mathcal{G}' = \left\{\symbf{A}',\,\symbf{F}'\right\};\; \|\symbf{A}' - \symbf{A}\|_0 + \|\symbf{F}' - \symbf{F}\|_0 < \Delta\right\}
  
-
-$$
- \Phi(\mathcal{G}) = \left\{\mathcal{G}' = \left\{\symbf{A}',\,\symbf{F}'\right\};\; \|\symbf{A}' - \symbf{A}\|_0 + \|\symbf{F}' - \symbf{F}\|_0 < \Delta\right\} $$
-
-
+\tag{6.1} $$
  
 
 これは，制約空間 $\Phi(\mathcal{G})$ が，入力グラフ $\mathcal{G}$ から所定の変動範囲 $\Delta$ 以内のすべてのグラフを含むことを意味する． 敵対的攻撃 $\mathcal{T}$ の目標は，攻撃されたグラフ $\mathcal{G}'$ に対するモデルの予測結果を，元の入力グラフ $\mathcal{G}$ に対する予測結果とは別の結果に変えることである． ノード分類タスクでは，ノードの部分集合の予測性能に注目する．この部分集合は「攻撃対象ノード」と呼ばれ， $\mathcal{V}\_t\subseteq\mathcal{V}\_u$ と表記される（ $\mathcal{V}\_u$ は $\mathcal{G}$ のラベルなしノード集合）．一方，グラフ分類タスクでは，グラフのテストセット（未見のグラフ集合）に対する予測性能に注目する．
@@ -111,12 +109,10 @@ Xu *et al*.(2019c)では，攻撃者はグラフ構造の変更のみが許可�
 
 敵対的攻撃 $\mathcal{T}$ が行った改ざんを符号化するために**対称ブール行列** $\symbf{S}\in\left\\{0,\,1\right\\}^{N\times N}$ が導入される． 具体的には，ノード $v_i$ とノード $v_j$ 間のエッジは $\symbf{S}\_{i,\,j}=1$ のときのみ改ざん（追加または削除）され，それ以外は当該エッジを改ざんせずにそのままとする． グラフ $\mathcal{G}$ の隣接行列が与えられたとき，その補集合は $\overline{\symbf{A}}= \symbf{1}\symbf{1}^{\top} - \symbf{I} = \symbf{A}$ （ $\symbf{1}\in\mathbb{R}^{N}$ は全要素が $1$ のベクトル）と表すことでき，グラフ $\mathcal{G}$ への敵対的攻撃 $\mathcal{T}$ は，次のように表現される：
 
+ $$
+ \symbf{A}' = \mathcal{T}(\symbf{A}) + (\overline{\symbf{A}} - \symbf{A})\odot \symbf{S}
  
-
-$$
- \symbf{A}' = \mathcal{T}(\symbf{A}) + (\overline{\symbf{A}} - \symbf{A})\odot \symbf{S} $$
-
-
+\tag{6.2} $$
  
 
 ここで， $\odot$ はアダマール積である． 行列 $\overline{\symbf{A}} - \symbf{A}$ は（改ざん前の）元のグラフにエッジが存在しているかどうかを示す．具体的には， $(\overline{\symbf{A}} - \symbf{A})\_{i,\,j}=1$ の場合， $v_i$ と $v_j$ 間にエッジは存在しないので，攻撃者はそこへのエッジの追加ができる．一方で $(\overline{\symbf{A}} - \symbf{A})\_{i,\,j}=-1$ の場合は， $v_i$ と $v_j$ 間にエッジは存在しているので，攻撃者はそのエッジの削除が可能である．
@@ -124,27 +120,31 @@ $$
 攻撃 $\mathcal{T}$ の目標は，予測性能を悪化させるような $\symbf{S}$ を見つけ出すことにある． あるノード $v_i$ について，その真のラベル $y_i$ が与えられたとする．このときモデルの予測性能は，画像認識分野における**カルリーニ・ワーグナー(CW)攻撃**(Carlini and Wagner, 2017)から派生した以下の**CW損失**によって測定できる [^1] ：
 
 
+ $$
+ \ell (f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})_i,\,y_i) = \mathrm{max}\left\{\symbf{Z}^{\prime}_{i,y_i} - \max_{c\neq y_i}\symbf{Z}'_{i,\,c}\,,\;-\kappa\right\}
  
-
-$$
- \ell (f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})_i,\,y_i) = \mathrm{max}\left\{\symbf{Z}^{\prime}_{i,y_i} - \max_{c\neq y_i}\symbf{Z}'_{i,\,c}\,,\;-\kappa\right\} $$
-
-
+\tag{6.3} $$
  
 
 ここで， $\mathcal{G}'=\left\\{\symbf{A}',\,\symbf{F}\,\right\\}$ は攻撃されたグラフ， $f\_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})\_i$ は $f\_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})$ の $i$ 行目を示している．また，  $\symbf{Z}' = f\_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})$ は，攻撃されたグラフ $\mathcal{G}'$ に対して式(5.48)のモデルを適用し計算した，各クラスの予測確率を示す出力である． なおこの式において，クラスラベル $y_i$ と $c$ は，ともに予測確率を取得するためのクラスインデックスとして使用していることに注意しよう． 具体的にいえば， $\symbf{Z}'\_{i,y_i}$ は $\symbf{Z}'$ の $(i,\,y_i)$ 要素で，これはノード $v_i$ がクラス $y_i$ として予測される確率を示している． 式(6.3)の $\displaystyle \symbf{Z}'\_{i,\,y_i} - \max\_{c\neq y_i}\symbf{Z}'\_{i,\,c}$ は，「真のクラス $y_i$ と他の全クラスの中で最大の確信度を持つクラスとの間の予測確率の差」を測定しているため，予測が間違っている場合，この値は0より小さくなる． したがって，攻撃者の目標に対して，その値が0より大きい場合にはペナルティを課すようにしている． さらに式(6.3)中の $\kappa(> 0)$ は，「間違った予測をする確信度」である． これは， $\displaystyle\left(\symbf{Z}'\_{i,\,y_i} - \max\_{c\neq y_i}\symbf{Z}'\_{i,\,c}\right) > -\kappa$ となる場合に（損失が0以上という）ペナルティが与えられることを意味する． よって $\kappa$ の値を大きく設定するほど，ペナルティを免れるには予測が大幅に誤っている必要がある．
 
-攻撃 $\mathcal{T}$ を行う攻撃者は，制約された変動範囲 $\Delta$ の中で，標的ノード集合 $\mathcal{V}\_t$ の全ノードに対して式(6.3)のCW損失を最小化するような $\symbf{S}$ を式(6.2)から見つけ出すことを目指す． 具体的には，これは以下の最適化問題として表現することができる：  
+攻撃 $\mathcal{T}$ を行う攻撃者は，制約された変動範囲 $\Delta$ の中で，標的ノード集合 $\mathcal{V}\_t$ の全ノードに対して式(6.3)のCW損失を最小化するような $\symbf{S}$ を式(6.2)から見つけ出すことを目指す． 具体的には，これは以下の最適化問題として表現することができる：
+
+ 
 
 $$
 
 \begin{aligned}
     &\min_{\symbf{s}}\mathcal{L}(\symbf{s}) = \sum_{v_i\in \mathcal{V}_t}\ell (f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})_i,\,y_i)\\
     &\text{subject to } \quad \|\symbf{s}\|_0\leq \Delta,\quad\symbf{s}\in \left\{0,\,1\right\}^{N(N-1)/2}
+ 
 \end{aligned}
+\tag{6.4}
 $$
 
-  ここで， $\Delta$ はグラフの改ざん可能な変動範囲を示す数値である． さらに， $\symbf{s}\in\left\\{0,\,1\right\\}^{N(N-1)/2}$ は，それぞれが独立した成分で構成される摂動を表す， $\symbf{S}$ のベクトル化(vectorized)された形式を表している．  $\symbf{S}$ は対称行列で対角要素が0に固定されているため， $N(N-1)/2$ 個の独立した摂動変数を含むことになる． 制約条件は，攻撃を受けたグラフ $\mathcal{G}'$ が $\symbf{s}$ による制約で定義される空間 $\Phi(\mathcal{G})$ 内に位置することを要求するものと解釈できる．
+ 
+
+ここで， $\Delta$ はグラフの改ざん可能な変動範囲を示す数値である． さらに， $\symbf{s}\in\left\\{0,\,1\right\\}^{N(N-1)/2}$ は，それぞれが独立した成分で構成される摂動を表す， $\symbf{S}$ のベクトル化(vectorized)された形式を表している．  $\symbf{S}$ は対称行列で対角要素が0に固定されているため， $N(N-1)/2$ 個の独立した摂動変数を含むことになる． 制約条件は，攻撃を受けたグラフ $\mathcal{G}'$ が $\symbf{s}$ による制約で定義される空間 $\Phi(\mathcal{G})$ 内に位置することを要求するものと解釈できる．
 
 式(6.4)の問題は**組合せ最適化問題**となるが，最適化を容易にするためには制約条件を緩和することが有用である． 具体的には，制約条件 $\symbf{s}\in\left\\{0,\,1\right\\}^{N(N-1)/2}$ を，全ての可能な $\symbf{s}$ の各成分が $\left[0,\,1\right]$ の範囲に収まるというより緩い制約，つまり $\symbf{s}\in\left[0,\,1\right]^{N(N-1)/2}$ に置き換える． この置き換えは，制約空間を $\mathcal{S} = \left\\{\symbf{s};\,\|\symbf{s}\|\_0 \leq \Delta,\,\symbf{s} \in \left[0,\,1\right]^{N(N-1)/2}\right\\}$ と表すことに対応する． こうして，式(6.4)の問題は**連続最適化問題**に変更される．この問題は制約のある最適化問題を解く手法である**射影型勾配降下法**(PGD; projected gradient descent)を用いて解くことができる：  
 
@@ -195,12 +195,10 @@ Nettack (Zügner *et al*., 2018)は，ノード分類タスクを阻害する敵
 
 攻撃者の目的は，攻撃されたグラフ $\mathcal{G}$ を $\mathcal{G}'=\left\\{\symbf{A}',\,\symbf{F}'\right\\}$ に変更することである． 一般的に，この攻撃は以下の最適化問題として記述することができる：
 
+ $$
+ \operatorname{argmax}_{\mathcal{G}'\in\Phi(\mathcal{G})}\left(\max_{c\neq y_i}\ln \symbf{Z}'_{i,c} - \ln\symbf{Z}'_{i,y_i}\right)
  
-
-$$
- \operatorname{argmax}_{\mathcal{G}'\in\Phi(\mathcal{G})}\left(\max_{c\neq y_i}\ln \symbf{Z}'_{i,c} - \ln\symbf{Z}'_{i,y_i}\right) $$
-
-
+\tag{6.5} $$
  
 
 ここで， $\symbf{Z}'$ は，攻撃されたグラフ $\mathcal{G}'$ 上で式(5.49)を最小化することによって学習されたパラメータ $\symbf{\Theta}'$ を持つ $f\_{\text{GNN}}(\symbf{A}',\,\symbf{F}';\,\symbf{\Theta}')$ の出力である． また，制約空間 $\Phi(\mathcal{G})$ は，式(6.1)の限られた変動範囲に基づいて定義されるだけでなく，以下の2つの追加制約も持つ．
@@ -217,12 +215,10 @@ $$
 
 これらの困難に対処するために，まず，攻撃前のグラフデータ $\mathcal{G}$ を使って**代理モデル**(surrogate model)を学習させ，その代理モデルを攻撃して敵対的なグラフを生成する（この敵対的なグラフは，攻撃されたグラフとして扱われる）． ノード分類のためのGCNフィルタ（5.3.2節でのGCNフィルタを参照）を基にしたGNNモデルを攻撃する場合，代理モデルとしては，2つのGCNフィルタを持ち，活性化層がないモデルが採用される：
 
+ $$
+ \symbf{Z}^{\text{sur}} = \operatorname{softmax}(\tilde{\symbf{A}}\tilde{\symbf{A}}\symbf{F}\symbf{\Theta}_1\symbf{\Theta}_2) = \operatorname{softmax}(\tilde{\symbf{A}}^2\symbf{F}\symbf{\Theta})
  
-
-$$
- \symbf{Z}^{\text{sur}} = \operatorname{softmax}(\tilde{\symbf{A}}\tilde{\symbf{A}}\symbf{F}\symbf{\Theta}_1\symbf{\Theta}_2) = \operatorname{softmax}(\tilde{\symbf{A}}^2\symbf{F}\symbf{\Theta}) $$
-
-
+\tag{6.6} $$
  
 
 ここで， $\symbf{\Theta}$ は $\symbf{\Theta}\_1$ と $\symbf{\Theta}\_2$ を含んだパラメータである． パラメータ $\symbf{\Theta}$ は，提供された訓練データを用いて，攻撃前のグラフ $\mathcal{G}$ を使って学習される． 代理モデルに基づいて敵対的攻撃を実行するために，式(6.5)のように，差を最大化する攻撃を見つけることを目指す． つまり， $\max\_{c\neq y_i}\ln\symbf{Z}^{\text{sur}}\_{i,c} - \ln\symbf{Z}^{\text{sur}}\_{i,y_i}$ を最大化することになる． 最適化問題をさらに簡素化するために，個別のサンプルデータに依存しないソフトマックス正規化を取り除き，代わりに次のような**代理損失関数**(surrogate loss)が得られる：  
@@ -233,12 +229,10 @@ $$
 
   この損失関数を用いると，最適化問題は次のように表すことができる：
 
- 
+ $$
+ \operatorname{argmax}_{\mathcal{G}'\in\Phi(\mathcal{G})}\mathcal{L}_{\text{sur}}(\symbf{A}',\,\symbf{F}';\,\symbf{\Theta},\,v_i)
 
-$$
- \operatorname{argmax}_{\mathcal{G}'\in\Phi(\mathcal{G})}\mathcal{L}_{\text{sur}}(\symbf{A}',\,\symbf{F}';\,\symbf{\Theta},\,v_i) $$
-
-
+\tag{6.7} $$
  
 
 最適化問題はより簡単になったが，正確に解くことは依然として困難であるため，**貪欲アルゴリズム** [^3] を採用することになる．
@@ -260,12 +254,10 @@ $$
 
 Metattack (Zügner and Günnemann, 2019)は，グラフを変更してテストデータ上の全体的なノード分類性能を低下させることを試みる． この攻撃で対象となるノードセットは， $\mathcal{V}\_t = \mathcal{V}\_u$ となる． Metattackの攻撃者は，グラフ構造を変更することに制限されている． 制約空間 $\Phi(\mathcal{G})$ は，Nettackから取り入れられており，限られた変動範囲と，つながりの数（次数）を保持する制約によって，制約空間が定義されている． Metattackは「サンプル汚染攻撃」である． それゆえ，敵対的なグラフを生成した後，標的モデルをその敵対的グラフで再学習する必要がある． 攻撃者の目標は，再学習された標的GNNモデルのパフォーマンスが損なわれるような敵対的グラフを見つけることである． したがって，Metattackは次のような二段階最適化問題として数学的に定式化できる：
 
- 
-
-$$
- \min_{\mathcal{G}'\in\Phi(\mathcal{G})}\mathcal{L}_{\text{atk}}(f_{\text{GNN}}(\mathcal{G}';\,\symbf{\Theta}^{\ast}))\quad\textit{s.t.}\quad\symbf{\Theta}^{\ast} = \underset{\symbf{\Theta}}{\operatorname{argmin}}\;\mathcal{L}_{\text{tr}}(f_{\text{GNN}}(\mathcal{G}';\,\symbf{\Theta})) $$
-
-
+ $$
+ \min_{\mathcal{G}'\in\Phi(\mathcal{G})}\mathcal{L}_{\text{atk}}(f_{\text{GNN}}(\mathcal{G}';\,\symbf{\Theta}^{\ast}))\quad\textit{s.t.}\quad\symbf{\Theta}^{\ast} = \underset{\symbf{\Theta}}{\operatorname{argmin}}\;\mathcal{L}_{\text{tr}}(f_{\text{GNN}}(\mathcal{G}';\,\symbf{\Theta}))
+    
+\tag{6.8} $$
  
 
 ここで， $f\_{\text{GNN}}(\cdot)$ は標的モデルであり， $\mathcal{L}\_{\text{tr}}$ は式(5.49)で定義されたように，学習データ $\mathcal{V}\_l$ でモデルを訓練するために使用される損失関数を表す． 敵対的攻撃を生成するために最適化されるべき損失関数は $\mathcal{L}\_{\text{atk}}$ である． 具体的には， $\symbf{\Theta}$ に関する1段階目の最適化問題は，攻撃されたグラフ $\mathcal{G}'$ が与えられた場合に，最適なモデルパラメータ $\symbf{\Theta}^{\ast}$ を見つけることを目指している． 一方，（1段階目の最適化問題を制約条件に含む）2段階目の最適化問題は，攻撃されたグラフ $\mathcal{G}'$ を生成するために $\mathcal{L}\_{\text{atk}}$ を最小化することを目指している． 攻撃者の目標は，ラベルのないノードの性能を低下させることであるため，理想的には， $\mathcal{L}\_{\text{atk}}$ は $\mathcal{V}\_u$ に基づいて定義されるべきである． しかしながら，ラベルがないため， $\mathcal{V}\_u$ に基づいた損失を直接計算することはできない．
@@ -287,14 +279,18 @@ $$
 
  $$
  \nabla^{\text{meta}}_{\mathcal{G}} :=\nabla_{\mathcal{G}}\mathcal{L}_{\text{atk}}(f_{\text{GNN}}(\mathcal{G};\symbf{\Theta}^{\ast}))\;\;\textit{s.t.}\;\;
-\symbf{\Theta}^{\ast} = \underset{\symbf{\Theta}}{\operatorname{argmin}}\;\mathcal{L}_{\text{tr}}(f_{\text{GNN}}(\mathcal{G}';\symbf{\Theta})) $$
+\symbf{\Theta}^{\ast} = \underset{\symbf{\Theta}}{\operatorname{argmin}}\;\mathcal{L}_{\text{tr}}(f_{\text{GNN}}(\mathcal{G}';\symbf{\Theta}))
+
+\tag{6.9} $$
  
 
 メタ勾配は，式(6.9)の制約条件に従って，グラフ $\mathcal{G}$ の関数としてのパラメータ $\symbf{\Theta}$ に関連していることに注意． メタ勾配は，グラフ $\mathcal{G}$ の小さな変化が攻撃者が最小化を目指す損失関数 $\mathcal{L}\_{\text{atk}}$ にどのように影響するかを示し，グラフをどのように修正すべきかの指針となる． 式(6.8)の1段階目の最適化問題（式(6.9)の制約条件）は通常，解析的な解を持たない． 代わりに，基本的な勾配降下法や確率的勾配降下法（SGD）などの微分可能な最適化手法が採用され， これにより $\symbf{\Theta}^{\ast}$ が求められる． この最適化の手続きは， $\symbf{\Theta}^{\ast} = \operatorname{opt}\_{\symbf{\Theta}}\mathcal{L}\_{\text{tr}}(f\_{\text{GNN}}(\mathcal{G};\,\symbf{\Theta}))$ と表現できる． したがって，メタ勾配は以下のように最定式化することができる：
 
  $$
  \nabla^{\text{meta}}_{\mathcal{G}} :=\nabla_{\mathcal{G}}\mathcal{L}_{\text{atk}}(f_{\text{GNN}}(\mathcal{G};\symbf{\Theta}^{\ast}))\quad\textit{s.t.}\quad
-\symbf{\Theta}^{\ast} = \underset{\symbf{\Theta}}{\operatorname{opt}}\;\mathcal{L}_{\text{tr}}(f_{\text{GNN}}(\mathcal{G}';\symbf{\Theta})) $$
+\symbf{\Theta}^{\ast} = \underset{\symbf{\Theta}}{\operatorname{opt}}\;\mathcal{L}_{\text{tr}}(f_{\text{GNN}}(\mathcal{G}';\symbf{\Theta}))
+
+\tag{6.10} $$
  
 
 一例として，通常の勾配降下法による $\operatorname{opt}\_{\symbf{\Theta}}$ は，次のように公式化できる：  
@@ -323,12 +319,10 @@ $$
 
 パラメータ $\symbf{\Theta}\_t$ がグラフ $\mathcal{G}$ に依存していることに注意しよう． そのため，パラメータのグラフ $\mathcal{G}$ に関するパラメータ $\symbf{\Theta}\_T$ の微分は，初期パラメータ $\symbf{\Theta}\_0$ まで遡って連鎖する必要がある． メタ勾配を取得した後は，次のようにしてグラフを更新することができる（ $\gamma$ は学習率(ステップサイズ)）：
 
- 
-
-$$
- \mathcal{G}^{(k+1)} = \mathcal{G}^{(k)} - \gamma\nabla_{\mathcal{G}^{(k)}}\mathcal{L}_{\text{atk}}(f_{\text{GNN}}(\mathcal{G};\,\symbf{\Theta}_T)) $$
-
-
+ $$
+ \mathcal{G}^{(k+1)} = \mathcal{G}^{(k)} - \gamma\nabla_{\mathcal{G}^{(k)}}\mathcal{L}_{\text{atk}}(f_{\text{GNN}}(\mathcal{G};\,\symbf{\Theta}_T))
+    
+\tag{6.11} $$
  
 
 上記の勾配は密となり，その結果，式(6.11)に従った操作が密なグラフを生成してしまうが，これは望ましくない． さらには，グレーボックス攻撃の設定では，モデルの構造とパラメータが未知であるため， そもそもメタ勾配を取得することができないという問題もある． これら2つの問題を解決するために，Zügner and Günnemann (2019)では，代理モデルで計算されたメタ勾配を利用してアクションを選択する貪欲アルゴリズムが提案されている．
@@ -349,12 +343,10 @@ $$
 
 RL-S2Vは，強化学習を用いたブラックボックス攻撃モデルである(Dai *et al*., 2018)． この攻撃モデルでは，学習済みで固定されたパラメータ $\symbf{\Theta}$ を持つ，標的分類器 $f\_{\text{GNN}}(\mathcal{G};\,\symbf{\Theta})$ が与えられ， 攻撃者は，分類性能が低下するようにグラフを修正することが求められる． RL-S2Vはノード分類タスクとグラフ分類タスクの両方に対して攻撃が可能であり， この手法による攻撃はグラフ構造のみを変更し，グラフのノードやエッジが持つ特徴量は変えずにそのままにしておくことになる． グラフ構造を変更する方法として，元のグラフ $\mathcal{G}$ からエッジを追加または削除することが許されている． RL-S2Vの制約空間は以下のように定義できる：
 
- 
-
-$$
- \Phi(\mathcal{G}) = \left\{\mathcal{G}';\,\|(\mathcal{E} - \mathcal{E}')\cup(\mathcal{E}'-\mathcal{E})\|\leq\Delta\right\}\quad (\mathcal{E}' \subset \mathcal{N}(\mathcal{G},b)) $$
-
-
+ $$
+ \Phi(\mathcal{G}) = \left\{\mathcal{G}';\,\|(\mathcal{E} - \mathcal{E}')\cup(\mathcal{E}'-\mathcal{E})\|\leq\Delta\right\}\quad (\mathcal{E}' \subset \mathcal{N}(\mathcal{G},b))
+    
+\tag{6.12} $$
  
 
 ここで， $\mathcal{E}$ と $\mathcal{E}'$ はそれぞれ元のグラフ $\mathcal{G}$ と攻撃されたグラフ $\mathcal{G}'$ のエッジ集合を表している． また， $\Delta$ はエッジを削除および追加する上限を定める値である． さらに， $\mathcal{N}(\mathcal{G},\,b)$ は以下のように定義される：  
