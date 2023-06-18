@@ -34,7 +34,7 @@
 ここで,  $\mathscr{F}\_{v_i}$ は以下で定義される離散確率変数である:
 
  $$
- p\left(\mathscr{F}_{v_i}=\mathbf{F}_j^{(l-1)} \mathbf{\Theta}^{(l-1)}\right)=
+ p\left(\mathscr{F}_{v_i}=\mathbf{F}_j^{(l-1)} \Theta^{(l-1)}\right)=
     \begin{cases}
     \frac{\hat{\mathbf{A}}_{i, j}}{D\left(v_i)\right\.}, & \text { if } v_j \in \tilde{\mathcal{N}}\left(v_i\right) \\ 
     0, & \text { otherwise }.    
@@ -76,8 +76,9 @@ $$
 
 の重要度サンプリングに基づく推定量（IS-estimator）は不偏推定量である. また, の分散が最小化できるような分布 $q^{l}\left(v_j\right)$ を求めたい. (Owen, 2013）の重要度サンプリングの導出によれば, 以下のように結論づけることができる:
 
-::: prop
-の推定量 $\hat{\mathscr{F}}\_{v_i}$ の分散は次で与えられる:
+PROP_START 
+<strong>命題 7.1 Huang et al., 2018</strong>
+ の推定量 $\hat{\mathscr{F}}\_{v_i}$ の分散は次で与えられる:
 
  
 
@@ -94,7 +95,10 @@ $$
     
 \tag{7.19} $$
  
-:::
+
+
+</div>
+
 
 しかし, の最適なサンプリング分布を得るのは実現不可能である. というのも, この分布は(l-1)番目の層のすべてのノード表現 $\mathbf{F}^{(l-1)}$ に依存するが, どのノードを計算するかはサンプリング分布を用いて決めようとしているからである. なお, (Chen et al., 2018b)では, のように最小化すべき分散は, 単一ノード $v_i$ ではなく同じレイヤーの全ノードに基づいており, 最適な分布は若干異なる形をとるが,  $\mathbf{F}^{(l-1)}$ に依存することに変わりはない.
 
