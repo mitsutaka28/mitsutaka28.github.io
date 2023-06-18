@@ -36,7 +36,7 @@
  $$
  p\left(\mathscr{F}_{v_i}=\mathbf{F}_j^{(l-1)} \Theta^{(l-1)}\right)=
     \begin{cases}
-    \frac{\hat{\mathbf{A}}_{i, j}}{D(v_i)}, & \text { if } v_j \in \tilde{\mathcal{N}}\left(v_i\right) \\ 
+    \frac{\hat{\mathbf{A}}_{i, j}}{D(v_i)}, & \text { if } v_j \in \tilde{\mathcal{N}}(v_i) \\ 
     0, & \text { otherwise }.    
     \end{cases}
     \nonumber $$
