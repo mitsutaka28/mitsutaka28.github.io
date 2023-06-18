@@ -34,8 +34,12 @@
 ここで,  $\mathscr{F}\_{v_i}$ は以下で定義される離散確率変数である:
 
  $$
- p\left(\mathscr{F}_{v_i}=\mathbf{F}_j^{(l-1)} \mathbf{\Theta}^{(l-1)}\right)=\left\{\begin{array}{ll}\frac{\hat{\mathbf{A}}_{i, j}}{D\left(v_i)\right\.}, & \text { if } v_j \in \tilde{\mathcal{N}}\left(v_i\right) \\ 0, & \text { otherwise }\end{array}\right\.
-    \nonumber $$
+ \nonumber
+    p\left(\mathscr{F}_{v_i}=\mathbf{F}_j^{(l-1)} \mathbf{\Theta}^{(l-1)}\right)=
+    \begin{cases}
+    \frac{\hat{\mathbf{A}}_{i, j}}{D\left(v_i)\right\.}, & \text { if } v_j \in \tilde{\mathcal{N}}\left(v_i\right) \\ 
+    0, & \text { otherwise }.    
+    \end{cases} $$
  
 
  $q^{l}\left(v_j\right)$ をノード集合 $\mathcal{V}$ 全体で定義された既知の分布で,  $q^{l}\left(v_j\right)>0, \forall v_j \in \mathcal{V}$ とする.  $\mathbb{E}\left[\mathscr{F}\_{v_i}\right]$ を推定するのにモンテカルロ・サンプリングではなく,  $q^{l}\left(v_j\right)$ に基づく重要度サンプリングを行う:

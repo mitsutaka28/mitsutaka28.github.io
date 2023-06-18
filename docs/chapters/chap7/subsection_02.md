@@ -22,8 +22,12 @@
 ここで,  $\mathscr{F}\_{v_i}$ は次のように定義される離散的なランダム変数である:
 
  $$
- p\left(\mathscr{F}_{v_i}=\hat{\mathbf{A}}_{i, j} \mathbf{F}_j^{(l-1)} \boldsymbol{\Theta}^{(l-1)}\right)=\left\{\begin{array}{ll}\frac{1}{\tilde{\mathcal{N}}\left(v_i\right)}, & \text { if } v_j \in \tilde{\mathcal{N}}\left(v_i\right) \\ 0, & \text { otherwise }\end{array}\right\.
-    \nonumber $$
+ \nonumber
+    p\left(\mathscr{F}_{v_i}=\hat{\mathbf{A}}_{i, j} \mathbf{F}_j^{(l-1)} \boldsymbol{\Theta}^{(l-1)}\right)=
+    \begin{cases}
+    \frac{1}{\tilde{\mathcal{N}}\left(v_i\right)}, & \text { if } v_j \in \tilde{\mathcal{N}}\left(v_i\right) \\ 
+    0, & \text { otherwise }.        
+    \end{cases} $$
  
 
 について, 必要なメモリーを減らしつつ計算を高速化する自然なアイディアは, モンテカルロ抽出によって期待値を近似することである. 具体的には, 期待値 $\mathbb{E}\left[\mathscr{F}\_{v_i}\right]$ は次のように推定することができる:
@@ -37,7 +41,11 @@
 ここで,  $n^{l}\left(v_i\right) \subset \tilde{\mathcal{N}}\left(v_i\right)$ はノード $v_i$ の $l$ 層目の計算の際に, 次の確率分布に従って $\mathcal{V}$ からサンプル抽出されたノード群を表す:
 
  $$
- p\left(v_j \mid v_i\right)=\left\{\begin{array}{ll}\frac{1}{\tilde{\mathcal{N}}\left(v_i\right)}, & \text { if } v_j \in \tilde{\mathcal{N}}\left(v_i\right) \\ 0, & \text { otherwise }\end{array}\right\.
+ p\left(v_j \mid v_i\right)=
+    \begin{cases}
+    \frac{1}{\tilde{\mathcal{N}}\left(v_i\right)}, & \text { if } v_j \in \tilde{\mathcal{N}}\left(v_i\right) \\
+    0, & \text { otherwise }.    
+    \end{cases}
     
 \tag{7.9} $$
  
