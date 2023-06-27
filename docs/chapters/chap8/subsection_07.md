@@ -7,19 +7,19 @@
 
  $T$ 個のスナップショットから成る離散型ダイナミックグラフに対して，同じ数や設計のGNNフィルタを積み重ねた $T$ 個のグラフニューラルネットワークモデルを学習する． そして， $t$ 番目のGNNモデルのモデルパラメータは， $(t-1)$ 番目のモデルのパラメータから調整されたものを使うようにする． 図8.3に示すように，モデルパラメータの更新にはRNN機構が採用されている． 具体的には，3.4.2節で説明したRNNのLSTMとGRUの両方のバリエーションが，モデルパラメータの更新に使用される． 例えばGRUの場合， $t$ 番目のグラフスナップショットに対する $l$ 番目のグラフフィルタリング層は次のように表される：
 
-EQNSTART  
+  
 
 $$
 
 \begin{eqnarray}
-\symbf{\Theta}^{(l-1,t)} &= \operatorname{GRU}(\symbf{F}^{(l-1,t)},\symbf{\Theta}^{(l-1,t-1)})
+\symbf{\Theta}^{(l-1,t)} &=& \operatorname{GRU}(\symbf{F}^{(l-1,t)},\symbf{\Theta}^{(l-1,t-1)})
 \tag{8.9}\\
-\symbf{F}^{(l,t)} &= \operatorname{GNN-Filter}(\symbf{A}^{(t)},\symbf{F}^{(l-1,t)},\symbf{\Theta}^{(l-1,t)})
+\symbf{F}^{(l,t)} &=& \operatorname{GNN-Filter}(\symbf{A}^{(t)},\symbf{F}^{(l-1,t)},\symbf{\Theta}^{(l-1,t)})
 \tag{8.10}\\ \nonumber
 \end{eqnarray}
 $$
 
-  EQNEND
+  
 
 ここで， $\symbf{\Theta}^{(l-1,t)}$ と $\symbf{F}^{(l,t)}$ はそれぞれ $t$ 番目のGNNモデルの $l$ 番目のグラフフィルタリング層のパラメータとそのパラメータを使った出力を表している． また行列 $\symbf{A}^{(t)}$ は $t$ 番目のグラフスナップショットの隣接行列である． 式(8.10)での $t$ 番目のGNNモデルの $l$ 層でのパラメータ $\symbf{\Theta}^{(l-1,t)}$ は，式(8.9)で示されているように，GRUを使って $\symbf{\Theta}^{(l-1,t-1)}$ から調整したものである． GRUの詳細なアーキテクチャについては3.4.3節を参照してほしい． 式(8.10)には一般的なGNNフィルタを使うことができるが，Pareja *et al*.(2019)ではGCNフィルタを採用している．
 

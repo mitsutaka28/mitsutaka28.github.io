@@ -47,19 +47,19 @@ $$
 
 符号付きグラフのグラフフィルタを設計する際には，バランス近傍とアンバランス近傍からの情報を別々に管理する必要がある． これらは非常に異なる情報を伝える可能性が高いためである． 例えば，バランス近傍は潜在的に「友人関係」とみなし，アンバランス近傍は潜在的に「敵対関係」とみなすことができる． そのため，バランス近傍とアンバランス近傍から集約した情報を保持するために，2種類の表現を保持することになる． ノード $v_i$ に対して $\symbf{F}^{(B,l)}\_i$ と $\symbf{F}^{(U,l)}\_i$ は，それぞれ $l$ 層を経たグラフフィルタリングの**バランス表現**と**アンバランス表現**を示すために用いられる． 具体的には， $l$ 層目のグラフフィルタの実行プロセスは以下のように説明することができる：
 
-EQNSTART  
+  
 
 $$
 
 \begin{eqnarray}
-    \symbf{F}^{(B,l)}_i = \sigma\left(\left[\sum_{v_j\in\symscr{N}^{+}(v_i)}\dfrac{\symbf{F}^{(B,l-1)}_j}{\|\symscr{N}^{+}(v_i)\|},\sum_{v_k\in\symscr{N}^{-}(v_i)}\dfrac{\symbf{F}^{(U,l-1)}_k}{\|\symscr{N}^{-}(v_i)\|},\symbf{F}^{(B,l-1)}_i\right]\symbf{\Theta}^{(B,l)}\right)
+    \symbf{F}^{(B,l)}_i &=& \sigma\left(\left[\sum_{v_j\in\symscr{N}^{+}(v_i)}\dfrac{\symbf{F}^{(B,l-1)}_j}{\|\symscr{N}^{+}(v_i)\|},\sum_{v_k\in\symscr{N}^{-}(v_i)}\dfrac{\symbf{F}^{(U,l-1)}_k}{\|\symscr{N}^{-}(v_i)\|},\symbf{F}^{(B,l-1)}_i\right]\symbf{\Theta}^{(B,l)}\right)
 \tag{8.6}\\
-    \symbf{F}^{(U,l)}_i = \sigma\left(\left[\sum_{v_j\in\symscr{N}^{+}(v_i)}\dfrac{\symbf{F}^{(U,l-1)}_j}{\|\symscr{N}^{+}(v_i)\|},\sum_{v_k\in\symscr{N}^{-}(v_i)}\dfrac{\symbf{F}^{(B,l-1)}_k}{\|\symscr{N}^{-}(v_i)\|},\symbf{F}^{(U,l-1)}_i\right]\symbf{\Theta}^{(U,l)}\right)
+    \symbf{F}^{(U,l)}_i &=& \sigma\left(\left[\sum_{v_j\in\symscr{N}^{+}(v_i)}\dfrac{\symbf{F}^{(U,l-1)}_j}{\|\symscr{N}^{+}(v_i)\|},\sum_{v_k\in\symscr{N}^{-}(v_i)}\dfrac{\symbf{F}^{(B,l-1)}_k}{\|\symscr{N}^{-}(v_i)\|},\symbf{F}^{(U,l-1)}_i\right]\symbf{\Theta}^{(U,l)}\right)
 \tag{8.7}\\ \nonumber
 \end{eqnarray}
 $$
 
-  EQNEND
+  
 
 ここで， $\symbf{\Theta}^{B,l}$ と $\symbf{\Theta}^{U,l}$ は学習対象のパラメータである． 式(8.6)での $\symbf{F}^{(B, l)}\_i$ は以下の3種類の情報を結合(concatenate)したものである．
 
