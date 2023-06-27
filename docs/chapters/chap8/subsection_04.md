@@ -41,9 +41,8 @@ $$
     \symbf{F}^{(l)}_{a,d,i} &=& \sum^{D}_{g=1}\beta^{(l-1)}_{g,d}\symbf{F}^{(l-1)}_{g,i}
 \tag{8.4}\\
     \symbf{F}^{(l)}_i &=& \eta\symbf{F}^{(l)}_{w,d,i} + (1-\eta)\symbf{F}^{(l)}_{a,d,i}
-\tag{8.5}
+\tag{8.5}\\ \nonumber
 \end{eqnarray}
-
 $$
 
   EQNEND
