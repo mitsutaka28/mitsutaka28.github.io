@@ -32,17 +32,13 @@ Ma *et al*.(2019c)では，これら次元内と次元間の情報を両方捉�
 $$
 
 \begin{aligned}
-    \symbf{F}^{(l-1)}_{d,j} &= \sigma\left(\symbf{F}^{(l-1)}_j\symbf{\Theta}^{(l-1)}_d\right) \quad \text{for} \;\;v_j\in\symscr{N}_d(v_i)
-\tag{8.1}\\
-    \symbf{F}^{(l-1)}_{g,i} &= \sigma\left(\symbf{F}^{(l-1)}_i\symbf{\Theta}^{(l-1)}_g\right)\quad \text{for} \;\; g = 1,\dots,D
-\tag{8.2}\\
-    \symbf{F}^{(l)}_{w,d,i} &= \sum_{v_j\in\symscr{N}_d(v_i)}\symbf{F}^{(l-1)}_{d,j}
-\tag{8.3}\\
-    \symbf{F}^{(l)}_{a,d,i} &= \sum^{D}_{g=1}\beta^{(l-1)}_{g,d}\symbf{F}^{(l-1)}_{g,i}
-\tag{8.4}\\
+    \symbf{F}^{(l-1)}_{d,j} &= \sigma\left(\symbf{F}^{(l-1)}_j\symbf{\Theta}^{(l-1)}_d\right) \quad \text{for} \;\;v_j\in\symscr{N}_d(v_i)\\
+    \symbf{F}^{(l-1)}_{g,i} &= \sigma\left(\symbf{F}^{(l-1)}_i\symbf{\Theta}^{(l-1)}_g\right)\quad \text{for} \;\; g = 1,\dots,D\\
+    \symbf{F}^{(l)}_{w,d,i} &= \sum_{v_j\in\symscr{N}_d(v_i)}\symbf{F}^{(l-1)}_{d,j}\\
+    \symbf{F}^{(l)}_{a,d,i} &= \sum^{D}_{g=1}\beta^{(l-1)}_{g,d}\symbf{F}^{(l-1)}_{g,i}\\
     \symbf{F}^{(l)}_i &= \eta\symbf{F}^{(l)}_{w,d,i} + (1-\eta)\symbf{F}^{(l)}_{a,d,i}
 \end{aligned}
-\tag{8.5}
+
 $$
 
  
