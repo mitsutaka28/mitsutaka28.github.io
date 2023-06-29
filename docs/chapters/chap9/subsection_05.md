@@ -62,7 +62,7 @@ $$
 敵対的生成ネットワークは(De Cao and Kipf, 2018)でグラフ生成に適用された. 具体的には, GANは分子グラフを生成するのに応用されている. と同様に, ノード数 $N$ の分子グラフ $\mathcal{G}$ は2つの要素から構成される: 1つ目は, ノードの種類を表す行列 $\mathbf{F} \in\{0,1\}^{N \times t_e}$ である. 行列 $\mathbf{F}$ の $i$ 行目は $i$ 番目のノードに対応し,  $t_n$ はノードの種類(ここでは異なる原子）を表す. 2つ目は, エッジーの種類を表すテンソル $\mathbf{E} \in\{0,1\}^{N \times N \times t_e}$ で,  $t_e$ はエッジの種類（ここではことなる結合）を表す. 生成器の目的は, 与えられた分子集合に類似した分子グラフを生成するだけでなく, 生成された分子の溶解度など特定の物性を最適化することである. したがって, GAN のフレームワークには生成器と識別器の他に, 判定器も存在する. これは, 生成されたグラフが特定の物性の観点からどの程度優れているかを測定する(学習時に報酬が与えられる). 判定器は正解がわかっている他の分子について事前学習済のネットワークである. 望ましいグラフを生成するための指針としてのみ使われる. 学習過程においては, 生成器と識別器は互いに競い合いながら学習される. しかい, 判定器は固定されブラックボックスとして扱われる. 具体的には, 生成器と識別器は次の2人用のミニマックス・ゲームをしていることになる:
 
  $$
- \min _{\boldsymbol{\Theta}} \max _{\boldsymbol{\Phi}} \mathbb{E}_{\mathcal{G} \sim p_{\text {data }}(\mathcal{G})}[\log D(\mathcal{G} ; \boldsymbol{\Phi})]+\mathbb{E}_{\mathbf{z} \sim p(\mathbf{z})}[\log (1-D(G(\mathbf{z} ; \boldsymbol{\Theta})))-\lambda J(G(\mathbf{z} ; \boldsymbol{\Theta}))]    \nonumber $$
+ \min_{\boldsymbol{\Theta}} \max_{\boldsymbol{\Phi}} \mathbb{E}_{\mathcal{G} \sim p_{\text {data }}(\mathcal{G})}[\log D(\mathcal{G} ; \boldsymbol{\Phi})]+\mathbb{E}_{\mathbf{z} \sim p(\mathbf{z})}[\log (1-D(G(\mathbf{z} ; \boldsymbol{\Theta})))-\lambda J(G(\mathbf{z} ; \boldsymbol{\Theta}))]    \nonumber $$
  
 
 ここで,  $p_{\text {data }}(\mathcal{G})$ は与えられた分子グラフの真の分布を表し,  $J()$ は判定ネットワークである. 判定ネットワークは, 入力分子グラフの特定の物性を示すスカラー値を出力する(これは最大化されるべきものである). 次に, 本フレームワークにおける生成器, 識別器, そして判定器について述べる.
