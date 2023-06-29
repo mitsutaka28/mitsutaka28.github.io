@@ -6,25 +6,28 @@
 敵対的生成ネットワーク(GAN)は, 敵対的プロセスによって複雑なデータの分布を推定する枠組みである. GANでは, 生成モデルを敵対者に見立てて, あるサンプルデータが元のデータからのものか, 生成モデルによって生成されたものかを見分けることを学習する(Good- fellow et al., 2014a). 具体的には, 生成モデル $G(\mathbf{z} ; \boldsymbol{\Theta})$ は事前のノイズ分布 $p(\mathbf{z})$ からサンプルした, ノイズ変数 $\mathbf{z}$ をパラメータ $\boldsymbol{\Theta})$ を用いてデータ空間に変換する. 一方で, 識別モデル $D(\mathbf{x} ; \mathbf{\Phi})$ はパラメータ $\mathbf{\Phi}$ を用いた2値分類モデルとしてモデル化され, 与えられたデータサンプル $\mathrm{x}$ がデータの分布 $p_{\text {data }}(\mathbf{x})$ からサンプルされたものか, 生成モデル $G$ から生成されたものかを識別する. 具体的には,  $D(\mathbf{x} ; \mathbf{\Phi})$ は $\mathbf{x}$ を,  $\mathbf{x}$ が生成モデルではなく与えられたデータセットから来ている確率を表すスカラー値に変換する. 学習過程においては, 2つのモデルは互いに競っている. 生成モデルは識別器を十分に欺けるような偽のサンプルデータを生成することを学習しようとし, 識別器は生成モデルによって生成されたサンプルを偽のサンプルデータと識別できるように自身を改良しようとする. この競争により, 生成されたサンプルが本物のサンプルと区別がつかなくなるまで両モデルを改良することができる. この競争は2人用のミニマックス・ゲームとして次のようにモデル化することができる:
 
  $$
- \min _{\boldsymbol{\Theta}} \max _{\boldsymbol{\Phi}} \mathbb{E}_{\mathbf{x} \sim p_{\text {data }}(\mathbf{x})}[\log D(\mathbf{x} ; \boldsymbol{\Phi})]+\mathbb{E}_{\mathbf{z} \sim p(\mathbf{z})}[\log (1-D(G(\mathbf{z} ; \boldsymbol{\Theta})))]
-    \nonumber $$
+ \min _{\boldsymbol{\Theta}} \max _{\boldsymbol{\Phi}} \mathbb{E}_{\mathbf{x} \sim p_{\text {data }}(\mathbf{x})}[\log D(\mathbf{x} ; \boldsymbol{\Phi})]+\mathbb{E}_{\mathbf{z} \sim p(\mathbf{z})}[\log (1-D(G(\mathbf{z} ; \boldsymbol{\Theta})))]    \nonumber $$
  
 
 生成モデルと識別モデルのパラメータは交互に最適化される. 本節では, ノード表現学習とグラフ生成タスクを例に, GANのフレームワークがどのようにグラフ構造データに適用されるかを説明する.
 
 ### ノード表現学習のためのGAN
 
-(Wang et al., 2018a)ではGANのフレームワークがノード表現学習に適用された. ノード $v_i$ に対して, 生成モデルは近傍ノードの分布を近似することを目的とする. 分布はは $p\left(v_j \mid v_i\right)$ と表され, ノードの全集合 $\mathcal{V}$ について定義される. 新の近傍ノードの集合 $\mathcal{N}\left(v_i\right)$ は $p\left(v_j \mid v_i\right)$ から抽出された観測サンプルデータとみなすことができる. 生成モデルは,  $G\left(v_j \mid v_i ; \boldsymbol{\Theta}\right)$ と表され,  $\mathcal{V}$ からノード $v_i$ につながっている可能性が高いノードを生成(より正確にいえば選択)する.  $G\left(v_j \mid v_i ; \boldsymbol{\Theta}\right)$ はノード $v_i$ の偽の隣接ノードとして $v_j$ をサンプル抽出する確率とみなすことができる. 識別モデルは,  $D\left(v_j, v_i ; \mathbf{\Phi}\right)$ と表され, 与えられたノードのペア $(v_j, v_i)$ がグラフ中でつながっているかを判定する. 識別モデルの出力は2つのノード $v_j$ と $v_i$ の間にエッジが存在する確率とみなすことができる. 生成器 $G$ と識別器 $D$ は互いに競争しする: 生成器 $G$ は背後にある確率分布 $p_{\text {true }}\left(v_j \mid v_i\right)$ に適合することで,  $v_i$ と関連性が十分高く, 識別器を欺けるようなノード $v_j$ を生成(選択)する. 一方で, 識別器は生成器によって生成されたノードとノード $v_i$ の実際の隣接ノードとを区別しようとする. 形式的には, 2つのモデルは以下のようなミニマックス・ゲームを行っている:  
+(Wang et al., 2018a)ではGANのフレームワークがノード表現学習に適用された. ノード $v_i$ に対して, 生成モデルは近傍ノードの分布を近似することを目的とする. 分布はは $p\left(v_j \mid v_i\right)$ と表され, ノードの全集合 $\mathcal{V}$ について定義される. 新の近傍ノードの集合 $\mathcal{N}\left(v_i\right)$ は $p\left(v_j \mid v_i\right)$ から抽出された観測サンプルデータとみなすことができる. 生成モデルは,  $G\left(v_j \mid v_i ; \boldsymbol{\Theta}\right)$ と表され,  $\mathcal{V}$ からノード $v_i$ につながっている可能性が高いノードを生成(より正確にいえば選択)する.  $G\left(v_j \mid v_i ; \boldsymbol{\Theta}\right)$ はノード $v_i$ の偽の隣接ノードとして $v_j$ をサンプル抽出する確率とみなすことができる. 識別モデルは,  $D\left(v_j, v_i ; \mathbf{\Phi}\right)$ と表され, 与えられたノードのペア $(v_j, v_i)$ がグラフ中でつながっているかを判定する. 識別モデルの出力は2つのノード $v_j$ と $v_i$ の間にエッジが存在する確率とみなすことができる. 生成器 $G$ と識別器 $D$ は互いに競争しする: 生成器 $G$ は背後にある確率分布 $p_{\text {true }}\left(v_j \mid v_i\right)$ に適合することで,  $v_i$ と関連性が十分高く, 識別器を欺けるようなノード $v_j$ を生成(選択)する. 一方で, 識別器は生成器によって生成されたノードとノード $v_i$ の実際の隣接ノードとを区別しようとする. 形式的には, 2つのモデルは以下のようなミニマックス・ゲームを行っている:
+
+  
 
 $$
 
-\begin{aligned}
+\begin{eqnarray}
     \min _{\boldsymbol{\Theta}} \max _{\boldsymbol{\Phi}} V(G, D)=\sum_{v_i \in \mathcal{V}}\left(\mathbb{E}_{v_j \sim p_{\text {true }}}\left(v_j v_i\right)\left[\log D\left(v_j, v_i ; \boldsymbol{\Phi}\right)\right]\right\. \nonumber\\
     \left\.+\mathbb{E}_{v_j \sim G\left(v_j v_i ; \boldsymbol{\Theta}\right)}\left[\log \left(1-D\left(v_j, v_i ; \boldsymbol{\Phi}\right)\right)\right]\right) \nonumber
-\end{aligned}
+\end{eqnarray}
 $$
 
-  生成器 $G$ と識別器 $D$ のパラメータは, 目的関数 $V(G, D)$ を最大化・最小化することによって最適化することができる. 次に, 生成器と識別器の設計について詳細を述べる.
+  
+
+生成器 $G$ と識別器 $D$ のパラメータは, 目的関数 $V(G, D)$ を最大化・最小化することによって最適化することができる. 次に, 生成器と識別器の設計について詳細を述べる.
 
 #### 生成器
 
@@ -59,8 +62,7 @@ $$
 敵対的生成ネットワークは(De Cao and Kipf, 2018)でグラフ生成に適用された. 具体的には, GANは分子グラフを生成するのに応用されている. と同様に, ノード数 $N$ の分子グラフ $\mathcal{G}$ は2つの要素から構成される: 1つ目は, ノードの種類を表す行列 $\mathbf{F} \in\{0,1\}^{N \times t_e}$ である. 行列 $\mathbf{F}$ の $i$ 行目は $i$ 番目のノードに対応し,  $t_n$ はノードの種類(ここでは異なる原子）を表す. 2つ目は, エッジーの種類を表すテンソル $\mathbf{E} \in\{0,1\}^{N \times N \times t_e}$ で,  $t_e$ はエッジの種類（ここではことなる結合）を表す. 生成器の目的は, 与えられた分子集合に類似した分子グラフを生成するだけでなく, 生成された分子の溶解度など特定の物性を最適化することである. したがって, GAN のフレームワークには生成器と識別器の他に, 判定器も存在する. これは, 生成されたグラフが特定の物性の観点からどの程度優れているかを測定する(学習時に報酬が与えられる). 判定器は正解がわかっている他の分子について事前学習済のネットワークである. 望ましいグラフを生成するための指針としてのみ使われる. 学習過程においては, 生成器と識別器は互いに競い合いながら学習される. しかい, 判定器は固定されブラックボックスとして扱われる. 具体的には, 生成器と識別器は次の2人用のミニマックス・ゲームをしていることになる:
 
  $$
- \min _{\boldsymbol{\Theta}} \max _{\boldsymbol{\Phi}} \mathbb{E}_{\mathcal{G} \sim p_{\text {data }}(\mathcal{G})}[\log D(\mathcal{G} ; \boldsymbol{\Phi})]+\mathbb{E}_{\mathbf{z} \sim p(\mathbf{z})}[\log (1-D(G(\mathbf{z} ; \boldsymbol{\Theta})))-\lambda J(G(\mathbf{z} ; \boldsymbol{\Theta}))]
-    \nonumber $$
+ \min _{\boldsymbol{\Theta}} \max _{\boldsymbol{\Phi}} \mathbb{E}_{\mathcal{G} \sim p_{\text {data }}(\mathcal{G})}[\log D(\mathcal{G} ; \boldsymbol{\Phi})]+\mathbb{E}_{\mathbf{z} \sim p(\mathbf{z})}[\log (1-D(G(\mathbf{z} ; \boldsymbol{\Theta})))-\lambda J(G(\mathbf{z} ; \boldsymbol{\Theta}))]    \nonumber $$
  
 
 ここで,  $p_{\text {data }}(\mathcal{G})$ は与えられた分子グラフの真の分布を表し,  $J()$ は判定ネットワークである. 判定ネットワークは, 入力分子グラフの特定の物性を示すスカラー値を出力する(これは最大化されるべきものである). 次に, 本フレームワークにおける生成器, 識別器, そして判定器について述べる.

@@ -38,43 +38,54 @@
 
 ### ノード表現学習のためのVAE
 
-(Kipf and Welling, 2016b)では, グラフデータに対して, ノード表現を学習するのに変分オートエンコーダーが用いられた. 推論モデルは各ノードを多変量ガウス分布にエンコードするもので, 全ノードについての同時確率分布は次のようになる:  
+(Kipf and Welling, 2016b)では, グラフデータに対して, ノード表現を学習するのに変分オートエンコーダーが用いられた. 推論モデルは各ノードを多変量ガウス分布にエンコードするもので, 全ノードについての同時確率分布は次のようになる:
+
+  
 
 $$
 
-\begin{aligned}
+\begin{eqnarray}
     q(\mathbf{Z} \mid \mathbf{X}, \mathbf{A} ; \boldsymbol{\Phi})=\prod_{v_i \in \mathcal{V}} q\left(\mathbf{z}_i \mid \mathbf{X}, \mathbf{A} ; \boldsymbol{\Phi}\right) \nonumber \\
     \text { with } q\left(\mathbf{z}_i \mid \mathbf{X}, \mathbf{A} ; \boldsymbol{\Phi}\right)=\mathcal{N}\left(\mathbf{z}_i \mid \boldsymbol{\mu}_i, \operatorname{diag}\left(\boldsymbol{\sigma}_i^{2}\right)\right)
     
-\end{aligned}
+\end{eqnarray}
 \tag{9.12}
 $$
 
-  ここで,  $\boldsymbol{\mu}\_i$ と $\boldsymbol{\sigma}\_i$ は平均と分散を表し, 決定論的グラフニューラルネットワークにより次のようにして得られる:  
+  
+
+ここで,  $\boldsymbol{\mu}\_i$ と $\boldsymbol{\sigma}\_i$ は平均と分散を表し, 決定論的グラフニューラルネットワークにより次のようにして得られる:
+
+  
 
 $$
 
-\begin{aligned}
+\begin{eqnarray}
     \boldsymbol{\mu}=\mathrm{GNN}\left(\mathbf{X}, \mathbf{A} ; \boldsymbol{\Phi}_{\mu}\right) \nonumber\\ 
     \log \boldsymbol{\sigma}=\mathrm{GNN}\left(\mathbf{X}, \mathbf{A} ; \boldsymbol{\Phi}_{\sigma}\right)\nonumber
-\end{aligned}
+\end{eqnarray}
 $$
 
-  ここで,  $\boldsymbol{\mu}$ と $\boldsymbol{\sigma}$ は,  $\boldsymbol{\mu}\_i$ と $\boldsymbol{\sigma}\_i$ がそれぞれ $i$ 番目の行となる行列である.  $\boldsymbol{\Phi}\_{\mu}$ と $\boldsymbol{\Phi}\_{\sigma}$ はでは $\boldsymbol{\Phi}$ としてまとめられている. 具体的に, (Kipf and Welling, 2016b)では, 推論モデルを構築するためのグラフニューラルネットワークモデルとして, GCNフィルターが使われている. グラフの隣接行列を生成する(再構成する)生成モデルは, 潜在変数 $\mathbf{Z}$ 間の内積を用いて次のようにモデル化される:  
+  
+
+ここで,  $\boldsymbol{\mu}$ と $\boldsymbol{\sigma}$ は,  $\boldsymbol{\mu}\_i$ と $\boldsymbol{\sigma}\_i$ がそれぞれ $i$ 番目の行となる行列である.  $\boldsymbol{\Phi}\_{\mu}$ と $\boldsymbol{\Phi}\_{\sigma}$ はでは $\boldsymbol{\Phi}$ としてまとめられている. 具体的に, (Kipf and Welling, 2016b)では, 推論モデルを構築するためのグラフニューラルネットワークモデルとして, GCNフィルターが使われている. グラフの隣接行列を生成する(再構成する)生成モデルは, 潜在変数 $\mathbf{Z}$ 間の内積を用いて次のようにモデル化される:
+
+  
 
 $$
 
-\begin{aligned}
+\begin{eqnarray}
     p(\mathbf{A} \mid \mathbf{Z})=\prod_{i=1}^{N} \prod_{j=1}^{N} p\left(\mathbf{A}_{i, j} \mid \mathbf{z}_i, \mathbf{z}_j\right) \nonumber\\ 
     \text { with } p\left(\mathbf{A}_{i, j}=1 \mid \mathbf{z}_i, \mathbf{z}_j\right)=\sigma\left(\mathbf{z}_i^{\top} \mathbf{z}_j\right)\nonumber
-\end{aligned}
+\end{eqnarray}
 $$
 
-  ここで,  $\mathbf{A}\_{i, j}$ は隣接行列 $\mathbf{A}$ の $i,j$ 番目の要素を表し,  $\sigma(\cdot)$ はシグモイド関数である. なお, 生成モデルにはパラメータが存在しないことに注意されたい. 推論モデルの変分パラメータは, 次の変分下限を最適化することで得られる.
+  
+
+ここで,  $\mathbf{A}\_{i, j}$ は隣接行列 $\mathbf{A}$ の $i,j$ 番目の要素を表し,  $\sigma(\cdot)$ はシグモイド関数である. なお, 生成モデルにはパラメータが存在しないことに注意されたい. 推論モデルの変分パラメータは, 次の変分下限を最適化することで得られる.
 
  $$
- \mathcal{L}=\mathbb{E}_{q(\mathbf{Z} \mid \mathbf{X}, \mathbf{A} ; \boldsymbol{\Phi})}[\log p(\mathbf{A} \mid \mathbf{Z})]-\operatorname{KL}[q(\mathbf{Z} \mid \mathbf{X}, \mathbf{A} ; \mathbf{\Phi}) \| p(\mathbf{Z})]
-    \nonumber $$
+ \mathcal{L}=\mathbb{E}_{q(\mathbf{Z} \mid \mathbf{X}, \mathbf{A} ; \boldsymbol{\Phi})}[\log p(\mathbf{A} \mid \mathbf{Z})]-\operatorname{KL}[q(\mathbf{Z} \mid \mathbf{X}, \mathbf{A} ; \mathbf{\Phi}) \| p(\mathbf{Z})]    \nonumber $$
  
 
 ここで,  $p(\mathbf{Z})=\prod_i p\left(\mathbf{z}\_{\mathbf{i}}\right)=\prod_i \mathcal{N}\left(\mathbf{z}\_i \mid 0, \mathbf{I}\right)$ は潜在変数 $\mathbf{Z}$ を変数に持つガウス型の事前分布である.
@@ -84,8 +95,7 @@ $$
 グラフ生成のタスクにおいては, グラフ集合 $\left\\{\mathcal{G}\_i\right\\}$ が与えられ, それらに似ているグラフを生成しようとする. 変分オートエンコーダーは, 分子グラフなどの小さなグラフを生成するのに用いられてきた(Simonovsky and Komodakis, 2018). 具体的には, グラフ $\mathcal{G}$ について, 推論モデル $q(\mathbf{z} \mid \mathcal{G} ; \boldsymbol{\Phi})$ はグラフを潜在変数の分布に変換する. 同時に, デコーダーは生成モデル $p(\mathcal{G} \mid \mathbf{z} ; \boldsymbol{\Theta})$ で表される.  $\boldsymbol{\Phi}$ と $\boldsymbol{\Theta}$ はいずれもパラメターであり, 次で表される,  $\mathcal{G}$ の対数尤度 $p(\mathcal{G} ; \boldsymbol{\Theta}))$ の変分下限を最適化することで得られる:
 
  $$
- \mathcal{L}(\Phi, \Theta ; \mathcal{G})=\mathbb{E}_{q(\mathbf{z} \mid \mathcal{G} ; \boldsymbol{\Phi})}[\log p(\mathcal{G} \mid \mathbf{z} ; \boldsymbol{\Theta})]-D_{\mathrm{KL}}[q(\mathbf{z} \mid \mathcal{G} ; \boldsymbol{\Phi}) \| p(\mathbf{z})]
-    
+ \mathcal{L}(\Phi, \Theta ; \mathcal{G})=\mathbb{E}_{q(\mathbf{z} \mid \mathcal{G} ; \boldsymbol{\Phi})}[\log p(\mathcal{G} \mid \mathbf{z} ; \boldsymbol{\Theta})]-D_{\mathrm{KL}}[q(\mathbf{z} \mid \mathcal{G} ; \boldsymbol{\Phi}) \| p(\mathbf{z})]    
 \tag{9.13} $$
  
 
@@ -93,17 +103,21 @@ $$
 
 #### エンコーダー：推論モデル
 
-(Simonovsky and Komodakis, 2018)では, 少数ノードからなる小さなグラフを生成することだった. 例えば, 分子のグラフは通常とても小さい. さらに, これらのグラフはノードとエッジに属性情報が付与されていることが想定される. 分子のグラフの場合には, ノードとエッジの属性はノードとエッジの種類であることを表し, 1-hotベクトルとしてエンコードされている. 具体的には, グラフ $\mathcal{G}=\{\mathbf{A}, \mathbf{F}, \mathbf{E}\}$ はその隣接行列 $\mathbf{A} \in\{0,1\}^{N \times N}$ , ノード属性 $\mathbf{F} \in\{0,1\}^{N \times t_n}$ , エッジ属性 $\mathbf{E} \in\{0,1\}^{N \times N \times t_e}$ で表すことができる. 通常, 分子のグラフにおいては, ノードの数 $N$ は数十程度である.  $\mathbf{F}$ は各ノードの属性(種類)を示す行列であり,  $t_n$ はノードの種類数である.  $\mathbf{F}$ の $i$ 行目は $i$ 番目のノードの種類を示す1-hotベクトルである. 同様に,  $\mathbf{E}$ はエッジーの種類を示すテンソルで,  $t_e$ はエッジの種類数を表す. なお, グラフは完全ではない場合が多いので, エッジ数が $N\times N$ であることはない. したがって,  $\mathbf{E}$ において, 存在しないエッジに対応する1-hotベクトルは $\mathbf{0}$ ベクトルになる. 与えられたグラフ情報を十分に活用するため, プーリング層をもつグラフニューラルネットワークモデルを利用して, エンコーダーを次のようにモデル化する:  
+(Simonovsky and Komodakis, 2018)では, 少数ノードからなる小さなグラフを生成することだった. 例えば, 分子のグラフは通常とても小さい. さらに, これらのグラフはノードとエッジに属性情報が付与されていることが想定される. 分子のグラフの場合には, ノードとエッジの属性はノードとエッジの種類であることを表し, 1-hotベクトルとしてエンコードされている. 具体的には, グラフ $\mathcal{G}=\{\mathbf{A}, \mathbf{F}, \mathbf{E}\}$ はその隣接行列 $\mathbf{A} \in\{0,1\}^{N \times N}$ , ノード属性 $\mathbf{F} \in\{0,1\}^{N \times t_n}$ , エッジ属性 $\mathbf{E} \in\{0,1\}^{N \times N \times t_e}$ で表すことができる. 通常, 分子のグラフにおいては, ノードの数 $N$ は数十程度である.  $\mathbf{F}$ は各ノードの属性(種類)を示す行列であり,  $t_n$ はノードの種類数である.  $\mathbf{F}$ の $i$ 行目は $i$ 番目のノードの種類を示す1-hotベクトルである. 同様に,  $\mathbf{E}$ はエッジーの種類を示すテンソルで,  $t_e$ はエッジの種類数を表す. なお, グラフは完全ではない場合が多いので, エッジ数が $N\times N$ であることはない. したがって,  $\mathbf{E}$ において, 存在しないエッジに対応する1-hotベクトルは $\mathbf{0}$ ベクトルになる. 与えられたグラフ情報を十分に活用するため, プーリング層をもつグラフニューラルネットワークモデルを利用して, エンコーダーを次のようにモデル化する:
+
+  
 
 $$
 
-\begin{aligned}
+\begin{eqnarray}
     &&q(\mathbf{z} \mid \mathcal{G} ; \boldsymbol{\Phi})=\mathcal{N}\left(\boldsymbol{\mu}, \sigma^{2}\right) \nonumber\\
     &&\boldsymbol{\mu}=\operatorname{pool}\left(\mathrm{GNN}_{\mu}(\mathcal{G})\right) ; \quad \log \sigma=\operatorname{pool}\left(\mathrm{GNN}_{\sigma}(\mathcal{G})\right)\nonumber
-\end{aligned}
+\end{eqnarray}
 $$
 
-  ここで, 平均と分散はグラフニューラルネットワークモデルによって学習される. 詳細には, で導入したECCフィルターを使ってグラフニューラルネットワークモデルを構築してノード表現を学習し, で導入した, ゲート付きグローバルプーリングを用いてノード表現をプーリングしてグラフ表現を生成する.
+  
+
+ここで, 平均と分散はグラフニューラルネットワークモデルによって学習される. 詳細には, で導入したECCフィルターを使ってグラフニューラルネットワークモデルを構築してノード表現を学習し, で導入した, ゲート付きグローバルプーリングを用いてノード表現をプーリングしてグラフ表現を生成する.
 
 #### デコーダー：生成モデル
 
@@ -132,31 +146,37 @@ $$
     \nonumber $$
  
 
-ここで,  $p\left(\mathbf{A}^{\prime}, \mathbf{E}, \mathbf{F} \mid \widetilde{\mathbf{A}}, \widetilde{\mathbf{E}}^{\prime} \widetilde{\mathbf{F}}^{\prime}\right)$ は次のようにモデル化することができる:  
+ここで,  $p\left(\mathbf{A}^{\prime}, \mathbf{E}, \mathbf{F} \mid \widetilde{\mathbf{A}}, \widetilde{\mathbf{E}}^{\prime} \widetilde{\mathbf{F}}^{\prime}\right)$ は次のようにモデル化することができる:
+
+  
 
 $$
 
-\begin{aligned}
+\begin{eqnarray}
     &&p\left(\mathbf{A}^{\prime}, \mathbf{E}, \mathbf{F} \mid \widetilde{\mathbf{A}}, \widetilde{\mathbf{E}}^{\prime} \widetilde{\mathbf{F}^{\prime}}\right) \nonumber\\ 
     &&=\lambda_A \log p\left(\mathbf{A}^{\prime} \mid \widetilde{\mathbf{A}}\right)+\lambda_E \log p\left(\mathbf{E} \mid \widetilde{\mathbf{E}}^{\prime}\right)+\lambda_F \log p\left(\mathbf{F} \mid \widetilde{\mathbf{F}}^{\prime}\right)
     
-\end{aligned}
+\end{eqnarray}
 \tag{9.14}
 $$
 
-  ここで,  $\lambda_{\mathbf{A}}, \lambda_E, \lambda_F$ はハイパーパラメータである. の3項はそれぞれ $\mathbf{A}^{\prime},\mathbf{E}, \mathbf{F}$ の対数尤度であり, それぞれ $\mathbf{A}^{\prime}$ と $\widetilde{\mathbf{A}}$ 間,  $\mathbf{E}$ と $\widetilde{\mathbf{E}}^{\prime}$ 間,  $\mathbf{F}$ と $\widetilde{\mathbf{F}}^{\prime}$ 間のクロスエントロピーのマイナスでモデル化することができる. 詳細には次のように定式化される:  
+  
+
+ここで,  $\lambda_{\mathbf{A}}, \lambda_E, \lambda_F$ はハイパーパラメータである. の3項はそれぞれ $\mathbf{A}^{\prime},\mathbf{E}, \mathbf{F}$ の対数尤度であり, それぞれ $\mathbf{A}^{\prime}$ と $\widetilde{\mathbf{A}}$ 間,  $\mathbf{E}$ と $\widetilde{\mathbf{E}}^{\prime}$ 間,  $\mathbf{F}$ と $\widetilde{\mathbf{F}}^{\prime}$ 間のクロスエントロピーのマイナスでモデル化することができる. 詳細には次のように定式化される:
+
+  
 
 $$
 
-\begin{aligned}
+\begin{eqnarray}
     \log p\left(\mathbf{A}^{\prime} \mid \widetilde{\mathbf{A}}\right)&=& \frac{1}{k} \sum_{i=1}^{k}\left[\mathbf{A}_{i, i}^{\prime} \log \widetilde{\mathbf{A}}_{i, i}+\left(1-\mathbf{A}_{i, i}^{\prime}\right) \log \left(1-\widetilde{\mathbf{A}}_{i, i}\right)\right] \nonumber\\
     && +\frac{1}{k(k-1)} \sum_{i \neq j}^{k}\left[\mathbf{A}_{i, j}^{\prime} \log \widetilde{\mathbf{A}}_{i, j}+\left(1-\mathbf{A}_{i, j}^{\prime}\right) \log \left(1-\widetilde{\mathbf{A}}_{i, j}\right)\right] \nonumber\\
     \log p\left(\mathbf{E} \mid \widetilde{\mathbf{E}}^{\prime}\right)&=&\frac{1}{\|\mathbf{A}\|_1-N} \sum_{i \neq j}^{N} \log \left(\mathbf{E}_{i, j,:}^{\top} \widetilde{\mathbf{E}}_{i, j,:}\right)\nonumber\\
     \log p\left(\mathbf{F} \mid \widetilde{\mathbf{F}}^{\prime}\right)&=&\frac{1}{N} \sum_{i=1}^{N} \log \left(\mathbf{F}_{i,:}^{\top} \widetilde{\mathbf{F}}_{i,:}^{\prime}\right) \nonumber
-\end{aligned}
+\end{eqnarray}
 $$
 
- 
+  
 
 
 [メインページ](../../index.markdown)
