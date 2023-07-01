@@ -20,7 +20,7 @@
 $$
 
 \begin{eqnarray}
-    \min_{\boldsymbol{\Theta}} \max_{\boldsymbol{\Phi}} V(G, D)=\sum_{v_i \in \mathcal{V}}\left(\mathbb{E}_{v_j \sim p_{\text {true }}}\left(v_j v_i\right)[\log D\left(v_j, v_i ; \boldsymbol{\Phi}\right)]\right\. \nonumber\\
+    \min_{\boldsymbol{\Theta}} \max_{\boldsymbol{\Phi}} V(G, D)=\sum_{v_i \in \mathcal{V}}\left(\mathbb{E}_{v_j \sim p_{\text {true }}}\left(v_j v_i\right)\right\. \nonumber\\
 \end{eqnarray}
 $$
 
