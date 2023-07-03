@@ -22,11 +22,11 @@ $$
 (Wang et al., 2018a)ではGANのフレームワークがノード表現学習に適用された. ノード $v_i$ に対して, 生成モデルは近傍ノードの分布を近似することを目的とする. 分布はは $p\left(v_j \mid v_i\right)$ と表され, ノードの全集合 $\mathcal{V}$ について定義される. 新の近傍ノードの集合 $\mathcal{N}\left(v_i\right)$ は $p\left(v_j \mid v_i\right)$ から抽出された観測サンプルデータとみなすことができる. 生成モデルは,  $G\left(v_j \mid v_i ; \boldsymbol{\Theta}\right)$ と表され,  $\mathcal{V}$ からノード $v_i$ につながっている可能性が高いノードを生成(より正確にいえば選択)する.  $G\left(v_j \mid v_i ; \boldsymbol{\Theta}\right)$ はノード $v_i$ の偽の隣接ノードとして $v_j$ をサンプル抽出する確率とみなすことができる. 識別モデルは,  $D\left(v_j, v_i ; \mathbf{\Phi}\right)$ と表され, 与えられたノードのペア $(v_j, v_i)$ がグラフ中でつながっているかを判定する. 識別モデルの出力は2つのノード $v_j$ と $v_i$ の間にエッジが存在する確率とみなすことができる. 生成器 $G$ と識別器 $D$ は互いに競争しする: 生成器 $G$ は背後にある確率分布 $p_{\text {true }}\left(v_j \mid v_i\right)$ に適合することで,  $v_i$ と関連性が十分高く, 識別器を欺けるようなノード $v_j$ を生成(選択)する. 一方で, 識別器は生成器によって生成されたノードとノード $v_i$ の実際の隣接ノードとを区別しようとする. 形式的には, 2つのモデルは以下のようなミニマックス・ゲームを行っている:
 
   
-
 $$
 
 \begin{eqnarray}
-    \min _{\boldsymbol{\Theta}} \max _{\boldsymbol{\Phi}} V(G, D)=\sum_{v_i \in \mathcal{V}}(\mathbb{E}_{v_j \sim p_{\text {true }}}(v_j v_i)[\log D(v_j, v_i ; \boldsymbol{\Phi})]\. \nonumber\\
+    \min _{\boldsymbol{\Theta}} \max _{\boldsymbol{\Phi}} V(G, D)=\sum_{v_i \in \mathcal{V}}(\mathbb{E}_{v_j \sim p_{\text {true }}}(v_j v_i)[\log D(v_j, v_i ; \boldsymbol{\Phi})] \nonumber\\
+    +\mathbb{E}_{v_j \sim G(v_j v_i ; \boldsymbol{\Theta})}[\log (1-D\left(v_j, v_i ; \boldsymbol{\Phi}))]) \nonumber
 \end{eqnarray}
 $$
 
