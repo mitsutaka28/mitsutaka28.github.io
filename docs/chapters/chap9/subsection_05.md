@@ -9,7 +9,7 @@ $$
 
 \begin{eqnarray}
     \min _{\boldsymbol{\Theta}} \max _{\boldsymbol{\Phi}} V(G, D)=\sum_{v_i \in \mathcal{V}}(\mathbb{E}_{v_j \sim p_{\text {true }}}(v_j v_i)[\log D(v_j, v_i ; \boldsymbol{\Phi})] \nonumber\\
-    +\mathbb{E}_{v_j \sim G\left(v_j v_i ; \boldsymbol{\Theta})}[(1-D)]) \nonumber
+    +\mathbb{E}_{v_j \sim G(v_j v_i ; \boldsymbol{\Theta})}[(1-D)]) \nonumber
 \end{eqnarray}
 $$
 
@@ -27,7 +27,7 @@ $$
 
 \begin{eqnarray}
     \min _{\boldsymbol{\Theta}} \max _{\boldsymbol{\Phi}} V(G, D)=\sum_{v_i \in \mathcal{V}}(\mathbb{E}_{v_j \sim p_{\text {true }}}(v_j v_i)[\log D(v_j, v_i ; \boldsymbol{\Phi})] \nonumber\\
-    +\mathbb{E}_{v_j \sim G\left(v_j v_i ; \boldsymbol{\Theta})}) \nonumber
+    +\mathbb{E}_{v_j \sim G(v_j v_i ; )}) \nonumber
 \end{eqnarray}
 $$
 
