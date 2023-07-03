@@ -5,8 +5,14 @@
 
 敵対的生成ネットワーク(GAN)は, 敵対的プロセスによって複雑なデータの分布を推定する枠組みである. GANでは, 生成モデルを敵対者に見立てて, あるサンプルデータが元のデータからのものか, 生成モデルによって生成されたものかを見分けることを学習する(Good- fellow et al., 2014a). 具体的には, 生成モデル $G(\mathbf{z} ; \boldsymbol{\Theta})$ は事前のノイズ分布 $p(\mathbf{z})$ からサンプルした, ノイズ変数 $\mathbf{z}$ をパラメータ $\boldsymbol{\Theta})$ を用いてデータ空間に変換する. 一方で, 識別モデル $D(\mathbf{x} ; \mathbf{\Phi})$ はパラメータ $\mathbf{\Phi}$ を用いた2値分類モデルとしてモデル化され, 与えられたデータサンプル $\mathrm{x}$ がデータの分布 $p_{\text {data }}(\mathbf{x})$ からサンプルされたものか, 生成モデル $G$ から生成されたものかを識別する. 具体的には,  $D(\mathbf{x} ; \mathbf{\Phi})$ は $\mathbf{x}$ を,  $\mathbf{x}$ が生成モデルではなく与えられたデータセットから来ている確率を表すスカラー値に変換する. 学習過程においては, 2つのモデルは互いに競っている. 生成モデルは識別器を十分に欺けるような偽のサンプルデータを生成することを学習しようとし, 識別器は生成モデルによって生成されたサンプルを偽のサンプルデータと識別できるように自身を改良しようとする. この競争により, 生成されたサンプルが本物のサンプルと区別がつかなくなるまで両モデルを改良することができる. この競争は2人用のミニマックス・ゲームとして次のようにモデル化することができる:
 
- $$
- \min _{\boldsymbol{\Theta}} \max _{\boldsymbol{\Phi}} \mathbb{E}_{\mathbf{x} \sim p_{\text {data }}(\mathbf{x})}[\log D(\mathbf{x} ; \boldsymbol{\Phi})]+\mathbb{E}_{\mathbf{z} \sim p(\mathbf{z})}[\log (1-D(G(\mathbf{z} ; \boldsymbol{\Theta})))]    \nonumber $$
+$$
+
+\begin{eqnarray}
+    \min _{\boldsymbol{\Theta}} \max _{\boldsymbol{\Phi}} V(G, D)=\sum_{v_i \in \mathcal{V}}(\mathbb{E}_{v_j \sim p_{\text {true }}}(v_j v_i)[\log D(v_j, v_i ; \boldsymbol{\Phi})]\. \nonumber\\
+    \.+\mathbb{E}_{v_j \sim G\left(v_j v_i ; \boldsymbol{\Theta})}[\log (1-D\left(v_j, v_i ; \boldsymbol{\Phi}))]) \nonumber
+\end{eqnarray}
+$$
+
  
 
 生成モデルと識別モデルのパラメータは交互に最適化される. 本節では, ノード表現学習とグラフ生成タスクを例に, GANのフレームワークがどのようにグラフ構造データに適用されるかを説明する.
