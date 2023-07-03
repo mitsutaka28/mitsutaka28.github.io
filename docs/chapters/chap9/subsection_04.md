@@ -11,7 +11,7 @@
 \tag{9.9} $$
  
 
-ここで,  $\mathcal{N}\left(\mathbf{x} \mid f(\mathbf{z} ; \boldsymbol{\Theta}), \sigma^{2} \cdot \mathbf{I}\right)$ は,  $f(\mathbf{z} ; \boldsymbol{\Theta})$ を平均,  $\sigma^{2} \cdot \mathbf{I}$ を共分散行列とするガウス分布を表す.  $\boldsymbol{\Theta})$ は学習するパラメータであり,  $\mathbf{x}$ は与えられたデータと同じ分野の, 生成されたサンプルデータである. 例えば, 入力データが画像の場合, イメージを生成することを考える.  $f(\mathbf{z} ; \boldsymbol{\Theta})$ は（確率的ではない）決定論的関数であり, 潜在変数 $\mathbf{z}$ をの生成モデルの確率の平均値に変換する. なお, 実際には生成されるデータサンプルの確率分布はガウス分布である必要はなく, 特定の用途に応じて他の分布でもよい. ここでは便宜上, コンピュータービジョンの分野でのタスクで画像を生成する際に用いられるガウス分布を例として話を進める. の生成モデルが与えられたデータ $\mathcal{X}$ を代表しているかを確かめるため,  $\mathcal{X}$ 中のデータサンプル $\mathbf{x}\_i$ についての次のような対数尤度を最大化する必要がある:
+ここで,  $\mathcal{N}\left(\mathbf{x} \mid f(\mathbf{z} ; \boldsymbol{\Theta}), \sigma^{2} \cdot \mathbf{I}\right)$ は,  $f(\mathbf{z} ; \boldsymbol{\Theta})$ を平均,  $\sigma^{2} \cdot \mathbf{I}$ を共分散行列とするガウス分布を表す.  $\boldsymbol{\Theta})$ は学習するパラメータであり,  $\mathbf{x}$ は与えられたデータと同じ分野の, 生成されたサンプルデータである. 例えば, 入力データが画像の場合, イメージを生成することを考える.  $f(\mathbf{z} ; \boldsymbol{\Theta})$ は（確率的ではない）決定論的関数であり, 潜在変数 $\mathbf{z}$ を式(9.9)の生成モデルの確率の平均値に変換する. なお, 実際には生成されるデータサンプルの確率分布はガウス分布である必要はなく, 特定の用途に応じて他の分布でもよい. ここでは便宜上, コンピュータービジョンの分野でのタスクで画像を生成する際に用いられるガウス分布を例として話を進める. 式(9.9)の生成モデルが与えられたデータ $\mathcal{X}$ を代表しているかを確かめるため,  $\mathcal{X}$ 中のデータサンプル $\mathbf{x}\_i$ についての次のような対数尤度を最大化する必要がある:
 
  $$
  \log p\left(\mathbf{x}_i\right)=\log \int p\left(\mathbf{x}_i \mid \mathbf{z} ; \boldsymbol{\Theta}\right) p(\mathbf{z}) d \mathbf{z} \text { for } \mathbf{x}_i \in X
@@ -19,7 +19,7 @@
 \tag{9.10} $$
  
 
-しかし, の積分は扱いが難しい. さらに, 真の事後分布 $p(\mathbf{z} \mid \mathbf{x} ; \Theta)$ も厄介で, これによってEMアルゴリズムを適用できない. この問題に対応するため, 推論モデル $q(\mathbf{z} \mid \mathbf{x} ; \mathbf{\Phi})$ が導入された(Kingma and Welling, 2013). これはパラメータ $\mathbf{\Phi}$ を用いて, 先の厄介な真の事後確率分布 $p(\mathbf{z} \mid \mathbf{x} ; \Theta)$ を近似する. 通常は,  $q(\mathbf{z} \mid \mathbf{x} ; \mathbf{\Phi})$ はガウス分布 $q(\mathbf{z} \mid \mathbf{x} ; \mathbf{\Phi})=\mathcal{N}(\mu(\mathbf{x} ; \mathbf{\Phi}), \Sigma(\mathbf{x} ; \mathbf{\Phi}))$ でモデル化され, 平均と共分散行列は $\mathbf{\Phi}$ をパラメータにとる決定論的関数を通じて学習される. そして, の対数尤度は次のように書き換えることができる:
+しかし, 式(9.10)の積分は扱いが難しい. さらに, 真の事後分布 $p(\mathbf{z} \mid \mathbf{x} ; \Theta)$ も厄介で, これによってEMアルゴリズムを適用できない. この問題に対応するため, 推論モデル $q(\mathbf{z} \mid \mathbf{x} ; \mathbf{\Phi})$ が導入された(Kingma and Welling, 2013). これはパラメータ $\mathbf{\Phi}$ を用いて, 先の厄介な真の事後確率分布 $p(\mathbf{z} \mid \mathbf{x} ; \Theta)$ を近似する. 通常は,  $q(\mathbf{z} \mid \mathbf{x} ; \mathbf{\Phi})$ はガウス分布 $q(\mathbf{z} \mid \mathbf{x} ; \mathbf{\Phi})=\mathcal{N}(\mu(\mathbf{x} ; \mathbf{\Phi}), \Sigma(\mathbf{x} ; \mathbf{\Phi}))$ でモデル化され, 平均と共分散行列は $\mathbf{\Phi}$ をパラメータにとる決定論的関数を通じて学習される. そして, 式(9.10)の対数尤度は次のように書き換えることができる:
 
  $$
  \log p\left(\mathbf{x}_i\right)=D_{K L}(q(\mathbf{z} \mid \mathbf{x} ; \boldsymbol{\Phi}) \| p(\mathbf{z} \mid \mathbf{x} ; \boldsymbol{\Theta}))+\mathcal{L}\left(\boldsymbol{\Theta}, \mathbf{\Phi} ; \mathbf{x}_i\right)
@@ -34,7 +34,7 @@
 \tag{9.11} $$
  
 
- $\mathcal{X}$ 中のデータサンプルについて, の対数尤度を最大化する代わりに, の変分下限を $\boldsymbol{\Theta}$ と $\boldsymbol{\Phi}$ に対して微分して最大化する. なお, 変分下限のマイナス $-\mathcal{L}\left(\boldsymbol{\Theta}, \boldsymbol{\Phi} ; \mathbf{x}\_i\right)$ を最小化することは, で紹介した古典的なオートエンコーダーの処理に似ているので, このモデルは「変分オートエンコーダー」と呼ばれる. 具体的には, 右辺の第1項は再構成の過程とみなすことができ,  $q\left(\mathbf{z} \mid \mathbf{x}\_{\mathbf{i}} ; \mathbf{\Phi}\right)$ はエンコーダー(推論モデル)で $p\left(\mathbf{x}\_i \mid \mathbf{z} ; \boldsymbol{\Theta}\right)$ はデコーダー(生成モデル)である. エンコーダーが入力を表現に変換する, 古典的なオートエンコーダーと違って, このエンコーダー $q\left(\mathbf{z} \mid \mathbf{x}\_{\mathbf{i}} ; \mathbf{\Phi}\right)$ は入力 $\mathbf{x}\_i$ を潜在ガウス分布に変換する. 右辺の第1項を最大化することは, 入力 $\mathbf{x}\_i$ とデコードされた $p\left(\mathbf{x}\_i \mid \mathbf{z} ; \boldsymbol{\Theta}\right)$ の平均 $f(\mathbf{z} ; \boldsymbol{\Theta})$ の差を最小化することとみなすことができる. 同時に, 右辺の第2項は正則化項とみなすことができ, 近似された事後分布 $q\left(\mathbf{z} \mid \mathbf{x}\_{\mathbf{i}} ; \boldsymbol{\Phi}\right)$ が事前分布 $p(\mathbf{z})$ に近くなるようにしている. 学習後, 生成モデル $p\left(\mathbf{x}\_i \mid \mathbf{z} ; \boldsymbol{\Theta}\right)$ は与えられたデータに類似したデータサンプルを生成するために利用される(このとき, 潜在変数は標準ガウス分布 $p(\mathbf{z})$ からサンプル抽出される).
+ $\mathcal{X}$ 中のデータサンプルについて, 式(9.10)の対数尤度を最大化する代わりに, 式(9.11)の変分下限を $\boldsymbol{\Theta}$ と $\boldsymbol{\Phi}$ に対して微分して最大化する. なお, 変分下限のマイナス $-\mathcal{L}\left(\boldsymbol{\Theta}, \boldsymbol{\Phi} ; \mathbf{x}\_i\right)$ を最小化することは, 3.5節で紹介した古典的なオートエンコーダーの処理に似ているので, このモデルは「変分オートエンコーダー」と呼ばれる. 具体的には, 式(9.11)右辺の第1項は再構成の過程とみなすことができ,  $q\left(\mathbf{z} \mid \mathbf{x}\_{\mathbf{i}} ; \mathbf{\Phi}\right)$ はエンコーダー(推論モデル)で $p\left(\mathbf{x}\_i \mid \mathbf{z} ; \boldsymbol{\Theta}\right)$ はデコーダー(生成モデル)である. エンコーダーが入力を表現に変換する, 古典的なオートエンコーダーと違って, このエンコーダー $q\left(\mathbf{z} \mid \mathbf{x}\_{\mathbf{i}} ; \mathbf{\Phi}\right)$ は入力 $\mathbf{x}\_i$ を潜在ガウス分布に変換する. 式(9.11)右辺の第1項を最大化することは, 入力 $\mathbf{x}\_i$ とデコードされた $p\left(\mathbf{x}\_i \mid \mathbf{z} ; \boldsymbol{\Theta}\right)$ の平均 $f(\mathbf{z} ; \boldsymbol{\Theta})$ の差を最小化することとみなすことができる. 同時に, 式(9.11)右辺の第2項は正則化項とみなすことができ, 近似された事後分布 $q\left(\mathbf{z} \mid \mathbf{x}\_{\mathbf{i}} ; \boldsymbol{\Phi}\right)$ が事前分布 $p(\mathbf{z})$ に近くなるようにしている. 学習後, 生成モデル $p\left(\mathbf{x}\_i \mid \mathbf{z} ; \boldsymbol{\Theta}\right)$ は与えられたデータに類似したデータサンプルを生成するために利用される(このとき, 潜在変数は標準ガウス分布 $p(\mathbf{z})$ からサンプル抽出される).
 
 ### ノード表現学習のためのVAE
 
@@ -68,7 +68,7 @@ $$
 
   
 
-ここで,  $\boldsymbol{\mu}$ と $\boldsymbol{\sigma}$ は,  $\boldsymbol{\mu}\_i$ と $\boldsymbol{\sigma}\_i$ がそれぞれ $i$ 番目の行となる行列である.  $\boldsymbol{\Phi}\_{\mu}$ と $\boldsymbol{\Phi}\_{\sigma}$ はでは $\boldsymbol{\Phi}$ としてまとめられている. 具体的に, (Kipf and Welling, 2016b)では, 推論モデルを構築するためのグラフニューラルネットワークモデルとして, GCNフィルターが使われている. グラフの隣接行列を生成する(再構成する)生成モデルは, 潜在変数 $\mathbf{Z}$ 間の内積を用いて次のようにモデル化される:
+ここで,  $\boldsymbol{\mu}$ と $\boldsymbol{\sigma}$ は,  $\boldsymbol{\mu}\_i$ と $\boldsymbol{\sigma}\_i$ がそれぞれ $i$ 番目の行となる行列である.  $\boldsymbol{\Phi}\_{\mu}$ と $\boldsymbol{\Phi}\_{\sigma}$ は式(9.12)では $\boldsymbol{\Phi}$ としてまとめられている. 具体的に, (Kipf and Welling, 2016b)では, 推論モデルを構築するためのグラフニューラルネットワークモデルとして, GCNフィルターが使われている. グラフの隣接行列を生成する(再構成する)生成モデルは, 潜在変数 $\mathbf{Z}$ 間の内積を用いて次のようにモデル化される:
 
   
 
@@ -117,7 +117,7 @@ $$
 
   
 
-ここで, 平均と分散はグラフニューラルネットワークモデルによって学習される. 詳細には, で導入したECCフィルターを使ってグラフニューラルネットワークモデルを構築してノード表現を学習し, で導入した, ゲート付きグローバルプーリングを用いてノード表現をプーリングしてグラフ表現を生成する.
+ここで, 平均と分散はグラフニューラルネットワークモデルによって学習される. 詳細には, 5.3.2節で導入したECCフィルターを使ってグラフニューラルネットワークモデルを構築してノード表現を学習し, 5.4.1節で導入した, ゲート付きグローバルプーリングを用いてノード表現をプーリングしてグラフ表現を生成する.
 
 #### デコーダー：生成モデル
 
@@ -139,7 +139,7 @@ $$
 
 #### 再構成損失の評価
 
-を最適化するには,  $\mathbb{E}\_{q(\mathbf{z} \mid \mathcal{G} ; \boldsymbol{\Phi})}[\log p(\mathcal{G} \mid \mathbf{z} ; \boldsymbol{\Theta})]$ を評価することが残っており, これは入力グラフ $\mathcal{G}$ と再構成した確率的グラフ $\widetilde{\mathcal{G}}$ がどれくらい近いかを評価している, とみなすことができる. グラフには特定のノードの並びが存在しないので, 2つのグラフを比較するのは簡単ではない. (Simonovsky and Komodakis, 2018)では, 最大プーリングマッチングアルゴリズム(Cho et al., 2014b)を用いて,  $\mathcal{G}$ と $\widetilde{\mathcal{G}}$ の対応 $\mathbf{P} \in\{0,1\}^{k \times N}$ を見つける. このアルゴリズムは, 2つのグラフのノード間の類似度に基づいており,  $N$ は $\mathcal{G}$ 中のノード数,  $k$ は $\widetilde{\mathcal{G}}$ 中のノード数である. 具体的には,  $\widetilde{\mathcal{G}}$ の $i$ 番目のノードがもとのグラフの $j$ 番目のノードに対応するときのみ $\mathbf{P}\_{i, j}=1$ であり, それ以外では $\mathbf{P}\_{i, j}=0$ となる. アラインメント行列 $\mathbf{P}$ があれば, 2つのグラフ中の情報を比較できるようにアラインメントすることができる. 入力の隣接行列は $\mathbf{A}^{\prime}=\mathbf{P A} \mathbf{P}^{T}$ と予測グラフに変換することができる一方で, ノードとエッジの種類についての予測は $\widetilde{\mathbf{F}}^{\prime}=\mathbf{P}^{T} \widetilde{\mathbf{F}}, \widetilde{\mathbf{E}}\_{:,: l}^{\prime}=\mathbf{P}^{T} \widetilde{\mathbf{E}}\_{:,:, l} \mathbf{P}$ と入力グラフに変換することができる. そして,  $\mathbb{E}\_{q(\mathbf{z} \mid \mathcal{G} ; \boldsymbol{\Phi})}[\log p(\mathcal{G} \mid \mathbf{z} ; \boldsymbol{\Theta})]$ は $q(\mathbf{z} \mid \mathcal{G})$ からサンプル抽出した一つの潜在変数 $\mathbf{z}$ を用いて次のように見積もることができる:
+式(9.13)を最適化するには,  $\mathbb{E}\_{q(\mathbf{z} \mid \mathcal{G} ; \boldsymbol{\Phi})}[\log p(\mathcal{G} \mid \mathbf{z} ; \boldsymbol{\Theta})]$ を評価することが残っており, これは入力グラフ $\mathcal{G}$ と再構成した確率的グラフ $\widetilde{\mathcal{G}}$ がどれくらい近いかを評価している, とみなすことができる. グラフには特定のノードの並びが存在しないので, 2つのグラフを比較するのは簡単ではない. (Simonovsky and Komodakis, 2018)では, 最大プーリングマッチングアルゴリズム(Cho et al., 2014b)を用いて,  $\mathcal{G}$ と $\widetilde{\mathcal{G}}$ の対応 $\mathbf{P} \in\{0,1\}^{k \times N}$ を見つける. このアルゴリズムは, 2つのグラフのノード間の類似度に基づいており,  $N$ は $\mathcal{G}$ 中のノード数,  $k$ は $\widetilde{\mathcal{G}}$ 中のノード数である. 具体的には,  $\widetilde{\mathcal{G}}$ の $i$ 番目のノードがもとのグラフの $j$ 番目のノードに対応するときのみ $\mathbf{P}\_{i, j}=1$ であり, それ以外では $\mathbf{P}\_{i, j}=0$ となる. アラインメント行列 $\mathbf{P}$ があれば, 2つのグラフ中の情報を比較できるようにアラインメントすることができる. 入力の隣接行列は $\mathbf{A}^{\prime}=\mathbf{P A} \mathbf{P}^{T}$ と予測グラフに変換することができる一方で, ノードとエッジの種類についての予測は $\widetilde{\mathbf{F}}^{\prime}=\mathbf{P}^{T} \widetilde{\mathbf{F}}, \widetilde{\mathbf{E}}\_{:,: l}^{\prime}=\mathbf{P}^{T} \widetilde{\mathbf{E}}\_{:,:, l} \mathbf{P}$ と入力グラフに変換することができる. そして,  $\mathbb{E}\_{q(\mathbf{z} \mid \mathcal{G} ; \boldsymbol{\Phi})}[\log p(\mathcal{G} \mid \mathbf{z} ; \boldsymbol{\Theta})]$ は $q(\mathbf{z} \mid \mathcal{G})$ からサンプル抽出した一つの潜在変数 $\mathbf{z}$ を用いて次のように見積もることができる:
 
  $$
  \mathbb{E}_{q(\mathbf{z} \mid \mathcal{G} ; \boldsymbol{\Phi})}[\log p(\mathcal{G} \mid \mathbf{z} ; \boldsymbol{\Theta})] \approx \log p(\mathcal{G} \mid \mathbf{z} ; \boldsymbol{\Theta})=\log p\left(\mathbf{A}^{\prime}, \mathbf{E}, \mathbf{F} \mid \widetilde{\mathbf{A}}, \widetilde{\mathbf{E}}^{\prime} \widetilde{\mathbf{F}}^{\prime}\right)
@@ -162,7 +162,7 @@ $$
 
   
 
-ここで,  $\lambda_{\mathbf{A}}, \lambda_E, \lambda_F$ はハイパーパラメータである. の3項はそれぞれ $\mathbf{A}^{\prime},\mathbf{E}, \mathbf{F}$ の対数尤度であり, それぞれ $\mathbf{A}^{\prime}$ と $\widetilde{\mathbf{A}}$ 間,  $\mathbf{E}$ と $\widetilde{\mathbf{E}}^{\prime}$ 間,  $\mathbf{F}$ と $\widetilde{\mathbf{F}}^{\prime}$ 間のクロスエントロピーのマイナスでモデル化することができる. 詳細には次のように定式化される:
+ここで,  $\lambda_{\mathbf{A}}, \lambda_E, \lambda_F$ はハイパーパラメータである. 式(9.14)の3項はそれぞれ $\mathbf{A}^{\prime},\mathbf{E}, \mathbf{F}$ の対数尤度であり, それぞれ $\mathbf{A}^{\prime}$ と $\widetilde{\mathbf{A}}$ 間,  $\mathbf{E}$ と $\widetilde{\mathbf{E}}^{\prime}$ 間,  $\mathbf{F}$ と $\widetilde{\mathbf{F}}^{\prime}$ 間のクロスエントロピーのマイナスでモデル化することができる. 詳細には次のように定式化される:
 
   
 
