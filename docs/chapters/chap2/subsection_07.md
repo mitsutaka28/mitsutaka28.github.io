@@ -27,7 +27,7 @@
 <strong>定義 2.42 ノード分類</strong>
 
 
-ノード集合 $\mathcal{V}$ とエッジ集合 $\mathcal{E}$ を持つグラフを $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ と表す． $\mathcal{V}$ のノードの中にはラベルが貼られているものがあり，このラベルが付いたノード集合を $\mathcal{V}\_l\subset\mathcal{V}$ と表す．残りのノードはラベルを持たないので，このラベルがないノード集合を $\mathcal{V}\_u$ と表す．これらの集合は， $\mathcal{V}\_l\cup\mathcal{V}\_u = \mathcal{V}$ かつ $\mathcal{V}\_l\cap\mathcal{V}\_u = \emptyset$ を満たす．ノード分類タスクの目的は，ラベルのないノード( $v\in \mathcal{V}\_u$ )のラベルを予測する写像 $\phi$ を， $\mathcal{G}$ と $\mathcal{V}\_l$ のラベルを活用して学習することにある． 
+ノード集合 $\mathcal{V}$ とエッジ集合 $\mathcal{E}$ を持つグラフを $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ と表す． $\mathcal{V}$ のノードの中にはラベルが貼られているものがあり，このラベルが付いたノード集合を $\mathcal{V}_l\subset\mathcal{V}$ と表す．残りのノードはラベルを持たないので，このラベルがないノード集合を $\mathcal{V}_u$ と表す．これらの集合は， $\mathcal{V}_l\cup\mathcal{V}_u = \mathcal{V}$ かつ $\mathcal{V}_l\cap\mathcal{V}_u = \emptyset$ を満たす．ノード分類タスクの目的は，ラベルのないノード( $v\in \mathcal{V}_u$ )のラベルを予測する写像 $\phi$ を， $\mathcal{G}$ と $\mathcal{V}_l$ のラベルを活用して学習することにある． 
 </div>
  上記の定義は単純グラフに対するものであり，2.6節で紹介した多様な属性を持つグラフなどの複雑グラフにも容易に拡張できる． 
 <div class="eg">
@@ -67,7 +67,7 @@
 <strong>定義 2.46 グラフ分類</strong>
 
 
- $y_i$ をグラフ $\mathcal{G}\_i$ のラベルとする，ラベル付きグラフの集合 $\mathcal{D} = \left\{(\mathcal{G}\_i, y_i)\right\}$ が与えられたとき，グラフ分類タスクの目的は， $\mathcal{D}$ を使ってラベルのないグラフが持つラベルを予測するような写像 $\phi$ を学習することにある． 
+ $y_i$ をグラフ $\mathcal{G}_i$ のラベルとする，ラベル付きグラフの集合 $\mathcal{D} = \left\{(\mathcal{G}_i, y_i)\right\}$ が与えられたとき，グラフ分類タスクの目的は， $\mathcal{D}$ を使ってラベルのないグラフが持つラベルを予測するような写像 $\phi$ を学習することにある． 
 </div>
  上記の定義では，グラフに関連する可能性のある付加的な情報は指定しなかった．例えば，特定の状況では，グラフ分類に利用できる特定の特徴が各ノードに関連付けれられていることがある． 
 <div class="eg">
