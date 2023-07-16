@@ -45,12 +45,7 @@ HIKIHOPデータセット内のサンプルを図10.3に示した．
 
 1.   $S_q$ 内で $C_q\cup \left\\{s\right\\}$ の要素と完全一致する語句
 
-2.   $C_q\cup \left\\{s\right\\}$ の要素と**共参照関係**
-
-    [^8]
-    [^8]: 訳注：共参照関係は，2つ以上の語句が同一の対象を示しているという関係性を指す概念である．例えば，"Tom went out for a walk because he needed some fresh air"という文章を考えてみると，"Tom"および"he"の2つのエンティティを指す語句が同じ人物を指している．つまり，"Tom"と"he"は共参照関係にある．
-
-    にある語句(共参照関係を発見するために，ここではLee *et al*.(2017)で提案された，End-to-Endな共参照解析手法を採用している)
+2.   $C_q\cup \left\\{s\right\\}$ の要素と**共参照関係** にある語句(共参照関係を発見するために，ここではLee *et al*.(2017)で提案された，End-to-Endな共参照解析手法を採用している)
 
 以上の語句（またはノード）を接続するために，次のような数種類のエッジが構築される：
 
@@ -76,8 +71,8 @@ $$
 &\symbf{a}^{(l-1)}_i = \sigma\left(\left[\symbf{m}^{(l)}_i,\symbf{F}^{(l-1)}_i\right]\symbf{\Theta}^{(l-1)}_a\right)
 \tag{10.4}\\
 &\symbf{h}^{(l)}_i = \rho\left(\symbf{m}^{(l-1)}_i\right)\odot\symbf{a}^{(l-1)}_i + \symbf{F}^{(l-1)}_i\odot\left(1-\symbf{a}^{(l-1)}_i\right)
+\tag{10.5}\\ \nonumber
 \end{eqnarray}
-\tag{10.5}
 $$
 
   
