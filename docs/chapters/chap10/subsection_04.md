@@ -9,18 +9,6 @@
 [^4]
 ．具体的には，主語のエンティティ(連続する単語系列)はスパン $\symscr{W}\_s=[w_{s1}\,:\,w_{s2}]$ として表され，同様に，目的語のエンティティはスパン $\symscr{W}\_o=[w_{o1}\,:\,w_{o2}]$ として表現される
 [^5]
-$$
- \symscr{W} = [\text{The}, \text{quick}, \text{brown}, \text{fox}, \text{jumps}, \text{over}, \text{the}, \text{lazy}, \text{dog}] $$
-
-
- のとき，主語のエンティティと目的語のエンティティは以下のようになる： 
-
-$$
- \symscr{W}_{\text{s}}=[\text{The}, \text{quick}, \text{brown}, \text{fox}],\qquad\symscr{W}_{\text{o}}=[\text{the}, \text{lazy}, \text{dog}] $$
-
-
- 
-
 ．これらの定義の下で，関係抽出タスクの目的は，文章 $\symscr{W}$ が与えられたときに主語のエンティティ $\symscr{W}\_s$ と目的語のエンティティ $\symscr{W}\_o$ の関係を予測することである（なお， $\symscr{W}\_s$ と $\symscr{W}\_o$ は既に与えられているものとする）． 抽出対象の関係は事前に定義された集合 $\symscr{R}$ から来ており，この集合には，2つのエンティティの間に関係がないことを示す「無関係(no relation)」という特殊な関係も含まれている． 関係抽出の問題は，Zhang *et al*.(2018c)では分類問題として扱われている． このときの入力は，文章 $\symscr{W}$ の表現，主語エンティティ $\symscr{W}\_s$ の表現，目的語エンティティ $\symscr{W}\_o$ の表現をすべて連結したものである． 出力ラベルは関係の集合 $\symscr{R}$ の要素である． つまり，エンティティのペアに成立する関係の予測は，以下のようにパラメータ $\symscr{\Theta}\_{\text{FFNN}}$ を持つ順伝播型ニューラルネットワーク(FFNN)を通じて行われる：  
 
 $$
@@ -45,18 +33,7 @@ $$
 
  
 
-ここで， $\symbf{F}^{(L)}$ ， $\symbf{F}^{(L)}[s1\,:\,s2]$ ，および $\symbf{F}^{(L)}[o1\,:\,o2]$ は，それぞれ文章全体，主語エンティティ，目的語エンティティに対する単語表現の系列を表している． 最大プーリング操作は各次元の中での最大値を取り出すため，その結果として各単語表現と同じ次元を持つベクトルが得られる
-[^6]
-$$
-
-\begin{aligned}
-\symbf{F}^{(L)}\in\mathbb{R}^{d\times n}&\xrightarrow{\text{最大プーリング}}\symbf{F}_{\text{sent}}\in\mathbb{R}^{d}\\\symbf{F}^{(L)}[s1\,:\,s2]\in\mathbb{R}^{d\times \text{length_s}}&\xrightarrow{\text{最大プーリング}}\symbf{F}_s\in\mathbb{R}^{d}\qquad(\text{length_s} = s2 - s1 + 1)\\\symbf{F}^{(L)}[o1\,:\,o2]\in\mathbb{R}^{d\times\text{length_o}}&\xrightarrow{\text{最大プーリング}}\symbf{F}_o\in\mathbb{R}^{d}\qquad(\text{length_o} = o2 - o1 + 1)
-\end{aligned}
-$$
-
- 
-
-．
+ここで， $\symbf{F}^{(L)}$ ， $\symbf{F}^{(L)}[s1\,:\,s2]$ ，および $\symbf{F}^{(L)}[o1\,:\,o2]$ は，それぞれ文章全体，主語エンティティ，目的語エンティティに対する単語表現の系列を表している． 最大プーリング操作は各次元の中での最大値を取り出すため，その結果として各単語表現と同じ次元を持つベクトルが得られる ．
 
 
 [メインページ](../../index.markdown)
@@ -66,5 +43,4 @@ $$
 [前の節へ](./subsection_03.md) [次の節へ](./subsection_05.md)
 
 [^4]: 訳注：例えば，"The quick brown fox jumps over the lazy dog"という文章では，"The quick brown fox"や"the lazy dog"はスパンの一例である．また，個々の単語自体もスパンを形成することができる．注目すべき点は，スパンは文章の特定の範囲を指すだけで，それが具体的にどのような意味を持つか（特定の種類のエンティティを示しているかどうかなど）については言及していないということである．
-[^5]: 訳注：例えば， 
-[^6]: 訳注：文章中に含まれる単語の数を $n$ ，単語表現が持つ次元を $d$ とする．このとき，最大プーリング操作によって次元は以下のようになる： 
+[^5]: 訳注：例えば，  $\symscr{W} = [\text{The}, \text{quick}, \text{brown}, \text{fox}, \text{jumps}, \text{over}, \text{the}, \text{lazy}, \text{dog}]$  のとき，主語のエンティティと目的語のエンティティは以下のようになる：  $\symscr{W}\_{\text{s}}=[\text{The}, \text{quick}, \text{brown}, \text{fox}],\qquad\symscr{W}\_{\text{o}}=[\text{the}, \text{lazy}, \text{dog}]$ 
