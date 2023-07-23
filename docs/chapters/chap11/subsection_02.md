@@ -72,8 +72,8 @@ $$
 \tag{11.3}\\
     \mathbf{h}_i^{(t)} &=&\operatorname{GRU}\left(\left[\mathbf{m}_i, \mathbf{x}_i^{\prime}\right], \mathbf{h}_i^{(t-1)}\right) ; t=1, \ldots T
     
+\tag{11.4}\\ \nonumber
 \end{eqnarray}
-\tag{11.4}
 $$
 
   
@@ -90,8 +90,8 @@ $$
     \mathbf{h}_i^{\prime} & =&f_1\left(\sum_{j=1}^{\left\|\mathcal{V}_I\right\|} \mathbf{h}_{i, j}\right) 
 \tag{11.6}\\ 
     \mathbf{h}_{(q, I)} & =&f_2\left(\sum_{i=1}^{\left\|\mathcal{V}_q\right\|} \mathbf{h}_i^{\prime}\right) 
+\tag{11.7} \\ \nonumber
 \end{eqnarray}
-\tag{11.7}
 $$
 
   

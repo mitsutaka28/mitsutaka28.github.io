@@ -35,7 +35,10 @@
 ここで,  $\mathbf{P}\_i$ と $\mathbf{M}\_i$ はそれぞれ行列 $\mathbf{P}, \mathbf{M}$ の $i$ 行目を表し,  $N_i$ は $i$ 番目の物体の出現回数を表す. 行列 $\mathbf{P}$ をスパース化するため, 閾値 $\tau$ を設定してノイズの多いエッジをフィルターする:
 
  $$
- \boldsymbol{A}_{i, j}=\left\{\begin{array}{ll}0, & \text { if } \boldsymbol{P}_{i, j}<\tau \\ 1, & \text { if } \boldsymbol{P}_{i, j} \geq \tau\end{array}\right\.
+ \boldsymbol{A}_{i, j}=
+    \begin{cases}
+    0, & \text { if } \boldsymbol{P}_{i, j}<\tau \\ 1, & \text { if } \boldsymbol{P}_{i, j} \geq \tau          
+    \end{cases}
     \nonumber $$
  
 

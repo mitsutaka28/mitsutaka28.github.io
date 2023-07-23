@@ -18,7 +18,9 @@
 $$
 
 \begin{eqnarray}
-    h_{\Theta^{(l-1)}}\left(\mathbf{F}_i^{(l-1)}, \mathbf{F}_j^{(l-1)}\right)&=&\alpha\left(\mathbf{F}_j^{(l-1)} \boldsymbol{\Theta}^{(l-1)}\right) \\ h_{\mathbf{\Theta}^{(l-1)}}\left(\mathbf{F}_i^{(l-1)}, \mathbf{F}_j^{(l-1)}\right)&=&\alpha\left(\left(\mathbf{F}_j^{(l-1)}-\mathbf{F}_i^{(l-1)}\right) \boldsymbol{\Theta}^{(l-1)}\right)
+    h_{\Theta^{(l-1)}}\left(\mathbf{F}_i^{(l-1)}, \mathbf{F}_j^{(l-1)}\right)&=&\alpha\left(\mathbf{F}_j^{(l-1)} \boldsymbol{\Theta}^{(l-1)}\right) 
+\tag{11.11}\\ h_{\mathbf{\Theta}^{(l-1)}}\left(\mathbf{F}_i^{(l-1)}, \mathbf{F}_j^{(l-1)}\right)&=&\alpha\left(\left(\mathbf{F}_j^{(l-1)}-\mathbf{F}_i^{(l-1)}\right) \boldsymbol{\Theta}^{(l-1)}\right) 
+\tag{11.12}\\ \nonumber
 \end{eqnarray}
 $$
 
