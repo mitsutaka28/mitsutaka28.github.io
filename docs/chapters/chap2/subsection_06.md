@@ -47,7 +47,7 @@
 <div class="definition">
  
 <strong>定義 2.37 多次元グラフ</strong>
- 多次元グラフは， $N$ 個のノードから成る集合 $\mathcal{V} = \left\{v_1,\dots,v_N\right\}$ および $D$ 個のエッジ集合 $\left\{\mathcal{E}_1,\dots,\mathcal{E}_D\right\}$ で構成される．各エッジ集合 $\mathcal{E}_d$ は，それぞれの $d$ 次元における，ノード間の $d$ 番目の関係タイプを表している． また，これら $D$ 種類の関係は $D$ 個の隣接行列 $\symbf{A}^{(1)},\dots,\symbf{A}^{(D)}$ としても表現でき， $d$ 次元に対応する隣接行列 $\symbf{A}\_d\in \mathbb{R}^{N\times N}$ は， $\mathcal{V}$ 中のノード間にあるエッジ集合 $\mathcal{E}_d$ を記述している．例えば， $\symbf{A}\_d$ の $i,j$ 要素 $\symbf{A}\_d[i,j]$ は，ノード $v_i$ と $v_j$ の間に次元 $d$ のエッジが存在するとき（ $(v_i,v_j)\in\mathcal{E}_d$ ）にのみ $1$ ，次元 $d$ のエッジが存在しない場合は $0$ となる． 
+ 多次元グラフは， $N$ 個のノードから成る集合 $\mathcal{V} = \left\{v_1,\dots,v_N\right\}$ および $D$ 個のエッジ集合 $\left\{\mathcal{E}_1,\dots,\mathcal{E}_D\right\}$ で構成される．各エッジ集合 $\mathcal{E}_d$ は，それぞれの $d$ 次元における，ノード間の $d$ 番目の関係タイプを表している． また，これら $D$ 種類の関係は $D$ 個の隣接行列 $\symbf{A}^{(1)},\dots,\symbf{A}^{(D)}$ としても表現でき， $d$ 次元に対応する隣接行列 $\symbf{A}_d\in \mathbb{R}^{N\times N}$ は， $\mathcal{V}$ 中のノード間にあるエッジ集合 $\mathcal{E}_d$ を記述している．例えば， $\symbf{A}_d$ の $i,j$ 要素 $\symbf{A}_d[i,j]$ は，ノード $v_i$ と $v_j$ の間に次元 $d$ のエッジが存在するとき（ $(v_i,v_j)\in\mathcal{E}_d$ ）にのみ $1$ ，次元 $d$ のエッジが存在しない場合は $0$ となる． 
 </div>
 
 
@@ -57,7 +57,7 @@ SNSの普及に伴い，正負のエッジを含む符号付きグラフはま�
 <div class="definition">
  
 <strong>定義 2.38 符号付きグラフ</strong>
-  $\mathcal{V} = \left\{v_1,\dots,v_N\right\}$ を $N$ 個のノードから成る集合， $\mathcal{E}^{+}\subset\mathcal{V}\times\mathcal{V}$ と $\mathcal{E}^{-}\subset\mathcal{V}\times\mathcal{V}$ をそれぞれ正と負のエッジ集合を表す．ただし，エッジは正または負のどちらか一方に属すこととし， $\mathcal{E}^{+}\cap\mathcal{E}^{-}=\emptyset$ を満たす．このとき， $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}^{+},\mathcal{E}^{-}\right\}$ は符号付きグラフである．これらのノード間の正・負エッジは符号付き隣接行列 $\symbf{A}$ で記述することができ，ノード $v_i$ とノード $v_j$ の間に正のエッジがあるとき $\symbf{A}\_{i,j}=1$ ，負のエッジがあるとき $\symbf{A}\_{i,j}=-1$ ，それ以外の場合 $\symbf{A}\_{i,j}=0$ となる． 
+  $\mathcal{V} = \left\{v_1,\dots,v_N\right\}$ を $N$ 個のノードから成る集合， $\mathcal{E}^{+}\subset\mathcal{V}\times\mathcal{V}$ と $\mathcal{E}^{-}\subset\mathcal{V}\times\mathcal{V}$ をそれぞれ正と負のエッジ集合を表す．ただし，エッジは正または負のどちらか一方に属すこととし， $\mathcal{E}^{+}\cap\mathcal{E}^{-}=\emptyset$ を満たす．このとき， $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}^{+},\mathcal{E}^{-}\right\}$ は符号付きグラフである．これらのノード間の正・負エッジは符号付き隣接行列 $\symbf{A}$ で記述することができ，ノード $v_i$ とノード $v_j$ の間に正のエッジがあるとき $\symbf{A}_{i,j}=1$ ，負のエッジがあるとき $\symbf{A}_{i,j}=-1$ ，それ以外の場合 $\symbf{A}_{i,j}=0$ となる． 
 </div>
 
 
