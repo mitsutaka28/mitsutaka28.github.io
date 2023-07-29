@@ -194,7 +194,7 @@ $$
 <div class="definition">
  
 <strong>定義 2.19 連結グラフ</strong>
- ． 
+ 連結成分が $1$ つだけのグラフ $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ を，連結グラフという ． 
 </div>
  
 <div class="eg">
