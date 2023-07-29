@@ -171,10 +171,10 @@ $$
  
 <strong>定義 2.17 連結成分</strong>
  グラフ $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ とその部分グラフ $\mathcal{G}' = \left\{\mathcal{V}',\mathcal{E}'\right\}$ を考える．部分グラフの任意のノード間に少なくとも $1$ つのパスが存在し， $\mathcal{V}'$ のノードが $\mathcal{V}/\mathcal{V}'$ 
-に含まれるどのノードとも隣接しないとき，部分グラフ $\mathcal{G}'$ はグラフ $\mathcal{G}$ の連結成分であるという． 
-</div>
-
 [^1]
+に含まれるどのノードとも隣接しないとき，部分グラフ $\mathcal{G}'$ はグラフ $\mathcal{G}$ の連結成分であるという． 
+
+</div>
 
 <div class="eg">
  
