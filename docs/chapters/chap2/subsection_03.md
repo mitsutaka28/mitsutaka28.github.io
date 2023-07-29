@@ -170,7 +170,9 @@ $$
 <div class="definition">
  
 <strong>定義 2.17 連結成分</strong>
- グラフ $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ とその部分グラフ $\mathcal{G}' = \left\{\mathcal{V}',\mathcal{E}'\right\}$ を考える．部分グラフの任意のノード間に少なくとも $1$ つのパスが存在し， $\mathcal{V}'$ のノードが $\mathcal{V}/\mathcal{V}'$ (訳注： $\mathcal{V}$ から $\mathcal{V}'$ のノードを取り去った集合)に含まれるどのノードとも隣接しないとき，部分グラフ $\mathcal{G}'$ はグラフ $\mathcal{G}$ の連結成分であるという． 
+ グラフ $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ とその部分グラフ $\mathcal{G}' = \left\{\mathcal{V}',\mathcal{E}'\right\}$ を考える．部分グラフの任意のノード間に少なくとも $1$ つのパスが存在し， $\mathcal{V}'$ のノードが $\mathcal{V}/\mathcal{V}'$ 
+[^1]
+に含まれるどのノードとも隣接しないとき，部分グラフ $\mathcal{G}'$ はグラフ $\mathcal{G}$ の連結成分であるという． 
 </div>
  
 <div class="eg">
@@ -192,9 +194,7 @@ $$
 <div class="definition">
  
 <strong>定義 2.19 連結グラフ</strong>
- 連結成分が $1$ つだけのグラフ $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ を，連結グラフという
-[^1]
-． 
+ ． 
 </div>
  
 <div class="eg">
@@ -291,6 +291,31 @@ p^{sp}_{st} = \arg \min_{p\in\mathcal{P}_{st}} \|p\|. $$
 
 "Katz中心性"は固有ベクトル中心性の変種であり，近傍の中心性スコアを考慮するだけでなく，すべてのノードに一定量の中心性を小さな定数として与えている
 [^2]
+．具体的にノード $v_i$ のKatz中心性は， $\beta$ を定数として，以下のように定義できる．
+
+ $$
+ 
+\tag{2.4}
+c_k(v_i) = \alpha\sum^{N}_{j=1}\symbf{A}_{i,j}c_k (v_j) + \beta. $$
+ 
+
+すべてのノードのKatz中心性スコアは行列形式として
+
+ 
+
+$$
+
+\begin{aligned}
+    \symbf{c}_k = \alpha \symbf{A}\symbf{c}_k + \symbf{\beta}\nonumber\\
+    (\symbf{I} - \alpha\cdot \symbf{A})\symbf{c}_k = \symbf{\beta},
+\end{aligned}
+\tag{2.5}
+$$
+
+ 
+
+と表せる．ここで， $\symbf{c}\_k\in \mathbb{R}^{N}$ は，すべてのノードに関するKatz中心性のスコアを表すベクトルで， $\symbf{\beta}$ は各ノードの定数項 $\beta$ を要素に持ったベクトルである． なお，隣接行列 $\symbf{A}$ の最大固有値を $\lambda_{\max}$ とし， $\alpha=\tfrac{1}{\lambda_{\max}}$ かつ $\beta=0$ とおくと，Katz中心性は固有ベクトル中心性と等価になる． $\alpha$ の選択は重要で， $\alpha$ の値が大きいと行列 $\symbf{I}-\alpha\cdot\symbf{A}$ は悪条件(ill-conditioned)になる
+[^3]
 ． 逆に $\alpha$ を小さくしすぎても得られる結果は $\beta$ に近いものとなり，非常に似たスコアを全ノードに割り当てることになるため，中心性スコアとして役に立たない．そこで実際には，可逆であることを保証するような， $\alpha < \tfrac{1}{\lambda_{\max}}$ とおいた行列 $\symbf{I}-\alpha\cdot\symbf{A}$ を選択することが多く，このとき $\symbf{c}\_k$ は以下のように計算できる．
 
  $$
@@ -338,8 +363,6 @@ p^{sp}_{st} = \arg \min_{p\in\mathcal{P}_{st}} \|p\|. $$
 
 [前の節へ](./subsection_02.md) [次の節へ](./subsection_04.md)
 
-[^1]:訳注：本書を読む上で，「完全グラフ(complete graph)」についても知っておくと良い．以下に連結グラフとの比較を交えて説明する：
-    -   **連結グラフ：**グラフ内のどの2つのノード間に少なくとも $1$ つのパスが存在するグラフ．
-    -   **完全グラフ：**グラフ内の全てのノードが互いに隣接しているグラフ．つまり，全てのノード組の間にエッジが存在する状態のグラフである．
-    すべての完全グラフは連結グラフだが，すべての連結グラフが完全グラフとは限らない．FOOT_END
-
+[^1]: 訳注： $\mathcal{V}$ から $\mathcal{V}'$ のノードを取り去った集合
+[^2]: 訳注：辺の向きがある有向グラフでは，どのノードからもエッジの入射がないノードの中心性は $0$ となる．さらに，そのようなノードに隣接するノードも，中心性が $0$ となってしまう可能性がある．Katz中心性は，中心性が $0$ となるノードから入射するエッジにも一定のスコアを与えることで，より妥当な中心性の算出を可能にする指標である．
+[^3]: 訳注：式(2.5)の"条件数"(condition number)が大きくなると，数値解析上の問題が生じる．一般に，方程式 $\symbf{C}\symbf{x}=\symbf{b}$ の条件数 $\kappa(\symbf{C})$ とは， $\kappa(\symbf{C})=\|\symbf{C}\|\,\|\symbf{C}^{-1}\|$ で定義される値であり( $\|\cdot\|$ は適当な行列ノルム)，この値が大きいほど，数値的な不安定性や誤差が生じることがある．そのため，Katz中心性を計算する際には，条件数 $\kappa(\symbf{I}-\alpha\cdot\symbf{A})$ を小さくするため， $\alpha$ の値の決め方が重要となってくる．
