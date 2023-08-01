@@ -31,7 +31,7 @@ layout: default
 - [第10章 自然言語処理におけるグラフニューラルネットワークの応用](./chapters/chap10/chap10.md)
 - [第11章 画像認識におけるグラフニューラルネットワークの応用](./chapters/chap11/chap11.md)
 - [第12章 データマイニングにおけるグラフニューラルネットワーク](./chapters/chap12/chap12.md)
-- [第13章 Graph Neural Networks in Biochemistry and Healthcare](./chapters/chap13/chap13.md)
+- [第13章 生化学とヘルスケアにおけるグラフニューラルネットワーク](./chapters/chap13/chap13.md)
 ### 発展
 - 第14章 Advanced Topics in Graph Neural Networks
 - [第15章 Advanced Applications in Graph Neural Networks](./chapters/chap15/chap15.md)
