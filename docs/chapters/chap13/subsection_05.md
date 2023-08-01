@@ -21,7 +21,8 @@ ABIDEデータベースは, 世界の様々な場所での患者の神経画像(
     \begin{cases}
     1 & \text { if }\left\|M_h\left(v_i\right)-M_h\left(v_j\right)\right\|<\theta \\ 
     0 & \text { otherwise }         
-    \end{cases} $$
+    \end{cases}
+    \nonumber $$
  
 
 ここで,  $\theta$ はあらかじめ設定された閾値である. これは年齢差が $\theta$ よりも小さい患者同士を互いに似ているとみなすことを意味する.

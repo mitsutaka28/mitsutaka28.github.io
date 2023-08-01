@@ -7,12 +7,9 @@
 
 異なるビューの類似性行列は次のように統合される:
 
- 
-
-$$
- \mathbf{A}=\sum_{t=1}^{T} \operatorname{diag}\left(\mathbf{g}_t\right) \mathbf{A}_t $$
-
-
+ $$
+ \mathbf{A}=\sum_{t=1}^{T} \operatorname{diag}\left(\mathbf{g}_t\right) \mathbf{A}_t 
+\tag{13.3} $$
  
 
 ここで,  $\mathbf{g}\_t \in \mathbb{R}^{N}$ は注意機構スコアであり, 次のように学習される:
@@ -34,7 +31,7 @@ $$
  $$
  \mathbf{Z}=\alpha(\text { GNN-Filter }(\mathbf{A}, \mathbf{X}))
     
-\tag{13.3} $$
+\tag{13.4} $$
  
 
 ここで,  $\mathbf{X}=\left[\mathbf{X}\_1, \ldots, \mathbf{X}\_T\right]$ は異なるビューからの特徴量を結合したものである. 具体的には, GCNフィルター(5.3.2節参照)が採用されており(Ma et al., 2018c),  $\alpha()$ はソフトマックス関数である(行ごとに適用される). デコーダーは,  $\mathbf{X}$ からの情報ができる限りたくさん含むように,  $\mathbf{Z}$ から $\mathbf{X}$ を再構成する. デコーダーもGNNフィルターを用いてモデル化することができる:
@@ -42,15 +39,17 @@ $$
  $$
  \mathbf{X}^{\prime}=\alpha(\text { GNN-Filter }(\mathbf{A}, \mathbf{Z}))
     
-\tag{13.4} $$
+\tag{13.5} $$
  
 
 ここでもGCNフィルターをグラフフィルターとして採用し, 非線形活性化関数 $\alpha()$ としてシグモイド関数が用いられる(Ma et al., 2018c). 再構成損失は次のようになる:
 
- $$
- \mathcal{L}_{e d}=\left\|\mathbf{X}-\mathbf{X}^{\prime}\right\|^{2}
-    
-\tag{13.5} $$
+ 
+
+$$
+ \mathcal{L}_{e d}=\left\|\mathbf{X}-\mathbf{X}^{\prime}\right\|^{2} \nonumber $$
+
+
  
 
 式(13.3), 式(13.4), 式(13.5)のパラメータはこの再構成損失を最小化することで得られる. さらに, 統合された表現 $\mathbf{Z}$ を後段のタスクに用いることができ, 後段のタスクからの勾配を使って式(13.3), 式(13.4), 式(13.5)のパラメータを更新することもできる.
