@@ -16,12 +16,12 @@ ABIDEデータベースは, 世界の様々な場所での患者の神経画像(
 
 ここで,  $\mathbf{A}$ は隣接行列であり,  $\operatorname{sim}\left(\mathbf{x}\_i, \mathbf{x}\_j\right)$ は2つのノード $v_i$ と $v_j$ の特徴量の間の類似度合いである.  $M_h\left(v_i\right)$ はノード $v_i$ についての $h$ 番目の表現型計測値で,  $\gamma_h()$ はその類似度合いである. 類似度関数 $\operatorname{sim}\left(\mathbf{x}\_i, \mathbf{x}\_j\right)$ はガウスカーネルでモデル化することができ, 距離が近いノードが高い類似度を持つようにする. ABIDEデータベースでは, データ取得場所, 性別, 年齢の3つの表現型計測値が用いられている( $H=3$ となる). データ取得場所が考慮されているのは, データ取得場所ごとに多様なプロトコルで取得されているため, 異なる場所同士のデータを比較するのが難しいためである. 性別と年齢が考慮されているのは, 性別や年齢による集団差が観測されているためである(Werling and Geschwind, 2013; Kana et al., 2014). 性別とデータ取得場所については,  $\gamma_h()$ はクロネッカーのデルタで定義される. これは2つの入力が一致している場合(つまり, 同じデータ取得場所か同じ性別)のみ1をとり, それ以外の場合には0をとる関数である. 年齢については,  $\gamma_h()$ は次のように定義される:
 
- 
-
-$$
- \gamma_h\left(M_h\left(v_i\right), M_h\left(v_j\right)\right)=\left\{\begin{array}{ll}1 & \text { if }\left\|M_h\left(v_i\right)-M_h\left(v_j\right)\right\|<\theta \\ 0 & \text { otherwise }\end{array}\right\. $$
-
-
+ $$
+ \gamma_h\left(M_h\left(v_i\right), M_h\left(v_j\right)\right)=
+    \begin{cases}
+    1 & \text { if }\left\|M_h\left(v_i\right)-M_h\left(v_j\right)\right\|<\theta \\ 
+    0 & \text { otherwise }         
+    \end{cases} $$
  
 
 ここで,  $\theta$ はあらかじめ設定された閾値である. これは年齢差が $\theta$ よりも小さい患者同士を互いに似ているとみなすことを意味する.
