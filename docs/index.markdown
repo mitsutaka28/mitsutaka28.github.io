@@ -34,7 +34,7 @@ layout: default
 - [第13章 生化学とヘルスケアにおけるグラフニューラルネットワーク](./chapters/chap13/chap13.md)
 ### 発展
 - 第14章 Advanced Topics in Graph Neural Networks
-- [第15章 Advanced Applications in Graph Neural Networks](./chapters/chap15/chap15.md)
+- [第15章 グラフニューラルネットワークの発展的な応用](./chapters/chap15/chap15.md)
 
 ## 公開レビューに関して
 方法・形式については，後日お知らせします．
