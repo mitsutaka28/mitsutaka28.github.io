@@ -33,7 +33,7 @@ layout: default
 - [第12章 データマイニングにおけるグラフニューラルネットワーク](./chapters/chap12/chap12.md)
 - [第13章 生化学とヘルスケアにおけるグラフニューラルネットワーク](./chapters/chap13/chap13.md)
 ### 発展
-- 第14章 Advanced Topics in Graph Neural Networks
+- [第14章 グラフニューラルネットワークにおける高度なトピック](./chapters/chap14/chap14.md)
 - [第15章 グラフニューラルネットワークの発展的な応用](./chapters/chap15/chap15.md)
 
 ## 公開レビューに関して
