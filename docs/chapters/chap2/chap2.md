@@ -14,3 +14,7 @@
 - [2.7 グラフを使った分析タスク](./subsection_07.md)
 - [2.8 本章のまとめ](./subsection_08.md)
 - [2.9 参考文献](./subsection_09.md)
+
+### レビュー参加はこちら
+- [フォームからコメントを送る](https://forms.gle/xUY5h9eH4psE7fXi7)
+- [プルリクエストを送る](https://github.com/deeplearning-on-graphs/deeplearning-on-graphs.github.io/tree/main/docs/chapters/chap2)
