@@ -11,6 +11,5 @@ Transformer (Vaswani *et al*., 2017)は自然言語処理における系列デ�
 
 [章目次](./chap10.md)
 
-[前の節へ](./subsection_08.md) [次の節へ](./subsection_10.md)
-
+[前の節へ](./subsection_08.md) 
 
