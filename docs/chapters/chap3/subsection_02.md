@@ -35,7 +35,7 @@
 
 1つのノードで行う演算は，2つの部分から成る：
 
-1.  入力を重み ( $\symbf{w}_i$ )を用いて線形的に結合する．
+1.  入力を重み ( $\symbf{w}\_i$ )を用いて線形的に結合する．
 
 2.  線形結合して得た値を，活性化関数を用いて変換する．
 
@@ -43,26 +43,28 @@
 
  
 
-$$ h=\alpha\left(b+\sum_{i=1}^{4} \symbf{w}_i \cdot \symbf{x}_i\right)\nonumber $$
+$$
+ h=\alpha\left(b+\sum_{i=1}^{4} \symbf{w}_i \cdot \symbf{x}_i\right)\nonumber $$
+
 
  
 
 ここで， $b$ はバイアス項， $\alpha(\cdot)$ は活性化関数を表す（詳細は後述）．
 
-以上の演算を任意の隠れ層に一般化してみよう． ニューラルネットワークの $k$ 番目の層では， $N^{(k)}$ 個のノードがあり，その層の出力は $\symbf{h}^{(k)}$ と表すことができるとする（ $\symbf{h}^{(k)}_i$ は第 $k$ 層における $i$ 番目の要素(ノード)の出力を表す）． ニューラルネットワークの $k+1$ 番目の層で $\symbf{h}^{(k+1)}$ を計算するために，以下の演算を行う：
+以上の演算を任意の隠れ層に一般化してみよう． ニューラルネットワークの $k$ 番目の層では， $N^{(k)}$ 個のノードがあり，その層の出力は $\symbf{h}^{(k)}$ と表すことができるとする（ $\symbf{h}^{(k)}\_i$ は第 $k$ 層における $i$ 番目の要素(ノード)の出力を表す）． ニューラルネットワークの $k+1$ 番目の層で $\symbf{h}^{(k+1)}$ を計算するために，以下の演算を行う：
 
- 
-
-$$ \symbf{h}_j^{(k+1)}=\alpha\left(b_j^{(k)}+\sum_{i=1}^{N^{(k)}} \symbf{W}_{j i}^{(k)} \symbf{h}_i^{(k)}\right)
+ $$
+ \symbf{h}_j^{(k+1)}=\alpha\left(b_j^{(k)}+\sum_{i=1}^{N^{(k)}} \symbf{W}_{j i}^{(k)} \symbf{h}_i^{(k)}\right)
 \tag{3.1} $$
+ 
+
+ここで， $\symbf{W}\_{j i}^{(k)}$ は $\symbf{h}\_i^{(k)}$ と $\symbf{h}\_i^{(k+1)}$ をつなげる重みに対応し， $b_j^{(k)}$ はバイアス項を表す．  $k+1$ 層の全要素を計算する演算を行列形式で書くと次のようになる：
 
  
 
-ここで， $\symbf{W}\_{j i}^{(k)}$ は $\symbf{h}_i^{(k)}$ と $\symbf{h}_i^{(k+1)}$ をつなげる重みに対応し， $b_j^{(k)}$ はバイアス項を表す．  $k+1$ 層の全要素を計算する演算を行列形式で書くと次のようになる：
+$$
+ \symbf{h}^{(k+1)}=\boldsymbol{\alpha}\left(\symbf{b}^{(k)}+\symbf{W}^{(k)} \symbf{h}^{(k)}\right)\nonumber $$
 
- 
-
-$$ \symbf{h}^{(k+1)}=\boldsymbol{\alpha}\left(\symbf{b}^{(k)}+\symbf{W}^{(k)} \symbf{h}^{(k)}\right)\nonumber $$
 
  
 
@@ -70,7 +72,9 @@ $$ \symbf{h}^{(k+1)}=\boldsymbol{\alpha}\left(\symbf{b}^{(k)}+\symbf{W}^{(k)} \s
 
  
 
-$$ \symbf{h}^{(k+1)}=f^{(k+1)}\left(\symbf{h}^{(k)}\right)=\alpha\left(\symbf{b}^{(k)}+\symbf{W}^{(k)} \symbf{h}^{(k)}\right)\nonumber $$
+$$
+ \symbf{h}^{(k+1)}=f^{(k+1)}\left(\symbf{h}^{(k)}\right)=\alpha\left(\symbf{b}^{(k)}+\symbf{W}^{(k)} \symbf{h}^{(k)}\right)\nonumber $$
+
 
  
 
@@ -98,7 +102,9 @@ ReLU関数は正の入力に対しては線形であり（そのままの値を�
 
  
 
-$$ \operatorname{ReLU}(z)=\max \{0，z\}\nonumber $$
+$$
+ \operatorname{ReLU}(z)=\max \{0，z\}\nonumber $$
+
 
  
 
@@ -106,21 +112,25 @@ $$ \operatorname{ReLU}(z)=\max \{0，z\}\nonumber $$
 
 例えばLeakyReLU関数 (Maas *et al*., 2013)は，負の入力を0にする代わりに小さな傾きを持つような線形変換を行う（図3.4(a)）． LeakyReLU関数は数学的に次のように表すことができる：
 
- $$ \operatorname{LeakyReLU}(z)=
+ $$
+ \operatorname{LeakyReLU}(z)=
     \begin{cases}
     0.01 z & (z<0) \\ 
     z & (z \geq 0)
     \end{cases}
-    \nonumber $$ 
+    \nonumber $$
+ 
 
 ReLU関数をさらに一般化したものが，ELU関数 (Exponential Linear Unit)である． ELU関数は，正の値に対しては恒等変換を行うが，負の値に対しては指数関数的な変換を行う（図3.4(b)）． 数学的には，ELUの活性化関数は次のように表される：
 
- $$ \operatorname{ELU}(z)=
+ $$
+ \operatorname{ELU}(z)=
     \begin{cases}
     c \cdot \exp (z-1) & (z<0) \\ 
     z & (z \geq 0)
     \end{cases}
-    \nonumber $$ 
+    \nonumber $$
+ 
 
 ここで， $c$ は負の入力に対して指数関数の傾きを制御する正の定数である．
 
@@ -138,7 +148,9 @@ ReLU関数をさらに一般化したものが，ELU関数 (Exponential Linear U
 
  
 
-$$ \sigma(z)=\frac{1}{1+\exp (-z)}\nonumber $$
+$$
+ \sigma(z)=\frac{1}{1+\exp (-z)}\nonumber $$
+
 
  
 
@@ -148,7 +160,9 @@ tanh関数はシグモイド関数と次のような関係がある：
 
  
 
-$$ \tanh (z)=\frac{2}{1+\exp (-2 z)}-1=2 \cdot \sigma(2 z)-1\nonumber $$
+$$
+ \tanh (z)=\frac{2}{1+\exp (-2 z)}-1=2 \cdot \sigma(2 z)-1\nonumber $$
+
 
  
 
@@ -168,14 +182,14 @@ $$ \tanh (z)=\frac{2}{1+\exp (-2 z)}-1=2 \cdot \sigma(2 z)-1\nonumber $$
 
 出力層と損失関数の設計は，どのようなタスクを行うかに応じて異なってくる． そこで本節では，一般的に使用される（最後の層における）出力ユニットと損失関数を紹介していく．
 
-回帰タスクでは，ニューラルネットワークは連続値を出力する必要がある． これを実現する簡単な方法は，非線形変換を行わずに，アフィン変換 [^3] を行うことである．
-
-
+回帰タスクでは，ニューラルネットワークは連続値を出力する必要がある． これを実現する簡単な方法は，非線形変換を行わずに，アフィン変換 [^3]
 入力(または前の層からの情報)を $\symbf{h} \in \mathbb{R}^{d_{\text{in}}}$ としたとき，線形ユニットの層は，ベクトル $\hat{\symbf{y}} \in \mathbb{R}^{d_{\text{ou}}}$ を次のように出力する：
 
  
 
-$$ \hat{\symbf{y}}=\symbf{W h}+\symbf{b}\nonumber $$
+$$
+ \hat{\symbf{y}}=\symbf{W h}+\symbf{b}\nonumber $$
+
 
  
 
@@ -183,7 +197,9 @@ $$ \hat{\symbf{y}}=\symbf{W h}+\symbf{b}\nonumber $$
 
  
 
-$$ \ell(\symbf{y},\;\hat{\symbf{y}}) = (\symbf{y}-\hat{\symbf{y}})^{2}\nonumber $$
+$$
+ \ell(\symbf{y},\;\hat{\symbf{y}}) = (\symbf{y}-\hat{\symbf{y}})^{2}\nonumber $$
+
 
  
 
@@ -195,7 +211,9 @@ $$ \ell(\symbf{y},\;\hat{\symbf{y}}) = (\symbf{y}-\hat{\symbf{y}})^{2}\nonumber 
 
  
 
-$$ \hat{y}=\sigma(\symbf{W h}+b)\nonumber $$
+$$
+ \hat{y}=\sigma(\symbf{W h}+b)\nonumber $$
+
 
  
 
@@ -203,7 +221,9 @@ $$ \hat{y}=\sigma(\symbf{W h}+b)\nonumber $$
 
  
 
-$$ \ell(y,\;\hat{y})=-y \cdot \log (\hat{y})-(1-y) \cdot \log (1-\hat{y})\nonumber $$
+$$
+ \ell(y,\;\hat{y})=-y \cdot \log (\hat{y})-(1-y) \cdot \log (1-\hat{y})\nonumber $$
+
 
  
 
@@ -211,13 +231,15 @@ $$ \ell(y,\;\hat{y})=-y \cdot \log (\hat{y})-(1-y) \cdot \log (1-\hat{y})\nonumb
 
 #### 多値分類
 
-多クラス（ $n$ クラス）の分類タスクでは，正解ラベルは0から $n-1$ までの整数で表されると仮定する． そこで，この整数値の分類ラベルを表現するためにone-hotベクトル $\symbf{y} \in\{0，1\}^{n}$ を用いる． ここで $\symbf{y}_i=1$ は，サンプルが $i-1$ のラベルを持つことを示している．
+多クラス（ $n$ クラス）の分類タスクでは，正解ラベルは0から $n-1$ までの整数で表されると仮定する． そこで，この整数値の分類ラベルを表現するためにone-hotベクトル $\symbf{y} \in\{0，1\}^{n}$ を用いる． ここで $\symbf{y}\_i=1$ は，サンプルが $i-1$ のラベルを持つことを示している．
 
 予測を行うためには，まず，入力 $\symbf{h}$ を $n$ 次元ベクトル $\symbf{z} \in \mathbb{R}^{n}$ に変換する線形層が必要である．これは次のように表される：
 
  
 
-$$ \symbf{z}=\symbf{W}\symbf{h}+\symbf{b}\nonumber $$
+$$
+ \symbf{z}=\symbf{W}\symbf{h}+\symbf{b}\nonumber $$
+
 
  
 
@@ -225,19 +247,23 @@ $$ \symbf{z}=\symbf{W}\symbf{h}+\symbf{b}\nonumber $$
 
  
 
-$$ \hat{\symbf{y}}_i=\operatorname{softmax}(\symbf{z})_i=\frac{\exp \left(\symbf{z}_i\right)}{\sum_j \exp \left(\symbf{z}_j\right)},\quad (i=1,\ldots,\,n)\nonumber $$
+$$
+ \hat{\symbf{y}}_i=\operatorname{softmax}(\symbf{z})_i=\frac{\exp \left(\symbf{z}_i\right)}{\sum_j \exp \left(\symbf{z}_j\right)},\quad (i=1,\ldots,\,n)\nonumber $$
+
 
  
 
-ここで， $\symbf{z}_i$ はベクトル $\symbf{z}$ の $i$ 番目の要素を表し， $\hat{\symbf{y}}_i$ はソフトマックス関数の $i$ 番目の出力を表す． 特に $\hat{\symbf{y}}_i$ は，入力サンプルがラベル $i-1$ に予測される確率を表す． 予測値  $\hat{\symbf{y}}$ に対して，交差エントロピー損失関数を用いることで， 正解値と予測値の差は以下のように計算できる：
+ここで， $\symbf{z}\_i$ はベクトル $\symbf{z}$ の $i$ 番目の要素を表し， $\hat{\symbf{y}}\_i$ はソフトマックス関数の $i$ 番目の出力を表す． 特に $\hat{\symbf{y}}\_i$ は，入力サンプルがラベル $i-1$ に予測される確率を表す． 予測値  $\hat{\symbf{y}}$ に対して，交差エントロピー損失関数を用いることで， 正解値と予測値の差は以下のように計算できる：
 
  
 
-$$ \ell(\symbf{y}，\hat{\symbf{y}})=-\sum_{i=0}^{n-1} \symbf{y}_i \log \left(\hat{\symbf{y}}_i\right)\nonumber $$
+$$
+ \ell(\symbf{y}，\hat{\symbf{y}})=-\sum_{i=0}^{n-1} \symbf{y}_i \log \left(\hat{\symbf{y}}_i\right)\nonumber $$
+
 
  
 
-モデルを用いて推論する際には， $\hat{\symbf{y}}$ の $n$ 個の要素の中で $\hat{\symbf{y}}_i$ が最も大きいとき，入力サンプルはラベル $i-1$ と予測される．
+モデルを用いて推論する際には， $\hat{\symbf{y}}$ の $n$ 個の要素の中で $\hat{\symbf{y}}\_i$ が最も大きいとき，入力サンプルはラベル $i-1$ と予測される．
 
 
 [メインページ](../../index.markdown)
@@ -246,4 +272,4 @@ $$ \ell(\symbf{y}，\hat{\symbf{y}})=-\sum_{i=0}^{n-1} \symbf{y}_i \log \left(\h
 
 [前の節へ](./subsection_01.md) [次の節へ](./subsection_03.md)
 
-[^3]: 訳注：アフィン変換とは，ベクトル空間において線形変換（拡大縮小，回転，せん断など）と平行移動の組み合わせた変換である．
+[^3]: 訳注：アフィン変換とは，ベクトル空間において線形変換（拡大縮小，回転，せん断など）と平行移動の組み合わせた変換である．を行うことである．
