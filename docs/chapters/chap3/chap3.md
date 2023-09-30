@@ -9,3 +9,7 @@
 - [3.6 深層ニューラルネットワークの学習](./subsection_06.md)
 - [3.7 本章のまとめ](./subsection_07.md)
 - [3.8 参考文献](./subsection_08.md)
+
+### レビュー参加はこちら
+- [フォームからコメントを送る](https://forms.gle/xUY5h9eH4psE7fXi7)
+- [プルリクエストを送る](https://github.com/deeplearning-on-graphs/deeplearning-on-graphs.github.io/tree/main/docs/chapters/chap3)
