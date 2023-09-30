@@ -42,6 +42,6 @@
 
 [章目次](./chap4.md)
 
-[次の節へ](./subsection_02.md)
+[前の節へ](./subsection_00.md) [次の節へ](./subsection_02.md)
 
 
