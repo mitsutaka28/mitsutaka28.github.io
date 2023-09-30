@@ -21,7 +21,6 @@
 title: グラフ深層学習
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  【日本語訳版】 Deep Learning on Graphs
   グラフニューラルネットワークの入門書
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
