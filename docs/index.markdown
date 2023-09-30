@@ -26,18 +26,19 @@ layout: default
 - [第6章 グラフニューラルネットワークの敵対的ロバスト性](./chapters/chap6/chap6.md)
 - [第7章 グラフニューラルネットワークのスケーラビリティ](./chapters/chap7/chap7.md)
 - [第8章 複雑グラフ上のグラフニューラルネットワーク](./chapters/chap8/chap8.md)
-- [第9章 GNNのその先へ：グラフ上の深層学習モデル](./chapters/chap9/chap9.md)
+- [第9章 GNNの枠を超えて：グラフ上に関するその他の深層学習モデル](./chapters/chap9/chap9.md)
 ### 応用
 - [第10章 自然言語処理におけるグラフニューラルネットワークの応用](./chapters/chap10/chap10.md)
-- [第11章 画像認識におけるグラフニューラルネットワークの応用](./chapters/chap11/chap11.md)
+- [第11章 画像処理におけるグラフニューラルネットワーク](./chapters/chap11/chap11.md)
 - [第12章 データマイニングにおけるグラフニューラルネットワーク](./chapters/chap12/chap12.md)
-- [第13章 生化学とヘルスケアにおけるグラフニューラルネットワーク](./chapters/chap13/chap13.md)
+- [第13章 生化学・ヘルスケア分野におけるグラフニューラルネットワーク](./chapters/chap13/chap13.md)
 ### 発展
-- [第14章 グラフニューラルネットワークにおける高度なトピック](./chapters/chap14/chap14.md)
-- [第15章 グラフニューラルネットワークの発展的な応用](./chapters/chap15/chap15.md)
+- [第14章 グラフニューラルネットワークに関する発展的な話題](./chapters/chap14/chap14.md)
+- [第15章 グラフニューラルネットワークにおける発展的な応用例](./chapters/chap15/chap15.md)
 
-## 公開レビューに関して
-方法・形式については，後日お知らせします．
+## 公開レビューに参加する
+- [フォームからコメントを送る](https://forms.gle/xUY5h9eH4psE7fXi7)
+- [プルリクエストを送る](https://github.com/deeplearning-on-graphs/deeplearning-on-graphs.github.io/tree/main/docs/chapters/)
 
 ### 訳者について
 2名体制による共訳で進めています([略歴](./bio.markdown))．
