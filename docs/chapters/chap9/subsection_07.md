@@ -9,6 +9,5 @@ GNNを超える深層グラフモデルは, グラフ上の深層学習手法を
 
 [章目次](./chap9.md)
 
-[前の節へ](./subsection_06.md) [次の節へ](./subsection_08.md)
-
+[前の節へ](./subsection_06.md) 
 
