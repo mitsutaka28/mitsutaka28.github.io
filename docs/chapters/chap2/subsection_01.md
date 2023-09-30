@@ -12,6 +12,6 @@
 
 [章目次](./chap2.md)
 
-[次の節へ](./subsection_02.md)
+[前の節へ](./subsection_00.md) [次の節へ](./subsection_02.md)
 
 
