@@ -76,10 +76,10 @@ $$
  $$
  
 \tag{10.1}
-    \symbf{F}^{(l)}_i = \sigma\left(\sum_{v_j\in\symscr{N}(v_i)}\symbf{F}^{(l-1)}_j\symbf{\Theta}^{(l-1)}_{\text{dir}(i,j)} + \symbf{b}_{\text{lab}(i,j)}\right) $$
+    \symbf{F}^{(l)}_i = \sigma\left(\sum_{v_j\in\symcal{N}(v_i)}\symbf{F}^{(l-1)}_j\symbf{\Theta}^{(l-1)}_{\text{dir}(i,j)} + \symbf{b}_{\text{lab}(i,j)}\right) $$
  
 
-ここで， $\symscr{N}(v_i)$ はノード $v_i$ の近傍であり，**入近傍(in-going neighbors)**（ $v_i$ に入ってくるエッジと接続したノード集合）および**出近傍(out-going neighbors)**（ $v_i$ から出ていくエッジと接続したノード集合）の両方を含んでいる． また， $\text{dir}(i,j)\in \left\\{\text{入},\text{出}\right\\}$ は，注目している中心ノード $v_i$ と関連するエッジ $(v_i,v_j)$ の方向(direction)を表している． さらに， $\symbf{\Theta}^{(l-1)}\_{\text{dir}(i,j)}$ は， $(v_i,v_j)$ と同じ方向を持つ全エッジが共有するパラメータであり， $\symbf{b}\_{\text{lab}(i,j)}$ は，エッジが持つラベル情報(依存関係)を取り入れるためのバイアス項で，  $\text{lab}(i,j)$ はエッジ $(v_i,v_j)$ が持つ依存関係を表している．
+ここで， $\symcal{N}(v_i)$ はノード $v_i$ の近傍であり，**入近傍(in-going neighbors)**（ $v_i$ に入ってくるエッジと接続したノード集合）および**出近傍(out-going neighbors)**（ $v_i$ から出ていくエッジと接続したノード集合）の両方を含んでいる． また， $\text{dir}(i,j)\in \left\\{\text{入},\text{出}\right\\}$ は，注目している中心ノード $v_i$ と関連するエッジ $(v_i,v_j)$ の方向(direction)を表している． さらに， $\symbf{\Theta}^{(l-1)}\_{\text{dir}(i,j)}$ は， $(v_i,v_j)$ と同じ方向を持つ全エッジが共有するパラメータであり， $\symbf{b}\_{\text{lab}(i,j)}$ は，エッジが持つラベル情報(依存関係)を取り入れるためのバイアス項で，  $\text{lab}(i,j)$ はエッジ $(v_i,v_j)$ が持つ依存関係を表している．
 
 このようにして設計された式(10.1)のフィルタは，SRLタスクのための $L$ 層のグラフニューラルネットワークモデルを構築するために使用される．
 

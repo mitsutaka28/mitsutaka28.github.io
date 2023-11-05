@@ -27,7 +27,7 @@
 <strong>定義 2.42 ノード分類</strong>
 
 
-ノード集合 $\mathcal{V}$ とエッジ集合 $\mathcal{E}$ を持つグラフを $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ と表す． $\mathcal{V}$ のノードの中にはラベルが貼られているものがあり，このラベルが付いたノード集合を $\mathcal{V}_l\subset\mathcal{V}$ と表す．残りのノードはラベルを持たないので，このラベルがないノード集合を $\mathcal{V}_u$ と表す．これらの集合は， $\mathcal{V}_l\cup\mathcal{V}_u = \mathcal{V}$ かつ $\mathcal{V}_l\cap\mathcal{V}_u = \emptyset$ を満たす．ノード分類タスクの目的は，ラベルのないノード( $v\in \mathcal{V}_u$ )のラベルを予測する写像 $\phi$ を， $\mathcal{G}$ と $\mathcal{V}_l$ のラベルを活用して学習することにある． 
+ノード集合 $\symcal{V}$ とエッジ集合 $\symcal{E}$ を持つグラフを $\symcal{G} = \left\{\symcal{V},\symcal{E}\right\}$ と表す． $\symcal{V}$ のノードの中にはラベルが貼られているものがあり，このラベルが付いたノード集合を $\symcal{V}_l\subset\symcal{V}$ と表す．残りのノードはラベルを持たないので，このラベルがないノード集合を $\symcal{V}_u$ と表す．これらの集合は， $\symcal{V}_l\cup\symcal{V}_u = \symcal{V}$ かつ $\symcal{V}_l\cap\symcal{V}_u = \emptyset$ を満たす．ノード分類タスクの目的は，ラベルのないノード( $v\in \symcal{V}_u$ )のラベルを予測する写像 $\phi$ を， $\symcal{G}$ と $\symcal{V}_l$ のラベルを活用して学習することにある． 
 </div>
  上記の定義は単純グラフに対するものであり，2.6節で紹介した多様な属性を持つグラフなどの複雑グラフにも容易に拡張できる． 
 <div class="eg">
@@ -43,7 +43,7 @@
 <div class="definition">
  
 <strong>定義 2.44 リンク予測</strong>
-  $\mathcal{V}$ をノード集合， $\mathcal{E}$ をエッジ集合とするグラフを $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ とする． $\mathcal{V}$ 中のノード間の可能な全てのエッジを $\mathcal{M}$ とすると， $\mathcal{M}$ を全体とした $\mathcal{E}$ の補集合を $\mathcal{E}^{\prime} = \mathcal{M} - \mathcal{E}$ と表す．集合 $\mathcal{E}^{\prime}$ にはノード間の未観測のエッジが含まれる．リンク予測タスクの目標は，最も可能性の高いエッジを予測することである．具体的には， $\mathcal{E}^{\prime}$ 内の各エッジにスコアを割り当てることができる．これは，それらのエッジが存在しているか，又は将来現れる可能性がどの程度あるかを示している． 
+  $\symcal{V}$ をノード集合， $\symcal{E}$ をエッジ集合とするグラフを $\symcal{G} = \left\{\symcal{V},\symcal{E}\right\}$ とする． $\symcal{V}$ 中のノード間の可能な全てのエッジを $\symcal{M}$ とすると， $\symcal{M}$ を全体とした $\symcal{E}$ の補集合を $\symcal{E}^{\prime} = \symcal{M} - \symcal{E}$ と表す．集合 $\symcal{E}^{\prime}$ にはノード間の未観測のエッジが含まれる．リンク予測タスクの目標は，最も可能性の高いエッジを予測することである．具体的には， $\symcal{E}^{\prime}$ 内の各エッジにスコアを割り当てることができる．これは，それらのエッジが存在しているか，又は将来現れる可能性がどの程度あるかを示している． 
 </div>
  なお，この定義は単純なグラフについて述べたものであり，2.6節で紹介した複雑グラフに簡単に拡張できる．例えば，符号付きグラフの場合，エッジの存在に加えてその符号を予測し，ハイパーグラフでは，複数のノード間の関係を記述するハイパーエッジを推測することになる． 
 <div class="eg">
@@ -67,7 +67,7 @@
 <strong>定義 2.46 グラフ分類</strong>
 
 
- $y_i$ をグラフ $\mathcal{G}_i$ のラベルとする，ラベル付きグラフの集合 $\mathcal{D} = \left\{(\mathcal{G}_i, y_i)\right\}$ が与えられたとき，グラフ分類タスクの目的は， $\mathcal{D}$ を使ってラベルのないグラフが持つラベルを予測するような写像 $\phi$ を学習することにある． 
+ $y_i$ をグラフ $\symcal{G}_i$ のラベルとする，ラベル付きグラフの集合 $\symcal{D} = \left\{(\symcal{G}_i, y_i)\right\}$ が与えられたとき，グラフ分類タスクの目的は， $\symcal{D}$ を使ってラベルのないグラフが持つラベルを予測するような写像 $\phi$ を学習することにある． 
 </div>
  上記の定義では，グラフに関連する可能性のある付加的な情報は指定しなかった．例えば，特定の状況では，グラフ分類に利用できる特定の特徴が各ノードに関連付けれられていることがある． 
 <div class="eg">

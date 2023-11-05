@@ -36,14 +36,14 @@ $$
 
 \begin{aligned}
 %TODO: 「and」→「, 」としているが問題ないか？問題ないとは思うけど，これでわかりやすいか？andを置いたほうがいいのか？の確認
-    B^{l}(v_i) &= \left\{v_j\|v_k\in B^{(l-1)}(v_i), v_j\in\symscr{N}^{+}(v_k)\right\}\\
-    &\;\;\cup \left\{v_j\|v_k \in U^{(l-1)}(v_i), v_j\in\symscr{N}^{-}(v_k)\right\}\\
-    U^{l}(v_i) &= \left\{v_j\|v_k\in U^{(l-1)}(v_i), v_j\in\symscr{N}^{+}(v_k)\right\}\\
-    &\;\;\cup \left\{v_j\|v_k \in B^{(l-1)}(v_i), v_j\in\symscr{N}^{-}(v_k)\right\}
+    B^{l}(v_i) &= \left\{v_j\|v_k\in B^{(l-1)}(v_i), v_j\in\symcal{N}^{+}(v_k)\right\}\\
+    &\;\;\cup \left\{v_j\|v_k \in U^{(l-1)}(v_i), v_j\in\symcal{N}^{-}(v_k)\right\}\\
+    U^{l}(v_i) &= \left\{v_j\|v_k\in U^{(l-1)}(v_i), v_j\in\symcal{N}^{+}(v_k)\right\}\\
+    &\;\;\cup \left\{v_j\|v_k \in B^{(l-1)}(v_i), v_j\in\symcal{N}^{-}(v_k)\right\}
 \end{aligned}
 $$
 
-  ここで， $\symscr{N}^{+}(v_i)$ と $\symscr{N}^{-}(v_i)$ は，ノード $v_i$ の $1$ 次正エッジ近傍と $1$ 次負エッジ近傍を表しており，それぞれ $B^{1}(v_i) = \symscr{N}^{+}(v_i)$ と $U^{1}(v_i) = \symscr{N}^{-}(v_i)$ となる．
+  ここで， $\symcal{N}^{+}(v_i)$ と $\symcal{N}^{-}(v_i)$ は，ノード $v_i$ の $1$ 次正エッジ近傍と $1$ 次負エッジ近傍を表しており，それぞれ $B^{1}(v_i) = \symcal{N}^{+}(v_i)$ と $U^{1}(v_i) = \symcal{N}^{-}(v_i)$ となる．
 
 符号付きグラフのグラフフィルタを設計する際には，バランス近傍とアンバランス近傍からの情報を別々に管理する必要がある． これらは非常に異なる情報を伝える可能性が高いためである． 例えば，バランス近傍は潜在的に「味方関係」とみなし，アンバランス近傍は潜在的に「敵対関係」とみなすことができる． そのため，バランス近傍とアンバランス近傍から集約した情報を保持するために，2種類の表現を保持することになる． ノード $v_i$ に対して $\symbf{F}^{(B,l)}\_i$ と $\symbf{F}^{(U,l)}\_i$ は，それぞれ $l$ 層を経たグラフフィルタリングの**バランス表現**と**アンバランス表現**を示すために用いられる． 具体的には， $l$ 層目のグラフフィルタの実行プロセスは以下のように説明することができる：
 
@@ -52,9 +52,9 @@ $$
 $$
 
 \begin{eqnarray}
-    \symbf{F}^{(B,l)}_i &=& \sigma\left(\left[\sum_{v_j\in\symscr{N}^{+}(v_i)}\dfrac{\symbf{F}^{(B,l-1)}_j}{\|\symscr{N}^{+}(v_i)\|},\sum_{v_k\in\symscr{N}^{-}(v_i)}\dfrac{\symbf{F}^{(U,l-1)}_k}{\|\symscr{N}^{-}(v_i)\|},\symbf{F}^{(B,l-1)}_i\right]\symbf{\Theta}^{(B,l)}\right)
+    \symbf{F}^{(B,l)}_i &=& \sigma\left(\left[\sum_{v_j\in\symcal{N}^{+}(v_i)}\dfrac{\symbf{F}^{(B,l-1)}_j}{\|\symcal{N}^{+}(v_i)\|},\sum_{v_k\in\symcal{N}^{-}(v_i)}\dfrac{\symbf{F}^{(U,l-1)}_k}{\|\symcal{N}^{-}(v_i)\|},\symbf{F}^{(B,l-1)}_i\right]\symbf{\Theta}^{(B,l)}\right)
 \tag{8.6}\\
-    \symbf{F}^{(U,l)}_i &=& \sigma\left(\left[\sum_{v_j\in\symscr{N}^{+}(v_i)}\dfrac{\symbf{F}^{(U,l-1)}_j}{\|\symscr{N}^{+}(v_i)\|},\sum_{v_k\in\symscr{N}^{-}(v_i)}\dfrac{\symbf{F}^{(B,l-1)}_k}{\|\symscr{N}^{-}(v_i)\|},\symbf{F}^{(U,l-1)}_i\right]\symbf{\Theta}^{(U,l)}\right)
+    \symbf{F}^{(U,l)}_i &=& \sigma\left(\left[\sum_{v_j\in\symcal{N}^{+}(v_i)}\dfrac{\symbf{F}^{(U,l-1)}_j}{\|\symcal{N}^{+}(v_i)\|},\sum_{v_k\in\symcal{N}^{-}(v_i)}\dfrac{\symbf{F}^{(B,l-1)}_k}{\|\symcal{N}^{-}(v_i)\|},\symbf{F}^{(U,l-1)}_i\right]\symbf{\Theta}^{(U,l)}\right)
 \tag{8.7}\\ \nonumber
 \end{eqnarray}
 $$
@@ -63,9 +63,9 @@ $$
 
 ここで， $\symbf{\Theta}^{B,l}$ と $\symbf{\Theta}^{U,l}$ は学習対象のパラメータである． 式(8.6)での $\symbf{F}^{(B, l)}\_i$ は以下の3種類の情報を結合(concatenate)したものである．
 
-1.  ノード $v_i$ の $1$ 次正エッジ近傍に由来する( $(l-1)$ 層)バランス表現の集約，すなわち， $\sum_{v_j\in\symscr{N}^{+}(v_i)}\frac{\symbf{F}^{(B,l-1)}\_j}{\symscr{N}^{+}(v_i)}$ ．
+1.  ノード $v_i$ の $1$ 次正エッジ近傍に由来する( $(l-1)$ 層)バランス表現の集約，すなわち， $\sum_{v_j\in\symcal{N}^{+}(v_i)}\frac{\symbf{F}^{(B,l-1)}\_j}{\symcal{N}^{+}(v_i)}$ ．
 
-2.  ノード $v_i$ の $1$ 次負エッジ近傍に由来する( $(l-1)$ 層)アンバランス表現の集約，すなわち， $\sum_{v_j\in\symscr{N}^{-}(v_i)}\frac{\symbf{F}^{(U,l-1)}\_j}{\symscr{N}^{-}(v_i)}$ ．
+2.  ノード $v_i$ の $1$ 次負エッジ近傍に由来する( $(l-1)$ 層)アンバランス表現の集約，すなわち， $\sum_{v_j\in\symcal{N}^{-}(v_i)}\frac{\symbf{F}^{(U,l-1)}\_j}{\symcal{N}^{-}(v_i)}$ ．
 
 3.   $(l-1)$ 層における $v_i$ 自身のバランス表現，すなわち $\symbf{F}^{(B,l-1)}\_i$ ．
 

@@ -9,5 +9,6 @@
 
 [章目次](./chap3.md)
 
-[前の節へ](./subsection_07.md)
+[前の節へ](./subsection_07.md) 
+
 

@@ -38,7 +38,7 @@
 Dai *et al*. (2018)では，直感的でシンプルなグラフ敵対的学習法が提案されている． この手法における学習段階では，入力グラフ内のエッジをランダムに削除することで「敵対的に攻撃されたグラフ」が生成される． この方法はシンプルでロバスト性を向上させる効果は限定的であるが，グラフ構造データに対する敵対的学習の先駆けとなる手法である． その後，PGDトポロジー攻撃に基づく様々なグラフ敵対的学習法が提案された． 具体的には，この敵対的学習は以下のmin-max最適化問題として定式化することができる：
 
  $$
- \min_{\symbf{\Theta}}\max_{\symbf{s}\in \symbf{S}} - \symscr{L}(\symbf{s};\,\symbf{\Theta})
+ \min_{\symbf{\Theta}}\max_{\symbf{s}\in \symbf{S}} - \symcal{L}(\symbf{s};\,\symbf{\Theta})
 
 \tag{6.13} $$
  
@@ -49,7 +49,7 @@ $$
 
 \begin{aligned}
 %TODO: 「\min_{\symbf{s}}」を除くか迷う．(6.4)と合わせるためには，\minをつけるか決める必要がある．
-    &\mathcal{L}(\symbf{s}) = \sum_{v_i\in \mathcal{V}_l}\ell (f_{\mathrm{GNN}}(\mathcal{G}';\;\symbf{\Theta})_i,\,y_i)\\
+    &\symcal{L}(\symbf{s}) = \sum_{v_i\in \symcal{V}_l}\ell (f_{\mathrm{GNN}}(\symcal{G}';\;\symbf{\Theta})_i,\,y_i)\\
     &\text{subject to } \quad \|\symbf{s}\|_0\leq \Delta,\quad\symbf{s}\in \left\{0,\,1\right\}^{N(N-1)/2}
 \end{aligned}
 $$
@@ -70,8 +70,8 @@ GraphAT (Feng *et al*., 2019a)という手法では，ノード特徴量に基�
 $$
 
 \begin{aligned}
-        \min_{\symbf{\Theta}}\symscr{L}_{\text{train}} + \beta\sum_{v_i\in\symscr{V}}\sum_{v_j\in\symscr{N}(v_i)}&d(f_{\text{GNN}}(\symbf{A},\symbf{F}\star\symbf{r}^{g}_i;\,\symbf{\Theta})_i,f_{\text{GNN}}(\symbf{A},\symbf{F};\,\symbf{\Theta})_j);\nonumber\\
-        \symbf{r}^{g}_i=\underset{\symbf{r}_i,\|\symbf{r}_i\|\leq \varepsilon}{\operatorname{argmax}} \sum_{v_j\in\symscr{N}(v_i)}&d(f_{\text{GNN}}(\symbf{A},\symbf{F}\star\symbf{r}_i;\,\symbf{\Theta})_i,f_{\text{GNN}}(\symbf{A},\symbf{F};\,\symbf{\Theta})_j);
+        \min_{\symbf{\Theta}}\symcal{L}_{\text{train}} + \beta\sum_{v_i\in\symcal{V}}\sum_{v_j\in\symcal{N}(v_i)}&d(f_{\text{GNN}}(\symbf{A},\symbf{F}\star\symbf{r}^{g}_i;\,\symbf{\Theta})_i,f_{\text{GNN}}(\symbf{A},\symbf{F};\,\symbf{\Theta})_j);\nonumber\\
+        \symbf{r}^{g}_i=\underset{\symbf{r}_i,\|\symbf{r}_i\|\leq \varepsilon}{\operatorname{argmax}} \sum_{v_j\in\symcal{N}(v_i)}&d(f_{\text{GNN}}(\symbf{A},\symbf{F}\star\symbf{r}_i;\,\symbf{\Theta})_i,f_{\text{GNN}}(\symbf{A},\symbf{F};\,\symbf{\Theta})_j);
         
 \end{aligned}
 \tag{6.14}
@@ -82,7 +82,7 @@ $$
 最大化問題では，つながりのあるノード間の特徴量が似ているというパターンを崩すような，敵対的ノード特徴量を生成する [^9]
 一方，最小化問題では，パラメータ $\symbf{\Theta}$ を学習する． ただしこの学習は，訓練誤差を小さく保つだけでなく，二項目に追加された正則化項を介して敵対的サンプルとそれらの近傍ノードとの間の特徴量の類似性を保つことを目指して行われる．
 
-式(6.14)で定義される $\symscr{L}\_{\text{train}}$ は，式(5.49)で定義された損失関数で， $\symbf{r}\_i\in\mathbb{R}^{1\times d}$ は各行（グラフ内の各ノード）に対する敵対的ベクトルである． また， $\symbf{F}\star\symbf{r}\_i$ という操作は， $\symbf{r}\_i$ を $\symbf{F}$ の $i$ 番目の行への和を意味し，これはノード $v_i$ の特徴量に敵対的ノイズを加えることに相当する． さらに， $f\_{\text{GNN}}(\symbf{A},\symbf{F}\star\symbf{r}^{g}\_i;\,\symbf{\Theta})\_i$ は $f\_{\text{GNN}}(\symbf{A},\symbf{F}\star\symbf{r}^{g}\_i;\,\symbf{\Theta})$ の $i$ 番目の行を表し，これはノード $v_i$ に対する予測結果（出力結果）を表している． 関数 $d(\cdot,\,\cdot)$ はKLダイバージェンス(Joyce, 2011)であり，予測結果の間の差異を測定する． これらの最小化問題と最大化問題は交互に処理される．
+式(6.14)で定義される $\symcal{L}\_{\text{train}}$ は，式(5.49)で定義された損失関数で， $\symbf{r}\_i\in\mathbb{R}^{1\times d}$ は各行（グラフ内の各ノード）に対する敵対的ベクトルである． また， $\symbf{F}\star\symbf{r}\_i$ という操作は， $\symbf{r}\_i$ を $\symbf{F}$ の $i$ 番目の行への和を意味し，これはノード $v_i$ の特徴量に敵対的ノイズを加えることに相当する． さらに， $f\_{\text{GNN}}(\symbf{A},\symbf{F}\star\symbf{r}^{g}\_i;\,\symbf{\Theta})\_i$ は $f\_{\text{GNN}}(\symbf{A},\symbf{F}\star\symbf{r}^{g}\_i;\,\symbf{\Theta})$ の $i$ 番目の行を表し，これはノード $v_i$ に対する予測結果（出力結果）を表している． 関数 $d(\cdot,\,\cdot)$ はKLダイバージェンス(Joyce, 2011)であり，予測結果の間の差異を測定する． これらの最小化問題と最大化問題は交互に処理される．
 
 #### グラフ構造とノード特徴量の両方を用いた敵対的学習
 
@@ -91,7 +91,7 @@ $$
  $$
  
 \tag{6.15}
-    \min_{\symbf{\Theta}}\max_{\xi\in D}\symscr{L}_{\text{train}}\left(\symbf{A},\symbf{F}^{(1)} + \xi;\,\symbf{\Theta}\right) $$
+    \min_{\symbf{\Theta}}\max_{\xi\in D}\symcal{L}_{\text{train}}\left(\symbf{A},\symbf{F}^{(1)} + \xi;\,\symbf{\Theta}\right) $$
  
 
 この式において，最大化問題では最初の層の隠れ表現 $\symbf{F}^{(1)}$ に微小な敵対的摂動を生成する． これは間接的にグラフ構造 $\symbf{A}$ とノード特徴量 $\symbf{F}$ への摂動を表現していることになる． 一方，最小化問題では生成された摂動を学習プロセスに組み込みながらモデルのパラメータを学習する．  $\xi$ は学習させるべき敵対的ノイズであり， $D$ はそのノイズの制約領域を示しており，以下のように定義される：  
@@ -100,7 +100,7 @@ $$
  D = \left\{\xi;\,\|\xi\|_2\leq\Delta\right\} $$
 
 
-  ここで， $\xi_i$ は $\xi$ の $i$ 番目の行を示し， $\Delta$ は予め定義された制約値である．また，式(6.15)において， $\symscr{L}\_{\text{train}}\left(\symbf{A},\symbf{F}^{(1)} + \xi;\,\symbf{\Theta}\right)$ は摂動が加えられた隠れ表現 $\symbf{F}^{(1)}+\xi$ に基づいている点を除けば，式(5.49)と同様の損失関数を示すために使用されている． 他の敵対的学習手法と同様に，本手法でも，最小化問題と最大化問題は交互に処理されることになる．
+  ここで， $\xi_i$ は $\xi$ の $i$ 番目の行を示し， $\Delta$ は予め定義された制約値である．また，式(6.15)において， $\symcal{L}\_{\text{train}}\left(\symbf{A},\symbf{F}^{(1)} + \xi;\,\symbf{\Theta}\right)$ は摂動が加えられた隠れ表現 $\symbf{F}^{(1)}+\xi$ に基づいている点を除けば，式(5.49)と同様の損失関数を示すために使用されている． 他の敵対的学習手法と同様に，本手法でも，最小化問題と最大化問題は交互に処理されることになる．
 
 ### グラフの純化
 
@@ -130,13 +130,13 @@ GNNモデルのロバスト性を強化するため，Zhu *et al*.(2019a)では�
 RGCNフィルタは，式(5.22)に記述されているGCNフィルタを基礎として構築される． 詳細な説明を行うため，以下に式(5.22)を再度示す：  
 
 $$
- \symbf{F}^{\prime}_i = \sum_{v_j\in\symscr{N}(v_i)\cup \left\{v_i\right\}}\dfrac{1}{\sqrt{\tilde{\symbf{d}}_i\tilde{\symbf{d}}_j}}\symbf{F}_j\symbf{\Theta} $$
+ \symbf{F}^{\prime}_i = \sum_{v_j\in\symcal{N}(v_i)\cup \left\{v_i\right\}}\dfrac{1}{\sqrt{\tilde{\symbf{d}}_i\tilde{\symbf{d}}_j}}\symbf{F}_j\symbf{\Theta} $$
 
 
   ここで， $\tilde{\symbf{d}}\_i = \tilde{\symbf{D}}\_{i,i}$ である． RGCNフィルタでは，確定的なベクトルの代わりに正規分布によってノード表現をモデル化する． ノード $v_i$ について，その表現は次のように表される：  
 
 $$
- \symbf{F}_i \sim \symscr{N}(\symbf{\mu}_i,\,\operatorname{diag}(\symbf{\sigma}_i)) $$
+ \symbf{F}_i \sim \symcal{N}(\symbf{\mu}_i,\,\operatorname{diag}(\symbf{\sigma}_i)) $$
 
 
   ここで， $\symbf{\mu}\_i\in\mathbb{R}^d$ はノード表現の平均， $\mathrm{diag}(\symbf{\sigma}\_i)\in\mathbb{R}^{d\times d}$ は（各ノードが持つ分散を対角成分においた）ノード表現の対角分散行列である．
@@ -152,7 +152,7 @@ $$
 以上，正規分布に基づいたノード表現法とアテンションスコアの定義により，ノード $v_i$ に関する表現の更新プロセスは次のように記述することができる：  
 
 $$
- \symbf{F}^{\prime}_i\sim \symscr{N}(\symbf{\mu}^{\prime}_i,\,\operatorname{diag}(\symbf{\sigma}^{\prime}_i)) $$
+ \symbf{F}^{\prime}_i\sim \symcal{N}(\symbf{\mu}^{\prime}_i,\,\operatorname{diag}(\symbf{\sigma}^{\prime}_i)) $$
 
 
   ここで， $\symbf{\mu}^{\prime}\_i$ と $\symbf{\sigma}^{\prime}\_i$ は以下のように与えられる．  
@@ -160,8 +160,8 @@ $$
 $$
 
 \begin{aligned}
-    \symbf{\mu}^{\prime}_i &= \alpha\left\{\sum_{v_j\in\symscr{N}(v_i)\cup\left\{v_i\right\}}\dfrac{1}{\sqrt{\tilde{\symbf{d}}_i\tilde{\symbf{d}}_j}}\left(\symbf{\mu}_j\odot\symbf{a}_j\right)\symbf{\Theta}_{\mu}\right\}\\
-    \symbf{\sigma}^{\prime}_i &= \alpha \left\{\sum_{v_j\in\symscr{N}(v_i)\cup\left\{v_i\right\}}\dfrac{1}{\tilde{\symbf{d}_i}\tilde{\symbf{d}}_j}\left(\symbf{\sigma}_j\odot\symbf{a}_j\odot\symbf{a}_j\right)\symbf{\Theta}_{\sigma}\right\}
+    \symbf{\mu}^{\prime}_i &= \alpha\left\{\sum_{v_j\in\symcal{N}(v_i)\cup\left\{v_i\right\}}\dfrac{1}{\sqrt{\tilde{\symbf{d}}_i\tilde{\symbf{d}}_j}}\left(\symbf{\mu}_j\odot\symbf{a}_j\right)\symbf{\Theta}_{\mu}\right\}\\
+    \symbf{\sigma}^{\prime}_i &= \alpha \left\{\sum_{v_j\in\symcal{N}(v_i)\cup\left\{v_i\right\}}\dfrac{1}{\tilde{\symbf{d}_i}\tilde{\symbf{d}}_j}\left(\symbf{\sigma}_j\odot\symbf{a}_j\odot\symbf{a}_j\right)\symbf{\Theta}_{\sigma}\right\}
 \end{aligned}
 $$
 
@@ -176,40 +176,40 @@ PA-GNNモデルは，式(5.27)で記述されているグラフアテンショ�
  $$
  
 \tag{6.16}
-\symbf{F}^{\prime}_i = \sum_{v_j\in\symscr{N}(v_i)\cup\left\{v_i\right\}}a_{ij}\symbf{F}_j\symbf{\Theta} $$
+\symbf{F}^{\prime}_i = \sum_{v_j\in\symcal{N}(v_i)\cup\left\{v_i\right\}}a_{ij}\symbf{F}_j\symbf{\Theta} $$
  
 
 ここで $a_{ij}$ は，ノード $v_j$ からノード $v_i$ へ情報を集約する際に使用されるエッジ $e_{ij}$ のアテンションスコアを示している． 直感的には，敵対的なエッジのアテンションスコアが小さければ，敵対的な影響が伝播するのを防げるはずである．
 
-仮に敵対的なエッジ集合がわかっているとしよう．それを $\symscr{E}\_{ad}$ と表すことにする． すると，残りの「クリーン」なエッジ集合は $\symscr{E}/\symscr{E}\_{ad}$ と表すことができる． 敵対的なエッジのアテンションスコアが小さくなるように保証するために，敵対的なエッジに罰則を科す次の損失関数を追加する：
+仮に敵対的なエッジ集合がわかっているとしよう．それを $\symcal{E}\_{ad}$ と表すことにする． すると，残りの「クリーン」なエッジ集合は $\symcal{E}/\symcal{E}\_{ad}$ と表すことができる． 敵対的なエッジのアテンションスコアが小さくなるように保証するために，敵対的なエッジに罰則を科す次の損失関数を追加する：
 
  $$
- \symscr{L}_{\text{dist}} = -\min\left(\eta,\underset{\underset{1\leq l\leq L}{e_{ij}\in\symscr{E}/\symscr{E}_{ad}}}{\mathbb{E}} a^{(l)}_{ij} - \underset{\underset{1\leq l\leq L}{e_{ij}\in\symscr{E}_{ad}}}{\mathbb{E}} a^{(l)}_{ij}\right)
+ \symcal{L}_{\text{dist}} = -\min\left(\eta,\underset{\underset{1\leq l\leq L}{e_{ij}\in\symcal{E}/\symcal{E}_{ad}}}{\mathbb{E}} a^{(l)}_{ij} - \underset{\underset{1\leq l\leq L}{e_{ij}\in\symcal{E}_{ad}}}{\mathbb{E}} a^{(l)}_{ij}\right)
 %TODO: 集合の差集合を本書全体で統一させる必要あり． $$
   ここで， $a^{(l)}_{ij}$ は $l$ 番目のグラフフィルタリング層におけるエッジ $e_{ij}$ に割り当てられたアテンションスコアである． また， $L$ はモデル内のグラフフィルタリング層の総数， $\eta$ は「2つの期待値の間の差」を調整するハイパーパラメータである． アテンションスコアの期待値は，全フィルタリング層にわたる以下の平均値によって推定される：  
 
 $$
 
 \begin{aligned}
-    \underset{\underset{1\leq l\leq L}{e_{ij}\in\symscr{E}/\symscr{E}_{ad}}}{\mathbb{E}} a^{(l)}_{ij} &= \dfrac{1}{L\|\symscr{E}/\symscr{E}_{ad}\|}\sum^{L}_{l=1}\sum_{e_{ij}\in\symscr{E}/\symscr{E}_{ad}}a^{(l)}_{ij}\\
-    \underset{\underset{1\leq l\leq L}{e_{ij}\in\symscr{E}_{ad}}}{\mathbb{E}}a^{(l)}_{ij} &= \dfrac{1}{L\|\symscr{E}_{ad}\|}\sum^{L}_{l=1}\sum_{e_j\in\symscr{E}_{ad}}a^{(l)}_{ij}
+    \underset{\underset{1\leq l\leq L}{e_{ij}\in\symcal{E}/\symcal{E}_{ad}}}{\mathbb{E}} a^{(l)}_{ij} &= \dfrac{1}{L\|\symcal{E}/\symcal{E}_{ad}\|}\sum^{L}_{l=1}\sum_{e_{ij}\in\symcal{E}/\symcal{E}_{ad}}a^{(l)}_{ij}\\
+    \underset{\underset{1\leq l\leq L}{e_{ij}\in\symcal{E}_{ad}}}{\mathbb{E}}a^{(l)}_{ij} &= \dfrac{1}{L\|\symcal{E}_{ad}\|}\sum^{L}_{l=1}\sum_{e_j\in\symcal{E}_{ad}}a^{(l)}_{ij}
 \end{aligned}
 $$
 
-  ここで， $\|\cdot\|$ は集合の要素数（cardinality）を表している．敵対的なエッジへのアテンションスコアを低く設定しながら分類モデルを学習するためには，損失関数 $\symscr{L}\_{\text{dist}}$ と式(5.49)におけるノード分類の損失関数 $\symscr{L}\_{\text{train}}$ を組み合わせる．具体的には以下のようになる：
+  ここで， $\|\cdot\|$ は集合の要素数（cardinality）を表している．敵対的なエッジへのアテンションスコアを低く設定しながら分類モデルを学習するためには，損失関数 $\symcal{L}\_{\text{dist}}$ と式(5.49)におけるノード分類の損失関数 $\symcal{L}\_{\text{train}}$ を組み合わせる．具体的には以下のようになる：
 
  $$
  
 \tag{6.17}
-\min_{\symbf{\Theta}}\symscr{L} = \min_{\symbf{\Theta}} (\symscr{L}_{\text{train}} + \lambda\symscr{L}_{\text{dist}}) $$
+\min_{\symbf{\Theta}}\symcal{L} = \min_{\symbf{\Theta}} (\symcal{L}_{\text{train}} + \lambda\symcal{L}_{\text{dist}}) $$
  
 
 ここで， $\lambda$ は2つの損失関数の間の重要性を調整するハイパーパラメータである．
 
-ここまでは，敵対的エッジの集合 $\symscr{E}\_{ad}$ は既知であると仮定していたが，これは現実的ではない． そのため，式(6.17)を直接的に定式化し最適化するのではなく，既知の敵対的エッジを持つグラフからその敵対的エッジに低いアテンションスコアを割り当てる能力を学習し，それを本来対象とするグラフに活用することを考える． 既知の敵対的エッジを持つグラフを得るためには，与えられた対象グラフと同じ種類のデータや同じカテゴリの情報を持ったグラフを集め [^11]
+ここまでは，敵対的エッジの集合 $\symcal{E}\_{ad}$ は既知であると仮定していたが，これは現実的ではない． そのため，式(6.17)を直接的に定式化し最適化するのではなく，既知の敵対的エッジを持つグラフからその敵対的エッジに低いアテンションスコアを割り当てる能力を学習し，それを本来対象とするグラフに活用することを考える． 既知の敵対的エッジを持つグラフを得るためには，与えられた対象グラフと同じ種類のデータや同じカテゴリの情報を持ったグラフを集め [^11]
 それから，これらの攻撃されたグラフから，敵対的エッジに対する低いアテンションスコアの割り当て能力を獲得し，それを与えられた対象グラフに適用する．
 
-ここからはPA-GNNの全体的なフレームワークについて簡単に議論していこう．その後，アテンション機構の学習プロセスとその能力を対象グラフに伝達するプロセスを詳細に説明していく． はじめに，図6.1に示すように， $K$ 個のクリーンなグラフ集合 $\left\\{\symscr{G}\_1,\cdots,\,\symscr{G}\_K\right\\}$ が与えられた場合，metattackのような既存の攻撃手法を使って各グラフに対する敵対的エッジ集合 $\symscr{E}^{i}\_{ad}$ を生成する． 次に，各グラフのノード集合 $\symscr{V}^i$ を，訓練用のノード集合 $\symscr{V}^{i}\_l$ とテスト用のノード集合 $\symscr{V}^{i}\_u$ に分割し，各グラフに対して式(6.17)の損失関数の最適化を試みる．具体的には，グラフ $\symscr{G}\_i$ に対応する損失関数を $\symscr{L}\_i$ と表す． そして，メタ最適化アルゴリズム**MAML** (Finn *et al*., 2017)の考えを取り入れて，全てのグラフが同一の初期化パラメータ $\symbf{\Theta}$ を共有するという設定の下，各グラフの特定の学習タスクに簡潔に適応できるようなパラメータ $\symbf{\Theta}$ を学習することを目指す． 図6.1に示すように，全グラフが共有する理想的な初期化パラメータ $\symbf{\Theta}$ はメタ最適化(meta-optimization)を通じて学習され，これについては後述する．
+ここからはPA-GNNの全体的なフレームワークについて簡単に議論していこう．その後，アテンション機構の学習プロセスとその能力を対象グラフに伝達するプロセスを詳細に説明していく． はじめに，図6.1に示すように， $K$ 個のクリーンなグラフ集合 $\left\\{\symcal{G}\_1,\cdots,\,\symcal{G}\_K\right\\}$ が与えられた場合，metattackのような既存の攻撃手法を使って各グラフに対する敵対的エッジ集合 $\symcal{E}^{i}\_{ad}$ を生成する． 次に，各グラフのノード集合 $\symcal{V}^i$ を，訓練用のノード集合 $\symcal{V}^{i}\_l$ とテスト用のノード集合 $\symcal{V}^{i}\_u$ に分割し，各グラフに対して式(6.17)の損失関数の最適化を試みる．具体的には，グラフ $\symcal{G}\_i$ に対応する損失関数を $\symcal{L}\_i$ と表す． そして，メタ最適化アルゴリズム**MAML** (Finn *et al*., 2017)の考えを取り入れて，全てのグラフが同一の初期化パラメータ $\symbf{\Theta}$ を共有するという設定の下，各グラフの特定の学習タスクに簡潔に適応できるようなパラメータ $\symbf{\Theta}$ を学習することを目指す． 図6.1に示すように，全グラフが共有する理想的な初期化パラメータ $\symbf{\Theta}$ はメタ最適化(meta-optimization)を通じて学習され，これについては後述する．
 
 <figure>
 
@@ -219,30 +219,30 @@ $$
 
 </figure>
 
-これらの共有パラメータ $\symbf{\Theta}$ は，敵対的エッジに低いアテンションスコアを割り当てる能力を持つと考えられる． この能力を与えられた対象グラフ $\symscr{G}$ に伝達するために，共有パラメータ $\symbf{\Theta}$ を初期化パラメータとして用い，グラフニューラルネットワークモデルをグラフ $\symscr{G}$ を使って学習（ファインチューニング）する． その結果得られたファインチューニングされたパラメータは $\symbf{\Theta}\_G$ として表される． 以上がPA-GNNの全体的なフレームワークについての説明である．次に，MAMLから採用したメタ最適化アルゴリズムを用いて，最適な共有パラメータ $\symbf{\Theta}$ がどのように学習されるかを具体的に説明していく．
+これらの共有パラメータ $\symbf{\Theta}$ は，敵対的エッジに低いアテンションスコアを割り当てる能力を持つと考えられる． この能力を与えられた対象グラフ $\symcal{G}$ に伝達するために，共有パラメータ $\symbf{\Theta}$ を初期化パラメータとして用い，グラフニューラルネットワークモデルをグラフ $\symcal{G}$ を使って学習（ファインチューニング）する． その結果得られたファインチューニングされたパラメータは $\symbf{\Theta}\_G$ として表される． 以上がPA-GNNの全体的なフレームワークについての説明である．次に，MAMLから採用したメタ最適化アルゴリズムを用いて，最適な共有パラメータ $\symbf{\Theta}$ がどのように学習されるかを具体的に説明していく．
 
-パラメータの最適化プロセスはまず，以下のように勾配降下法を使用してパラメータ $\symbf{\Theta}$ を各グラフ $\symscr{G}\_i$ を使って微調整(更新)する：  
+パラメータの最適化プロセスはまず，以下のように勾配降下法を使用してパラメータ $\symbf{\Theta}$ を各グラフ $\symcal{G}\_i$ を使って微調整(更新)する：  
 
 $$
- \symbf{\Theta}^{\prime}_i = \symbf{\Theta} - \alpha\nabla_{\symbf{\Theta}}\symscr{L}^{\text{tr}}_i(\symbf{\Theta}) $$
+ \symbf{\Theta}^{\prime}_i = \symbf{\Theta} - \alpha\nabla_{\symbf{\Theta}}\symcal{L}^{\text{tr}}_i(\symbf{\Theta}) $$
 
 
-  ここで， $\symbf{\Theta}^{\prime}\_i$ はグラフ $\symbf{G}\_i$ の学習タスクに対する特定のパラメータであり，  $\symscr{L}^{\text{tr}}\_i$ は対応する学習ノード集合 $\symscr{V}^{i}\_l$ で評価される式(6.17)の損失関数を表している． その後，すべてのグラフのテストノード集合 $\left\\{\symscr{V}\_u^{1},\dots,\symscr{V}\_u^{K}\right\\}$ を用いて共有パラメータ $\symbf{\Theta}$ を更新し，学習された各クラス分類器がそれらのグラフでうまく機能するようにする． 以上より，メタ最適化の目的関数は次のようにまとめることができる：
+  ここで， $\symbf{\Theta}^{\prime}\_i$ はグラフ $\symbf{G}\_i$ の学習タスクに対する特定のパラメータであり，  $\symcal{L}^{\text{tr}}\_i$ は対応する学習ノード集合 $\symcal{V}^{i}\_l$ で評価される式(6.17)の損失関数を表している． その後，すべてのグラフのテストノード集合 $\left\\{\symcal{V}\_u^{1},\dots,\symcal{V}\_u^{K}\right\\}$ を用いて共有パラメータ $\symbf{\Theta}$ を更新し，学習された各クラス分類器がそれらのグラフでうまく機能するようにする． 以上より，メタ最適化の目的関数は次のようにまとめることができる：
 
  $$
- \min_{\symbf{\Theta}}\sum^{K}_{i=1}\symscr{L}^{\text{te}}_i(\symbf{\Theta}^{\prime}_i)=
-    \min_{\symbf{\Theta}}\sum^{K}_{i=1}\symscr{L}^{\text{te}}_i\left(\theta - \alpha\nabla_{\symbf{\Theta}}\symscr{L}^{\text{tr}}_i(\symbf{\Theta})\right) $$
+ \min_{\symbf{\Theta}}\sum^{K}_{i=1}\symcal{L}^{\text{te}}_i(\symbf{\Theta}^{\prime}_i)=
+    \min_{\symbf{\Theta}}\sum^{K}_{i=1}\symcal{L}^{\text{te}}_i\left(\theta - \alpha\nabla_{\symbf{\Theta}}\symcal{L}^{\text{tr}}_i(\symbf{\Theta})\right) $$
  
 
-ここで， $\symscr{L}^{\text{te}}\_i\left(\symbf{\Theta}^{\prime}\_i\right)$ は対応するテストノード集合 $\symscr{V}^{i}\_u$ で評価された式(6.17)の損失関数を表している． そして共有パラメータ $\symbf{\Theta}$ は，以下のSGD(確率的勾配降下法)を使用して更新することができる：  
+ここで， $\symcal{L}^{\text{te}}\_i\left(\symbf{\Theta}^{\prime}\_i\right)$ は対応するテストノード集合 $\symcal{V}^{i}\_u$ で評価された式(6.17)の損失関数を表している． そして共有パラメータ $\symbf{\Theta}$ は，以下のSGD(確率的勾配降下法)を使用して更新することができる：  
 
 $$
- \symbf{\Theta} \leftarrow \symbf{\Theta} - \beta\nabla_{\symbf{\Theta}}\sum^{K}_{i=1}\symscr{L}^{\text{te}}_i\left(\theta - \alpha\nabla_{\symbf{\Theta}}\symscr{L}^{\text{tr}}_i(\symbf{\Theta})\right) $$
+ \symbf{\Theta} \leftarrow \symbf{\Theta} - \beta\nabla_{\symbf{\Theta}}\sum^{K}_{i=1}\symcal{L}^{\text{te}}_i\left(\theta - \alpha\nabla_{\symbf{\Theta}}\symcal{L}^{\text{tr}}_i(\symbf{\Theta})\right) $$
 
 
  
 
-この共有パラメータ $\symbf{\Theta}$ は，一度学習されると，与えられたグラフ $\symscr{G}$ 上の(ファインチューニングを目的とした)学習タスクの初期化パラメータとして使われます．
+この共有パラメータ $\symbf{\Theta}$ は，一度学習されると，与えられたグラフ $\symcal{G}$ 上の(ファインチューニングを目的とした)学習タスクの初期化パラメータとして使われます．
 
 ### グラフ構造学習
 
@@ -253,7 +253,7 @@ $$
  $$
  
 \tag{6.18}
-\min_{\symbf{\Theta},\symbf{S}}\symscr{L}_{\text{train}}(\symbf{S},\,\symbf{F};\,\symbf{\Theta}) + \|\symbf{A} - \symbf{S}\|^2_F + \beta_1\|\symbf{S}\|_1 + \beta_2\|\symbf{S}\|_{\ast} + \beta_3\cdot\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F}) $$
+\min_{\symbf{\Theta},\symbf{S}}\symcal{L}_{\text{train}}(\symbf{S},\,\symbf{F};\,\symbf{\Theta}) + \|\symbf{A} - \symbf{S}\|^2_F + \beta_1\|\symbf{S}\|_1 + \beta_2\|\symbf{S}\|_{\ast} + \beta_3\cdot\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F}) $$
  
 
 ここで， $\|\symbf{A}-\symbf{S}\|^{2}\_F$ は学習された行列 $\symbf{S}$ が元の隣接行列 $\symbf{A}$ に近づくことを保証するためのものである． また，学習された隣接行列の $L_1$ ノルムである $\|\symbf{S}\|\_1$ の項により，学習された行列 $\symbf{S}$ が疎になることが可能となる．  $\|\symbf{S}\|\_{\ast}$ は，学習された行列 $\symbf{S}$ が低ランクであることを保証するための核ノルム(nuclear norm)であり [^12]
@@ -266,7 +266,7 @@ $$
 :   行列 $\symbf{S}$ を固定し，式(6.18)の $\symbf{S}$ と無関係な項を削除する．すると最適化問題は次のように最定式化される：  
 
 $$
- \min_{\symbf{\Theta}} \symscr{L}_{\text{train}}(\symbf{S},\,\symbf{F};\,\symbf{\Theta}) $$
+ \min_{\symbf{\Theta}} \symcal{L}_{\text{train}}(\symbf{S},\,\symbf{F};\,\symbf{\Theta}) $$
 
 
  
@@ -278,7 +278,7 @@ $$
      
 
 $$
- \min_{\symbf{S}}\symscr{L}_{\text{train}}(\symbf{S},\,\symbf{F};\,\symbf{\Theta}) + \|\symbf{A} - \symbf{S}\|^2_F + \alpha\|\symbf{S}\|_1 + \beta\|\symbf{S}\|_{\ast} + \lambda\cdot\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F}) $$
+ \min_{\symbf{S}}\symcal{L}_{\text{train}}(\symbf{S},\,\symbf{F};\,\symbf{\Theta}) + \|\symbf{A} - \symbf{S}\|^2_F + \alpha\|\symbf{S}\|_1 + \beta\|\symbf{S}\|_{\ast} + \lambda\cdot\mathrm{tr}(\symbf{F}^{T}\symbf{L}\symbf{F}) $$
 
 
  

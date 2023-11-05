@@ -66,7 +66,7 @@ HIKIHOPデータセット内のサンプルを図10.3に示した．
 $$
 
 \begin{eqnarray}
-&\symbf{m}^{(l-1)}_i = \symbf{F}^{(l-1)}_i\symbf{\Theta}^{(l-1)}_s + \dfrac{1}{\|\symscr{N}(v_i)\|}\sum_{r\in\symscr{R}}\sum_{v_j\in\symscr{N}_r(v_i)} \symbf{F}^{(l-1)}_j\symbf{\Theta}^{(l-1)}_r
+&\symbf{m}^{(l-1)}_i = \symbf{F}^{(l-1)}_i\symbf{\Theta}^{(l-1)}_s + \dfrac{1}{\|\symcal{N}(v_i)\|}\sum_{r\in\symcal{R}}\sum_{v_j\in\symcal{N}_r(v_i)} \symbf{F}^{(l-1)}_j\symbf{\Theta}^{(l-1)}_r
 \tag{10.3}\\
 &\symbf{a}^{(l-1)}_i = \sigma\left(\left[\symbf{m}^{(l)}_i,\symbf{F}^{(l-1)}_i\right]\symbf{\Theta}^{(l-1)}_a\right)
 \tag{10.4}\\
@@ -77,7 +77,7 @@ $$
 
   
 
-ここで， $\symscr{R}=\{\text{MATCH},\text{DOC-BASED},\text{COREF},\text{COMPLEMENT}\}$ はエッジの種類を表しており， $\symscr{N}\_r(v_i)$ は種類 $r$ のエッジを通じてノード $v_i$ と接続されたノード集合を表す． また， $\symbf{\Theta}^{(l-1)}\_r$ は種類 $r$ のエッジで共有されるパラメータであり， $\symbf{\Theta}^{(l-1)}\_s$ と $\symbf{\Theta}^{(l-1)}\_a$ は全てのノードで共有されるパラメータである． 式(10.4)の出力は，式(10.5)における更新部分で情報の流れを制御するゲートシステムとして機能する．
+ここで， $\symcal{R}=\{\text{MATCH},\text{DOC-BASED},\text{COREF},\text{COMPLEMENT}\}$ はエッジの種類を表しており， $\symcal{N}\_r(v_i)$ は種類 $r$ のエッジを通じてノード $v_i$ と接続されたノード集合を表す． また， $\symbf{\Theta}^{(l-1)}\_r$ は種類 $r$ のエッジで共有されるパラメータであり， $\symbf{\Theta}^{(l-1)}\_s$ と $\symbf{\Theta}^{(l-1)}\_a$ は全てのノードで共有されるパラメータである． 式(10.4)の出力は，式(10.5)における更新部分で情報の流れを制御するゲートシステムとして機能する．
 
 各ノード $v_i$ の表現は以下のように初期化される：  
 
@@ -90,16 +90,16 @@ $$
  $L$ 層のグラフフィルタリングから成るEntity-GCNにおいて，最終的に出力されるノード表現 $\symbf{F}^{(L)}\_i$ は，与えられたクエリに対する答えを候補集合の中から選択するために使われる． 具体的には，ある候補 $c\in C_q$ を答えとして選択する確率は次のようにモデル化される：  
 
 $$
- P\left(c\|q,C_q,S_q\right) \propto \exp\left(\max_{v_i\in \symscr{M}_c}f_o\left(\left[\symbf{q},\symbf{F}^{(L)}_i\right]\right)\right) $$
+ P\left(c\|q,C_q,S_q\right) \propto \exp\left(\max_{v_i\in \symcal{M}_c}f_o\left(\left[\symbf{q},\symbf{F}^{(L)}_i\right]\right)\right) $$
 
 
-  ここで， $f_o$ は学習可能なパラメータによって制御されるアフィン変換，  $\symscr{M}_c$ は候補 $c$ に対応する語句の集合である．  $\max$ 演算子は，候補 $c$ に対して $\symscr{M}_c$ の中で予測確率が最も大きい語句を選択するためのものである． 一方Song *et al*.(2018a)では， $\symscr{M}_c$ の中で最も確率が高い語句を選択するかわりに，候補 $c$ に関係する全ての語句が $P\left(c\|q,C_q,S_q\right)$ のモデリングにおいて利用されている．これは以下のように表される：  $$
+  ここで， $f_o$ は学習可能なパラメータによって制御されるアフィン変換，  $\symcal{M}_c$ は候補 $c$ に対応する語句の集合である．  $\max$ 演算子は，候補 $c$ に対して $\symcal{M}_c$ の中で予測確率が最も大きい語句を選択するためのものである． 一方Song *et al*.(2018a)では， $\symcal{M}_c$ の中で最も確率が高い語句を選択するかわりに，候補 $c$ に関係する全ての語句が $P\left(c\|q,C_q,S_q\right)$ のモデリングにおいて利用されている．これは以下のように表される：  $$
  \displaystyle
-    P \left(c\|q,C_q,S_q\right) = \dfrac{\displaystyle\sum_{v_i\in\symscr{M}_c}\alpha_i}{\displaystyle\sum_{v_i\in\symscr{M}}\alpha_i} $$
-  ここで， $\symscr{M}$ は全ての語句，すなわちEntityグラフ内の全ノードを表している． また， $\alpha_i$ はソフトマックス関数で以下のようにモデル化される：  
+    P \left(c\|q,C_q,S_q\right) = \dfrac{\displaystyle\sum_{v_i\in\symcal{M}_c}\alpha_i}{\displaystyle\sum_{v_i\in\symcal{M}}\alpha_i} $$
+  ここで， $\symcal{M}$ は全ての語句，すなわちEntityグラフ内の全ノードを表している． また， $\alpha_i$ はソフトマックス関数で以下のようにモデル化される：  
 
 $$
- \alpha_i = \dfrac{\exp\left(f_o\left(\left[\symbf{q},\symbf{F}^{(L)}_i\right]\right)\right)}{\displaystyle\sum_{v_i\in\symscr{M}}\exp\left(f_o\left(\left[\symbf{q},\symbf{F}^{(L)}_i\right]\right)\right)} $$
+ \alpha_i = \dfrac{\exp\left(f_o\left(\left[\symbf{q},\symbf{F}^{(L)}_i\right]\right)\right)}{\displaystyle\sum_{v_i\in\symcal{M}}\exp\left(f_o\left(\left[\symbf{q},\symbf{F}^{(L)}_i\right]\right)\right)} $$
 
 
  

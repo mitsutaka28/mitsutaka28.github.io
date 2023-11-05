@@ -7,29 +7,29 @@
 
 ### 次数
 
-グラフ $\mathcal{G}$ におけるノード $v$ の"次数"とは，そのノードが隣接する他ノードの個数である．形式的な定義は以下となる． 
+グラフ $\symcal{G}$ におけるノード $v$ の"次数"とは，そのノードが隣接する他ノードの個数である．形式的な定義は以下となる． 
 <div class="definition">
  
 <strong>定義 2.4 次数</strong>
-  $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ において， $v_i\in \mathcal{V}$ の次数とは， $v_i$ と隣接しているノードの数
+  $\symcal{G} = \left\{\symcal{V},\symcal{E}\right\}$ において， $v_i\in \symcal{V}$ の次数とは， $v_i$ と隣接しているノードの数
 
  $$
  \nonumber
-    d(v_i) = \sum_{v_j\in \mathcal{V}} \symbb{1}_{\mathcal{E}}(\left\{v_i,v_j\right\}), $$
+    d(v_i) = \sum_{v_j\in \symcal{V}} \symbb{1}_{\symcal{E}}(\left\{v_i,v_j\right\}), $$
  
 
-である．ここで， $\symbb{1}_{\mathcal{E}}(\cdot)$ は次のような指示関数である．
+である．ここで， $\symbb{1}_{\symcal{E}}(\cdot)$ は次のような指示関数である．
 
  $$
  \nonumber
-    \symbb{1}_{\mathcal{E}}(\left\{v_i,v_j\right\}) = 
+    \symbb{1}_{\symcal{E}}(\left\{v_i,v_j\right\}) = 
     \begin{cases}
-        1 & (v_i,v_j)\in \mathcal{E},\\
-        0 & (v_i,v_j)\notin \mathcal{E}.
+        1 & (v_i,v_j)\in \symcal{E},\\
+        0 & (v_i,v_j)\notin \symcal{E}.
     \end{cases} $$
   
 </div>
-  $\mathcal{G}$ におけるノード $v_i$ の次数は，隣接行列を使うことによっても算出できる．例えば，あるノード $v_i$ の次数は以下のように計算できる．
+  $\symcal{G}$ におけるノード $v_i$ の次数は，隣接行列を使うことによっても算出できる．例えば，あるノード $v_i$ の次数は以下のように計算できる．
 
  $$
  
@@ -47,17 +47,17 @@
 <div class="definition">
  
 <strong>定義 2.6 近傍</strong>
-  $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ のノード $v_i$ について，その近傍 $\symscr{N}(v_i)$ とは， $v_i$ と隣接している全ノードで構成される集合である． 
+  $\symcal{G} = \left\{\symcal{V},\symcal{E}\right\}$ のノード $v_i$ について，その近傍 $\symcal{N}(v_i)$ とは， $v_i$ と隣接している全ノードで構成される集合である． 
 </div>
- なお， $\symscr{N}(v_i)$ に含まれるノードの数はノード $v_i$ の次数に等しいこと，すなわち， $d(v_i)=\|\symscr{N}(v_i)\|$ となることに注意しよう． 
+ なお， $\symcal{N}(v_i)$ に含まれるノードの数はノード $v_i$ の次数に等しいこと，すなわち， $d(v_i)=\|\symcal{N}(v_i)\|$ となることに注意しよう． 
 <div class="theorem">
  
 <strong>定理 2.7</strong>
-  $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ に対して，"総次数"（全ノードの次数の和）は，グラフに含まれる全エッジ数の $2$ 倍になる：
+  $\symcal{G} = \left\{\symcal{V},\symcal{E}\right\}$ に対して，"総次数"（全ノードの次数の和）は，グラフに含まれる全エッジ数の $2$ 倍になる：
 
  $$
  \nonumber
-    \sum_{v_i\in\symscr{V}}d(v_i) = 2\cdot\|\symscr{E}\|. $$
+    \sum_{v_i\in\symcal{V}}d(v_i) = 2\cdot\|\symcal{E}\|. $$
  
 
 
@@ -70,10 +70,10 @@
 $$
 
 \begin{aligned}
-    \sum_{v_i\in\mathcal{V}}d(v_i) &= \sum_{v_i\in \mathcal{V}}\sum_{v_j\in\mathcal{V}}\symbb{1}_{\mathcal{E}}(\left\{v_i,v_j\right\})\nonumber\\
-    &=\sum_{\left\{v_i,v_j\right\}\in\mathcal{E}}2\cdot\symbb{1}_{\mathcal{E}}(\left\{v_i,v_j\right\})\nonumber\\
-    &=2\cdot\sum_{\left\{v_i,v_j\right\}\in\mathcal{E}}\symbb{1}_{\mathcal{E}}(\left\{v_i,v_j\right\})\nonumber\\
-    &=2\cdot\|\mathcal{E}\|\nonumber
+    \sum_{v_i\in\symcal{V}}d(v_i) &= \sum_{v_i\in \symcal{V}}\sum_{v_j\in\symcal{V}}\symbb{1}_{\symcal{E}}(\left\{v_i,v_j\right\})\nonumber\\
+    &=\sum_{\left\{v_i,v_j\right\}\in\symcal{E}}2\cdot\symbb{1}_{\symcal{E}}(\left\{v_i,v_j\right\})\nonumber\\
+    &=2\cdot\sum_{\left\{v_i,v_j\right\}\in\symcal{E}}\symbb{1}_{\symcal{E}}(\left\{v_i,v_j\right\})\nonumber\\
+    &=2\cdot\|\symcal{E}\|\nonumber
     Q.E.D.
 \end{aligned}
 $$
@@ -137,7 +137,7 @@ $$
 <div class="theorem">
  
 <strong>定理 2.14</strong>
- 隣接行列 $\symbf{A}$ を持つグラフ $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ に対して，隣接行列の $n$ 乗を $\symbf{A}^{n}$ と表す．このとき，行列 $\symbf{A}^{n}$ の $i,j$ 成分は，長さ $n$ の $v_i$ - $v_j$ ウォークの数に等しい． 
+ 隣接行列 $\symbf{A}$ を持つグラフ $\symcal{G} = \left\{\symcal{V},\symcal{E}\right\}$ に対して，隣接行列の $n$ 乗を $\symbf{A}^{n}$ と表す．このとき，行列 $\symbf{A}^{n}$ の $i,j$ 成分は，長さ $n$ の $v_i$ - $v_j$ ウォークの数に等しい． 
 <div class="prf">
 <strong>証明: </strong>
  帰納法によってこの定理を証明できる． まず $n=1$ に対して定義が成り立つことを示す．  $\symbf{A}_{i,j}=1$ の場合，隣接行列の定義より，ノード $v_i$ と $v_j$ の間にエッジが存在することがわかる．これは長さ $1$ の $v_i$ - $v_j$ ウォークとみなせる． $\symbf{A}_{i,j}=0$ の場合，ノード $v_i$ と $v_j$ の間にエッジはないので，長さ $1$ の $v_i$ - $v_j$ ウォークは存在しない．以上から $n=1$ に対して定理が成り立つことがわかった．次に， $n=k$ のときに定理が成り立つと仮定する．つまり， $\symbf{A}^{k}$ の $i,h$ 成分は，長さ $k$ の $v_i$ - $v_h$ ウォークの数に等しいとする．ここから， $n=k+1$ の場合の証明に進む． $\symbf{A}^{k+1}$ の $i,j$ 成分は， $\symbf{A}^{k}$ と $\symbf{A}$ を用いて以下のように表すことができる．
@@ -158,19 +158,19 @@ $$
 <div class="definition">
  
 <strong>定義 2.15 部分グラフ</strong>
- 与えられたグラフ $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ の部分グラフ $\mathcal{G}' = \left\{\mathcal{V}',\mathcal{E}'\right\}$ は，ノードの部分集合 $\mathcal{V}'\subset\mathcal{V}$ およびエッジの部分集合 $\mathcal{E}'\subset\mathcal{E}$ で構成されるグラフである．このとき，部分集合 $\mathcal{E}'$ 中のエッジに関係する全ノードが，部分集合 $\mathcal{V}'$ に含まれていなければならない． 
+ 与えられたグラフ $\symcal{G} = \left\{\symcal{V},\symcal{E}\right\}$ の部分グラフ $\symcal{G}' = \left\{\symcal{V}',\symcal{E}'\right\}$ は，ノードの部分集合 $\symcal{V}'\subset\symcal{V}$ およびエッジの部分集合 $\symcal{E}'\subset\symcal{E}$ で構成されるグラフである．このとき，部分集合 $\symcal{E}'$ 中のエッジに関係する全ノードが，部分集合 $\symcal{V}'$ に含まれていなければならない． 
 </div>
  
 <div class="eg">
  
 <strong>例 2.16</strong>
- 図2.1のグラフ $\mathcal{G}$ に対して，ノードの部分集合を $\mathcal{V}'=\left\{v_1,v_2,v_3,v_5\right\}$ ，エッジの部分集合を $\mathcal{E}' = \left\{e_1,e_2,e_3,e_6\right\}$ とおくことで，部分グラフ $\mathcal{G}'$ が構成できる． 
+ 図2.1のグラフ $\symcal{G}$ に対して，ノードの部分集合を $\symcal{V}'=\left\{v_1,v_2,v_3,v_5\right\}$ ，エッジの部分集合を $\symcal{E}' = \left\{e_1,e_2,e_3,e_6\right\}$ とおくことで，部分グラフ $\symcal{G}'$ が構成できる． 
 </div>
  
 <div class="definition">
  
 <strong>定義 2.17 連結成分</strong>
- グラフ $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ とその部分グラフ $\mathcal{G}' = \left\{\mathcal{V}',\mathcal{E}'\right\}$ を考える．部分グラフの任意のノード間に少なくとも $1$ つのパスが存在し， $\mathcal{V}'$ のノードが $\mathcal{V}/\mathcal{V}'$  に含まれるどのノードとも隣接しないとき，部分グラフ $\mathcal{G}'$ はグラフ $\mathcal{G}$ の連結成分であるという． 
+ グラフ $\symcal{G} = \left\{\symcal{V},\symcal{E}\right\}$ とその部分グラフ $\symcal{G}' = \left\{\symcal{V}',\symcal{E}'\right\}$ を考える．部分グラフの任意のノード間に少なくとも $1$ つのパスが存在し， $\symcal{V}'$ のノードが $\symcal{V}/\symcal{V}'$  に含まれるどのノードとも隣接しないとき，部分グラフ $\symcal{G}'$ はグラフ $\symcal{G}$ の連結成分であるという． 
 </div>
  
 <div class="eg">
@@ -192,7 +192,7 @@ $$
 <div class="definition">
  
 <strong>定義 2.19 連結グラフ</strong>
- 連結成分が $1$ つだけのグラフ $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ を，連結グラフという ． 
+ 連結成分が $1$ つだけのグラフ $\symcal{G} = \left\{\symcal{V},\symcal{E}\right\}$ を，連結グラフという ． 
 </div>
  
 <div class="eg">
@@ -204,24 +204,24 @@ $$
 <div class="definition">
  
 <strong>定義 2.21 最短パス</strong>
- グラフ $\mathcal{G}$ において $2$ つのノード $v_s,v_t\in \mathcal{V}$ が与えられたとき， $v_s$ から $v_t$ へのパスの集合を $\mathcal{P}_{st}$ と表す．ノード $v_s$ とノード $v_t$ の間の最短パスは以下のように定義される．
+ グラフ $\symcal{G}$ において $2$ つのノード $v_s,v_t\in \symcal{V}$ が与えられたとき， $v_s$ から $v_t$ へのパスの集合を $\symcal{P}_{st}$ と表す．ノード $v_s$ とノード $v_t$ の間の最短パスは以下のように定義される．
 
  $$
  \nonumber
-p^{sp}_{st} = \arg \min_{p\in\mathcal{P}_{st}} \|p\|. $$
+p^{sp}_{st} = \arg \min_{p\in\symcal{P}_{st}} \|p\|. $$
  
 
-ここで， $p$ は $\mathcal{P}_{st}$ に含まれるパスで $\|p\|$ はその長さ， $p^{sp}_{st}$ は最短パスを表す．なお，任意のノードの間には複数の最短パスが存在する場合がある． 
+ここで， $p$ は $\symcal{P}_{st}$ に含まれるパスで $\|p\|$ はその長さ， $p^{sp}_{st}$ は最短パスを表す．なお，任意のノードの間には複数の最短パスが存在する場合がある． 
 </div>
  一組のノード間の最短パスは，それらの間の重要な情報を記述している．つまり，グラフ内の任意のノード間の最短パスを集めたものは，そのグラフの重要な特性を示すことになる．その具体例として，グラフの"直径"がある．これは「グラフ内の最短パスの中で，最も大きい長さ」として定義される． 
 <div class="definition">
  
 <strong>定義 2.22 直径</strong>
- 連結グラフ $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ の直径は以下のように定義される．
+ 連結グラフ $\symcal{G} = \left\{\symcal{V},\symcal{E}\right\}$ の直径は以下のように定義される．
 
  $$
  \nonumber
-    \textrm{diameter}(\mathcal{G}) = \max_{v_s,v_t\in \mathcal{V}}\min_{p\in \mathcal{P}_{st}} \|p\|. $$
+    \textrm{diameter}(\symcal{G}) = \max_{v_s,v_t\in \symcal{V}}\min_{p\in \symcal{P}_{st}} \|p\|. $$
   
 </div>
  

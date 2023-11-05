@@ -11,7 +11,7 @@
 <div class="definition">
  
 <strong>定義 2.35 ヘテログラフ</strong>
- ヘテログラフ $\mathcal{G}$ は，ノード集合 $\mathcal{V} = \left\{v_1,\dots,v_N\right\}$ とエッジ集合 $\mathcal{E}=\left\{e_1,\dots,e_M\right\}$ で構成され，各ノードと各エッジには"タイプ"が関連付けられている．ノードタイプの集合を $\mathcal{T}_n$ ，エッジタイプの集合を $\mathcal{T}_e$ とする．そして各ノードと各エッジをそれぞれのタイプに対応付ける $2$ つの写像 $\phi_n\colon \mathcal{V}\rightarrow\mathcal{T}_n$ と $\phi_e\colon \mathcal{E}\rightarrow\mathcal{T}_e$ が存在している． 
+ ヘテログラフ $\symcal{G}$ は，ノード集合 $\symcal{V} = \left\{v_1,\dots,v_N\right\}$ とエッジ集合 $\symcal{E}=\left\{e_1,\dots,e_M\right\}$ で構成され，各ノードと各エッジには"タイプ"が関連付けられている．ノードタイプの集合を $\symcal{T}_n$ ，エッジタイプの集合を $\symcal{T}_e$ とする．そして各ノードと各エッジをそれぞれのタイプに対応付ける $2$ つの写像 $\phi_n\colon \symcal{V}\rightarrow\symcal{T}_n$ と $\phi_e\colon \symcal{E}\rightarrow\symcal{T}_e$ が存在している． 
 </div>
 
 
@@ -25,11 +25,11 @@
 
 ### 二部グラフ
 
-二部グラフ $\mathcal{G} = \left\\{\mathcal{V},\mathcal{E}\right\\}$ におけるノード集合 $\mathcal{V}$ は，互いに素な $2$ つの部分集合 $\mathcal{V}\_1$ と $\mathcal{V}\_2$ に分割することができ， $\mathcal{E}$ のすべてのエッジは， $\mathcal{V}\_1$ のノードと $\mathcal{V}\_2$ のノードを接続する．このように二部グラフは，異なるオブジェクト間の相互作用を把握するために広く用いられている．例えばAmazonのようなECサイトにおいては，図2.7に示すように，ユーザのクリック履歴を二部グラフとしてのモデル化が可能である．このとき，ユーザとアイテムは互いに素な $2$ つのノード集合とし，ユーザのクリックはそれらの間のエッジとみなすことになる．以下に二部グラフの形式的な定義を示す． 
+二部グラフ $\symcal{G} = \left\\{\symcal{V},\symcal{E}\right\\}$ におけるノード集合 $\symcal{V}$ は，互いに素な $2$ つの部分集合 $\symcal{V}\_1$ と $\symcal{V}\_2$ に分割することができ， $\symcal{E}$ のすべてのエッジは， $\symcal{V}\_1$ のノードと $\symcal{V}\_2$ のノードを接続する．このように二部グラフは，異なるオブジェクト間の相互作用を把握するために広く用いられている．例えばAmazonのようなECサイトにおいては，図2.7に示すように，ユーザのクリック履歴を二部グラフとしてのモデル化が可能である．このとき，ユーザとアイテムは互いに素な $2$ つのノード集合とし，ユーザのクリックはそれらの間のエッジとみなすことになる．以下に二部グラフの形式的な定義を示す． 
 <div class="definition">
  
 <strong>定義 2.36 二部グラフ</strong>
- グラフ $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ を考える． $\mathcal{V} = \mathcal{V}_1\cup \mathcal{V}_2$ かつ $\mathcal{V}_1\cap \mathcal{V}_2 = \emptyset$ が成り立ち，さらにすべての $e = (v^1_e,v^2_e)\in \mathcal{E}$ に対して， $v^1_e\in \mathcal{V}_1$ ,   $v^2_e\in \mathcal{V}_2$ が満たされるとき，このグラフ $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ は二部グラフであるという． 
+ グラフ $\symcal{G} = \left\{\symcal{V},\symcal{E}\right\}$ を考える． $\symcal{V} = \symcal{V}_1\cup \symcal{V}_2$ かつ $\symcal{V}_1\cap \symcal{V}_2 = \emptyset$ が成り立ち，さらにすべての $e = (v^1_e,v^2_e)\in \symcal{E}$ に対して， $v^1_e\in \symcal{V}_1$ ,   $v^2_e\in \symcal{V}_2$ が満たされるとき，このグラフ $\symcal{G} = \left\{\symcal{V},\symcal{E}\right\}$ は二部グラフであるという． 
 </div>
 
 
@@ -47,19 +47,13 @@
 <div class="definition">
  
 <strong>定義 2.37 多次元グラフ</strong>
- 多次元グラフは， $N$ 個のノードから成る集合 $\mathcal{V} = \left\{v_1,\dots,v_N\right\}$ および $D$ 個のエッジ集合 $\left\{\mathcal{E}_1,\dots,\mathcal{E}_D\right\}$ で構成される．各エッジ集合 $\mathcal{E}_d$ は，それぞれの $d$ 次元における，ノード間の $d$ 番目の関係タイプを表している． また，これら $D$ 種類の関係は $D$ 個の隣接行列 $\symbf{A}^{(1)},\dots,\symbf{A}^{(D)}$ としても表現でき， $d$ 次元に対応する隣接行列 $\symbf{A}_d\in \mathbb{R}^{N\times N}$ は， $\mathcal{V}$ 中のノード間にあるエッジ集合 $\mathcal{E}_d$ を記述している．例えば， $\symbf{A}_d$ の $i,j$ 要素 $\symbf{A}_d[i,j]$ は，ノード $v_i$ と $v_j$ の間に次元 $d$ のエッジが存在するとき（ $(v_i,v_j)\in\mathcal{E}_d$ ）にのみ $1$ ，次元 $d$ のエッジが存在しない場合は $0$ となる． 
+ 多次元グラフは， $N$ 個のノードから成る集合 $\symcal{V} = \left\{v_1,\dots,v_N\right\}$ および $D$ 個のエッジ集合 $\left\{\symcal{E}_1,\dots,\symcal{E}_D\right\}$ で構成される．各エッジ集合 $\symcal{E}_d$ は，それぞれの $d$ 次元における，ノード間の $d$ 番目の関係タイプを表している． また，これら $D$ 種類の関係は $D$ 個の隣接行列 $\symbf{A}^{(1)},\dots,\symbf{A}^{(D)}$ としても表現でき， $d$ 次元に対応する隣接行列 $\symbf{A}_d\in \mathbb{R}^{N\times N}$ は， $\symcal{V}$ 中のノード間にあるエッジ集合 $\symcal{E}_d$ を記述している．例えば， $\symbf{A}_d$ の $i,j$ 要素 $\symbf{A}_d[i,j]$ は，ノード $v_i$ と $v_j$ の間に次元 $d$ のエッジが存在するとき（ $(v_i,v_j)\in\symcal{E}_d$ ）にのみ $1$ ，次元 $d$ のエッジが存在しない場合は $0$ となる． 
 </div>
 
 
 ### 符号付きグラフ
 
-SNSの普及に伴い，正負のエッジを含む符号付きグラフはますます身近になってきている．符号付きグラフの例としてはFacebookやTwitterなどのSNSがあり，そこではユーザは他のユーザをブロックしたりフォロー解除したりできる．"ブロック"や"友達リスクからの削除"というアクションは，どちらもユーザ間の負のエッジと捉えることができる．図2.8は，ユーザをノード，friend関係（友だちリストへの追加）を正のエッジ，unfriend関係（友だちリストからの削除）を負のエッジとした符号付きグラフの一例である． 以下に，符号付きグラフの形式的な定義を示す． 
-<div class="definition">
- 
-<strong>定義 2.38 符号付きグラフ</strong>
-  $\mathcal{V} = \left\{v_1,\dots,v_N\right\}$ を $N$ 個のノードから成る集合， $\mathcal{E}^{+}\subset\mathcal{V}\times\mathcal{V}$ と $\mathcal{E}^{-}\subset\mathcal{V}\times\mathcal{V}$ をそれぞれ正と負のエッジ集合を表す．ただし，エッジは正または負のどちらか一方に属すこととし， $\mathcal{E}^{+}\cap\mathcal{E}^{-}=\emptyset$ を満たす．このとき， $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}^{+},\mathcal{E}^{-}\right\}$ は符号付きグラフである．これらのノード間の正・負エッジは符号付き隣接行列 $\symbf{A}$ で記述することができ，ノード $v_i$ とノード $v_j$ の間に正のエッジがあるとき $\symbf{A}_{i,j}=1$ ，負のエッジがあるとき $\symbf{A}_{i,j}=-1$ ，それ以外の場合 $\symbf{A}_{i,j}=0$ となる． 
-</div>
-
+SNSの普及に伴い，正負のエッジを含む符号付きグラフはますます身近になってきている．符号付きグラフの例としてはFacebookやTwitterなどのSNSがあり，そこではユーザは他のユーザをブロックしたりフォロー解除したりできる．"ブロック"や"友達リスクからの削除"というアクションは，どちらもユーザ間の負のエッジと捉えることができる．図2.8は，ユーザをノード，friend関係（友だちリストへの追加）を正のエッジ，unfriend関係（友だちリストからの削除）を負のエッジとした符号付きグラフの一例である． 以下に，符号付きグラフの形式的な定義を示す．
 
 <figure>
 
@@ -69,13 +63,21 @@ SNSの普及に伴い，正負のエッジを含む符号付きグラフはま�
 
 </figure>
 
+
+<div class="definition">
+ 
+<strong>定義 2.38 符号付きグラフ</strong>
+  $\symcal{V} = \left\{v_1,\dots,v_N\right\}$ を $N$ 個のノードから成る集合， $\symcal{E}^{+}\subset\symcal{V}\times\symcal{V}$ と $\symcal{E}^{-}\subset\symcal{V}\times\symcal{V}$ をそれぞれ正と負のエッジ集合を表す．ただし，エッジは正または負のどちらか一方に属すこととし， $\symcal{E}^{+}\cap\symcal{E}^{-}=\emptyset$ を満たす．このとき， $\symcal{G} = \left\{\symcal{V},\symcal{E}^{+},\symcal{E}^{-}\right\}$ は符号付きグラフである．これらのノード間の正・負エッジは符号付き隣接行列 $\symbf{A}$ で記述することができ，ノード $v_i$ とノード $v_j$ の間に正のエッジがあるとき $\symbf{A}_{i,j}=1$ ，負のエッジがあるとき $\symbf{A}_{i,j}=-1$ ，それ以外の場合 $\symbf{A}_{i,j}=0$ となる． 
+</div>
+
+
 ### ハイパーグラフ
 
 これまで紹介したグラフは、エッジを介して $2$ つのノード間の情報のみを符号化していた． しかし現実世界の多くの状況では，一対の関係を超える関係性を持つことがある． 図2.9では，論文間の関係を記述するハイパーグラフが示されている． この例では特定の著者が $2$ つ以上の論文を発表することができるから，著者を，複数の論文(ノード)を結ぶ"ハイパーエッジ"とみなすことができる． 単純グラフに現れるエッジと比較して，ハイパーエッジは高次の関係を符号化できる．ハイパーエッジを持つグラフはハイパーグラフとよばれ，以下に，その形式的な定義を与えた． 
 <div class="definition">
  
 <strong>定義 2.39 ハイパーグラフ</strong>
-  $\mathcal{V}$ を $N$ 個のノード集合， $\mathcal{E}$ をハイパーエッジ集合，そしてハイパーエッジ $e_j$ の重みを $\symbf{W}[j,j]$ においた対角行列を $\symbf{W}\in \mathbb{R}^{\|\mathcal{E}\|\times\|\mathcal{E}\|}$ とする．このとき， $\mathcal{G}=\left\{\mathcal{V}, \mathcal{E}, \symbf{W}\right\}$ をハイパーグラフと定義する．ハイパーグラフ $\mathcal{G}$ は，ノード $v_i$ がエッジ $e_j$ に現れる場合にのみ $\symbf{H}_{i,j}=1$ となる，接続行列 $\symbf{H}\in \mathbb{R}^{\|\mathcal{V}\|\times\|\mathcal{E}\|}$ を用いて記述することができる．また，ノード $v_i$ について，その次数を $\displaystyle d(v_i)=\sum^{\|\mathcal{E}\|}_{j=1}\symbf{H}_{i,j}$ と定義し，ハイパーエッジの次数を $\displaystyle d(e_j) = \sum^{\|\mathcal{V}\|}_{i=1}\symbf{H}_{i,j}$ と定義する．さらに， $\symbf{D}_e$ と $\symbf{D}_v$ を，それぞれハイパーエッジとノードの(対角)次数行列を表すとする． 
+  $\symcal{V}$ を $N$ 個のノード集合， $\symcal{E}$ をハイパーエッジ集合，そしてハイパーエッジ $e_j$ の重みを $\symbf{W}[j,j]$ においた対角行列を $\symbf{W}\in \mathbb{R}^{\|\symcal{E}\|\times\|\symcal{E}\|}$ とする．このとき， $\symcal{G}=\left\{\symcal{V}, \symcal{E}, \symbf{W}\right\}$ をハイパーグラフと定義する．ハイパーグラフ $\symcal{G}$ は，ノード $v_i$ がエッジ $e_j$ に現れる場合にのみ $\symbf{H}_{i,j}=1$ となる，接続行列 $\symbf{H}\in \mathbb{R}^{\|\symcal{V}\|\times\|\symcal{E}\|}$ を用いて記述することができる．また，ノード $v_i$ について，その次数を $\displaystyle d(v_i)=\sum^{\|\symcal{E}\|}_{j=1}\symbf{H}_{i,j}$ と定義し，ハイパーエッジの次数を $\displaystyle d(e_j) = \sum^{\|\symcal{V}\|}_{i=1}\symbf{H}_{i,j}$ と定義する．さらに， $\symbf{D}_e$ と $\symbf{D}_v$ を，それぞれハイパーエッジとノードの(対角)次数行列を表すとする． 
 </div>
 
 
@@ -95,7 +97,7 @@ SNSの普及に伴い，正負のエッジを含む符号付きグラフはま�
 <div class="definition">
  
 <strong>定義 2.40 ダイナミックグラフ</strong>
- ダイナミックグラフ $\mathcal{G} = \left\{\mathcal{V},\mathcal{E}\right\}$ はノード集合 $\mathcal{V}=\left\{v_1,\dots,v_N\right\}$ とエッジ集合 $\mathcal{E}=\left\{e_1,\dots,e_M\right\}$ で構成され，各ノードと各エッジの両方（またはどちらか一方）にはそれが出現した時刻を示す時点(timestamp)が関連付けられている．具体的には，各ノードおよび各エッジからそれぞれの出現時点への対応を与える $2$ つの写像 $\phi_v$ および $\phi_e$ が存在する． 
+ ダイナミックグラフ $\symcal{G} = \left\{\symcal{V},\symcal{E}\right\}$ はノード集合 $\symcal{V}=\left\{v_1,\dots,v_N\right\}$ とエッジ集合 $\symcal{E}=\left\{e_1,\dots,e_M\right\}$ で構成され，各ノードと各エッジの両方（またはどちらか一方）にはそれが出現した時刻を示す時点(timestamp)が関連付けられている．具体的には，各ノードおよび各エッジからそれぞれの出現時点への対応を与える $2$ つの写像 $\phi_v$ および $\phi_e$ が存在する． 
 </div>
 
 
@@ -107,11 +109,11 @@ SNSの普及に伴い，正負のエッジを含む符号付きグラフはま�
 
 </figure>
 
-実際には，各ノード・各エッジの時点を記録することは困難である．その代わりの方法として，グラフがどのように変化していくかを「時点を区切って」観測すればよい． そのような場合，各時点 $t$ で観測されるグラフ $\mathcal{G}\_t$ の"スナップショット"を記録値として取得することができる．このようなダイナミックグラフは，複数のグラフのスナップショットで構成される"離散型ダイナミックグラフ"とよばれる．以下に，離散型ダイナミックグラフの形式的な定義を与えた． 
+実際には，各ノード・各エッジの時点を記録することは困難である．その代わりの方法として，グラフがどのように変化していくかを「時点を区切って」観測すればよい． そのような場合，各時点 $t$ で観測されるグラフ $\symcal{G}\_t$ の"スナップショット"を記録値として取得することができる．このようなダイナミックグラフは，複数のグラフのスナップショットで構成される"離散型ダイナミックグラフ"とよばれる．以下に，離散型ダイナミックグラフの形式的な定義を与えた． 
 <div class="definition">
  
 <strong>定義 2.41 離散型ダイナミックグラフ</strong>
- 離散型ダイナミックグラフは，ダイナミックグラフの変化に沿って観測された $T$ 個のグラフのスナップショットで構成される．具体的には， $T$ 個のグラフスナップショットは，時点 $0$ に観測されたグラフを $\mathcal{G}_0$ とし， $\left\{\mathcal{G}_0,\dots,\mathcal{G}_T\right\}$ と表すことができる． 
+ 離散型ダイナミックグラフは，ダイナミックグラフの変化に沿って観測された $T$ 個のグラフのスナップショットで構成される．具体的には， $T$ 個のグラフスナップショットは，時点 $0$ に観測されたグラフを $\symcal{G}_0$ とし， $\left\{\symcal{G}_0,\dots,\symcal{G}_T\right\}$ と表すことができる． 
 </div>
 
 

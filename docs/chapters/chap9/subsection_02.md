@@ -7,7 +7,7 @@
 
 以下では, 低次元ノード表現を学習するためのこれら2種類のグラフオートエンコーダーについて簡単に紹介する.
 
-(Wang et al., 2016)では, 各ノード $v_i \in \mathcal{V}$ について, グラフの隣接行列 $\mathbf{a}\_i=\mathbf{A}\_i$ の対応する行がエンコーダーの入力となり, その低次元表現を取得する方法が紹介されている:
+(Wang et al., 2016)では, 各ノード $v_i \in \symcal{V}$ について, グラフの隣接行列 $\mathbf{a}\_i=\mathbf{A}\_i$ の対応する行がエンコーダーの入力となり, その低次元表現を取得する方法が紹介されている:
 
  $$
  \mathbf{z}_i=f_{e n c}\left(\mathbf{a}_i ; \boldsymbol{\Theta}_{e n c}\right)
@@ -21,40 +21,40 @@
     \nonumber $$
  
 
-ここで,  $f\_{d e c}$ はデコーダーで,  $\boldsymbol{\Theta}\_{d e c}$ はパラメータを表す. 再構成損失は,  $\mathcal{V}$ 内のすべてのノードについて $\tilde{\mathbf{a}}\_i$ が $\mathbf{a}\_i$ に近いという制約で定義することができる:
+ここで,  $f\_{d e c}$ はデコーダーで,  $\boldsymbol{\Theta}\_{d e c}$ はパラメータを表す. 再構成損失は,  $\symcal{V}$ 内のすべてのノードについて $\tilde{\mathbf{a}}\_i$ が $\mathbf{a}\_i$ に近いという制約で定義することができる:
 
  $$
- \mathcal{L}_{e n c}=\sum_{v_i \in \mathcal{V}}\left\|\mathbf{a}_i-\tilde{\mathbf{a}}_i\right\|_2^{2}
+ \symcal{L}_{e n c}=\sum_{v_i \in \symcal{V}}\left\|\mathbf{a}_i-\tilde{\mathbf{a}}_i\right\|_2^{2}
     \nonumber $$
  
 
 上記の再構成損失を最小化することで, 近傍情報を低次元表現 $\mathbf{z}\_i$ に「圧縮」することができる. 近傍ノードとのペアワイズ類似度は, 明示的には捉えられない. しかし, オートエンコーダー（のパラメータ）は全ノードで共有されているため, エンコーダーは類似の入力を持つノードを似ているノード表現に対応付けると考えられ, 暗黙のうちに類似性が保持される. 隣接行列 $\mathbf{A}$ 固有のスパース性があるため, 上記の再構成損失が問題となる場合がある.  $\mathbf{a}\_i$ の要素の大部分は0であるため, 最適化処理では0の要素の再構成にオーバーフィットしやすくなる可能性がある. この問題を解決するために, 再構成損失を次のように変更することで, 0でない要素の再構成誤差に対してより多くのペナルティを課す:
 
  $$
- \mathcal{L}_{e n c}=\sum_{v_i \in \mathcal{V}}\left\|\left(\mathbf{a}_i-\tilde{\mathbf{a}}_i\right) \odot \mathbf{b}_i\right\|_2^{2}
+ \symcal{L}_{e n c}=\sum_{v_i \in \symcal{V}}\left\|\left(\mathbf{a}_i-\tilde{\mathbf{a}}_i\right) \odot \mathbf{b}_i\right\|_2^{2}
     \nonumber $$
  
 
-ここで,  $\odot$ はアダマール積を表し,  $\mathbf{b}\_i=\left\\{b_{i, j}\right\\}\_{j=1}^{\|\mathcal{V}\|}$ は $A_{i, j}=0$ のときに $b_{i,j}=1$ で,  $A_{i, j} \neq 0$ のときに $b_{i, j}=\beta>1$ である.  $\beta$ は学習されるハイパーパラメータである. さらに直接的に, つながっているノードが似ている低次元表現をもつようにするため, 正則化損失を導入する:
+ここで,  $\odot$ はアダマール積を表し,  $\mathbf{b}\_i=\left\\{b_{i, j}\right\\}\_{j=1}^{\|\symcal{V}\|}$ は $A_{i, j}=0$ のときに $b_{i,j}=1$ で,  $A_{i, j} \neq 0$ のときに $b_{i, j}=\beta>1$ である.  $\beta$ は学習されるハイパーパラメータである. さらに直接的に, つながっているノードが似ている低次元表現をもつようにするため, 正則化損失を導入する:
 
  $$
- \mathcal{L}_{c o n}=\sum_{v_i, v_j \in \mathcal{V}} \mathbf{A}_{i, j} \cdot\left\|\mathbf{z}_i-\mathbf{z}_j\right\|_2^{2}
+ \symcal{L}_{c o n}=\sum_{v_i, v_j \in \symcal{V}} \mathbf{A}_{i, j} \cdot\left\|\mathbf{z}_i-\mathbf{z}_j\right\|_2^{2}
     \nonumber $$
  
 
 最後に, エンコーダーとデコーダーのパラメータに関する正則化損失も目的関数に含め, 最終的には以下のような損失を最小化することになる:
 
  $$
- \mathcal{L}=\mathcal{L}_{e n c}+\lambda \cdot \mathcal{L}_{c o n}+\eta \cdot \mathcal{L}_{r e g}
+ \symcal{L}=\symcal{L}_{e n c}+\lambda \cdot \symcal{L}_{c o n}+\eta \cdot \symcal{L}_{r e g}
     \nonumber $$
  
 
-ここで,  $\mathcal{L}\_{r e g}$ はパラメータの正則化に対応し, 次で表される:
+ここで,  $\symcal{L}\_{r e g}$ はパラメータの正則化に対応し, 次で表される:
 
  
 
 $$
- \mathcal{L}_{r e g}=\left\|\boldsymbol{\Theta}_{e n c}\right\|_2^{2}+\left\|\boldsymbol{\Theta}_{d e c}\right\|_2^{2} $$
+ \symcal{L}_{r e g}=\left\|\boldsymbol{\Theta}_{e n c}\right\|_2^{2}+\left\|\boldsymbol{\Theta}_{d e c}\right\|_2^{2} $$
 
 
  
@@ -66,7 +66,7 @@ $$
     \nonumber $$
  
 
-ここで,  $f\_{G N N}$ はエンコーダーを表し, グラフニューラルネットワークモデルである. (Kipf and Welling, 2016b）では, GCNフィルターを使ってエンコーダーを構成している. デコーダーはグラフを再構成するが, 隣接行列 $\mathbf{A}$ と属性行列 $\mathbf{X}$ を含む. (Kipf and Welling, 2016b）では, 隣接行列 $\mathbf{A}$ のみを再構成の対象としている. 具体的には, 隣接行列はエンコードされた表現 $\mathbf{Z}$ から次のように再構成される:
+ここで,  $f\_{G N N}$ はエンコーダーを表し, グラフニューラルネットワークモデルである. (Kipf and Welling, 2016b）では, GCNフィルタを使ってエンコーダーを構成している. デコーダーはグラフを再構成するが, 隣接行列 $\mathbf{A}$ と属性行列 $\mathbf{X}$ を含む. (Kipf and Welling, 2016b）では, 隣接行列 $\mathbf{A}$ のみを再構成の対象としている. 具体的には, 隣接行列はエンコードされた表現 $\mathbf{Z}$ から次のように再構成される:
 
  $$
  \hat{\mathbf{A}}=\sigma\left(\mathbf{Z} \mathbf{Z}^{T}\right)
@@ -76,7 +76,7 @@ $$
 ここで,  $\sigma(\cdot)$ はシグモイド関数である. 低次元表現 $\mathbf{Z}$ は $\hat{\mathbf{A}}$ と $\mathbf{A}$ の再構成誤差を最小化することで得られる. 目的関数は次のようにモデル化することができる:
 
  $$
- -\sum_{v_i, v_j \in \mathcal{V}}\left(\mathbf{A}_{i, j} \log \hat{\mathbf{A}}_{i, j}+\left(1-\mathbf{A}_{i, j}\right) \log \left(1-\hat{\mathbf{A}}_{i, j}\right)\right)
+ -\sum_{v_i, v_j \in \symcal{V}}\left(\mathbf{A}_{i, j} \log \hat{\mathbf{A}}_{i, j}+\left(1-\mathbf{A}_{i, j}\right) \log \left(1-\hat{\mathbf{A}}_{i, j}\right)\right)
     \nonumber $$
  
 

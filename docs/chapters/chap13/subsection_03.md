@@ -47,7 +47,7 @@ $$
  
 
 $$
- \mathcal{L}_{e d}=\left\|\mathbf{X}-\mathbf{X}^{\prime}\right\|^{2} \nonumber $$
+ \symcal{L}_{e d}=\left\|\mathbf{X}-\mathbf{X}^{\prime}\right\|^{2} \nonumber $$
 
 
  
