@@ -10,7 +10,7 @@ layout: default
 ## 公開レビューに参加する
 - 期間：2023年12月25日まで
 - 先着50名限定で公開レビュー用にドラフトのPDFを配布します
-　　　　　- 希望される方は[こちら]よりご連絡ください
+　　　　　- 希望される方は[こちら](https://docs.google.com/forms/d/e/1FAIpQLSeqD772Kpj3_4l4hePllXuTo1w-Z-N4DrrqlpbNrAjttKxwfw/viewform?usp=sf_link)よりご連絡ください
 - 参加いただいた方で希望される場合には謝辞に記載させていただきます
 - コメント投稿方法
   - [フォームからコメントを送る](https://forms.gle/xUY5h9eH4psE7fXi7)
