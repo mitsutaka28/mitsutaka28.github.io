@@ -7,6 +7,15 @@ layout: default
 
 グラフ深層学習(Deep Learning on Graphs)の日本語訳オンライン公開サイトです.
 
+## 公開レビューに参加する
+- 期間：2023年12月25日まで
+- 先着50名限定で公開レビュー用にドラフトのPDFを配布します
+　　　　　- 希望される方は[こちら]よりご連絡ください
+- 参加いただいた方で希望される場合には謝辞に記載させていただきます
+- コメント投稿方法
+  - [フォームからコメントを送る](https://forms.gle/xUY5h9eH4psE7fXi7)
+  - [プルリクエストを送る](https://github.com/deeplearning-on-graphs/deeplearning-on-graphs.github.io/tree/main/docs/chapters/)
+
 ## 本書の概要
 この本では，グラフ構造データに対するディープラーニング技術の開発に焦点を当てた包括的な内容を扱っており，特にグラフニューラルネットワーク（GNN）に重点を置いています．
 
@@ -35,15 +44,6 @@ layout: default
 ### 発展
 - [第14章 グラフニューラルネットワークに関する発展的な話題](./chapters/chap14/chap14.md)
 - [第15章 グラフニューラルネットワークにおける発展的な応用例](./chapters/chap15/chap15.md)
-
-## 公開レビューに参加する
-- 期間：2023年12月25日まで
-- 先着50名限定で公開レビュー用にドラフトのPDFを配布します
-　　　　　- 希望される方は[こちら]よりご連絡ください
-- 参加いただいた方で希望される場合には謝辞に記載させていただきます
-- コメント投稿方法
-  - [フォームからコメントを送る](https://forms.gle/xUY5h9eH4psE7fXi7)
-  - [プルリクエストを送る](https://github.com/deeplearning-on-graphs/deeplearning-on-graphs.github.io/tree/main/docs/chapters/)
 
 ### 訳者について
 2名体制による共訳で進めています([略歴](./bio.markdown))．
